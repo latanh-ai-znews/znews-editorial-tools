@@ -1,10 +1,10 @@
-# Quy Chuẩn Kỹ Thuật & Bố Cục CMS Znews (Ad-Safe Standard)
+# Quy chuẩn kỹ thuật và bố cục CMS Znews (chuẩn an toàn quảng cáo)
 
 Tài liệu này tổng hợp toàn bộ các quy tắc kỹ thuật, công thức tính toán CSS và các cạm bẫy thực tế khi dựng các bài viết định dạng đặc biệt (*Minimag, Longform, Special, Photo Story, no-sidebar*) trên hệ thống CMS của Znews.
 
 ---
 
-## 📌 1. Bối Cảnh: Bản Chất Layout CMS Znews
+## 📌 1. Bối cảnh: Bản chất layout CMS Znews
 
 Khi xuất bản một bài viết được gắn cờ định dạng đặc biệt, CMS Znews sẽ áp dụng layout mang class:
 ```html
@@ -26,7 +26,7 @@ Khi xuất bản một bài viết được gắn cờ định dạng đặc bi�
 
 ---
 
-## 🛡️ 2. Ba Vùng Quảng Cáo "Bất Khả Xâm Phạm"
+## 🛡️ 2. Ba vùng quảng cáo bất khả xâm phạm
 
 Mọi bài viết dựng trên CMS Znews bắt buộc phải bảo toàn 3 vị trí quảng cáo tự động sau:
 1. **Banner đầu bài (Top Leaderboard / Header Ad)**: Nằm ngay dưới tiêu đề/sapo hoặc trên khối ảnh đại diện.
@@ -35,7 +35,7 @@ Mọi bài viết dựng trên CMS Znews bắt buộc phải bảo toàn 3 vị 
 
 ---
 
-## 📐 3. Kỹ Thuật "Tràn Viền Cục Bộ" An Toàn (Safe Local Bleed)
+## 📐 3. Kỹ thuật tràn viền cục bộ an toàn (safe local bleed)
 
 Thay vì kéo giãn toàn bộ trang, quy tắc chuẩn là: **Chỉ cho phép từng phần tử hình ảnh hoặc trích dẫn tự tràn viền cục bộ**, trong khi khung chữ và khung quảng cáo vẫn nằm yên trong cột an toàn 600px.
 
@@ -76,9 +76,9 @@ Thay vì kéo giãn toàn bộ trang, quy tắc chuẩn là: **Chỉ cho phép t
 
 ---
 
-## 🎨 4. Cạm Bẫy Đổi Bảng Màu (Sáng ⇄ Tối)
+## 🎨 4. Cạm bẫy đổi bảng màu (sáng ⇄ tối)
 
-### 4.1. Khuyến nghị mặc định: Nền trắng, chữ đen
+### 4.1. Khuyến nghị mặc định: nền trắng, chữ đen
 Nếu tòa soạn hoặc người biên tập không có yêu cầu đặc thù về nhận diện thương hiệu, **hãy luôn dùng nền trắng và chữ đen mặc định**.
 - Lý do: Trang Znews có nền trắng. Một bài viết dùng nền xám/kem/be nhạt (như `#f3f0e9`) khi hiển thị trên màn hình sẽ tạo cảm giác một "khối màu lạ" bị lạc quẻ, thậm chí bị độc giả hiểu lầm là màn hình bị ngả vàng hoặc lỗi hiển thị.
 - Để tạo điểm nhấn, chỉ cần dùng các thẻ (card), box thông tin hoặc khung trích dẫn có viền mảnh hoặc nền xám rất nhạt (`#f8fafc`).
@@ -106,7 +106,7 @@ Nếu bài viết là phóng sự điều tra ban đêm, không gian vũ trụ..
 
 ---
 
-## 🔤 5. Quy Chuẩn Typography & Tuyệt Đối Không Gọi Font Ngoài
+## 🔤 5. Quy chuẩn typography và tuyệt đối không gọi font ngoài
 
 ### 5.1. Tại sao không được gọi font ngoài?
 - Nhiều bạn có thói quen nhúng `@import url('https://fonts.googleapis.com/...')` vào đầu bài.
@@ -127,7 +127,7 @@ font-family: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospac
 
 ---
 
-## 🧩 6. Quy Chuẩn Cấu Trúc HTML Cho Phép
+## 🧩 6. Quy chuẩn cấu trúc HTML cho phép
 
 CMS Znews sử dụng bộ lọc mã nguồn (HTML Sanitizer) khi lưu bài. Các thẻ sau đây được hỗ trợ tốt:
 

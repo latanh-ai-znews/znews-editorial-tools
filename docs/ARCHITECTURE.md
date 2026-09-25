@@ -1,10 +1,10 @@
-# Kiến Trúc Kỹ Thuật Dự Án — Znews Editorial Studio
+# Kiến trúc kỹ thuật dự án — Znews Editorial Studio
 
 Tài liệu này mô tả chi tiết kiến trúc hệ thống, mô hình thực thi và các quy chuẩn công nghệ của bộ công cụ **Znews Editorial Studio**.
 
 ---
 
-## 🏗️ 1. Mô Hình Kiến Trúc Tổng Quan
+## 🏗️ 1. Mô hình kiến trúc tổng quan
 
 Hệ thống được thiết kế theo triết lý **Serverless & 100% Client-Side Architecture** (Toàn bộ logic xử lý diễn ra trực tiếp trên trình duyệt của người dùng).
 
@@ -32,7 +32,7 @@ graph TD
 
 ---
 
-## 📁 2. Bản Đồ Cấu Trúc Dự Án (Directory Layout)
+## 📁 2. Bản đồ cấu trúc dự án (Directory Layout)
 
 ```
 Công cụ AI Znews/
@@ -67,7 +67,7 @@ Công cụ AI Znews/
 
 ---
 
-## 🛡️ 3. Chiến Lược Cách Ly CSS (CSS Namespace & Sandboxing)
+## 🛡️ 3. Chiến lược cách ly CSS (CSS Namespace & Sandboxing)
 
 Một trong những thách thức lớn nhất khi dựng bài đặc biệt trên Znews là **xung đột CSS**:
 - CSS của bài viết làm hỏng thanh Header / Menu của Znews.
@@ -118,7 +118,7 @@ Mỗi công cụ sinh mã đều đóng gói toàn bộ nội dung và CSS trong
 
 ---
 
-## 🔄 5. Chu Trình Xử Lý Dữ Liệu Trong Các Công Cụ
+## 🔄 5. Chu trình xử lý dữ liệu trong các công cụ
 
 1. **Input Phase**:
    - Người dùng nhập text, dán mã HTML bài báo cũ hoặc tải file ảnh.

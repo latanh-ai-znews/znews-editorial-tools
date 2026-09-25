@@ -1,10 +1,10 @@
-# Hướng Dẫn Dành Cho Lập Trình Viên (Developer Guide)
+# Hướng dẫn dành cho lập trình viên (Developer Guide)
 
 Tài liệu này hướng dẫn cách cài đặt môi trường, mở rộng thêm công cụ mới, kiểm thử và quản lý quy trình triển khai lên GitHub Pages cho dự án **Znews Editorial Studio**.
 
 ---
 
-## 🛠️ 1. Cài Đặt Môi Trường & Chạy Cục Bộ (Local Setup)
+## 🛠️ 1. Cài đặt môi trường và chạy cục bộ (Local Setup)
 
 Dự án không yêu cầu cài đặt các framework phức tạp (như Webpack, React hay Vite). Bạn có thể chạy ngay với các công cụ có sẵn.
 
@@ -28,7 +28,7 @@ npx live-server .
 
 ---
 
-## ➕ 2. Quy Trình Thêm Một Công Cụ Mới Vào Studio
+## ➕ 2. Quy trình thêm một công cụ mới vào Studio
 
 Khi ban biên tập có nhu cầu thêm một công cụ mới (ví dụ: *Trình tạo Infographic số liệu*, *Khung phỏng vấn Q&A*):
 
@@ -81,7 +81,7 @@ Trong thẻ `<select id="toolSwitcher">`, thêm dòng:
 
 ---
 
-## 🔄 3. Quy Trình Triển Khai Lên GitHub Pages (Deployment)
+## 🔄 3. Quy trình triển khai lên GitHub Pages (Deployment)
 
 Mọi thay đổi sau khi được đẩy (`git push`) lên nhánh `main` của repository GitHub sẽ tự động được GitHub Pages xuất bản trong vòng **30 đến 60 giây**.
 
@@ -109,7 +109,7 @@ gh api repos/latanh-ai-znews/znews-editorial-tools/pages --jq .status
 
 ---
 
-## 📝 4. Tiêu Chuẩn Viết Mã (Coding Standards)
+## 📝 4. Tiêu chuẩn viết mã (Coding Standards)
 
 1. **Quy chuẩn Font**: Chỉ sử dụng font hệ thống (`Be Vietnam Pro`, `Inter`, `Newsreader`, `system-ui`). Tuyệt đối không gọi Google Fonts trong đoạn mã sinh ra để dán vào CMS.
 2. **Quy chuẩn URL**: Không dùng đường dẫn tuyệt đối kiểu `C:\...` hoặc `/Users/anhle/...`. Luôn dùng đường dẫn tương đối hoặc link CDN HTTPS chính thức của Znews.

@@ -1,4 +1,4 @@
-# Cẩm Nang Xử Lý Sự Cố & Khắc Phục Lỗi (Troubleshooting)
+# Cẩm nang xử lý sự cố và khắc phục lỗi (Troubleshooting)
 
 Tài liệu này tổng hợp toàn bộ các sự cố thường gặp nhất trong quá trình dựng bài đặc biệt trên CMS Znews, phân tích nguyên nhân gốc rễ và cung cấp giải pháp khắc phục tức thì.
 

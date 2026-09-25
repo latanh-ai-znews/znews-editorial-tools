@@ -3,57 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cẩm nang Quy chuẩn Kỹ thuật Dựng bài CMS Znews</title>
+  <title>Cẩm nang quy chuẩn kỹ thuật CMS Znews</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #e51c24;
-      --primary-hover: #cc121a;
-      --primary-bg: #fff1f2;
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface-border: #334155;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --code-bg: #0b0f19;
-      --accent: #38bdf8;
+      --bg: #fbfaf7;
+      --bg-subtle: #f5f2eb;
+      --surface: #ffffff;
+      --border: #e8e4dc;
+      --border-subtle: #f0ece4;
+      --text: #262421;
+      --text-muted: #6e6a62;
+      --text-soft: #4a4742;
+      --primary: #c94a29;
+      --primary-hover: #b33e1f;
+      --code-bg: #f5f2eb;
       --radius: 12px;
     }
-    [data-theme="light"] {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --surface-border: #e2e8f0;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --code-bg: #1e293b;
-      --primary-bg: #fee2e2;
+    [data-theme="dark"] {
+      --bg: #161514;
+      --bg-subtle: #1f1d1b;
+      --surface: #242220;
+      --border: #363330;
+      --border-subtle: #2d2b28;
+      --text: #f2eee8;
+      --text-muted: #9e988f;
+      --text-soft: #c7c1b7;
+      --primary: #e0603f;
+      --primary-hover: #ea7051;
+      --code-bg: #1f1d1b;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Be Vietnam Pro', -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
-      font-size: 15.5px;
-      transition: background .25s ease, color .25s ease;
+      line-height: 1.75;
+      font-size: 15px;
+      transition: background .2s ease, color .2s ease;
+      -webkit-font-smoothing: antialiased;
     }
-    /* Top bar */
+    /* Topbar */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
-      background: rgba(15, 23, 42, 0.85);
-      border-bottom: 1px solid var(--surface-border);
-      padding: 12px 24px;
+      backdrop-filter: blur(14px);
+      background: rgba(251, 250, 247, 0.92);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    [data-theme="light"] .topbar {
-      background: rgba(255, 255, 255, 0.9);
+    [data-theme="dark"] .topbar {
+      background: rgba(22, 21, 20, 0.92);
     }
     .nav-brand {
       display: flex;
@@ -65,15 +71,14 @@
     .brand-badge {
       background: var(--primary);
       color: #fff;
-      font-weight: 800;
-      font-size: 13px;
-      letter-spacing: .08em;
+      font-weight: 700;
+      font-size: 12.5px;
       padding: 4px 9px;
       border-radius: 6px;
     }
     .brand-title {
-      font-weight: 700;
       font-size: 15px;
+      font-weight: 600;
     }
     .nav-actions {
       display: flex;
@@ -84,53 +89,43 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 14px;
+      padding: 7px 13px;
       border-radius: 8px;
       font-size: 13.5px;
-      font-weight: 600;
+      font-weight: 500;
       text-decoration: none;
       cursor: pointer;
-      border: 1px solid var(--surface-border);
+      border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      transition: all .2s;
+      transition: all .18s;
     }
     .btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: #fff !important;
-      border-color: var(--primary);
-    }
-    .btn-primary:hover {
-      background: var(--primary-hover);
+      border-color: #68635c;
+      color: var(--text);
     }
     
     /* Layout */
     .layout-container {
-      max-width: 1380px;
+      max-width: 1320px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 310px 1fr;
-      gap: 40px;
+      grid-template-columns: 290px 1fr;
+      gap: 36px;
       padding: 32px 24px;
     }
     
     /* Sidebar TOC */
     .sidebar {
       position: sticky;
-      top: 80px;
-      height: calc(100vh - 110px);
+      top: 76px;
+      height: calc(100vh - 100px);
       overflow-y: auto;
       padding-right: 12px;
     }
     .sidebar-title {
       font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .08em;
+      font-weight: 600;
       color: var(--text-muted);
       margin-bottom: 12px;
     }
@@ -152,59 +147,62 @@
     }
     .toc-list li a:hover {
       color: var(--text);
-      background: var(--surface);
+      background: var(--bg-subtle);
     }
-    .toc-list li.toc-level-1 { font-weight: 700; margin-top: 8px; }
-    .toc-list li.toc-level-2 { font-weight: 600; padding-left: 10px; }
-    .toc-list li.toc-level-3 { font-size: 12.5px; padding-left: 20px; }
+    .toc-list li.toc-level-1 { font-weight: 600; margin-top: 8px; }
+    .toc-list li.toc-level-2 { font-weight: 500; padding-left: 8px; }
+    .toc-list li.toc-level-3 { font-size: 12.5px; padding-left: 18px; }
     
     /* Content */
     .content-article {
       background: var(--surface);
-      border: 1px solid var(--surface-border);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 48px;
+      padding: 44px;
       min-width: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
     
     .heading-1 {
-      font-size: 28px;
-      font-weight: 800;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 30px;
+      font-weight: 600;
       line-height: 1.3;
       margin-bottom: 24px;
       color: var(--text);
-      border-bottom: 2px solid var(--primary);
+      border-bottom: 1px solid var(--border);
       padding-bottom: 16px;
     }
     .heading-2 {
+      font-family: 'Newsreader', Georgia, serif;
       font-size: 22px;
-      font-weight: 700;
-      margin-top: 40px;
-      margin-bottom: 16px;
+      font-weight: 600;
+      margin-top: 36px;
+      margin-bottom: 14px;
       color: var(--text);
       display: flex;
       align-items: baseline;
       gap: 8px;
-      border-bottom: 1px solid var(--surface-border);
+      border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 8px;
     }
     .heading-3 {
-      font-size: 17px;
-      font-weight: 700;
-      margin-top: 26px;
-      margin-bottom: 12px;
-      color: var(--accent);
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      color: var(--primary);
     }
     .anchor-link {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 18px;
+      font-size: 17px;
       opacity: .4;
     }
     .anchor-link:hover { opacity: 1; color: var(--primary); }
     
     p {
-      margin-bottom: 16px;
+      margin-bottom: 15px;
       color: var(--text);
     }
     strong {
@@ -214,113 +212,101 @@
     code {
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
-      background: rgba(229, 28, 36, 0.1);
-      color: #ff6b6b;
+      background: var(--bg-subtle);
+      color: var(--primary);
       padding: 2px 6px;
       border-radius: 4px;
-    }
-    [data-theme="light"] code {
-      color: #d32f2f;
-      background: #fee2e2;
+      border: 1px solid var(--border-subtle);
     }
     
     .doc-list, .doc-ordered-list {
-      margin: 0 0 20px 24px;
+      margin: 0 0 18px 22px;
     }
     .doc-list li, .doc-ordered-list li {
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
     .doc-quote {
-      border-left: 4px solid var(--primary);
-      background: rgba(229, 28, 36, 0.05);
-      padding: 14px 20px;
+      border-left: 3px solid var(--primary);
+      background: var(--bg-subtle);
+      padding: 12px 18px;
       border-radius: 0 8px 8px 0;
-      margin: 20px 0;
+      margin: 18px 0;
       font-style: italic;
       color: var(--text);
     }
     .divider {
       border: 0;
       height: 1px;
-      background: var(--surface-border);
-      margin: 36px 0;
+      background: var(--border);
+      margin: 32px 0;
     }
     
     /* Code blocks */
     .code-wrapper {
-      margin: 20px 0;
+      margin: 18px 0;
       border-radius: 10px;
       overflow: hidden;
-      border: 1px solid var(--surface-border);
+      border: 1px solid var(--border);
       background: var(--code-bg);
     }
     .code-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 14px;
+      background: rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid var(--border);
     }
     .code-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .06em;
+      font-size: 11.5px;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 500;
     }
     .copy-btn {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #cbd5e1;
-      padding: 4px 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 4px 9px;
       border-radius: 6px;
       font-size: 11.5px;
       cursor: pointer;
-      transition: all .2s;
+      transition: all .15s;
     }
     .copy-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      border-color: #68635c;
     }
     pre {
-      padding: 16px;
+      padding: 14px 16px;
       overflow-x: auto;
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
       line-height: 1.6;
-      color: #e2e8f0;
+      color: var(--text);
     }
     
     @media (max-width: 900px) {
-      .layout-container {
-        grid-template-columns: 1fr;
-      }
-      .sidebar {
-        display: none;
-      }
-      .content-article {
-        padding: 24px;
-      }
+      .layout-container { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .content-article { padding: 22px 18px; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <a href="index.html" class="nav-brand">
-      <span class="brand-badge">ZNEWS</span>
-      <span class="brand-title">Editorial Suite · Quy chuẩn CMS</span>
+      <span class="brand-badge">Znews</span>
+      <span class="brand-title">Cẩm nang quy chuẩn CMS</span>
     </a>
     <div class="nav-actions">
       <a href="index.html" class="btn">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Về danh sách công cụ
       </a>
-      <button class="btn" onclick="toggleTheme()">🌓 Giao diện</button>
+      <button class="btn" onclick="toggleTheme()">Giao diện</button>
     </div>
   </header>
 
@@ -666,7 +652,7 @@
   <div class="code-header">
     <span class="code-badge">html</span>
     <button class="copy-btn" onclick="copySnippet(this)">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
       Sao chép
     </button>
   </div>
@@ -703,7 +689,7 @@ window.zacWake = function(id, cls){
   <div class="code-header">
     <span class="code-badge">css</span>
     <button class="copy-btn" onclick="copySnippet(this)">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
       Sao chép
     </button>
   </div>
@@ -794,7 +780,7 @@ window.zacWake = function(id, cls){
   <div class="code-header">
     <span class="code-badge">js</span>
     <button class="copy-btn" onclick="copySnippet(this)">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
       Sao chép
     </button>
   </div>
@@ -923,7 +909,7 @@ document.querySelectorAll(&quot;.carousel&quot;).forEach(function(car){ /* ...g�
   <div class="code-header">
     <span class="code-badge">css</span>
     <button class="copy-btn" onclick="copySnippet(this)">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
       Sao chép
     </button>
   </div>
@@ -995,17 +981,17 @@ document.querySelectorAll(&quot;.carousel&quot;).forEach(function(car){ /* ...g�
       const code = btn.closest('.code-wrapper').querySelector('code').innerText;
       navigator.clipboard.writeText(code).then(() => {
         const oldText = btn.innerHTML;
-        btn.innerHTML = '✓ Đã chép!';
+        btn.innerHTML = 'Đã chép!';
         setTimeout(() => { btn.innerHTML = oldText; }, 2000);
       });
     }
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('znews_theme', next);
     }
-    const savedTheme = localStorage.getItem('znews_theme') || 'dark';
+    const savedTheme = localStorage.getItem('znews_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
   </script>
 </body>

@@ -3,47 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Znews Editorial Studio — Hệ thống Công cụ AI & Dàn trang</title>
+  <title>Studio biên tập Znews — Hệ thống công cụ dàn trang và xuất bản</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
+    /* Bảng màu sáng phong cách Claude: ấm áp, dịu mắt, độ tương phản vừa phải */
     :root {
-      --primary: #e51c24;
-      --primary-hover: #c9141b;
-      --primary-glow: rgba(229, 28, 36, 0.25);
-      --bg: #090d16;
-      --bg-subtle: #0f172a;
-      --surface: #141c2e;
-      --surface-hover: #1a253c;
-      --border: #23304a;
-      --border-subtle: #1c263c;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-soft: #cbd5e1;
-      --accent-cyan: #38bdf8;
-      --accent-purple: #c084fc;
-      --accent-emerald: #34d399;
-      --accent-amber: #fbbf24;
+      --bg: #fbfaf7;
+      --bg-subtle: #f5f2eb;
+      --surface: #ffffff;
+      --surface-hover: #fcfbf9;
+      --border: #e8e4dc;
+      --border-subtle: #f0ece4;
+      --text: #262421;
+      --text-muted: #6e6a62;
+      --text-soft: #4a4742;
+      --primary: #c94a29;
+      --primary-hover: #b33e1f;
+      --primary-subtle: #faebe7;
+      --accent-stone: #68635c;
+      --accent-blue: #2563eb;
+      --accent-green: #15803d;
       --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-card: 0 2px 8px -2px rgba(38, 36, 33, 0.05), 0 1px 3px rgba(38, 36, 33, 0.03);
+      --shadow-hover: 0 10px 24px -6px rgba(38, 36, 33, 0.08), 0 2px 6px -1px rgba(38, 36, 33, 0.04);
     }
 
-    [data-theme="light"] {
-      --bg: #f8fafc;
-      --bg-subtle: #f1f5f9;
-      --surface: #ffffff;
-      --surface-hover: #f8fafc;
-      --border: #e2e8f0;
-      --border-subtle: #edf2f7;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --text-soft: #334155;
-      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-      --primary-glow: rgba(229, 28, 36, 0.12);
+    /* Chế độ tối bổ trợ nếu người dùng muốn làm việc ban đêm */
+    [data-theme="dark"] {
+      --bg: #161514;
+      --bg-subtle: #1f1d1b;
+      --surface: #242220;
+      --surface-hover: #2b2926;
+      --border: #363330;
+      --border-subtle: #2d2b28;
+      --text: #f2eee8;
+      --text-muted: #9e988f;
+      --text-soft: #c7c1b7;
+      --primary: #e0603f;
+      --primary-hover: #ea7051;
+      --primary-subtle: #38241e;
+      --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.35);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,55 +58,65 @@
       background-color: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.6;
-      transition: background-color .3s ease, color .3s ease;
+      line-height: 1.65;
+      font-size: 15px;
+      transition: background-color .25s ease, color .25s ease;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header */
+    /* Thanh điều hướng đầu trang */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(14px);
+      background: rgba(251, 250, 247, 0.92);
       border-bottom: 1px solid var(--border);
-      padding: 12px 28px;
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all .3s;
+      transition: all .25s;
     }
-    [data-theme="light"] .site-header {
-      background: rgba(255, 255, 255, 0.9);
+    [data-theme="dark"] .site-header {
+      background: rgba(22, 21, 20, 0.92);
     }
 
     .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
       color: inherit;
     }
     .brand-logo {
-      background: linear-gradient(135deg, #e51c24, #b91c1c);
+      background: var(--primary);
       color: #ffffff;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: .08em;
-      padding: 6px 12px;
+      font-weight: 700;
+      font-size: 12.5px;
+      letter-spacing: .04em;
+      padding: 5px 10px;
       border-radius: var(--radius-sm);
-      box-shadow: 0 4px 12px var(--primary-glow);
       display: inline-flex;
       align-items: center;
     }
     .brand-text h1 {
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: -.01em;
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+    .brand-version {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
     }
     .brand-subtitle {
       font-size: 12px;
@@ -117,114 +133,119 @@
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       padding: 8px 14px;
       border-radius: var(--radius-sm);
       font-size: 13.5px;
-      font-weight: 600;
+      font-weight: 500;
       text-decoration: none;
       cursor: pointer;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      transition: all .2s ease;
+      transition: all .18s ease;
     }
     .btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+      border-color: var(--accent-stone);
+      color: var(--text);
+      background: var(--surface-hover);
       transform: translateY(-1px);
     }
     .btn-primary {
       background: var(--primary);
-      color: #fff !important;
+      color: #ffffff !important;
       border-color: var(--primary);
-      box-shadow: 0 4px 12px var(--primary-glow);
     }
     .btn-primary:hover {
       background: var(--primary-hover);
       border-color: var(--primary-hover);
+      color: #ffffff !important;
+    }
+    .btn-secondary {
+      background: var(--surface);
+      border-color: var(--border);
+      color: var(--text-soft);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-subtle);
+      border-color: var(--border);
     }
     .icon-btn {
-      padding: 8px;
+      padding: 8px 10px;
       border-radius: var(--radius-sm);
     }
 
-    /* Hero Section */
+    /* Phần mở đầu giới thiệu */
     .hero-section {
-      max-width: 1280px;
-      margin: 36px auto 24px;
+      max-width: 980px;
+      margin: 44px auto 28px;
       padding: 0 24px;
       text-align: center;
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: rgba(229, 28, 36, 0.1);
-      border: 1px solid rgba(229, 28, 36, 0.25);
+      gap: 7px;
+      padding: 5px 14px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
       border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #ff5252;
-      margin-bottom: 18px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 20px;
     }
-    [data-theme="light"] .hero-badge {
-      color: #d32f2f;
-      background: #fee2e2;
-      border-color: #fecaca;
+    .hero-badge .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-green);
     }
     .hero-title {
-      font-size: 36px;
-      font-weight: 800;
-      letter-spacing: -.03em;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 42px;
+      font-weight: 500;
+      letter-spacing: -.02em;
       line-height: 1.25;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, var(--text) 30%, var(--text-muted) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      color: var(--text);
     }
     .hero-desc {
-      font-size: 15.5px;
+      font-size: 16px;
       color: var(--text-muted);
-      max-width: 780px;
-      margin: 0 auto 28px;
-      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
     }
 
-    /* Stats Banner */
+    /* Dòng thông số nhanh */
     .stats-row {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 14px;
       flex-wrap: wrap;
       margin-bottom: 32px;
     }
     .stat-pill {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
+      gap: 7px;
+      padding: 5px 13px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 999px;
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--text-soft);
+      box-shadow: var(--shadow-sm);
     }
     .stat-pill b {
       color: var(--text);
-    }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
+      font-weight: 600;
     }
 
-    /* Filter & Search Bar */
+    /* Thanh tìm kiếm và bộ lọc */
     .controls-wrap {
-      max-width: 1280px;
+      max-width: 1240px;
       margin: 0 auto 32px;
       padding: 0 24px;
       display: flex;
@@ -249,19 +270,23 @@
     }
     .search-input {
       width: 100%;
-      padding: 13px 16px 13px 44px;
+      padding: 12px 16px 12px 44px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      font-size: 15px;
+      font-size: 14.5px;
       font-family: inherit;
       outline: none;
-      transition: all .2s;
+      transition: all .18s;
+      box-shadow: var(--shadow-sm);
     }
     .search-input:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-glow);
+      box-shadow: 0 0 0 3px var(--primary-subtle);
+    }
+    .search-input::placeholder {
+      color: var(--text-muted);
     }
     .kbd-shortcut {
       position: absolute;
@@ -286,73 +311,62 @@
     }
     .filter-chips::-webkit-scrollbar { display: none; }
     .chip {
-      padding: 7px 16px;
+      padding: 6px 15px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text-muted);
       cursor: pointer;
       white-space: nowrap;
-      transition: all .2s;
+      transition: all .18s;
     }
     .chip:hover {
       color: var(--text);
-      border-color: var(--text-muted);
+      border-color: var(--accent-stone);
     }
     .chip.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 2px 8px var(--primary-glow);
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg);
+    }
+    [data-theme="dark"] .chip.active {
+      background: #f2eee8;
+      border-color: #f2eee8;
+      color: #161514;
     }
 
-    /* Tools Grid */
+    /* Lưới danh sách công cụ và tài liệu */
     .tools-grid {
-      max-width: 1280px;
+      max-width: 1240px;
       margin: 0 auto 60px;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+      gap: 22px;
     }
 
     .tool-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 28px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-card);
+      transition: all .22s ease;
     }
     .tool-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(229, 28, 36, 0.4);
-      box-shadow: 0 16px 36px -12px rgba(229, 28, 36, 0.15);
-    }
-    .tool-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--card-accent, var(--primary)), transparent);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .tool-card:hover::before {
-      opacity: 1;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: #d8d3c9;
     }
 
     .card-top {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .card-meta-row {
       display: flex;
@@ -361,39 +375,38 @@
       margin-bottom: 16px;
     }
     .tool-icon-wrap {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      background: var(--icon-bg, rgba(229, 28, 36, 0.1));
-      border: 1px solid var(--icon-border, rgba(229, 28, 36, 0.2));
+      font-size: 22px;
+      background: var(--icon-bg, var(--bg-subtle));
+      border: 1px solid var(--border);
     }
     .category-badge {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      padding: 4px 10px;
-      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 6px;
       background: var(--bg-subtle);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       color: var(--text-muted);
     }
 
     .tool-title {
-      font-size: 20px;
-      font-weight: 700;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
       line-height: 1.35;
       margin-bottom: 10px;
       color: var(--text);
     }
     .tool-desc {
-      font-size: 14.5px;
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 18px;
     }
 
@@ -401,8 +414,8 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 22px;
+      gap: 7px;
+      margin-bottom: 20px;
       padding: 12px 14px;
       background: var(--bg-subtle);
       border-radius: var(--radius-sm);
@@ -412,12 +425,14 @@
       font-size: 12.5px;
       color: var(--text-soft);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
+      line-height: 1.5;
     }
     .features-list li svg {
-      color: #22c55e;
+      color: var(--accent-green);
       flex-shrink: 0;
+      margin-top: 2px;
     }
 
     .card-actions {
@@ -430,16 +445,8 @@
       flex: 1;
       justify-content: center;
     }
-    .btn-secondary {
-      background: transparent;
-      border-color: var(--border);
-    }
-    .btn-secondary:hover {
-      background: var(--surface-hover);
-      color: var(--text);
-    }
 
-    /* Workspace / Embedded Iframe Modal */
+    /* Khung làm việc tích hợp (Workspace Overlay) */
     .workspace-overlay {
       position: fixed;
       top: 0;
@@ -452,14 +459,14 @@
       flex-direction: column;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .25s ease;
+      transition: opacity .22s ease;
     }
     .workspace-overlay.active {
       opacity: 1;
       pointer-events: auto;
     }
     .workspace-bar {
-      height: 54px;
+      height: 52px;
       background: var(--surface);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -471,15 +478,15 @@
     .workspace-left, .workspace-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
     .tool-selector {
       background: var(--bg-subtle);
       border: 1px solid var(--border);
       color: var(--text);
       font-family: inherit;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 13.5px;
+      font-weight: 500;
       padding: 6px 12px;
       border-radius: var(--radius-sm);
       outline: none;
@@ -496,7 +503,7 @@
       background: #ffffff;
     }
 
-    /* Document Reader Modal */
+    /* Hộp thoại đọc tài liệu (Document Reader Modal) */
     .doc-modal-overlay {
       position: fixed;
       top: 0;
@@ -504,15 +511,15 @@
       right: 0;
       bottom: 0;
       z-index: 1100;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
+      background: rgba(38, 36, 33, 0.45);
+      backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .25s ease;
+      transition: opacity .22s ease;
     }
     .doc-modal-overlay.active {
       opacity: 1;
@@ -523,15 +530,15 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 960px;
+      max-width: 920px;
       height: 85vh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
     }
     .doc-modal-header {
-      padding: 16px 24px;
+      padding: 14px 24px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -539,40 +546,87 @@
       background: var(--bg-subtle);
     }
     .doc-modal-title {
-      font-size: 16px;
-      font-weight: 700;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 18px;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
     .doc-modal-body {
       flex: 1;
       overflow-y: auto;
-      padding: 36px 40px;
-      line-height: 1.7;
+      padding: 36px 44px;
+      line-height: 1.75;
+      font-size: 15px;
+      color: var(--text);
     }
-    .doc-modal-body h1 { font-size: 26px; margin-bottom: 18px; border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
-    .doc-modal-body h2 { font-size: 20px; margin: 30px 0 14px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-    .doc-modal-body h3 { font-size: 16px; margin: 20px 0 10px; color: var(--accent-cyan); }
+    .doc-modal-body h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      color: var(--text);
+    }
+    .doc-modal-body h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 28px 0 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 6px;
+      color: var(--text);
+    }
+    .doc-modal-body h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 20px 0 10px;
+      color: var(--primary);
+    }
     .doc-modal-body p { margin-bottom: 14px; }
-    .doc-modal-body ul, .doc-modal-body ol { margin: 0 0 18px 24px; }
+    .doc-modal-body ul, .doc-modal-body ol { margin: 0 0 18px 22px; }
     .doc-modal-body li { margin-bottom: 6px; }
-    .doc-modal-body pre { background: var(--bg); padding: 16px; border-radius: 8px; border: 1px solid var(--border); overflow-x: auto; margin: 16px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
-    .doc-modal-body code { background: rgba(229,28,36,0.1); color: #ff6b6b; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
-    [data-theme="light"] .doc-modal-body code { color: #d32f2f; background: #fee2e2; }
-    .doc-modal-body blockquote { border-left: 4px solid var(--primary); padding: 10px 18px; background: rgba(229,28,36,0.05); margin: 16px 0; font-style: italic; }
-    .doc-modal-body table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    .doc-modal-body th, .doc-modal-body td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
-    .doc-modal-body th { background: var(--bg-subtle); }
+    .doc-modal-body pre {
+      background: var(--bg-subtle);
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin: 16px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .doc-modal-body code {
+      background: var(--bg-subtle);
+      color: var(--primary);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      border: 1px solid var(--border-subtle);
+    }
+    .doc-modal-body blockquote {
+      border-left: 3px solid var(--primary);
+      padding: 10px 18px;
+      background: var(--bg-subtle);
+      margin: 16px 0;
+      font-style: italic;
+    }
+    .doc-modal-body table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .doc-modal-body th, .doc-modal-body td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; }
+    .doc-modal-body th { background: var(--bg-subtle); font-weight: 600; }
 
-    /* Footer */
+    /* Chân trang */
     .site-footer {
       border-top: 1px solid var(--border);
       padding: 36px 24px;
       text-align: center;
       color: var(--text-muted);
       font-size: 13.5px;
-      max-width: 1280px;
+      max-width: 1240px;
       margin: 0 auto;
     }
     .site-footer a {
@@ -582,21 +636,22 @@
 
     @media (max-width: 820px) {
       .tools-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 28px; }
+      .hero-title { font-size: 32px; }
+      .site-header { padding: 12px 18px; }
       .doc-modal { height: 95vh; }
-      .doc-modal-body { padding: 20px; }
+      .doc-modal-body { padding: 22px 18px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Thanh điều hướng đầu trang -->
   <header class="site-header">
     <a href="#" class="brand-wrap">
-      <div class="brand-logo">ZNEWS</div>
+      <div class="brand-logo">Znews</div>
       <div class="brand-text">
-        <h1>Editorial Studio <span style="font-size:12px; font-weight:500; color:var(--text-muted); background:var(--bg-subtle); padding:2px 8px; border-radius:4px; border:1px solid var(--border);">v2.0</span></h1>
-        <div class="brand-subtitle">Bộ công cụ dàn trang & thiết kế bài viết số</div>
+        <h1>Studio biên tập <span class="brand-version">Bản 2.0</span></h1>
+        <div class="brand-subtitle">Bộ công cụ dàn trang và xuất bản bài viết</div>
       </div>
     </a>
     <div class="header-actions">
@@ -608,471 +663,471 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
         GitHub
       </a>
-      <button class="btn icon-btn" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối (D)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+      <button class="btn icon-btn" onclick="toggleTheme()" title="Đổi giao diện sáng hoặc tối (nhấn phím D)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
       </button>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Phần mở đầu -->
   <section class="hero-section">
     <div class="hero-badge">
       <span class="status-dot"></span>
-      Hệ thống Công cụ Trực quan CMS Znews
+      Hệ sinh thái công cụ dàn trang CMS Znews
     </div>
-    <h2 class="hero-title">Không Gian Biên Tập & Thiết Kế Znews</h2>
+    <h2 class="hero-title">Không gian biên tập và thiết kế bài viết Znews</h2>
     <p class="hero-desc">
-      Tuyển tập công cụ hỗ trợ dàn trang Magazine, phóng sự ảnh, bài viết sách, slide ảnh carousel và tạo thumbnail chuẩn 900×600. Đảm bảo 100% an toàn quảng cáo (Ad-safe) và tối ưu hiển thị đa nền tảng.
+      Tổng hợp các công cụ chuyên dụng hỗ trợ phóng viên và biên tập viên dàn trang magazine, phóng sự ảnh, bài viết sách, slide ảnh và đóng khung thumbnail chuẩn 900×600. Đảm bảo hiển thị an toàn cho quảng cáo và tương thích đa thiết bị.
     </p>
 
     <div class="stats-row">
-      <div class="stat-pill"><b>6</b> Công cụ chuyên dụng</div>
-      <div class="stat-pill"><b>5</b> Tài liệu quy chuẩn CMS</div>
-      <div class="stat-pill"><b>100%</b> Ad-Safe & Responsive</div>
-      <div class="stat-pill"><b>GitHub Pages</b> Truy cập mọi thiết bị</div>
+      <div class="stat-pill"><b>6</b> công cụ chuyên dụng</div>
+      <div class="stat-pill"><b>5</b> tài liệu quy chuẩn CMS</div>
+      <div class="stat-pill"><b>100%</b> an toàn quảng cáo</div>
+      <div class="stat-pill">Truy cập mọi nơi qua GitHub Pages</div>
     </div>
   </section>
 
-  <!-- Search & Filter Controls -->
+  <!-- Thanh tìm kiếm và bộ lọc chuyên mục -->
   <div class="controls-wrap">
     <div class="search-box-row">
       <div class="search-input-wrap">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm công cụ, tài liệu, quy chuẩn (ví dụ: magazine, ad-safe, thumb, carousel, sách, quy chuẩn...)" oninput="filterTools()">
+        <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm công cụ, tính năng hoặc tài liệu (nhấn / để tìm nhanh)..." oninput="filterTools()">
         <span class="kbd-shortcut">/</span>
       </div>
     </div>
 
     <div class="filter-chips">
-      <button class="chip active" onclick="setCategory('all', this)">✨ Tất cả (11)</button>
-      <button class="chip" onclick="setCategory('layout', this)">📰 Dàn trang & Layout (3)</button>
-      <button class="chip" onclick="setCategory('media', this)">🖼️ Đồ hoạ & Ảnh (2)</button>
-      <button class="chip" onclick="setCategory('special', this)">📚 Chuyên đề Sách (1)</button>
-      <button class="chip" data-cat-btn="docs" onclick="setCategory('docs', this)">📖 Tài liệu & Quy chuẩn (5)</button>
+      <button class="chip active" onclick="setCategory('all', this)">Tất cả (11)</button>
+      <button class="chip" onclick="setCategory('layout', this)">Dàn trang và layout (3)</button>
+      <button class="chip" onclick="setCategory('media', this)">Đồ họa và ảnh (2)</button>
+      <button class="chip" onclick="setCategory('special', this)">Chuyên đề sách (1)</button>
+      <button class="chip" data-cat-btn="docs" onclick="setCategory('docs', this)">Tài liệu và quy chuẩn (5)</button>
     </div>
   </div>
 
-  <!-- Tools & Docs Grid -->
+  <!-- Lưới danh sách công cụ và tài liệu -->
   <main class="tools-grid" id="toolsGrid">
 
-    <!-- Card 1: Magazine Generator -->
-    <article class="tool-card" data-category="layout" data-keywords="magazine longform layouts v10 v10.13 dan trang tap chi cuon scroll parallax hero" style="--card-accent: #e51c24; --icon-bg: rgba(229, 28, 36, 0.1); --icon-border: rgba(229, 28, 36, 0.2);">
+    <!-- Thẻ 1: Magazine Generator -->
+    <article class="tool-card" data-category="layout" data-keywords="magazine longform layouts v10 v10.13 dan trang tap chi cuon scroll parallax hero">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">📰</div>
-          <span class="category-badge">Dàn trang · v10.13</span>
+          <span class="category-badge">Dàn trang · Bản 10.13</span>
         </div>
-        <h3 class="tool-title">Znews Magazine Layouts Generator</h3>
+        <h3 class="tool-title">Trình tạo layout Znews Magazine</h3>
         <p class="tool-desc">
-          Công cụ thiết kế và dàn trang Magazine & Longform đa phong cách chuyên sâu nhất. Hỗ trợ import mã nguồn bài viết, tùy chọn bố cục, hiệu ứng cuộn tương tác (Parallax) và xuất mã nhúng tương thích tuyệt đối với CMS.
+          Công cụ thiết kế và dàn trang magazine, longform đa phong cách. Hỗ trợ nhập mã nguồn bài viết, tùy chọn bố cục, hiệu ứng cuộn tương tác (parallax) và xuất mã nhúng tương thích tối đa với CMS.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Nhập bài từ HTML hoặc soạn thảo trực tiếp
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Nhập bài từ HTML hoặc soạn thảo trực tiếp</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            6+ kiểu trình bày chuyên nghiệp, typography đa dạng
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Hơn 6 kiểu trình bày chuyên nghiệp và đa dạng</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Hiệu ứng cuộn Parallax, Hero cover tương tác
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Hiệu ứng cuộn parallax và banner mở đầu sinh động</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="launchApp('tool-znews-magazine-v10-13.html', 'Znews Magazine Layouts v10.13')">
-          🚀 Mở công cụ
+        <button class="btn btn-primary" onclick="launchApp('tool-znews-magazine-v10-13.html', 'Trình tạo layout Znews Magazine (bản 10.13)')">
+          Mở công cụ
         </button>
-        <a href="tool-znews-magazine-v10-13.html" target="_blank" class="btn btn-secondary" title="Mở tab mới">
+        <a href="tool-znews-magazine-v10-13.html" target="_blank" class="btn btn-secondary" title="Mở trong tab mới">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           Tab mới
         </a>
       </div>
     </article>
 
-    <!-- Card 2: No Side-Bar Ad-Safe -->
-    <article class="tool-card" data-category="layout" data-keywords="no sidebar no-side-bar ad safe quang cao tran vien auto parse quote photo chain" style="--card-accent: #38bdf8; --icon-bg: rgba(56, 189, 248, 0.1); --icon-border: rgba(56, 189, 248, 0.2);">
+    <!-- Thẻ 2: No Side-Bar Ad-Safe -->
+    <article class="tool-card" data-category="layout" data-keywords="no sidebar no-side-bar ad safe quang cao tran vien auto parse quote photo chain">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">🛡️</div>
           <span class="category-badge">Bảo toàn quảng cáo · Ad-Safe</span>
         </div>
-        <h3 class="tool-title">Dựng bài No Side-bar (Ad-Safe)</h3>
+        <h3 class="tool-title">Dựng bài no side-bar (an toàn quảng cáo)</h3>
         <p class="tool-desc">
-          Dựng bài đặc biệt trên layout no-sidebar nhưng bảo toàn 100% hiển thị cho các vùng quảng cáo (banner đầu bài, giữa bài và chân trang). Tự động quét bắt quote và chuỗi ảnh để tạo layout ấn tượng.
+          Dựng bài đặc biệt trên layout no-sidebar nhưng bảo toàn 100% hiển thị cho các vùng quảng cáo (banner đầu bài, giữa bài và chân trang). Tự động quét bắt trích dẫn và chuỗi ảnh để tạo bố cục ấn tượng.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Phân tích tự động bài viết: bắt quote & chùm ≥3 ảnh
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Tự động phân tích bài viết: bắt trích dẫn và chùm 3 ảnh trở lên</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Công thức tràn lề an toàn tuyệt đối cho banner quảng cáo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Công thức tràn lề an toàn, không đẩy lệch khung quảng cáo</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Chuẩn nền trắng chữ đen tránh lỗi bẫy màu của CMS
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Chuẩn nền sáng chữ tối, tránh lỗi bẫy màu của CMS</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="launchApp('no-side-bar-ad-safe-tool.html', 'Bài đặc biệt No Side-bar (Ad-Safe)')">
-          🚀 Mở công cụ
+        <button class="btn btn-primary" onclick="launchApp('no-side-bar-ad-safe-tool.html', 'Dựng bài no side-bar (an toàn quảng cáo)')">
+          Mở công cụ
         </button>
-        <a href="no-side-bar-ad-safe-tool.html" target="_blank" class="btn btn-secondary" title="Mở tab mới">
+        <a href="no-side-bar-ad-safe-tool.html" target="_blank" class="btn btn-secondary" title="Mở trong tab mới">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           Tab mới
         </a>
       </div>
     </article>
 
-    <!-- Card 3: Photo Essay Tool -->
-    <article class="tool-card" data-category="layout" data-keywords="photo essay bao anh phong su anh visual storytelling convert bai cu" style="--card-accent: #c084fc; --icon-bg: rgba(192, 132, 252, 0.1); --icon-border: rgba(192, 132, 252, 0.2);">
+    <!-- Thẻ 3: Photo Essay Tool -->
+    <article class="tool-card" data-category="layout" data-keywords="photo essay bao anh phong su anh visual storytelling convert bai cu">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">📷</div>
-          <span class="category-badge">Báo ảnh & Phóng sự</span>
+          <span class="category-badge">Báo ảnh và phóng sự</span>
         </div>
-        <h3 class="tool-title">Công cụ dựng bài ảnh (Photo Essay)</h3>
+        <h3 class="tool-title">Công cụ dựng bài ảnh (photo essay)</h3>
         <p class="tool-desc">
-          Công cụ chuyên biệt dành cho bài phóng sự ảnh và visual storytelling. Hỗ trợ hero cover toàn khổ, ảnh so sánh, cụm lưới ảnh 2-3 cột, caption chuẩn báo chí và bộ chuyển đổi nhanh từ bài báo ảnh cũ.
+          Chuyên biệt cho bài phóng sự ảnh và kể chuyện qua hình ảnh. Hỗ trợ ảnh bìa toàn cảnh, ảnh so sánh, cụm lưới ảnh 2-3 cột, chú thích ảnh chuẩn báo chí và bộ chuyển đổi nhanh từ bài ảnh cũ.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Hero ảnh bìa toàn màn hình & phân tách chương hồi
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Ảnh bìa toàn màn hình và chia phân đoạn chương hồi</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Chuyển đổi bài ảnh cũ thành chuẩn hiện đại trong 1 cú nhấp
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Chuyển đổi bài ảnh cũ thành chuẩn mới chỉ với một thao tác</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Tối ưu hiển thị responsive hoàn hảo trên di động
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Tối ưu hiển thị responsive hoàn hảo trên di động</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="launchApp('photo-essay-tool.html', 'Công cụ dựng bài ảnh (Photo Essay)')">
-          🚀 Mở công cụ
+        <button class="btn btn-primary" onclick="launchApp('photo-essay-tool.html', 'Công cụ dựng bài ảnh (photo essay)')">
+          Mở công cụ
         </button>
-        <a href="photo-essay-tool.html" target="_blank" class="btn btn-secondary" title="Mở tab mới">
+        <a href="photo-essay-tool.html" target="_blank" class="btn btn-secondary" title="Mở trong tab mới">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           Tab mới
         </a>
       </div>
     </article>
 
-    <!-- Card 4: Znews Thumb Generator -->
-    <article class="tool-card" data-category="media" data-keywords="thumb thumbnail anh dai dien 900x600 logo dinh dang dac biet crop zoom export jpg" style="--card-accent: #fbbf24; --icon-bg: rgba(251, 191, 36, 0.1); --icon-border: rgba(251, 191, 36, 0.2);">
+    <!-- Thẻ 4: Znews Thumb Generator -->
+    <article class="tool-card" data-category="media" data-keywords="thumb thumbnail anh dai dien 900x600 logo dinh dang dac biet crop zoom export jpg">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">🖼️</div>
-          <span class="category-badge">Đồ hoạ · Chuẩn 900×600</span>
+          <span class="category-badge">Đồ họa · Chuẩn 900×600</span>
         </div>
-        <h3 class="tool-title">Znews Thumb Định Dạng Đặc Biệt</h3>
+        <h3 class="tool-title">Đóng khung ảnh đại diện định dạng đặc biệt</h3>
         <p class="tool-desc">
-          Tạo ảnh thumbnail đại diện chuẩn kích thước 900×600 px và đóng logo định dạng Znews (Photo Essay, Magazine, Minimag, Longform, Special...). Hỗ trợ zoom, crop trực quan và xuất file JPG chất lượng cao.
+          Tạo ảnh thumbnail đại diện chuẩn kích thước 900×600 px và đóng logo định dạng Znews (Photo Essay, Magazine, Minimag, Longform, Special...). Hỗ trợ zoom, cắt cúp trực quan và tải ảnh JPG chất lượng cao.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Tích hợp đầy đủ các mẫu logo định dạng chính thức của Znews
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Tích hợp đầy đủ các mẫu logo định dạng chính thức của Znews</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Cắt cúp, phóng to thu nhỏ, cân chỉnh góc đặt logo linh hoạt
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Cắt cúp, phóng to thu nhỏ và điều chỉnh vị trí logo linh hoạt</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Xuất file ảnh JPG 900×600 px đúng tiêu chuẩn đăng bài CMS
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Xuất file ảnh JPG 900×600 px đúng tiêu chuẩn đăng bài CMS</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="launchApp('Znews_Thumb_dinh_dang_dac_biet.html', 'Znews Thumb định dạng đặc biệt')">
-          🚀 Mở công cụ
+        <button class="btn btn-primary" onclick="launchApp('Znews_Thumb_dinh_dang_dac_biet.html', 'Đóng khung ảnh đại diện định dạng đặc biệt')">
+          Mở công cụ
         </button>
-        <a href="Znews_Thumb_dinh_dang_dac_biet.html" target="_blank" class="btn btn-secondary" title="Mở tab mới">
+        <a href="Znews_Thumb_dinh_dang_dac_biet.html" target="_blank" class="btn btn-secondary" title="Mở trong tab mới">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           Tab mới
         </a>
       </div>
     </article>
 
-    <!-- Card 5: Book Article Tool -->
-    <article class="tool-card" data-category="special" data-keywords="bai viet sach cms sach review sach diem sach trich doan emdash container_ai" style="--card-accent: #34d399; --icon-bg: rgba(52, 211, 153, 0.1); --icon-border: rgba(52, 211, 153, 0.2);">
+    <!-- Thẻ 5: Book Article Tool -->
+    <article class="tool-card" data-category="special" data-keywords="bai viet sach cms sach review sach diem sach trich doan emdash container_ai">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">📚</div>
-          <span class="category-badge">Chuyên đề · Sách & Review</span>
+          <span class="category-badge">Chuyên đề · Sách và điểm sách</span>
         </div>
-        <h3 class="tool-title">Trình tạo bài viết sách (CMS Books)</h3>
+        <h3 class="tool-title">Trình tạo bài viết sách (CMS)</h3>
         <p class="tool-desc">
-          Công cụ chuyên biệt tạo bài giới thiệu sách, review hoặc trích đoạn tác phẩm. Cung cấp khối thông tin sách chuẩn mực (bìa đứng/ngang, tên sách, tác giả, NXB, năm), tự động chuẩn hoá dấu em-dash và xuất mã nhúng độc lập.
+          Công cụ chuyên biệt tạo bài giới thiệu sách, review hoặc trích đoạn tác phẩm. Cung cấp khối thông tin sách chuẩn mực (bìa đứng hoặc ngang, tên sách, tác giả, nhà xuất bản, năm phát hành), tự động chuẩn hóa dấu gạch ngang và xuất mã nhúng độc lập.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            2 chế độ bài: Bài viết thường và Longform đa khối
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Hai chế độ bài: bài viết thường và longform đa khối</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Khối thông tin bìa sách, tác giả, nhà xuất bản, tóm tắt
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Khối thông tin bìa sách, tác giả, nhà xuất bản và tóm tắt</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Tự động đổi gạch ngang em-dash sang dấu phẩy chuẩn Znews
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Tự động đổi gạch ngang dài thành dấu phẩy theo quy chuẩn Znews</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
         <button class="btn btn-primary" onclick="launchApp('bai-viet-sach.html', 'Trình tạo bài viết sách (CMS)')">
-          🚀 Mở công cụ
+          Mở công cụ
         </button>
-        <a href="bai-viet-sach.html" target="_blank" class="btn btn-secondary" title="Mở tab mới">
+        <a href="bai-viet-sach.html" target="_blank" class="btn btn-secondary" title="Mở trong tab mới">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           Tab mới
         </a>
       </div>
     </article>
 
-    <!-- Card 6: Carousel Tool -->
-    <article class="tool-card" data-category="media" data-keywords="carousel slide anh trinh chieu chum anh ti le khung hinh swipe mobile" style="--card-accent: #f43f5e; --icon-bg: rgba(244, 63, 94, 0.1); --icon-border: rgba(244, 63, 94, 0.2);">
+    <!-- Thẻ 6: Carousel Tool -->
+    <article class="tool-card" data-category="media" data-keywords="carousel slide anh trinh chieu chum anh ti le khung hinh swipe mobile">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">🎞️</div>
-          <span class="category-badge">Đồ hoạ · Slide ảnh</span>
+          <span class="category-badge">Đồ họa · Slide ảnh</span>
         </div>
-        <h3 class="tool-title">Công cụ tạo Carousel ảnh</h3>
+        <h3 class="tool-title">Công cụ tạo carousel ảnh</h3>
         <p class="tool-desc">
           Tạo khối trình chiếu ảnh dạng slide vuốt tương tác cho bài viết. Hỗ trợ tỷ lệ khung hình linh hoạt (16:9, 4:3, 3:2, 1:1), chú thích riêng cho từng ảnh, chuyển động mượt mà và tương thích cảm ứng di động.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Tự do thêm bớt nhiều ảnh và chú thích chi tiết
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Thêm bớt ảnh và chú thích chi tiết linh hoạt</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Định tỷ lệ hiển thị chuẩn và tự động co giãn thông minh
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Định tỷ lệ hiển thị chuẩn và tự động co giãn thông minh</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Mã nhúng siêu nhẹ, không phụ thuộc thư viện JavaScript ngoài
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Mã nhúng siêu nhẹ, không phụ thuộc thư viện JavaScript ngoài</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
         <button class="btn btn-primary" onclick="launchApp('carousel-tool.html', 'Công cụ tạo carousel ảnh')">
-          🚀 Mở công cụ
+          Mở công cụ
         </button>
-        <a href="carousel-tool.html" target="_blank" class="btn btn-secondary" title="Mở tab mới">
+        <a href="carousel-tool.html" target="_blank" class="btn btn-secondary" title="Mở trong tab mới">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           Tab mới
         </a>
       </div>
     </article>
 
-    <!-- Card 7: DOC - Tool Manual -->
-    <article class="tool-card" data-category="docs" data-keywords="tai lieu huong dan so tay tool manual cac buoc thuc hien quy trinh cms" style="--card-accent: #38bdf8; --icon-bg: rgba(56, 189, 248, 0.1); --icon-border: rgba(56, 189, 248, 0.2);">
+    <!-- Thẻ 7: Tài liệu - Sổ tay hướng dẫn -->
+    <article class="tool-card" data-category="docs" data-keywords="tai lieu huong dan so tay tool manual cac buoc thuc hien quy trinh cms">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">📖</div>
-          <span class="category-badge">Sổ tay hướng dẫn · Docs</span>
+          <span class="category-badge">Sổ tay hướng dẫn · Tài liệu</span>
         </div>
-        <h3 class="tool-title">Sổ tay Hướng dẫn Sử dụng Chi tiết</h3>
+        <h3 class="tool-title">Sổ tay hướng dẫn sử dụng chi tiết</h3>
         <p class="tool-desc">
-          Cẩm nang thao tác từ A-Z cho toàn bộ 6 công cụ trong bộ Studio: cách nhập liệu, tinh chỉnh bố cục, thông số kích thước ảnh chuẩn và quy trình dán mã vào CMS Znews an toàn.
+          Cẩm nang thao tác từ A đến Z cho toàn bộ 6 công cụ trong bộ Studio: cách nhập liệu, tinh chỉnh bố cục, thông số kích thước ảnh chuẩn và quy trình dán mã vào CMS Znews an toàn.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Hướng dẫn chi tiết từng màn hình của 6 công cụ
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Hướng dẫn chi tiết từng màn hình của 6 công cụ</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Quy trình chuyển đổi mã nguồn chuẩn trong CMS
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Quy trình chuyển đổi mã nguồn chuẩn trong CMS</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Mẹo và phím tắt tăng tốc độ dàn trang
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Mẹo và phím tắt tăng tốc độ dàn trang</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="openDocModal('docs/TOOL_MANUAL.md', 'Sổ tay Hướng dẫn Sử dụng Chi tiết')">
-          📖 Đọc tài liệu
+        <button class="btn btn-primary" onclick="openDocModal('docs/TOOL_MANUAL.md', 'Sổ tay hướng dẫn sử dụng chi tiết')">
+          Đọc tài liệu
         </button>
-        <a href="docs/TOOL_MANUAL.md" target="_blank" class="btn btn-secondary">File gốc</a>
+        <a href="docs/TOOL_MANUAL.md" target="_blank" class="btn btn-secondary">Tệp gốc</a>
       </div>
     </article>
 
-    <!-- Card 8: DOC - CMS Guidelines -->
-    <article class="tool-card" data-category="docs" data-keywords="quy chuan cms ad-safe quang cao layout no sidebar tran vien img-bleed" style="--card-accent: #e51c24; --icon-bg: rgba(229, 28, 36, 0.1); --icon-border: rgba(229, 28, 36, 0.2);">
+    <!-- Thẻ 8: Tài liệu - Quy chuẩn CMS -->
+    <article class="tool-card" data-category="docs" data-keywords="quy chuan cms ad-safe quang cao layout no sidebar tran vien img-bleed">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">🛡️</div>
           <span class="category-badge">Quy chuẩn CMS · Ad-Safe</span>
         </div>
-        <h3 class="tool-title">Quy chuẩn Kỹ thuật CMS Ad-Safe</h3>
+        <h3 class="tool-title">Quy chuẩn kỹ thuật CMS (an toàn quảng cáo)</h3>
         <p class="tool-desc">
           Tài liệu phân tích chuyên sâu cơ chế layout-no-sidebar, công thức tràn viền an toàn không phá vỡ khung quảng cáo, các cạm bẫy màu nền sáng/tối và danh mục thẻ HTML được CMS cho phép.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Bảo vệ tuyệt đối 3 vùng banner quảng cáo tự động
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Bảo vệ tuyệt đối 3 vùng banner quảng cáo tự động</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Công thức tính margin tràn lề cục bộ hiện đại
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Công thức tính margin tràn lề cục bộ hiện đại</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Pre-flight Checklist 7 bước kiểm tra trước khi đăng
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Danh sách 7 bước kiểm tra bắt buộc trước khi đăng</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="launchApp('guide.html', 'Cẩm nang CMS Ad-Safe (Bản Web)')">
-          📖 Xem bản Web
+        <button class="btn btn-primary" onclick="launchApp('guide.html', 'Cẩm nang CMS Ad-Safe (bản web)')">
+          Xem bản web
         </button>
-        <button class="btn btn-secondary" onclick="openDocModal('docs/CMS_GUIDELINES.md', 'Quy chuẩn Kỹ thuật CMS Ad-Safe')">
-          Đọc Docs
+        <button class="btn btn-secondary" onclick="openDocModal('docs/CMS_GUIDELINES.md', 'Quy chuẩn kỹ thuật CMS (an toàn quảng cáo)')">
+          Đọc tài liệu
         </button>
       </div>
     </article>
 
-    <!-- Card 9: DOC - Troubleshooting -->
-    <article class="tool-card" data-category="docs" data-keywords="xu ly su co khac phuc loi mat quang cao vo font nga vang co anh troubleshooting" style="--card-accent: #fbbf24; --icon-bg: rgba(251, 191, 36, 0.1); --icon-border: rgba(251, 191, 36, 0.2);">
+    <!-- Thẻ 9: Tài liệu - Xử lý sự cố -->
+    <article class="tool-card" data-category="docs" data-keywords="xu ly su co khac phuc loi mat quang cao vo font nga vang co anh troubleshooting">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">🚨</div>
           <span class="category-badge">Khắc phục sự cố · Cứu hộ</span>
         </div>
-        <h3 class="tool-title">Cẩm nang Xử lý Sự cố & Khắc phục Lỗi</h3>
+        <h3 class="tool-title">Cẩm nang xử lý sự cố và khắc phục lỗi</h3>
         <p class="tool-desc">
           Bách khoa toàn thư giải quyết mọi lỗi hay gặp khi đăng bài: mất quảng cáo, vỡ thanh cuộn ngang trên điện thoại, ảnh bị co dúm hẹp hơn chữ, chữ bị tàng hình trên nền tối...
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Giải pháp từng bước sửa ngay lập tức
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Giải pháp từng bước sửa lỗi ngay lập tức</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Xử lý triệt để bẫy ghi đè CSS của CMS
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Xử lý triệt để bẫy ghi đè CSS của CMS</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Khắc phục lỗi cache và deploy GitHub Pages
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Khắc phục lỗi cache và cập nhật GitHub Pages</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="openDocModal('docs/TROUBLESHOOTING.md', 'Cẩm nang Xử lý Sự cố & Lỗi')">
-          🚨 Xem cách sửa lỗi
+        <button class="btn btn-primary" onclick="openDocModal('docs/TROUBLESHOOTING.md', 'Cẩm nang xử lý sự cố và lỗi')">
+          Xem cách sửa lỗi
         </button>
-        <a href="docs/TROUBLESHOOTING.md" target="_blank" class="btn btn-secondary">File gốc</a>
+        <a href="docs/TROUBLESHOOTING.md" target="_blank" class="btn btn-secondary">Tệp gốc</a>
       </div>
     </article>
 
-    <!-- Card 10: DOC - Architecture -->
-    <article class="tool-card" data-category="docs" data-keywords="kien truc he thong architecture client side css namespace design system tokens" style="--card-accent: #c084fc; --icon-bg: rgba(192, 132, 252, 0.1); --icon-border: rgba(192, 132, 252, 0.2);">
+    <!-- Thẻ 10: Tài liệu - Kiến trúc -->
+    <article class="tool-card" data-category="docs" data-keywords="kien truc he thong architecture client side css namespace design system tokens">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">🏗️</div>
-          <span class="category-badge">Kiến trúc · Design System</span>
+          <span class="category-badge">Kiến trúc · Design system</span>
         </div>
-        <h3 class="tool-title">Kiến trúc Hệ thống & Design Tokens</h3>
+        <h3 class="tool-title">Kiến trúc hệ thống và design tokens</h3>
         <p class="tool-desc">
-          Bản thiết kế kỹ thuật của toàn bộ dự án: mô hình Zero-Backend 100% Client-Side, chiến lược cách ly CSS Namespace chống xung đột với trang chủ Znews và bảng Design Tokens chuẩn.
+          Bản thiết kế kỹ thuật của toàn bộ dự án: mô hình không máy chủ (100% client-side), chiến lược cách ly CSS namespace chống xung đột với trang chủ Znews và bảng design tokens chuẩn.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Mô hình bảo mật tuyệt đối không gửi dữ liệu ra ngoài
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Mô hình bảo mật tuyệt đối, không gửi dữ liệu ra ngoài</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Chiến lược định danh CSS BEM + Scoped Class
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Chiến lược định danh CSS BEM kết hợp scoped class</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Bảng màu, typography và tokens thương hiệu
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Bảng màu, typography và tokens thương hiệu Znews</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="openDocModal('docs/ARCHITECTURE.md', 'Kiến trúc Hệ thống Dự án')">
-          🏗️ Đọc kiến trúc
+        <button class="btn btn-primary" onclick="openDocModal('docs/ARCHITECTURE.md', 'Kiến trúc hệ thống dự án')">
+          Đọc kiến trúc
         </button>
-        <a href="docs/ARCHITECTURE.md" target="_blank" class="btn btn-secondary">File gốc</a>
+        <a href="docs/ARCHITECTURE.md" target="_blank" class="btn btn-secondary">Tệp gốc</a>
       </div>
     </article>
 
-    <!-- Card 11: DOC - Developer Guide -->
-    <article class="tool-card" data-category="docs" data-keywords="developer guide lap trinh vien mo rong them cong cu deploy github pages local" style="--card-accent: #34d399; --icon-bg: rgba(52, 211, 153, 0.1); --icon-border: rgba(52, 211, 153, 0.2);">
+    <!-- Thẻ 11: Tài liệu - Nhà phát triển -->
+    <article class="tool-card" data-category="docs" data-keywords="developer guide lap trinh vien mo rong them cong cu deploy github pages local">
       <div class="card-top">
         <div class="card-meta-row">
           <div class="tool-icon-wrap">🛠️</div>
           <span class="category-badge">Nhà phát triển · DevOps</span>
         </div>
-        <h3 class="tool-title">Cẩm nang Nhà Phát Triển (Dev Guide)</h3>
+        <h3 class="tool-title">Cẩm nang dành cho nhà phát triển</h3>
         <p class="tool-desc">
-          Hướng dẫn dành cho lập trình viên: thiết lập máy cục bộ, quy trình 3 bước thêm công cụ mới vào Studio Hub, tiêu chuẩn viết mã và tự động hóa xuất bản qua GitHub CLI.
+          Hướng dẫn dành cho lập trình viên: thiết lập máy cục bộ, quy trình 3 bước thêm công cụ mới vào Studio Hub, tiêu chuẩn viết mã và tự động hóa xuất bản qua GitHub.
         </p>
         <ul class="features-list">
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Quy trình thêm công cụ mới trong 15 phút
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Quy trình thêm công cụ mới chỉ trong 15 phút</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Lệnh chạy cục bộ bằng Python hoặc Node.js
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Lệnh chạy máy cục bộ bằng Python hoặc Node.js</span>
           </li>
           <li>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Tự động triển khai GitHub Pages qua git push
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Tự động xuất bản GitHub Pages qua lệnh đẩy mã</span>
           </li>
         </ul>
       </div>
       <div class="card-actions">
-        <button class="btn btn-primary" onclick="openDocModal('docs/DEVELOPER_GUIDE.md', 'Cẩm nang Nhà Phát Triển')">
-          🛠️ Đọc tài liệu Dev
+        <button class="btn btn-primary" onclick="openDocModal('docs/DEVELOPER_GUIDE.md', 'Cẩm nang nhà phát triển')">
+          Đọc tài liệu dev
         </button>
-        <a href="docs/DEVELOPER_GUIDE.md" target="_blank" class="btn btn-secondary">File gốc</a>
+        <a href="docs/DEVELOPER_GUIDE.md" target="_blank" class="btn btn-secondary">Tệp gốc</a>
       </div>
     </article>
 
   </main>
 
-  <!-- Integrated Workspace View -->
+  <!-- Khung làm việc tích hợp (Workspace Overlay) -->
   <div class="workspace-overlay" id="workspaceOverlay">
     <div class="workspace-bar">
       <div class="workspace-left">
         <button class="btn btn-secondary" onclick="closeApp()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Thoát về Hub (ESC)
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Về trang chủ (ESC)
         </button>
         <select id="toolSwitcher" class="tool-selector" onchange="switchTool(this.value)">
-          <optgroup label="Công cụ Dàn trang & Layout">
-            <option value="tool-znews-magazine-v10-13.html">Znews Magazine Layouts v10.13</option>
-            <option value="no-side-bar-ad-safe-tool.html">Bài đặc biệt No Side-bar (Ad-Safe)</option>
-            <option value="photo-essay-tool.html">Công cụ dựng bài ảnh (Photo Essay)</option>
+          <optgroup label="Công cụ dàn trang và layout">
+            <option value="tool-znews-magazine-v10-13.html">Trình tạo layout Znews Magazine (bản 10.13)</option>
+            <option value="no-side-bar-ad-safe-tool.html">Dựng bài no side-bar (an toàn quảng cáo)</option>
+            <option value="photo-essay-tool.html">Công cụ dựng bài ảnh (photo essay)</option>
           </optgroup>
-          <optgroup label="Đồ hoạ & Ảnh bìa">
-            <option value="Znews_Thumb_dinh_dang_dac_biet.html">Znews Thumb định dạng đặc biệt</option>
+          <optgroup label="Đồ họa và ảnh">
+            <option value="Znews_Thumb_dinh_dang_dac_biet.html">Đóng khung ảnh đại diện định dạng đặc biệt</option>
             <option value="carousel-tool.html">Công cụ tạo carousel ảnh</option>
           </optgroup>
           <optgroup label="Chuyên đề">
             <option value="bai-viet-sach.html">Trình tạo bài viết sách (CMS)</option>
           </optgroup>
-          <optgroup label="Cẩm nang Quy chuẩn">
+          <optgroup label="Quy chuẩn CMS">
             <option value="guide.html">Cẩm nang CMS Ad-Safe</option>
           </optgroup>
         </select>
@@ -1091,11 +1146,11 @@
     <iframe id="workspaceFrame" class="workspace-frame" src="about:blank"></iframe>
   </div>
 
-  <!-- Document Reader Modal -->
+  <!-- Hộp thoại đọc tài liệu (Document Reader Modal) -->
   <div class="doc-modal-overlay" id="docModalOverlay" onclick="if(event.target===this) closeDocModal()">
     <div class="doc-modal">
       <div class="doc-modal-header">
-        <div class="doc-modal-title" id="docModalTitle">📖 Xem tài liệu</div>
+        <div class="doc-modal-title" id="docModalTitle">Xem tài liệu</div>
         <div style="display:flex; gap:10px; align-items:center;">
           <a id="docDownloadLink" href="#" target="_blank" class="btn btn-secondary" style="padding:5px 10px; font-size:12px;">Mở tệp gốc</a>
           <button class="btn btn-secondary" onclick="closeDocModal()" style="padding:5px 10px; font-size:12px;">Đóng (ESC)</button>
@@ -1107,26 +1162,27 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Chân trang -->
   <footer class="site-footer">
-    <p><b>Znews Editorial Studio</b> &copy; 2026. Bản quyền thuộc Ban Biên tập Báo Tri thức Trực tuyến Znews.</p>
+    <p>Studio biên tập Znews &copy; 2026. Bản quyền thuộc ban biên tập Báo Tri thức Trực tuyến Znews.</p>
     <p style="margin-top:6px; font-size:12.5px; color:var(--text-muted);">
-      Hệ thống vận hành 100% Client-side. Mã nguồn mở phát hành theo giấy phép MIT. Truy cập từ bất kỳ thiết bị nào qua GitHub Pages.
+      Hệ thống vận hành 100% trên trình duyệt. Mã nguồn mở phát hành theo giấy phép MIT. Truy cập từ bất kỳ thiết bị nào qua GitHub Pages.
     </p>
   </footer>
 
   <script>
-    // Theme Switcher
+    // Chuyển đổi giao diện sáng và tối
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('znews_theme', next);
     }
-    const savedTheme = localStorage.getItem('znews_theme') || 'dark';
+    // Mặc định là tông màu sáng kiểu Claude
+    const savedTheme = localStorage.getItem('znews_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // Filter tools
+    // Lọc công cụ theo chuyên mục
     let currentCategory = 'all';
     function setCategory(cat, btn) {
       currentCategory = cat;
@@ -1138,7 +1194,6 @@
     function filterTools() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const cards = document.querySelectorAll('.tool-card');
-      let visibleCount = 0;
 
       cards.forEach(card => {
         const cat = card.getAttribute('data-category');
@@ -1151,14 +1206,13 @@
 
         if (matchCat && matchSearch) {
           card.style.display = 'flex';
-          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
     }
 
-    // Keyboard shortcut / for search, ESC for close
+    // Phím tắt: gõ / để tìm kiếm, ESC để đóng
     window.addEventListener('keydown', e => {
       if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
         e.preventDefault();
@@ -1171,7 +1225,7 @@
       }
     });
 
-    // Integrated Workspace Launcher
+    // Trình khởi chạy không gian làm việc Studio
     const overlay = document.getElementById('workspaceOverlay');
     const frame = document.getElementById('workspaceFrame');
     const switcher = document.getElementById('toolSwitcher');
@@ -1208,14 +1262,14 @@
       }
     }
 
-    // Document Modal Reader
+    // Hộp thoại đọc tài liệu Markdown
     const docModalOverlay = document.getElementById('docModalOverlay');
     const docModalTitle = document.getElementById('docModalTitle');
     const docModalBody = document.getElementById('docModalBody');
     const docDownloadLink = document.getElementById('docDownloadLink');
 
     function openDocModal(docPath, title) {
-      docModalTitle.innerText = '📖 ' + title;
+      docModalTitle.innerText = title;
       docDownloadLink.href = docPath;
       docModalBody.innerHTML = '<p style="color:var(--text-muted);">Đang tải tài liệu...</p>';
       docModalOverlay.classList.add('active');
@@ -1230,7 +1284,6 @@
           if (window.marked) {
             docModalBody.innerHTML = marked.parse(mdText);
           } else {
-            // Fallback plain formatting
             docModalBody.innerHTML = '<pre style="white-space:pre-wrap; font-family:inherit;">' + mdText.replace(/</g, '&lt;') + '</pre>';
           }
         })
@@ -1252,7 +1305,7 @@
       }
     });
 
-    // Check hash on load
+    // Kiểm tra hash khi tải trang
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash.replace('#', '');
       if (hash) {

@@ -1,10 +1,10 @@
-# Sổ Tay Hướng Dẫn Sử Dụng Chi Tiết — Znews Editorial Tools
+# Sổ tay hướng dẫn sử dụng chi tiết — Znews Editorial Tools
 
 Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước cho toàn bộ 6 công cụ trong bộ công cụ **Znews Editorial Studio**. Dành cho Phóng viên, Biên tập viên và Kỹ thuật viên Dàn trang Báo điện tử Znews.
 
 ---
 
-## 📑 Mục Lục
+## 📑 Mục lục
 1. [Znews Magazine Layouts Generator (v10.13)](#1-znews-magazine-layouts-generator-v1013)
 2. [Công cụ Dựng bài đặc biệt No Side-bar (Ad-Safe)](#2-công-cụ-dựng-bài-đặc-biệt-no-side-bar-ad-safe)
 3. [Công cụ Dựng bài ảnh (Photo Essay)](#3-công-cụ-dựng-bài-ảnh-photo-essay)
@@ -18,7 +18,7 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 ## 1. Znews Magazine Layouts Generator (v10.13)
 *Tệp tin: `tool-znews-magazine-v10-13.html`*
 
-### 1.1. Mục đích & Ứng dụng
+### 1.1. Mục đích và ứng dụng
 - Sử dụng cho các tuyến bài chuyên sâu, Megastory, Longform, Phỏng vấn nhân vật đặc biệt, Tạp chí chuyên đề (Lifestyle, Tech, Xe, Thời trang, Du lịch).
 - Tạo trải nghiệm thị giác ấn tượng với hiệu ứng cuộn Parallax mượt mà, sticky banner và typography được cá nhân hóa theo từng chuyên mục.
 
@@ -44,7 +44,7 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 ## 2. Công cụ Dựng bài đặc biệt No Side-bar (Ad-Safe)
 *Tệp tin: `no-side-bar-ad-safe-tool.html`*
 
-### 2.1. Mục đích & Ứng dụng
+### 2.1. Mục đích và ứng dụng
 - Dành cho các bài viết định dạng `layout-no-sidebar` (bài đặc biệt có chiều rộng bài 600px nhưng ẩn sidebar quảng cáo).
 - **Yêu cầu bắt buộc**: Các banner quảng cáo (đầu trang, giữa bài, cuối bài) **không bao giờ được bị che khuất hoặc lỗi vị trí**.
 - Thích hợp cho các bài phân tích sâu, xã luận, bài chuyên đề kinh tế - xã hội.
@@ -68,7 +68,7 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 ## 3. Công cụ Dựng bài ảnh (Photo Essay)
 *Tệp tin: `photo-essay-tool.html`*
 
-### 3.1. Mục đích & Ứng dụng
+### 3.1. Mục đích và ứng dụng
 - Dành cho các tuyến bài phóng sự ảnh, chùm ảnh thời sự, ảnh nghệ thuật, lễ hội, thiên nhiên hoặc du lịch.
 - Tập trung vào tính trực quan: ảnh cỡ lớn (full-width), ảnh so sánh (Before/After), khối ảnh 2 cột, 3 cột và chú thích ảnh chuẩn phong cách tòa soạn.
 
@@ -89,7 +89,7 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 ## 4. Znews Thumb định dạng đặc biệt (900×600)
 *Tệp tin: `Znews_Thumb_dinh_dang_dac_biet.html`*
 
-### 4.1. Mục đích & Ứng dụng
+### 4.1. Mục đích và ứng dụng
 - Tạo ảnh đại diện hiển thị ngoài trang chủ, trang chuyên mục và khi chia sẻ lên mạng xã hội (Facebook, Zalo, Twitter) cho các tuyến bài định dạng đặc biệt.
 - Kích thước chuẩn cố định: **900 × 600 px** (tỷ lệ 3:2).
 
@@ -110,7 +110,7 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 ## 5. Trình tạo bài viết sách (CMS Books)
 *Tệp tin: `bai-viet-sach.html` (hoặc `Bai viet sach.html`)*
 
-### 5.1. Mục đích & Ứng dụng
+### 5.1. Mục đích và ứng dụng
 - Chuyên biệt cho Chuyên mục Xuất bản, Điểm sách, Trích đoạn sách, Giới thiệu tác giả - tác phẩm của Znews.
 - Tự động định dạng các box thông tin sách trực quan: Bìa sách, Tên sách, Tác giả, Nhà xuất bản, Đơn vị phát hành, Năm xuất bản, Trọng lượng/Số trang.
 - Tự động thay thế dấu gạch ngang dài (`—`, `–`) bằng dấu phẩy theo đúng quy chuẩn chính tả tiếng Việt của Znews.
@@ -133,7 +133,7 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 ## 6. Công cụ tạo Carousel ảnh
 *Tệp tin: `carousel-tool.html`*
 
-### 6.1. Mục đích & Ứng dụng
+### 6.1. Mục đích và ứng dụng
 - Tạo slide ảnh vuốt tương tác nhúng vào giữa bất kỳ bài viết nào để tiết kiệm không gian đọc mà vẫn hiển thị được nhiều ảnh.
 - Không cần nạp thêm thư viện bên ngoài (Pure Vanilla JS & CSS), chống xung đột với JS gốc của CMS Znews.
 
