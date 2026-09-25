@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cẩm nang Quy chuẩn Kỹ thuật Dựng bài CMS Znews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e51c24;
+      --primary-hover: #cc121a;
+      --primary-bg: #fff1f2;
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --code-bg: #0b0f19;
+      --accent: #38bdf8;
+      --radius: 12px;
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --code-bg: #1e293b;
+      --primary-bg: #fee2e2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Be Vietnam Pro', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15.5px;
+      transition: background .25s ease, color .25s ease;
+    }
+    /* Top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--surface-border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    [data-theme="light"] .topbar {
+      background: rgba(255, 255, 255, 0.9);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .08em;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+    .brand-title {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--surface-border);
+      background: var(--surface);
+      color: var(--text);
+      transition: all .2s;
+    }
+    .btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff !important;
+      border-color: var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+    
+    /* Layout */
+    .layout-container {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 40px;
+      padding: 32px 24px;
+    }
+    
+    /* Sidebar TOC */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 110px);
+      overflow-y: auto;
+      padding-right: 12px;
+    }
+    .sidebar-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .toc-list li a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      line-height: 1.45;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: all .15s;
+    }
+    .toc-list li a:hover {
+      color: var(--text);
+      background: var(--surface);
+    }
+    .toc-list li.toc-level-1 { font-weight: 700; margin-top: 8px; }
+    .toc-list li.toc-level-2 { font-weight: 600; padding-left: 10px; }
+    .toc-list li.toc-level-3 { font-size: 12.5px; padding-left: 20px; }
+    
+    /* Content */
+    .content-article {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 48px;
+      min-width: 0;
+    }
+    
+    .heading-1 {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      color: var(--text);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 16px;
+    }
+    .heading-2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 8px;
+    }
+    .heading-3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-top: 26px;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    .anchor-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 18px;
+      opacity: .4;
+    }
+    .anchor-link:hover { opacity: 1; color: var(--primary); }
+    
+    p {
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      background: rgba(229, 28, 36, 0.1);
+      color: #ff6b6b;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    [data-theme="light"] code {
+      color: #d32f2f;
+      background: #fee2e2;
+    }
+    
+    .doc-list, .doc-ordered-list {
+      margin: 0 0 20px 24px;
+    }
+    .doc-list li, .doc-ordered-list li {
+      margin-bottom: 8px;
+    }
+    .doc-quote {
+      border-left: 4px solid var(--primary);
+      background: rgba(229, 28, 36, 0.05);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-style: italic;
+      color: var(--text);
+    }
+    .divider {
+      border: 0;
+      height: 1px;
+      background: var(--surface-border);
+      margin: 36px 0;
+    }
+    
+    /* Code blocks */
+    .code-wrapper {
+      margin: 20px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--surface-border);
+      background: var(--code-bg);
+    }
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    pre {
+      padding: 16px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+    
+    @media (max-width: 900px) {
+      .layout-container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+      .content-article {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-badge">ZNEWS</span>
+      <span class="brand-title">Editorial Suite · Quy chuẩn CMS</span>
+    </a>
+    <div class="nav-actions">
+      <a href="index.html" class="btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Về danh sách công cụ
+      </a>
+      <button class="btn" onclick="toggleTheme()">🌓 Giao diện</button>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <aside class="sidebar">
+      <div class="sidebar-title">Mục lục tài liệu</div>
+      <ul class="toc-list">
+        <li class="toc-level-1"><a href="#hướng-dẫn-dựng-bài-đặc-biệt-dạng-no-side-bar-có-hiển-thị-quảng-cáo-cho-cms-znews">Hướng dẫn dựng "bài đặc biệt dạng no side-bar, có hiển thị quảng cáo" cho CMS Znews</a></li>
+<li class="toc-level-2"><a href="#1-bối-cảnh-vì-sao-cần-tài-liệu-này">1. Bối cảnh: vì sao cần tài liệu này</a></li>
+<li class="toc-level-2"><a href="#2-ràng-buộc-kỹ-thuật-đã-đo-được-từ-trang-thật">2. Ràng buộc kỹ thuật đã đo được từ trang thật</a></li>
+<li class="toc-level-3"><a href="#quy-tắc-suy-ra-từ-số-đo-trên">Quy tắc suy ra từ số đo trên</a></li>
+<li class="toc-level-2"><a href="#3-không-gọi-font-ngoài">3. Không gọi font ngoài</a></li>
+<li class="toc-level-2"><a href="#4-cấu-trúc-html-được-cms-chấp-nhận">4. Cấu trúc HTML được CMS chấp nhận</a></li>
+<li class="toc-level-2"><a href="#5-chỉ-dùng-khi-bài-bắt-buộc-phải-tràn-viền-cơ-chế-ngủ-đánh-thức">5. Chỉ dùng khi bài BẮT BUỘC phải tràn viền: cơ chế "ngủ / đánh thức"</a></li>
+<li class="toc-level-2"><a href="#6-thành-phần-tái-dùng-được">6. Thành phần tái dùng được</a></li>
+<li class="toc-level-3"><a href="#61-pull-quote-trích-dẫn-nổi-bật">6.1. Pull-quote (trích dẫn nổi bật)</a></li>
+<li class="toc-level-3"><a href="#62-carousel-ảnh-gộp-từ-3-ảnh-liên-tiếp">6.2. Carousel ảnh (gộp từ 3+ ảnh liên tiếp)</a></li>
+<li class="toc-level-3"><a href="#63-tiêu-đề-chương-chip-màu">6.3. Tiêu đề chương / chip màu</a></li>
+<li class="toc-level-2"><a href="#7-cạm-bẫy-đổi-bảng-màu-sáng-tối">7. Cạm bẫy đổi bảng màu (sáng ⇄ tối)</a></li>
+<li class="toc-level-2"><a href="#8-ẩn-tiêu-đềsapo-mặc-định-của-cms-chỉ-khi-bài-tự-vẽ-hero-riêng">8. Ẩn tiêu đề/sapo mặc định của CMS (chỉ khi bài tự vẽ hero riêng)</a></li>
+<li class="toc-level-2"><a href="#9-quy-trình-khi-nhận-yêu-cầu-dựngsửa-một-bài">9. Quy trình khi nhận yêu cầu dựng/sửa một bài</a></li>
+      </ul>
+    </aside>
+
+    <main class="content-article">
+      
+<h1 id="hướng-dẫn-dựng-bài-đặc-biệt-dạng-no-side-bar-có-hiển-thị-quảng-cáo-cho-cms-znews" class="heading-1">Hướng dẫn dựng "bài đặc biệt dạng no side-bar, có hiển thị quảng cáo" cho CMS Znews</h1>
+
+
+<p>Tài liệu này tổng hợp toàn bộ quy tắc, mẫu code và lỗi đã gặp khi dựng các bài</p>
+
+<p>"đặc biệt" (minimag, longform, có hero/carousel/pull-quote riêng) để dán vào</p>
+
+<p>CMS Znews. Dùng tài liệu này làm ngữ cảnh khi nhờ bất kỳ AI nào (Claude, GPT,</p>
+
+<p>Gemini...) dựng hoặc chỉnh sửa loại bài này, để tránh lặp lại các lỗi đã từng</p>
+
+<p>gặp.</p>
+
+
+<p>**Tên gọi chuẩn cho định dạng này: "bài đặc biệt dạng no side-bar, có hiển</p>
+
+<p>thị quảng cáo"** — gọi vậy vì CMS render các bài này trên layout mang class</p>
+
+<p><code>layout-no-sidebar</code> (sidebar quảng cáo bị ẩn nhưng khoảng trống của nó vẫn</p>
+
+<p>tồn tại do lỗi CSS gốc, xem mục 2), và mục tiêu bắt buộc của định dạng là</p>
+
+<p>các vùng quảng cáo trong bài (ảnh đầu bài, khối giữa bài, banner cuối bài)</p>
+
+<p>vẫn hiển thị được bình thường — khác với các mẫu tràn viền cũ (mục 5) vốn</p>
+
+<p>che mất quảng cáo.</p>
+
+
+<hr class="divider" />
+
+
+<h2 id="1-bối-cảnh-vì-sao-cần-tài-liệu-này" class="heading-2"><a href="#1-bối-cảnh-vì-sao-cần-tài-liệu-này" class="anchor-link">#</a> 1. Bối cảnh: vì sao cần tài liệu này</h2>
+
+
+<p>Các bài "đặc biệt" là một khối <code><style></code> + <code><article></code> + <code><script></code> tự chứa,</p>
+
+<p>dán trực tiếp vào khung soạn thảo CMS. Khối này chạy trong CÙNG một trang với</p>
+
+<p>toàn bộ giao diện thật của Znews — bao gồm quảng cáo, sidebar, header, footer.</p>
+
+<p>Rất nhiều lỗi từng gặp không phải do sai nội dung, mà do CSS/JS của bài vô</p>
+
+<p>tình:</p>
+
+<ul class="doc-list">
+<li>Đè lên vùng quảng cáo thật.</li>
+<li>Ép trang thật đổi kích thước/hành vi.</li>
+<li>Gọi tài nguyên ngoài (font) không cần thiết.</li>
+<li>Bị chính khung soạn thảo (contenteditable) của CMS hiểu sai vị trí.</li>
+</ul>
+
+
+<hr class="divider" />
+
+
+<h2 id="2-ràng-buộc-kỹ-thuật-đã-đo-được-từ-trang-thật" class="heading-2"><a href="#2-ràng-buộc-kỹ-thuật-đã-đo-được-từ-trang-thật" class="anchor-link">#</a> 2. Ràng buộc kỹ thuật đã đo được từ trang thật</h2>
+
+
+<p>Đo bằng DevTools/agent duyệt web trên <code>tech.zingnews.vn</code> (viewport desktop</p>
+
+<p>~1268px):</p>
+
+<ul class="doc-list">
+<li><code>SECTION.main</code> (khung chứa toàn bài): rộng <strong>1164px</strong>.</li>
+<li><code>.the-article-body</code> (cột nội dung bài): <strong><code>width:600px</code></strong>, nhưng có</li>
+</ul>
+
+<p>  <code>margin:0 0 0 -300px</code> — đây là lỗi CSS gốc của trang (bù trừ cho một</p>
+
+<p>  sidebar quảng cáo <code>#sidebarArticle</code> rộng 300px đang bị <code>display:none</code> chứ</p>
+
+<p>  không bị gỡ khỏi layout). Hệ quả: cột nội dung lệch trái, để lại khoảng</p>
+
+<p>  trống ~264px bên phải — <strong>đó chính là vùng dự phòng cho quảng cáo</strong>, dù</p>
+
+<p>  quảng cáo có hiện hay không.</p>
+<ul class="doc-list">
+<li>Có 2 vùng quảng cáo dạng tĩnh (nằm trong luồng, không phải overlay):</li>
+</ul>
+
+<p>  <code>#ZingNews_Article_Image</code> (trong khung ảnh đầu bài) và</p>
+
+<p>  <code>#ZingNews_Masthead_Inline_1</code> (chèn giữa nội dung bài, bên trong</p>
+
+<p>  <code><article></code>).</p>
+<ul class="doc-list">
+<li>Có 1 banner <strong>dính khi cuộn</strong> (<code>position:sticky; top:70px</code>), kích thước</li>
+</ul>
+
+<p>  300×600, xuất hiện ở khu vực "đọc thêm" cuối bài (<code>#article-nextreads</code>).</p>
+<ul class="doc-list">
+<li>Phần tử <code>position:fixed</code> duy nhất trên trang là thanh header (cao 52px).</li>
+<li>Ảnh do CMS tự chèn qua cấu trúc bảng cũ (`<table style="margin-left:-130px;</li>
+</ul>
+
+<p>  width:860px">...`) đạt chiều rộng thực tế <strong>860px</strong> — tức bung ra khỏi cột</p>
+
+<p>  600px thêm đúng <strong>130px mỗi bên</strong>. Đây là con số tham chiếu an toàn cho</p>
+
+<p>  ảnh cần "to hơn cột chữ" trong các bài đặc biệt.</p>
+
+
+<h3 id="quy-tắc-suy-ra-từ-số-đo-trên" class="heading-3"><a href="#quy-tắc-suy-ra-từ-số-đo-trên" class="anchor-link">#</a> Quy tắc suy ra từ số đo trên</h3>
+
+<ol class="doc-ordered-list">
+<li><strong>Không bao giờ</strong> ép <code>.the-article-body</code> hay <code>.main</code> đổi <code>width</code>,</li>
+</ol>
+
+<p>   <code>max-width</code>, <code>margin</code>, <code>padding</code>, <code>overflow</code> bằng CSS trong bài. Đây là</p>
+
+<p>   khung của TRANG THẬT, không phải của bài — sửa nó là sửa layout toàn</p>
+
+<p>   trang, phá luôn không gian dành cho quảng cáo (từng gặp lỗi này y hệt: một</p>
+
+<p>   bài ép <code>.the-article-body{width:100%!important;overflow:visible!important}</code></p>
+
+<p>   khiến quảng cáo biến mất hoàn toàn).</p>
+<ol class="doc-ordered-list">
+<li><strong>Không dùng kỹ thuật tràn viền toàn màn hình</strong></li>
+</ol>
+
+<p>   (<code>width:100vw; margin-left:calc(50% - 50vw)</code>) cho bất kỳ phần tử nào —</p>
+
+<p>   kể cả chỉ ở phần hero. 100vw luôn rộng hơn 600px rất nhiều, chắc chắn đè</p>
+
+<p>   lên vùng quảng cáo dù quảng cáo có hiện hay không.</p>
+<ol class="doc-ordered-list">
+<li>Nếu cần ảnh/khối to hơn cột chữ (giống cách CMS tự làm), dùng **"tràn cục</li>
+</ol>
+
+<p>   bộ" có kiểm soát**, không phải tràn toàn viewport:</p>
+
+<p>   <code></code>`css</p>
+
+<p>   .khoi-anh{</p>
+
+<p>     margin-left: -130px;</p>
+
+<p>     margin-right: -130px;</p>
+
+<p>     width: calc(100% + 260px);</p>
+
+<p>   }</p>
+
+<p>   /* Bắt buộc: reset về 0 khi màn hình hẹp, vì cột 600px chỉ tồn tại ở</p>
+
+<p>      desktop — dưới mobile toàn bộ layout co giãn khác hẳn */</p>
+
+<p>   @media (max-width: 700px){</p>
+
+<p>     .khoi-anh{ margin-left:0; margin-right:0; width:100%; }</p>
+
+<p>   }</p>
+
+<p>   <code></code>`</p>
+
+<p>   130px mỗi bên là con số đã kiểm chứng khớp với cách CMS tự hiển thị ảnh</p>
+
+<p>   full-width thật — dùng làm mặc định, có thể chỉnh nếu đo lại ra số khác.</p>
+<ol class="doc-ordered-list">
+<li>Nếu bài cần hiệu ứng "hero tràn màn hình" kiểu tạp chí (ảnh lớn, chữ đè</li>
+</ol>
+
+<p>   lên ảnh, chiếm gần hết viewport) — <strong>không làm được an toàn</strong> trong ràng</p>
+
+<p>   buộc 600px này. Phải hạ cấp xuống bố cục xếp chồng bình thường (tiêu đề/</p>
+
+<p>   sapo phía trên, ảnh hero bên dưới, dùng đúng kỹ thuật tràn cục bộ ở mục 3).</p>
+<ol class="doc-ordered-list">
+<li><strong>Khi sửa một bài cũ để bỏ đoạn CSS ép khung trang thật (mục 1)</strong>, phải</li>
+</ol>
+
+<p>   rà lại TOÀN BỘ công thức chiều rộng nào tính theo <code>%</code>/<code>calc()</code> của</p>
+
+<p>   phần tử cha — nhiều bài cũ viết công thức kiểu</p>
+
+<p>   <code>width:calc(100% - 40px); max-width:866px</code> với giả định phần tử cha</p>
+
+<p>   rộng ~1164px (do từng bị ép khung). Bỏ đoạn ép khung mà không sửa lại</p>
+
+<p>   công thức này sẽ khiến ảnh <strong>hẹp lại bất ngờ</strong> (có khi hẹp hơn cả cột</p>
+
+<p>   chữ) thay vì tràn ra — nhìn qua tưởng là "chưa tràn được" nhưng thực ra</p>
+
+<p>   do công thức cũ tính sai trên nền khung mới. Luôn đổi các công thức kiểu</p>
+
+<p>   này sang đúng công thức "tràn cục bộ" ở mục 3</p>
+
+<p>   (<code>margin-left/right: calc(var(--img-bleed) * -1)</code>), không giữ lại công</p>
+
+<p>   thức <code>calc(100% - Npx)</code> kiểu cũ.</p>
+
+
+<hr class="divider" />
+
+
+<h2 id="3-không-gọi-font-ngoài" class="heading-2"><a href="#3-không-gọi-font-ngoài" class="anchor-link">#</a> 3. Không gọi font ngoài</h2>
+
+
+<p>Nếu người biên tập yêu cầu "dùng font mặc định CMS" / "không gọi font</p>
+
+<p>ngoài":</p>
+
+<ul class="doc-list">
+<li>Xoá mọi <code>@import url('https://fonts.googleapis.com/...')</code>.</li>
+<li>Đổi mọi biến font (<code>--zac-disp</code>, <code>--zac-sans</code>, <code>--zac-body</code>...) thành</li>
+</ul>
+
+<p>  <code>inherit</code> thay vì tên font cụ thể (<code>"Newsreader"</code>, <code>"Manrope"</code>...).</p>
+<ul class="doc-list">
+<li><strong>Cạm bẫy</strong>: <code>inherit</code> <strong>không hợp lệ</strong> khi nằm trong cú pháp rút gọn</li>
+</ul>
+
+<p>  <code>font: <weight> <size>/<line-height> <family>;</code>. Nếu dùng</p>
+
+<p>  <code>font: 600 15px/1 var(--ten-bien)</code> mà biến đó là <code>inherit</code>, cả khai báo có</p>
+
+<p>  thể bị trình duyệt coi là không hợp lệ và bỏ qua toàn bộ (mất luôn cả</p>
+
+<p>  size/weight, không chỉ mất font). Bắt buộc phải tách riêng từng thuộc</p>
+
+<p>  tính khi dùng <code>inherit</code>:</p>
+
+<p>  <code></code>`css</p>
+
+<p>  /* SAI — có thể làm hỏng cả rule */</p>
+
+<p>  .nhan{ font: 600 15px/1 var(--font-bien-la-inherit); }</p>
+
+
+<p>  /* ĐÚNG */</p>
+
+<p>  .nhan{ font-weight:600; font-size:15px; line-height:1; font-family:inherit; }</p>
+
+<p>  <code></code>`</p>
+<ul class="doc-list">
+<li>Ở phần tử gốc của bài, khai báo thêm <code>font-family:inherit!important;</code> để</li>
+</ul>
+
+<p>  chống trường hợp CSS mặc định của CMS có rule tổng quát ghi đè ngược lại.</p>
+
+
+<hr class="divider" />
+
+
+<h2 id="4-cấu-trúc-html-được-cms-chấp-nhận" class="heading-2"><a href="#4-cấu-trúc-html-được-cms-chấp-nhận" class="anchor-link">#</a> 4. Cấu trúc HTML được CMS chấp nhận</h2>
+
+
+<p>CMS lọc/loại bỏ một số thẻ và thuộc tính khi lưu bài. Luôn tuân thủ:</p>
+
+<ul class="doc-list">
+<li><strong>Không dùng <code><span></code>, không dùng <code><button></code> thật.</strong> Với phần tử cần bấm</li>
+</ul>
+
+<p>  được (nút carousel, tab...), dùng <code><div role="button" tabindex="0"></code> hoặc</p>
+
+<p>  <code><div role="tab"></code> thay thế.</p>
+<ul class="doc-list">
+<li><strong>Không dùng thuộc tính <code>style="..."</code> nội tuyến.</strong> Mọi định vị/màu sắc</li>
+</ul>
+
+<p>  phải nằm trong khối <code><style></code> dùng class.</p>
+<ul class="doc-list">
+<li>Comment trong <code><script></code> chỉ dùng <code>/* ... */</code>, <strong>không dùng <code>//</code></strong> — CMS</li>
+</ul>
+
+<p>  gộp nội dung <code><script></code> thành một dòng duy nhất khi lưu, dấu <code>//</code> sẽ nuốt</p>
+
+<p>  mất toàn bộ phần code phía sau nó trên "dòng" đó.</p>
+<ul class="doc-list">
+<li>Ảnh chèn qua CMS thường có cấu trúc <code><table class="picture"></code> — cần có</li>
+</ul>
+
+<p>  rule khử wrapper này về <code>display:block;width:100%</code> để ảnh vào đúng layout</p>
+
+<p>  của bài, tránh giữ nguyên bảng/canh giữa mặc định của CMS.</p>
+<ul class="doc-list">
+<li>Giữ nguyên <code>imgid</code> trên thẻ <code><img></code> nếu CMS đã gán — đây là cách CMS nhận</li>
+</ul>
+
+<p>  diện ảnh đã upload, đổi hoặc xoá thuộc tính này có thể khiến ảnh không</p>
+
+<p>  hiển thị.</p>
+
+
+<hr class="divider" />
+
+
+<h2 id="5-chỉ-dùng-khi-bài-bắt-buộc-phải-tràn-viền-cơ-chế-ngủ-đánh-thức" class="heading-2"><a href="#5-chỉ-dùng-khi-bài-bắt-buộc-phải-tràn-viền-cơ-chế-ngủ-đánh-thức" class="anchor-link">#</a> 5. Chỉ dùng khi bài BẮT BUỘC phải tràn viền: cơ chế "ngủ / đánh thức"</h2>
+
+
+<p>Nếu bài cũ hơn đã lỡ dùng tràn viền (<code>width:100vw</code>) và không tiện dựng lại</p>
+
+<p>từ đầu, khung soạn thảo CMS (vùng <code>contenteditable</code>) sẽ tính sai vị trí vì</p>
+
+<p>layout của nó không đối xứng như trang thật — dẫn đến nội dung bị lệch, cắt</p>
+
+<p>mất chữ khi đang sửa bài (dù trang thật vẫn hiển thị đúng). Cách xử lý: cho</p>
+
+<p>class gốc "ngủ" trong lúc soạn thảo, "đánh thức" lại khi ra trang thật.</p>
+
+
+<p>**"Bài đặc biệt dạng no side-bar, có hiển thị quảng cáo" (dựng theo mục 2-4</p>
+
+<p>ở trên, không tràn viền) thì KHÔNG cần cơ chế này** — mục này chỉ áp dụng</p>
+
+<p>cho các mẫu tràn viền kiểu cũ, đây là lưới an toàn dự phòng cho loại bài</p>
+
+<p>khác, không phải bước bắt buộc cho định dạng chính của tài liệu này.</p>
+
+
+<p>Bốn chỗ cần chèn, đúng thứ tự:</p>
+
+
+<div class="code-wrapper">
+  <div class="code-header">
+    <span class="code-badge">html</span>
+    <button class="copy-btn" onclick="copySnippet(this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      Sao chép
+    </button>
+  </div>
+  <pre><code class="lang-html">&lt;!-- 1. Ngay trước &lt;style&gt; --&gt;
+&lt;script&gt;
+window.ZAC_EDIT = false;
+window.zacWake = function(id, cls){
+  var w = document.getElementById(id);
+  if (!w) return;
+  if ((w.closest &amp;&amp; w.closest(&#x27;[contenteditable=&quot;true&quot;]&#x27;)) || document.designMode === &#x27;on&#x27;) {
+    window.ZAC_EDIT = true;
+    return;
+  }
+  w.className = cls;
+};
+&lt;/script&gt;
+
+&lt;!-- 2. Khối gốc: class ngủ + dòng đánh thức ngay sau thẻ mở --&gt;
+&lt;article class=&quot;ten-class-sleep&quot; id=&quot;idBaiViet&quot;&gt;&lt;script&gt;window.zacWake(&#x27;idBaiViet&#x27;,&#x27;ten-class-goc&#x27;);&lt;/script&gt;
+
+&lt;!-- 3. Đầu mọi IIFE hiệu ứng trong &lt;script&gt; --&gt;
+(function(){ if (window.ZAC_EDIT) { return; }
+
+&lt;!-- 4. Cuối &lt;style&gt;: CSS riêng cho chế độ soạn thảo --&gt;</code></pre>
+</div>
+
+
+<p>CSS chế độ soạn thảo (mẫu, chỉ bám class-sleep nên biến mất hoàn toàn khi</p>
+
+<p>đánh thức):</p>
+
+
+<div class="code-wrapper">
+  <div class="code-header">
+    <span class="code-badge">css</span>
+    <button class="copy-btn" onclick="copySnippet(this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      Sao chép
+    </button>
+  </div>
+  <pre><code class="lang-css">.ten-class-sleep{max-width:760px;margin:24px auto;padding:0 16px;background:#fff;color:#111;font-size:16px;line-height:1.65}
+.ten-class-sleep svg,.ten-class-sleep [aria-hidden=&quot;true&quot;]{display:none!important}
+.ten-class-sleep img{width:auto!important;height:auto!important;max-width:300px!important}
+/* + rule riêng cho từng khối trang trí đặc thù của bài, ví dụ: hiện lại hết
+   caption carousel đang bị &quot;hidden&quot; để phóng viên thấy đủ mà sửa */
+.ten-class-sleep .carousel-cap p[hidden]{display:block!important}
+.ten-class-sleep .carousel-nav{display:none!important}</code></pre>
+</div>
+
+
+<p>Kiểm tra trước khi giao bài:</p>
+<ul class="doc-list">
+<li>Mở file bằng trình duyệt thường: phải thấy giao diện đầy đủ ngay, không</li>
+</ul>
+
+<p>  nháy lúc load.</p>
+<ul class="doc-list">
+<li>Chuỗi tên class-sleep chỉ được xuất hiện ở thuộc tính <code>class</code> của khối gốc</li>
+</ul>
+
+<p>  và trong khối CSS chế độ soạn thảo — không lọt ra chỗ khác.</p>
+<ul class="doc-list">
+<li>Không còn <code>//</code> trong bất kỳ khối <code><script></code> nào.</li>
+</ul>
+
+
+<hr class="divider" />
+
+
+<h2 id="6-thành-phần-tái-dùng-được" class="heading-2"><a href="#6-thành-phần-tái-dùng-được" class="anchor-link">#</a> 6. Thành phần tái dùng được</h2>
+
+
+<h3 id="61-pull-quote-trích-dẫn-nổi-bật" class="heading-3"><a href="#61-pull-quote-trích-dẫn-nổi-bật" class="anchor-link">#</a> 6.1. Pull-quote (trích dẫn nổi bật)</h3>
+
+
+<p>Quy tắc bắt buộc: **câu quote khi tách thành khối trích dẫn riêng vẫn phải</p>
+
+<p>giữ nguyên trong đoạn văn thân bài** (kèm "X nói/chia sẻ/nhận định"). Pull-</p>
+
+<p>quote là NHẮC LẠI để nhấn mạnh, không phải RÚT câu đó khỏi mạch văn — từng</p>
+
+<p>làm sai điều này (xoá quote khỏi thân bài khi tách riêng) khiến mạch văn bị</p>
+
+<p>cụt.</p>
+
+
+<p>Nếu bài có nhiều câu đáng trích hơn số lượng cần dùng và không có tiêu chí</p>
+
+<p>rõ ràng để chọn, hỏi người biên tập chọn câu nào — đừng tự đoán, nhất là khi</p>
+
+<p>tiêu đề bài đã gợi ý sẵn 2-3 hướng cần minh hoạ riêng.</p>
+
+
+<p>Có thể cho quote hiển thị <strong>trái/phải</strong> (float, chữ bọc quanh) hoặc <strong>giữa</strong></p>
+
+<p>(khối riêng, đầy đủ chiều rộng cột) — không có kỹ thuật nào trong hai kiểu</p>
+
+<p>này vi phạm ràng buộc mục 2, miễn quote không rộng hơn cột 600px.</p>
+
+
+<h3 id="62-carousel-ảnh-gộp-từ-3-ảnh-liên-tiếp" class="heading-3"><a href="#62-carousel-ảnh-gộp-từ-3-ảnh-liên-tiếp" class="anchor-link">#</a> 6.2. Carousel ảnh (gộp từ 3+ ảnh liên tiếp)</h3>
+
+
+<p>Khi nội dung gốc có từ 3 ảnh liên tiếp trở lên cùng chủ đề, nên gộp thành</p>
+
+<p>carousel thay vì để rời từng ảnh.</p>
+
+
+<p><strong>Lỗi từng gặp và phải tránh lặp lại</strong>: KHÔNG được đặt việc khởi tạo</p>
+
+<p>carousel phụ thuộc vào cùng điều kiện với hiệu ứng "hiện dần khi cuộn"</p>
+
+<p>(<code>IntersectionObserver</code> / <code>prefers-reduced-motion</code>). Nếu gộp chung một nhánh</p>
+
+<p><code>if</code>, máy nào tắt hiệu ứng chuyển động hoặc trình duyệt không hỗ trợ</p>
+
+<p><code>IntersectionObserver</code> sẽ khiến carousel <strong>mất luôn khả năng bấm/vuốt</strong> —</p>
+
+<p>carousel là chức năng chính, phải luôn luôn khởi tạo, không được xem là</p>
+
+<p>hiệu ứng trang trí có thể bỏ qua.</p>
+
+
+<div class="code-wrapper">
+  <div class="code-header">
+    <span class="code-badge">js</span>
+    <button class="copy-btn" onclick="copySnippet(this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      Sao chép
+    </button>
+  </div>
+  <pre><code class="lang-js">/* Hiệu ứng cuộn — CÓ THỂ bỏ qua nếu trình duyệt không hỗ trợ */
+if (!reduce &amp;&amp; (&quot;IntersectionObserver&quot; in window)) {
+  /* ...gắn observer cho hiệu ứng hiện dần... */
+}
+/* Carousel — LUÔN khởi tạo, không đặt trong nhánh if ở trên */
+document.querySelectorAll(&quot;.carousel&quot;).forEach(function(car){ /* ...gắn sự kiện bấm/vuốt... */ });</code></pre>
+</div>
+
+
+<p>Ảnh trong carousel nên cắt theo một <code>aspect-ratio</code> cố định (vd <code>3/2</code> +</p>
+
+<p><code>object-fit:cover</code>) để mọi slide cao bằng nhau dù ảnh gốc lệch tỷ lệ.</p>
+
+
+<h3 id="63-tiêu-đề-chương-chip-màu" class="heading-3"><a href="#63-tiêu-đề-chương-chip-màu" class="anchor-link">#</a> 6.3. Tiêu đề chương / chip màu</h3>
+
+<ul class="doc-list">
+<li>Nếu dùng ô màu (chip) làm nền cho tiêu đề chương: màu nền có thể rực rỡ</li>
+</ul>
+
+<p>  thoải mái vì chữ đè lên luôn cố định màu tối — không phụ thuộc nền trang</p>
+
+<p>  sáng hay tối.</p>
+<ul class="doc-list">
+<li>Nếu CÙNG một màu đó lại dùng làm MÀU CHỮ (ví dụ nhãn nhỏ, link) trên nền</li>
+</ul>
+
+<p>  trang sáng, phải dùng bản đậm hơn hẳn — màu pastel/neon vốn được chọn để</p>
+
+<p>  làm nền, không phải để làm chữ, dùng thẳng sẽ khó đọc hoặc gần như vô</p>
+
+<p>  hình. Nên tách hẳn hai biến CSS cho hai vai trò này (<code>--mau-nen-chip</code> và</p>
+
+<p>  <code>--mau-chu-nhan</code>) thay vì dùng chung một biến.</p>
+<ul class="doc-list">
+<li>Không đánh số tự động kiểu "{ 01 }", "{ 02 }" trước mỗi tiêu đề chương nếu</li>
+</ul>
+
+<p>  không được yêu cầu — nhiều biên tập viên không muốn kiểu đánh số này,</p>
+
+<p>  chỉ cần tiêu đề chương là đủ.</p>
+
+
+<hr class="divider" />
+
+
+<h2 id="7-cạm-bẫy-đổi-bảng-màu-sáng-tối" class="heading-2"><a href="#7-cạm-bẫy-đổi-bảng-màu-sáng-tối" class="anchor-link">#</a> 7. Cạm bẫy đổi bảng màu (sáng ⇄ tối)</h2>
+
+
+<p><strong>Khuyến nghị mặc định</strong>: nếu người biên tập không yêu cầu cụ thể một tông</p>
+
+<p>màu nền riêng, nên bỏ hẳn màu nền tuỳ chỉnh cho toàn bài (kể cả các tông</p>
+
+<p>tưởng chừng trung tính như kem/be/pastel) và dùng <strong>nền trắng, chữ đen</strong> —</p>
+
+<p>đúng màu nền thật của trang Znews. Lý do:</p>
+
+<ul class="doc-list">
+<li>Bài hoà thẳng vào trang, không tạo cảm giác "khối lạ" chèn giữa nội dung</li>
+</ul>
+
+<p>  trắng của toàn site.</p>
+<ul class="doc-list">
+<li>Nhiều tông kem/be nhạt (ví dụ <code>#f3f0e9</code>) khi lên màn hình dễ bị nhìn</li>
+</ul>
+
+<p>  thành "ngả vàng" dù ý đồ ban đầu chỉ là tạo chất giấy — từng phải sửa lại</p>
+
+<p>  một bài đúng vì lý do này.</p>
+<ul class="doc-list">
+<li>Đỡ phải lo việc khoá màu 2 lớp ở trên khi không thực sự cần một bảng màu</li>
+</ul>
+
+<p>  riêng.</p>
+
+
+<p>Chỉ cần các "thẻ" (box sách, khung ảnh chờ tải, box trích dẫn) tự tạo tương</p>
+
+<p>phản bằng viền/bóng đổ nhẹ hoặc một lớp xám rất nhạt (<code>#f2f2f2</code> trở lên),</p>
+
+<p>không cần cả trang phải nhuốm màu.</p>
+
+
+<p>Nếu người dùng CÓ yêu cầu một bảng màu riêng (nền tối, nền màu thương</p>
+
+<p>hiệu...), mới áp dụng theo yêu cầu — và khi đó, các cạm bẫy dưới đây bắt</p>
+
+<p>đầu phát huy tác dụng:</p>
+
+
+<p>Rất nhiều mẫu bài "khoá" màu bằng cách khai báo lại <strong>hai lần</strong>: một lần</p>
+
+<p>bằng biến CSS ở đầu file (để các rule dùng <code>var()</code> ăn theo), một lần bằng</p>
+
+<p>mã màu cứng ở cuối file với <code>!important</code> (để chống CMS ghi đè). Khi đổi</p>
+
+<p>bảng màu, quên sửa MỘT trong hai chỗ là nguyên nhân phổ biến nhất khiến đổi</p>
+
+<p>màu "không ăn" — phải rà cả hai.</p>
+
+
+<p>Khi chuyển bài từ nền tối sang nền sáng (hoặc ngược lại), luôn kiểm tra lại</p>
+
+<p>độ tương phản chữ/nền cho từng cặp màu đã đổi, không chỉ đảo ngược</p>
+
+<p>nền/chữ chính rồi dừng — các màu phụ (link, nhãn nhỏ, viền) thường cần một</p>
+
+<p>giá trị khác hẳn để vẫn đọc được, không thể chỉ đảo đen-trắng máy móc.</p>
+
+
+<hr class="divider" />
+
+
+<h2 id="8-ẩn-tiêu-đềsapo-mặc-định-của-cms-chỉ-khi-bài-tự-vẽ-hero-riêng" class="heading-2"><a href="#8-ẩn-tiêu-đềsapo-mặc-định-của-cms-chỉ-khi-bài-tự-vẽ-hero-riêng" class="anchor-link">#</a> 8. Ẩn tiêu đề/sapo mặc định của CMS (chỉ khi bài tự vẽ hero riêng)</h2>
+
+
+<p>Nếu bài tự dựng tiêu đề/sapo/tác giả riêng (dạng minimag), cần ẩn phần CMS</p>
+
+<p>tự sinh để tránh hiển thị trùng lặp:</p>
+
+
+<div class="code-wrapper">
+  <div class="code-header">
+    <span class="code-badge">css</span>
+    <button class="copy-btn" onclick="copySnippet(this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      Sao chép
+    </button>
+  </div>
+  <pre><code class="lang-css">.the-article:has(#idBaiViet) .the-article-category,
+.the-article:has(#idBaiViet) .the-article-summary,
+.the-article:has(#idBaiViet) .the-article-meta { display:none!important; }
+.the-article:has(#idBaiViet) .the-article-title {
+  position:absolute!important; width:1px!important; height:1px!important;
+  margin:-1px!important; overflow:hidden!important;
+  clip:rect(0 0 0 0)!important; clip-path:inset(50%)!important; white-space:nowrap!important;
+}</code></pre>
+</div>
+
+
+<p>Đây là NGOẠI LỆ duy nhất được phép nhắm tới phần tử của trang thật (chỉ ẩn</p>
+
+<p>hiển thị, không đổi kích thước/vị trí/overflow nên không ảnh hưởng tới</p>
+
+<p>quảng cáo). Nếu bài KHÔNG tự vẽ tiêu đề riêng (dùng luôn tiêu đề/sapo CMS</p>
+
+<p>sinh), bỏ qua mục này hoàn toàn.</p>
+
+
+<hr class="divider" />
+
+
+<h2 id="9-quy-trình-khi-nhận-yêu-cầu-dựngsửa-một-bài" class="heading-2"><a href="#9-quy-trình-khi-nhận-yêu-cầu-dựngsửa-một-bài" class="anchor-link">#</a> 9. Quy trình khi nhận yêu cầu dựng/sửa một bài</h2>
+
+<ol class="doc-ordered-list">
+<li>Xác định bài có cần tự vẽ tiêu đề/sapo riêng không (minimag) hay dùng</li>
+</ol>
+
+<p>   tiêu đề CMS (bài thường). Việc này quyết định có cần mục 8 hay không.</p>
+<ol class="doc-ordered-list">
+<li>Dựng nội dung theo cấu trúc chương/đoạn/ảnh, áp cả bốn ràng buộc ở mục</li>
+</ol>
+
+<p>   2-4 ngay từ đầu — đừng dựng xong rồi mới "vá" an toàn quảng cáo sau,</p>
+
+<p>   dễ sót.</p>
+<ol class="doc-ordered-list">
+<li>Nếu có ≥3 ảnh liên tiếp → carousel (mục 6.2). Nếu có nhiều câu quote hay</li>
+</ol>
+
+<p>   → hỏi người dùng chọn câu nào trước khi tách pull-quote (mục 6.1).</p>
+<ol class="doc-ordered-list">
+<li>Chỉ dùng cơ chế ngủ/đánh thức (mục 5) nếu vì lý do nào đó bài vẫn cần</li>
+</ol>
+
+<p>   tràn viền — với bài dựng mới theo tài liệu này thì không cần.</p>
+<ol class="doc-ordered-list">
+<li>Tự kiểm tra trước khi giao: không còn <code>100vw</code>, không có rule nào nhắm</li>
+</ol>
+
+<p>   <code>.the-article-body</code>/<code>.main</code> để đổi width/overflow, không gọi font ngoài,</p>
+
+<p>   không còn <code><span></code>/<code><button></code>/<code>style="..."</code> trong nội dung bài, JS hợp</p>
+
+<p>   lệ (không có <code>//</code> trong script), carousel (nếu có) khởi tạo độc lập với</p>
+
+<p>   hiệu ứng cuộn.</p>
+
+
+    </main>
+  </div>
+
+  <script>
+    function copySnippet(btn) {
+      const code = btn.closest('.code-wrapper').querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const oldText = btn.innerHTML;
+        btn.innerHTML = '✓ Đã chép!';
+        setTimeout(() => { btn.innerHTML = oldText; }, 2000);
+      });
+    }
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('znews_theme', next);
+    }
+    const savedTheme = localStorage.getItem('znews_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+</body>
+</html>

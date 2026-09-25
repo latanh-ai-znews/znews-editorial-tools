@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Công cụ dựng bài đặc biệt dạng no side-bar, có hiển thị quảng cáo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOOL CHROME ============ */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#12141a;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#e7e6e3}
+.tool-shell{display:flex;min-height:100vh}
+.tool-editor{width:440px;flex:none;background:#181b22;border-right:1px solid #262a34;height:100vh;overflow-y:auto;padding:22px 20px 90px}
+.tool-editor h1{font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;margin:0 0 4px;color:#fff}
+.tool-editor .sub{font-size:12.5px;color:#8a8f9a;margin:0 0 18px;line-height:1.5}
+.tool-phase{margin-bottom:22px;padding-top:14px;border-top:1px solid #262a34}
+.tool-phase-h{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.03em;color:#8a8f9a;margin:0 0 10px;text-transform:uppercase}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:12px;color:#8a8f9a;margin-bottom:4px}
+.field input,.field textarea{width:100%;background:#0d0f14;border:1px solid #262a34;border-radius:7px;color:#e7e6e3;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;padding:8px 9px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:#3b6df0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.raw-area{min-height:170px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.5}
+.btn{font-family:'Be Vietnam Pro',sans-serif;font-size:12.5px;border-radius:7px;padding:8px 13px;cursor:pointer;border:1px solid #262a34;background:#0d0f14;color:#e7e6e3}
+.btn:hover{border-color:#3a3f4b}
+.btn-block{width:100%}
+.btn-primary{background:#3b6df0;border-color:#3b6df0;color:#fff;font-weight:600}
+.btn-primary:hover{filter:brightness(1.08)}
+.empty-hint{font-size:12px;color:#5a5e68;font-style:italic;padding:6px 0}
+
+.qc-item{border:1px solid #262a34;border-radius:8px;padding:10px;margin-bottom:8px;background:#0d0f14}
+.qc-head{display:flex;align-items:flex-start;gap:8px}
+.qc-head input[type=checkbox]{margin-top:3px}
+.qc-text{font-size:12.5px;line-height:1.5;color:#d6d4cd}
+.qc-by-row{margin-top:8px;display:none}
+.qc-item.is-on .qc-by-row{display:block}
+.qc-by-row input{width:100%;background:#12141a;border:1px solid #262a34;border-radius:6px;color:#e7e6e3;font-size:12px;padding:6px 8px;margin-bottom:6px}
+.qc-align{display:none;gap:6px}
+.qc-item.is-on .qc-align{display:flex}
+.qc-align label{display:flex;align-items:center;gap:4px;font-size:11.5px;color:#aeb2ba;border:1px solid #262a34;border-radius:999px;padding:4px 10px;cursor:pointer}
+.qc-align input{margin:0}
+.qc-align label:has(input:checked){border-color:#3b6df0;color:#fff}
+
+.cg-item{border:1px solid #262a34;border-radius:8px;padding:10px;margin-bottom:8px;background:#0d0f14;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cg-item .txt{font-size:12.5px;color:#d6d4cd}
+.cg-item .txt b{color:#fff}
+
+.tool-preview-col{flex:1;min-width:0;height:100vh;overflow-y:auto;background:#fff}
+.tool-preview-bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:#fff;border-bottom:1px solid #e6e2d4}
+.tool-preview-bar .label{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8a8f9a}
+.tool-preview-bar .actions{display:flex;gap:8px}
+.tool-preview-bar .btn{color:#17181b;border-color:#d8d3c4}
+.tool-preview-bar .btn-primary{color:#fff;border-color:#3b6df0}
+#preview-frame{max-width:660px;margin:0 auto;padding:26px 20px 90px}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,10,12,.6);display:none;align-items:center;justify-content:center;z-index:50;padding:24px}
+.modal-backdrop.show{display:flex}
+.modal{background:#181b22;border:1px solid #262a34;border-radius:12px;max-width:820px;width:100%;max-height:82vh;display:flex;flex-direction:column}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #262a34}
+.modal-head h2{font-family:'Manrope',sans-serif;font-size:14px;margin:0;color:#fff}
+.modal textarea{flex:1;margin:12px 16px 16px;background:#0a0b0e;border:1px solid #262a34;border-radius:7px;color:#c9e6c9;font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:12px;resize:none;min-height:300px}
+
+@media (max-width:900px){
+  .tool-shell{flex-direction:column}
+  .tool-editor{width:auto;height:auto;max-height:55vh;border-right:0;border-bottom:1px solid #262a34}
+  .tool-preview-col{height:auto}
+}
+
+/* ============ HỆ THIẾT KẾ BÀI (zacSafe — không tràn viền, an toàn quảng cáo) ============ */
+.zac#zacSafe {
+  --ink: #17181b; --muted: #6d6b60; --line: #e6e2d4; --panel: #f5f4ee;
+  --orange: #ff8709; --lgreen: #abff84; --pink: #fec5fb; --blue: #00bae2; --lilac: #9d95ff;
+  --tag-1: #a04e00; --tag-2: #c22899; --tag-3: #6952e0; --link: #0a7a3a;
+  --sans: inherit;
+  --hl-bg: #ff8709;
+  --hl-ink: #15140f;
+  --img-bleed: 130px;
+  --mono: inherit;
+  --quote: inherit;
+  display:block; width:100%; max-width:100%; margin:0; padding:4px 0 8px;
+  background:transparent; color:var(--ink); font-family:inherit!important;
+  font-size:16px; line-height:1.7; overflow-wrap:break-word;
+}
+.zac#zacSafe, .zac#zacSafe *{box-sizing:border-box}
+.zac#zacSafe p{margin:0}
+.zac#zacSafe b,.zac#zacSafe strong{font-weight:700;color:inherit}
+.zac#zacSafe em,.zac#zacSafe i,.zac#zacSafe cite{font-style:italic!important;color:inherit!important}
+.zac#zacSafe table.picture,.zac#zacSafe table.picture tbody,.zac#zacSafe table.picture tr,.zac#zacSafe table.picture td{display:block!important;width:100%!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+.zac#zacSafe table.picture .pCaption,.zac#zacSafe table.picture .caption{display:none!important}
+
+.zac#zacSafe .zac__tag{margin:0 0 14px}
+.zac#zacSafe .zac__tag a{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-family:var(--mono)!important;font-size:12.5px;color:var(--ink);text-decoration:none}
+.zac#zacSafe .zac__title{font-family:var(--sans)!important;font-weight:700;font-size:clamp(25px,7vw,32px);line-height:1.2;letter-spacing:-.02em;margin:0 0 16px;color:var(--ink)}
+.zac#zacSafe .zac__deck{position:relative;padding-left:16px;margin:0 0 16px;font-size:17px;line-height:1.6;color:#33322d}
+.zac#zacSafe .zac__deck::before{content:'';position:absolute;left:0;top:3px;bottom:3px;width:3px;background:var(--orange)}
+.zac#zacSafe .zac__byline{font-family:var(--mono)!important;font-size:12.5px;color:var(--muted);margin:0 0 24px}
+
+.zac#zacSafe .zac__heroPhoto,.zac#zacSafe .zac__fig{margin:28px 0;clear:both}
+.zac#zacSafe .zac__heroMedia,.zac#zacSafe .zac__figMedia{position:relative;overflow:hidden;margin-left:calc(var(--img-bleed,0px) * -1);margin-right:calc(var(--img-bleed,0px) * -1);width:calc(100% + var(--img-bleed,0px) * 2)}
+.zac#zacSafe .zac__heroMedia img,.zac#zacSafe .zac__figMedia img{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important}
+.zac#zacSafe .zac__figCap p{margin:8px 0 0;font-size:13px;line-height:1.55;color:var(--muted)}
+.zac#zacSafe .zac__figCap em,.zac#zacSafe .zac__figCap i{color:var(--muted)!important}
+
+.zac#zacSafe .zac__prose{font-size:17px;line-height:1.75;color:#26251f;margin:0 0 20px}
+.zac#zacSafe .zac__prose a{color:var(--link)!important;text-decoration:underline;text-decoration-color:var(--link);text-underline-offset:3px}
+.zac#zacSafe .zac__intro{margin:4px 0 0}
+
+.zac#zacSafe .zac__opener{margin:40px 0 18px;clear:both}
+.zac#zacSafe .zac__hl{display:inline-block;padding:6px 14px 8px;font-family:var(--sans)!important;font-weight:700;font-size:clamp(19px,5vw,23px);line-height:1.3;letter-spacing:-.01em;background:var(--hl-bg,#ff8709);color:var(--hl-ink,#151512)}
+
+.zac#zacSafe .zac__quote{margin:30px 0}
+.zac#zacSafe .zac__quote--left{float:left;width:46%;margin:4px 18px 16px 0}
+.zac#zacSafe .zac__quote--right{float:right;width:46%;margin:4px 0 16px 18px}
+.zac#zacSafe .zac__quoteBraces{display:flex;align-items:stretch;gap:12px}
+.zac#zacSafe .zac__quoteBraceCol{width:14px;flex:none}
+.zac#zacSafe .zac__braceSvg{display:block;width:100%;height:100%;color:var(--ink);opacity:.85}
+.zac#zacSafe .zac__quoteContent{flex:1;min-width:0}
+.zac#zacSafe .zac__quoteText{font-family:var(--quote)!important;font-size:18px;line-height:1.46;font-weight:600;color:var(--ink);margin:0}
+.zac#zacSafe .zac__quoteBy{margin-top:8px;font-family:var(--mono)!important;font-size:12px;color:var(--muted)}
+
+.zac#zacSafe .zac__carousel{margin:28px 0;clear:both}
+.zac#zacSafe .zac__carouselStage{position:relative;overflow:hidden;touch-action:pan-y;margin-left:calc(var(--img-bleed,0px) * -1);margin-right:calc(var(--img-bleed,0px) * -1);width:calc(100% + var(--img-bleed,0px) * 2)}
+.zac#zacSafe .zac__carouselTrack{display:flex}
+.zac#zacSafe.js .zac__carouselTrack{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.zac#zacSafe.js .zac__carouselTrack.is-drag{transition:none}
+.zac#zacSafe .zac__carouselSlide{flex:0 0 100%;min-width:0}
+.zac#zacSafe .zac__carouselMedia{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden}
+.zac#zacSafe .zac__carouselMedia img{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important;border:0!important;object-fit:cover!important;pointer-events:none;-webkit-user-drag:none;user-select:none}
+.zac#zacSafe .zac__carouselCap p{margin:8px 0 0;font-size:13px;line-height:1.55;color:var(--muted)}
+.zac#zacSafe .zac__carouselNav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.zac#zacSafe .zac__carouselDots{display:flex;align-items:center;gap:7px}
+.zac#zacSafe .zac__carouselDot{width:7px;height:7px;border-radius:50%;background:rgba(23,24,27,.2);cursor:pointer;transition:background .2s,transform .2s}
+.zac#zacSafe .zac__carouselDot.is-on{background:var(--tag-1);transform:scale(1.3)}
+.zac#zacSafe .zac__carouselCounter{font-family:var(--mono)!important;font-size:12px;color:var(--muted)}
+.zac#zacSafe .zac__carouselArrows{display:flex;gap:6px}
+.zac#zacSafe .zac__carouselArr{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer}
+.zac#zacSafe .zac__carouselArr svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.zac#zacSafe .zac__bookBox{margin:34px 0 8px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--panel);clear:both}
+.zac#zacSafe .zac__bookTitle{margin:0 0 8px;font-family:var(--sans)!important;font-weight:700;font-size:18px;color:var(--ink)}
+.zac#zacSafe .zac__bookText{margin:0 0 8px;font-size:14px;line-height:1.6;color:#3a3934}
+.zac#zacSafe .zac__bookText:last-child{margin-bottom:0}
+.zac#zacSafe .zac__bookText a{color:var(--link)!important;font-weight:600}
+
+.zac#zacSafe.zac--reveal .zac__opener,.zac#zacSafe.zac--reveal .zac__quote,.zac#zacSafe.zac--reveal .zac__fig,.zac#zacSafe.zac--reveal .zac__carousel{opacity:1;transform:translateY(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.zac#zacSafe.zac--reveal .is-in{opacity:1!important;transform:none!important}
+@media (prefers-reduced-motion:reduce){.zac#zacSafe,.zac#zacSafe *{transition:none!important}}
+
+.the-article:has(#zacSafe) .the-article-category,.the-article:has(#zacSafe) .the-article-summary,.the-article:has(#zacSafe) .the-article-meta{display:none!important}
+.the-article:has(#zacSafe) .the-article-title{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+
+@media (max-width:700px){
+  .zac#zacSafe{--img-bleed:0px}
+}
+@media (max-width:480px){
+  .zac#zacSafe .zac__title{font-size:24px}
+  .zac#zacSafe .zac__prose,.zac#zacSafe .zac__deck{font-size:16px}
+  .zac#zacSafe .zac__hl{font-size:19px}
+  .zac#zacSafe .zac__quote--left,.zac#zacSafe .zac__quote--right{float:none;width:auto;margin:20px 0}
+}
+</style>
+</head>
+<body>
+<div class="tool-shell">
+  <div class="tool-editor">
+    <h1>Bài đặc biệt dạng no side-bar, có hiển thị quảng cáo</h1>
+    <p class="sub">Dùng khung "zacSafe" — không tràn viền, nằm gọn trong cột 600px của Znews, để quảng cáo trong bài (Article_Image, Masthead_Inline, banner cuối bài) vẫn hiển thị bình thường. Dán nội dung thô, công cụ tự bắt quote và tự gộp carousel cho bạn.</p>
+
+    <div class="tool-phase">
+      <div class="tool-phase-h">Thông tin bài</div>
+      <div class="field"><label>Tiêu đề</label><input id="f-title" type="text" placeholder="Tiêu đề bài viết"></div>
+      <div class="field"><label>Sapo</label><textarea id="f-sapo" rows="2" placeholder="Câu tóm tắt 1-2 câu"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label>Tác giả</label><input id="f-author" type="text" placeholder="Tên tác giả"></div>
+        <div class="field"><label>Ngày</label><input id="f-date" type="text" placeholder="16/9/2026"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Tag hiển thị</label><input id="f-tagtext" type="text" value="Công nghệ"></div>
+        <div class="field"><label>Link tag</label><input id="f-tagurl" type="text" value="https://znews.vn/cong-nghe.html"></div>
+      </div>
+      <div class="field"><label>Ảnh hero (URL)</label><input id="f-hero" type="text" placeholder="https://... hoặc /Uploaded/..."></div>
+    </div>
+
+    <div class="tool-phase">
+      <div class="tool-phase-h">Thiết kế thêm</div>
+      <div class="field-row">
+        <div class="field"><label>Màu nền tiêu đề chương</label><input id="f-hlcolor" type="color" value="#ff8709"></div>
+        <div class="field"><label style="visibility:hidden">.</label><label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#e7e6e3"><input id="f-hlbasic" type="checkbox"> Cơ bản (nền trắng, chữ đen)</label></div>
+      </div>
+      <div class="field"><label>Ảnh hero/carousel rộng hơn chữ (px mỗi bên)</label><input id="f-imgbleed" type="number" min="0" max="200" value="130"></div>
+    </div>
+
+    <div class="tool-phase">
+      <div class="tool-phase-h">Nội dung thô (dán từ CMS)</div>
+      <div class="field"><textarea id="f-raw" class="raw-area" placeholder="Dán các thẻ <p>, <h3>, <table class=&quot;picture&quot;>... ở đây"></textarea></div>
+      <button class="btn btn-primary btn-block" id="btnParse" type="button">Phân tích nội dung</button>
+    </div>
+
+    <div class="tool-phase" id="phaseQuotes" style="display:none">
+      <div class="tool-phase-h">Quote bắt được — tick để chèn, chọn vị trí hiển thị</div>
+      <div id="quoteList"></div>
+    </div>
+
+    <div class="tool-phase" id="phaseCarousel" style="display:none">
+      <div class="tool-phase-h">Chuỗi ảnh bắt được (≥3 ảnh liên tiếp)</div>
+      <div id="carouselList"></div>
+    </div>
+
+    <div class="tool-phase">
+      <button class="btn btn-block" id="btnReset" type="button">Xoá hết</button>
+    </div>
+  </div>
+
+  <div class="tool-preview-col">
+    <div class="tool-preview-bar">
+      <span class="label">XEM TRƯỚC</span>
+      <div class="actions">
+        <button class="btn" id="btnCopy" type="button">Sao chép mã</button>
+        <button class="btn btn-primary" id="btnDownload" type="button">Tải file .html</button>
+      </div>
+    </div>
+    <div id="preview-frame"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-head"><h2>Mã dán vào CMS</h2><button class="btn" id="btnCloseModal" type="button">Đóng</button></div>
+    <textarea id="exportArea" readonly></textarea>
+  </div>
+</div>
+
+<script>
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+var state = {
+  title:'', sapo:'', author:'', date:'', tagText:'Công nghệ', tagUrl:'https://znews.vn/cong-nghe.html', heroImg:'',
+  hlColor:'#ff8709', hlBasic:false, imgBleed:130,
+  rawBlocks: [], quotes: [], carouselGroups: []
+};
+
+/* ---------- phân tích nội dung thô ---------- */
+function parseRaw(html){
+  var wrap = document.createElement('div');
+  wrap.innerHTML = html;
+  var blocks = [];
+  var uid = 0;
+  Array.prototype.forEach.call(wrap.childNodes, function(node){
+    if (node.nodeType !== 1) return;
+    var tag = node.tagName.toLowerCase();
+    if (tag === 'h3') {
+      var t = node.textContent.trim();
+      if (t) blocks.push({ id: uid++, type:'h3', text:t });
+    } else if (tag === 'p') {
+      var txt = node.textContent.trim();
+      if (!txt) return;
+      blocks.push({ id: uid++, type:'p', html: node.innerHTML, text: txt });
+    } else if (tag === 'table' && node.className.indexOf('picture') !== -1) {
+      var img = node.querySelector('img');
+      var capEl = node.querySelector('.pCaption p, .caption p') || node.querySelector('.pCaption, .caption');
+      blocks.push({
+        id: uid++, type:'img',
+        src: img ? (img.getAttribute('src')||'') : '',
+        alt: img ? (img.getAttribute('alt')||'') : '',
+        imgid: img ? (img.getAttribute('imgid')||'') : '',
+        caption: capEl ? capEl.innerHTML.trim() : ''
+      });
+    }
+  });
+  return blocks;
+}
+
+function detectQuotes(blocks){
+  var quotes = [];
+  var qid = 0;
+  var attrWords = /(nói|chia sẻ|nhận định|khẳng định|cho biết|nhấn mạnh|cho hay|viết|nêu)/;
+  blocks.forEach(function(b){
+    if (b.type !== 'p') return;
+    var re = /"([^"]{12,400})"/g;
+    var m;
+    while ((m = re.exec(b.text))) {
+      var quoteText = m[1].trim();
+      var tailStart = m.index + m[0].length;
+      var tail = b.text.slice(tailStart, tailStart + 140);
+      var by = '';
+      var tm = tail.match(/^,?\s*([^".]{2,80}?)\s*(?:nói|chia sẻ|nhận định|khẳng định|cho biết|nhấn mạnh|cho hay|viết|nêu)/);
+      if (tm) by = tm[1].trim();
+      if (!by) {
+        var head = b.text.slice(Math.max(0, m.index-100), m.index);
+        var hm = head.match(/([^".]{2,80})\s*(?:nói|chia sẻ|nhận định|khẳng định|cho biết|nhấn mạnh|cho hay|viết|nêu)[^".]*:?\s*$/);
+        if (hm) by = hm[1].trim();
+      }
+      quotes.push({ id: qid++, blockId: b.id, text: quoteText, by: by, align: 'center', include: false });
+    }
+  });
+  return quotes;
+}
+
+function detectImageRuns(blocks){
+  var groups = [];
+  var i = 0;
+  while (i < blocks.length) {
+    if (blocks[i].type === 'img') {
+      var run = [];
+      var j = i;
+      while (j < blocks.length && blocks[j].type === 'img') { run.push(blocks[j]); j++; }
+      if (run.length >= 3) groups.push({ startId: run[0].id, images: run, include: true });
+      i = j;
+    } else i++;
+  }
+  return groups;
+}
+
+function renderQuoteList(){
+  var el = document.getElementById('quoteList');
+  var phase = document.getElementById('phaseQuotes');
+  if (!state.quotes.length) { phase.style.display='none'; return; }
+  phase.style.display='block';
+  el.innerHTML = state.quotes.map(function(q, idx){
+    return '<div class="qc-item' + (q.include?' is-on':'') + '" data-qi="'+idx+'">' +
+      '<div class="qc-head"><input type="checkbox" class="qc-check" ' + (q.include?'checked':'') + '>' +
+      '<div class="qc-text">&ldquo;' + esc(q.text) + '&rdquo;</div></div>' +
+      '<div class="qc-by-row"><input type="text" class="qc-by" placeholder="Người nói / chức danh" value="' + esc(q.by) + '">' +
+      '<div class="qc-align">' +
+        '<label><input type="radio" name="qalign'+idx+'" value="left" '+(q.align==='left'?'checked':'')+'> Trái</label>' +
+        '<label><input type="radio" name="qalign'+idx+'" value="right" '+(q.align==='right'?'checked':'')+'> Phải</label>' +
+        '<label><input type="radio" name="qalign'+idx+'" value="center" '+(q.align==='center'?'checked':'')+'> Giữa</label>' +
+      '</div></div></div>';
+  }).join('');
+  Array.prototype.forEach.call(el.querySelectorAll('.qc-item'), function(item){
+    var idx = +item.dataset.qi;
+    item.querySelector('.qc-check').addEventListener('change', function(e){
+      state.quotes[idx].include = e.target.checked;
+      item.classList.toggle('is-on', e.target.checked);
+      render();
+    });
+    item.querySelector('.qc-by').addEventListener('input', function(e){
+      state.quotes[idx].by = e.target.value;
+      render();
+    });
+    Array.prototype.forEach.call(item.querySelectorAll('.qc-align input'), function(r){
+      r.addEventListener('change', function(e){
+        state.quotes[idx].align = e.target.value;
+        render();
+      });
+    });
+  });
+}
+
+function renderCarouselList(){
+  var el = document.getElementById('carouselList');
+  var phase = document.getElementById('phaseCarousel');
+  if (!state.carouselGroups.length) { phase.style.display='none'; return; }
+  phase.style.display='block';
+  el.innerHTML = state.carouselGroups.map(function(g, idx){
+    return '<div class="cg-item" data-gi="'+idx+'">' +
+      '<div class="txt"><b>'+g.images.length+' ảnh</b> liên tiếp — gộp thành 1 carousel</div>' +
+      '<input type="checkbox" class="cg-check" '+(g.include?'checked':'')+'>' +
+      '</div>';
+  }).join('');
+  Array.prototype.forEach.call(el.querySelectorAll('.cg-item'), function(item){
+    var idx = +item.dataset.gi;
+    item.querySelector('.cg-check').addEventListener('change', function(e){
+      state.carouselGroups[idx].include = e.target.checked;
+      render();
+    });
+  });
+}
+
+document.getElementById('btnParse').addEventListener('click', function(){
+  var raw = document.getElementById('f-raw').value;
+  state.rawBlocks = parseRaw(raw);
+  state.quotes = detectQuotes(state.rawBlocks);
+  state.carouselGroups = detectImageRuns(state.rawBlocks);
+  renderQuoteList();
+  renderCarouselList();
+  render();
+});
+
+['f-title','f-sapo','f-author','f-date','f-tagtext','f-tagurl','f-hero'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', function(e){
+    var map = {'f-title':'title','f-sapo':'sapo','f-author':'author','f-date':'date','f-tagtext':'tagText','f-tagurl':'tagUrl','f-hero':'heroImg'};
+    state[map[id]] = e.target.value;
+    render();
+  });
+});
+document.getElementById('f-hlcolor').addEventListener('input', function(e){ state.hlColor = e.target.value; render(); });
+document.getElementById('f-hlbasic').addEventListener('change', function(e){ state.hlBasic = e.target.checked; render(); });
+document.getElementById('f-imgbleed').addEventListener('input', function(e){ state.imgBleed = +e.target.value || 0; render(); });
+
+/* ---------- ráp block cuối & render HTML ---------- */
+function buildFinalBlocks(){
+  var groupByStart = {};
+  var skip = {};
+  state.carouselGroups.forEach(function(g){
+    if (!g.include) return;
+    groupByStart[g.startId] = g;
+    g.images.forEach(function(im){ skip[im.id] = true; });
+  });
+  var out = [];
+  state.rawBlocks.forEach(function(b){
+    if (groupByStart[b.id]) { out.push({ type:'carousel', id:'c'+b.id, images: groupByStart[b.id].images }); return; }
+    if (skip[b.id]) return;
+    out.push(b);
+  });
+  state.quotes.filter(function(q){ return q.include; }).forEach(function(q){
+    var idx = out.findIndex(function(b){ return b.id === q.blockId; });
+    if (idx !== -1) out.splice(idx+1, 0, { type:'quote', id:'q'+q.id, text:q.text, by:q.by, align:q.align });
+  });
+  return out;
+}
+
+function splitChapters(blocks){
+  var intro = [], chapters = [], current = null;
+  blocks.forEach(function(b){
+    if (b.type === 'h3') { current = { title: b.text, blocks: [] }; chapters.push(current); }
+    else if (current) current.blocks.push(b);
+    else intro.push(b);
+  });
+  return { intro: intro, chapters: chapters };
+}
+
+function chapterHeadingHtml(title){
+  return '<div class="zac__hl">'+esc(title)+'</div>';
+}
+
+var braceLeft = '<path d="M 23,4 C 13,4 8,12 8,24 L 8,68 C 8,76 3,80 1.5,80 C 3,80 8,84 8,92 L 8,136 C 8,148 13,156 23,156" vector-effect="non-scaling-stroke"></path>';
+var braceRight = '<path d="M 3,4 C 13,4 18,12 18,24 L 18,68 C 18,76 23,80 24.5,80 C 23,80 18,84 18,92 L 18,136 C 18,148 13,156 3,156" vector-effect="non-scaling-stroke"></path>';
+function braceSvg(pathD){
+  return '<svg class="zac__braceSvg" viewBox="0 0 26 160" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2.8" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round">'+pathD+'</svg>';
+}
+
+function figHtml(b){
+  return '<div class="zac__fig"><div class="zac__figMedia"><img src="'+esc(b.src)+'" alt="'+esc(b.alt)+'"'+(b.imgid?' imgid="'+esc(b.imgid)+'"':'')+'></div>' +
+    (b.caption ? '<div class="zac__figCap"><p>'+b.caption+'</p></div>' : '') + '</div>';
+}
+function quoteHtml(b){
+  var cls = b.align === 'left' ? ' zac__quote--left' : b.align === 'right' ? ' zac__quote--right' : '';
+  return '<div class="zac__quote'+cls+'"><div class="zac__quoteBraces">' +
+    '<div class="zac__quoteBraceCol" aria-hidden="true">'+braceSvg(braceLeft)+'</div>' +
+    '<div class="zac__quoteContent"><p class="zac__quoteText">'+esc(b.text)+'</p><div class="zac__quoteBy">'+esc(b.by)+'</div></div>' +
+    '<div class="zac__quoteBraceCol" aria-hidden="true">'+braceSvg(braceRight)+'</div>' +
+    '</div></div>';
+}
+function carouselHtml(b){
+  var n = b.images.length;
+  var slides = b.images.map(function(im){
+    return '<div class="zac__carouselSlide"><div class="zac__carouselMedia"><img src="'+esc(im.src)+'" alt="'+esc(im.alt)+'"'+(im.imgid?' imgid="'+esc(im.imgid)+'"':'')+'></div></div>';
+  }).join('');
+  var caps = b.images.map(function(im,i){
+    return '<p'+(i===0?'':' hidden')+' data-cap-'+i+'>'+(im.caption||'')+'</p>';
+  }).join('');
+  var dots = b.images.map(function(_,i){
+    return '<div class="zac__carouselDot'+(i===0?' is-on':'')+'" role="tab" tabindex="'+(i===0?0:-1)+'" aria-selected="'+(i===0?'true':'false')+'"><br></div>';
+  }).join('');
+  return '<div class="zac__carousel"><div class="zac__carouselStage" aria-roledescription="carousel">' +
+    '<div class="zac__carouselTrack">'+slides+'</div></div>' +
+    '<div class="zac__carouselCap">'+caps+'</div>' +
+    '<div class="zac__carouselNav"><div class="zac__carouselCounter">01 / '+String(n).padStart(2,'0')+'</div>' +
+    '<div class="zac__carouselDots" role="tablist">'+dots+'</div>' +
+    '<div class="zac__carouselArrows">' +
+    '<div class="zac__carouselArr" role="button" tabindex="0" aria-label="Ảnh trước"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg></div>' +
+    '<div class="zac__carouselArr" role="button" tabindex="0" aria-label="Ảnh tiếp theo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg></div>' +
+    '</div></div></div>';
+}
+function renderBlock(b){
+  if (b.type === 'p') return '<p class="zac__prose">'+b.html+'</p>';
+  if (b.type === 'img') return figHtml(b);
+  if (b.type === 'carousel') return carouselHtml(b);
+  if (b.type === 'quote') return quoteHtml(b);
+  return '';
+}
+function chapterHtml(ch, idx){
+  return '<section class="zac__chapter">' +
+    '<div class="zac__opener">' + chapterHeadingHtml(ch.title) + '</div>' +
+    ch.blocks.map(renderBlock).join('') + '</section>';
+}
+
+function buildArticleInner(){
+  var finalBlocks = buildFinalBlocks();
+  var split = splitChapters(finalBlocks);
+  var introHtml = split.intro.map(renderBlock).join('');
+  var chaptersHtml = split.chapters.map(chapterHtml).join('');
+  return '<div class="zac__tag"><a href="'+esc(state.tagUrl)+'">'+esc(state.tagText)+'</a></div>' +
+    '<h1 class="zac__title">'+esc(state.title || 'Tiêu đề bài viết')+'</h1>' +
+    (state.sapo ? '<div class="zac__deck">'+esc(state.sapo)+'</div>' : '') +
+    ((state.author||state.date) ? '<div class="zac__byline">'+esc(state.author)+(state.author&&state.date?' · ':'')+esc(state.date)+'</div>' : '') +
+    (state.heroImg ? '<div class="zac__heroPhoto"><div class="zac__heroMedia"><img src="'+esc(state.heroImg)+'" alt="'+esc(state.title)+'"></div></div>' : '') +
+    '<div class="zac__intro">'+introHtml+'</div>' + chaptersHtml;
+}
+
+function initCarousels(root){
+  root.querySelectorAll('.zac__carousel').forEach(function(car){
+    var track = car.querySelector('.zac__carouselTrack');
+    var stage = car.querySelector('.zac__carouselStage');
+    var slides = car.querySelectorAll('.zac__carouselSlide');
+    var dots = car.querySelectorAll('.zac__carouselDot');
+    var caps = car.querySelectorAll('.zac__carouselCap p');
+    var counter = car.querySelector('.zac__carouselCounter');
+    var prev = car.querySelectorAll('.zac__carouselArr')[0];
+    var next = car.querySelectorAll('.zac__carouselArr')[1];
+    var n = slides.length, i = 0;
+    function pad(num){ return num<10 ? '0'+num : ''+num; }
+    function go(k){
+      i = ((k % n) + n) % n;
+      track.style.transform = 'translateX('+(-i*100)+'%)';
+      for (var j=0;j<n;j++){
+        var on = j===i;
+        dots[j].className = 'zac__carouselDot'+(on?' is-on':'');
+        caps[j].hidden = !on;
+      }
+      counter.textContent = pad(i+1)+' / '+pad(n);
+    }
+    dots.forEach(function(d,idx){ d.addEventListener('click', function(){ go(idx); }); });
+    if (prev) prev.addEventListener('click', function(){ go(i-1); });
+    if (next) next.addEventListener('click', function(){ go(i+1); });
+    go(0);
+  });
+}
+
+function render(){
+  var root = document.getElementById('preview-frame');
+  root.innerHTML = '<article class="zac zac--reveal js" id="zacSafe">'+buildArticleInner()+'</article>';
+  var art = root.querySelector('#zacSafe');
+  if (state.hlBasic) {
+    art.style.setProperty('--hl-bg', '#ffffff');
+    art.style.setProperty('--hl-ink', '#000000');
+  } else {
+    art.style.setProperty('--hl-bg', state.hlColor);
+    art.style.setProperty('--hl-ink', '#15140f');
+  }
+  art.style.setProperty('--img-bleed', state.imgBleed + 'px');
+  root.querySelectorAll('.is-in, .zac__opener, .zac__quote, .zac__fig, .zac__carousel').forEach(function(el){ el.classList.add('is-in'); });
+  initCarousels(root);
+}
+
+/* ---------- xuất mã ---------- */
+function buildExportHTML(){
+  var styleBlock = document.querySelector('style').textContent.split('/* ============ HỆ THIẾT KẾ BÀI')[1];
+  styleBlock = '/* ============ HỆ THIẾT KẾ BÀI' + styleBlock;
+  var hlBg = state.hlBasic ? '#ffffff' : state.hlColor;
+  var hlInk = state.hlBasic ? '#000000' : '#15140f';
+  styleBlock = styleBlock.replace('--hl-bg: #ff8709;', '--hl-bg: '+hlBg+';');
+  styleBlock = styleBlock.replace('--hl-ink: #15140f;', '--hl-ink: '+hlInk+';');
+  styleBlock = styleBlock.replace('--img-bleed: 130px;', '--img-bleed: '+state.imgBleed+'px;');
+  var inner = buildArticleInner();
+  return '<style>\n' + styleBlock + '\n</style>\n' +
+    '<article class="zac" id="zacSafe">\n' + inner + '\n</article>\n' +
+    '<script>\n(function(){\n' +
+    '  var root = document.getElementById("zacSafe");\n  if (!root) return;\n' +
+    '  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;\n' +
+    '  if (!reduce && ("IntersectionObserver" in window)) {\n' +
+    '    root.className += " zac--reveal";\n' +
+    '    var io = new IntersectionObserver(function(entries){\n' +
+    '      for (var i=0;i<entries.length;i++){ if (entries[i].isIntersecting){ entries[i].target.className += " is-in"; io.unobserve(entries[i].target); } }\n' +
+    '    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });\n' +
+    '    var nodes = root.querySelectorAll(".zac__opener, .zac__quote, .zac__fig, .zac__carousel");\n' +
+    '    for (var k=0;k<nodes.length;k++){ io.observe(nodes[k]); }\n' +
+    '  }\n' +
+    '  root.className += " js";\n' +
+    '  var carousels = root.querySelectorAll(".zac__carousel");\n' +
+    '  for (var c=0;c<carousels.length;c++){\n' +
+    '    (function(car){\n' +
+    '      var track = car.querySelector(".zac__carouselTrack");\n' +
+    '      var stage = car.querySelector(".zac__carouselStage");\n' +
+    '      var slides = car.querySelectorAll(".zac__carouselSlide");\n' +
+    '      var dots = car.querySelectorAll(".zac__carouselDot");\n' +
+    '      var caps = car.querySelectorAll(".zac__carouselCap p");\n' +
+    '      var counter = car.querySelector(".zac__carouselCounter");\n' +
+    '      var prev = car.querySelectorAll(".zac__carouselArr")[0];\n' +
+    '      var next = car.querySelectorAll(".zac__carouselArr")[1];\n' +
+    '      var n = slides.length, i = 0;\n' +
+    '      function pad(num){ return num<10 ? "0"+num : ""+num; }\n' +
+    '      function go(k){\n' +
+    '        i = ((k % n) + n) % n;\n' +
+    '        track.style.transform = "translateX(" + (-i*100) + "%)";\n' +
+    '        for (var j=0;j<n;j++){\n' +
+    '          var on = j===i;\n' +
+    '          dots[j].className = "zac__carouselDot" + (on?" is-on":"");\n' +
+    '          caps[j].hidden = !on;\n' +
+    '        }\n' +
+    '        counter.textContent = pad(i+1) + " / " + pad(n);\n' +
+    '      }\n' +
+    '      dots.forEach(function(d,idx){ d.addEventListener("click", function(){ go(idx); }); });\n' +
+    '      if (prev) prev.addEventListener("click", function(){ go(i-1); });\n' +
+    '      if (next) next.addEventListener("click", function(){ go(i+1); });\n' +
+    '      var x0=null, dx=0, dragging=false, w=1;\n' +
+    '      stage.addEventListener("pointerdown", function(e){\n' +
+    '        if (e.pointerType==="mouse" && e.button!==0) return;\n' +
+    '        x0=e.clientX; dx=0; dragging=false; w=stage.clientWidth||1;\n' +
+    '      });\n' +
+    '      stage.addEventListener("pointermove", function(e){\n' +
+    '        if (x0===null) return;\n' +
+    '        dx = e.clientX - x0;\n' +
+    '        if (!dragging && Math.abs(dx) > 6) {\n' +
+    '          dragging = true; track.className = "zac__carouselTrack is-drag";\n' +
+    '          try { stage.setPointerCapture(e.pointerId); } catch(err){}\n' +
+    '        }\n' +
+    '        if (dragging) track.style.transform = "translateX(calc(" + (-i*100) + "% + " + dx + "px))";\n' +
+    '      });\n' +
+    '      function endDrag(){\n' +
+    '        if (x0===null) return;\n' +
+    '        x0=null; track.className = "zac__carouselTrack";\n' +
+    '        if (dragging) { if (dx < -w*0.18) go(i+1); else if (dx > w*0.18) go(i-1); else go(i); }\n' +
+    '        dragging=false;\n' +
+    '      }\n' +
+    '      stage.addEventListener("pointerup", endDrag);\n' +
+    '      stage.addEventListener("pointercancel", endDrag);\n' +
+    '      stage.addEventListener("lostpointercapture", endDrag);\n' +
+    '      go(0);\n' +
+    '    })(carousels[c]);\n' +
+    '  }\n' +
+    '})();\n<\/script>';
+}
+
+function fallbackCopy(text){
+  var tmp = document.createElement('textarea');
+  tmp.value = text;
+  tmp.style.position = 'fixed';
+  tmp.style.left = '-9999px';
+  document.body.appendChild(tmp);
+  tmp.focus();
+  tmp.select();
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  document.body.removeChild(tmp);
+  return ok;
+}
+function flashCopied(btn, ok){
+  var old = btn.textContent;
+  btn.textContent = ok ? 'Đã sao chép ✓' : 'Không copy được, xem mã bên dưới';
+  btn.disabled = true;
+  setTimeout(function(){ btn.textContent = old; btn.disabled = false; }, 1800);
+}
+document.getElementById('btnCopy').addEventListener('click', function(){
+  var code = buildExportHTML();
+  document.getElementById('exportArea').value = code;
+  var btn = this;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(code).then(function(){
+      flashCopied(btn, true);
+    }).catch(function(){
+      var ok = fallbackCopy(code);
+      flashCopied(btn, ok);
+      if (!ok) document.getElementById('modal').classList.add('show');
+    });
+  } else {
+    var ok = fallbackCopy(code);
+    flashCopied(btn, ok);
+    if (!ok) document.getElementById('modal').classList.add('show');
+  }
+});
+document.getElementById('btnCloseModal').addEventListener('click', function(){ document.getElementById('modal').classList.remove('show'); });
+document.getElementById('btnDownload').addEventListener('click', function(){
+  var code = buildExportHTML();
+  var blob = new Blob([code], {type:'text/html'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'bai-viet-an-toan.html';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+document.getElementById('btnReset').addEventListener('click', function(){
+  state = { title:'', sapo:'', author:'', date:'', tagText:'Công nghệ', tagUrl:'https://znews.vn/cong-nghe.html', heroImg:'', hlColor:'#ff8709', hlBasic:false, imgBleed:130, rawBlocks:[], quotes:[], carouselGroups:[] };
+  ['f-title','f-sapo','f-author','f-date','f-raw'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('f-tagtext').value='Công nghệ';
+  document.getElementById('f-tagurl').value='https://znews.vn/cong-nghe.html';
+  document.getElementById('f-hero').value='';
+  document.getElementById('f-hlcolor').value='#ff8709';
+  document.getElementById('f-hlbasic').checked=false;
+  document.getElementById('f-imgbleed').value=130;
+  document.getElementById('phaseQuotes').style.display='none';
+  document.getElementById('phaseCarousel').style.display='none';
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
