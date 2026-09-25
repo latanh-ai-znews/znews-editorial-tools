@@ -1,0 +1,29 @@
+{
+  "name": "znews-editorial-tools",
+  "version": "2.0.0",
+  "description": "Hệ thống công cụ biên tập, dàn trang tạp chí, xử lý ảnh và quy chuẩn CMS chuyên nghiệp cho Báo điện tử Znews",
+  "homepage": "https://latanhusesai-beep.github.io/znews-editorial-tools/",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "serve": "npx serve .",
+    "build:guide": "python3 build_guide.py",
+    "test:urls": "curl -sI https://latanhusesai-beep.github.io/znews-editorial-tools/ | head -n 5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/latanhusesai-beep/znews-editorial-tools.git"
+  },
+  "keywords": [
+    "znews",
+    "editorial-tools",
+    "cms",
+    "magazine-generator",
+    "photo-essay",
+    "ad-safe",
+    "carousel",
+    "thumbnail"
+  ],
+  "author": "Ban Biên tập Znews",
+  "license": "MIT"
+}
