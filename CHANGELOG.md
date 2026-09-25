@@ -15,7 +15,7 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 - **Cẩm Nang Kỹ Thuật Số Hóa (`guide.html`)**:
   - Chuyển đổi toàn bộ quy chuẩn CMS Znews sang giao diện đọc trực quan, có mục lục sticky và nút sao chép mã nguồn nhanh.
 - **Triển khai Trực tuyến Toàn cầu (GitHub Pages)**:
-  - Tự động hóa quy trình xuất bản web lên GitHub Pages tại địa chỉ: `https://latanhusesai-beep.github.io/znews-editorial-tools/`.
+  - Tự động hóa quy trình xuất bản web lên GitHub Pages tại địa chỉ: `https://latanh-ai-znews.github.io/znews-editorial-tools/`.
   - Cho phép truy cập và sử dụng từ bất kỳ thiết bị nào (điện thoại, máy tính bảng, máy tính cá nhân).
 - **Bộ Tài Liệu Kỹ Thuật Chuyên Nghiệp (`docs/`)**:
   - `docs/TOOL_MANUAL.md`: Sổ tay hướng dẫn chi tiết 6 công cụ.

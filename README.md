@@ -1,6 +1,6 @@
 # 🚀 Znews Editorial Studio — Bộ Công Cụ Biên Tập & Dàn Trang Báo Chí
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Website-success?style=for-the-badge&logo=github)](https://latanhusesai-beep.github.io/znews-editorial-tools/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Website-success?style=for-the-badge&logo=github)](https://latanh-ai-znews.github.io/znews-editorial-tools/)
 [![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20Mobile%20%7C%20Desktop-orange?style=for-the-badge)](index.html)
@@ -14,9 +14,9 @@ Hệ thống công cụ chuyên nghiệp phục vụ công tác dàn trang Tạp
 ## 🌐 Đường Dẫn Truy Cập Trực Tuyến
 
 * 🔗 **Website Công cụ Trực tuyến (GitHub Pages):**  
-  👉 **[https://latanhusesai-beep.github.io/znews-editorial-tools/](https://latanhusesai-beep.github.io/znews-editorial-tools/)**
+  👉 **[https://latanh-ai-znews.github.io/znews-editorial-tools/](https://latanh-ai-znews.github.io/znews-editorial-tools/)**
 * 📁 **Kho Lưu Trữ Mã Nguồn (GitHub Repository):**  
-  👉 **[https://github.com/latanhusesai-beep/znews-editorial-tools](https://github.com/latanhusesai-beep/znews-editorial-tools)**
+  👉 **[https://github.com/latanh-ai-znews/znews-editorial-tools](https://github.com/latanh-ai-znews/znews-editorial-tools)**
 
 ---
 
@@ -50,43 +50,43 @@ Dự án được tài liệu hóa đầy đủ để các phóng viên, biên t
 ```
 
 ### 1. 📰 Znews Magazine Layouts Generator (v10.13)
-*File: [`tool-znews-magazine-v10-13.html`](https://latanhusesai-beep.github.io/znews-editorial-tools/tool-znews-magazine-v10-13.html)*
+*File: [`tool-znews-magazine-v10-13.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/tool-znews-magazine-v10-13.html)*
 - Dàn trang bài viết phong cách Tạp chí cao cấp (Megastory, Longform) với hơn 6 phong cách trình bày.
 - Hiệu ứng cuộn Parallax mượt mà, sticky banner và typography chuyên nghiệp.
 - Cho phép nạp trực tiếp mã nguồn bài viết thô (HTML) hoặc soạn thảo từ đầu.
 
 ### 2. 🛡️ Dựng bài No Side-bar (Ad-Safe)
-*File: [`no-side-bar-ad-safe-tool.html`](https://latanhusesai-beep.github.io/znews-editorial-tools/no-side-bar-ad-safe-tool.html)*
+*File: [`no-side-bar-ad-safe-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/no-side-bar-ad-safe-tool.html)*
 - Giải pháp dàn trang đặc biệt trên layout `layout-no-sidebar` **bảo toàn 100% hiển thị cho các vùng quảng cáo** (banner đầu bài, giữa bài và chân trang).
 - Tự động quét bắt trích dẫn (quote) và nhận diện chuỗi ≥3 ảnh liên tiếp để ghép thành slide/grid.
 
 ### 3. 📷 Công cụ dựng bài ảnh (Photo Essay)
-*File: [`photo-essay-tool.html`](https://latanhusesai-beep.github.io/znews-editorial-tools/photo-essay-tool.html)*
+*File: [`photo-essay-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/photo-essay-tool.html)*
 - Thiết kế riêng cho thể loại phóng sự ảnh, visual storytelling.
 - Hỗ trợ ảnh bìa toàn cảnh (Full-bleed Hero), cụm ảnh đôi/ba, ngắt chương hồi và chú thích chuẩn báo chí.
 - Bộ chuyển đổi nhanh 1-click từ cấu trúc bài ảnh cũ sang chuẩn hiện đại.
 
 ### 4. 🖼️ Znews Thumb Định Dạng Đặc Biệt (900×600)
-*File: [`Znews_Thumb_dinh_dang_dac_biet.html`](https://latanhusesai-beep.github.io/znews-editorial-tools/Znews_Thumb_dinh_dang_dac_biet.html)*
+*File: [`Znews_Thumb_dinh_dang_dac_biet.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/Znews_Thumb_dinh_dang_dac_biet.html)*
 - Đóng logo định dạng chính thức của Znews (*Photo Essay, Magazine, Minimag, Longform, Special...*).
 - Kéo thả, cắt cúp (crop), phóng to thu nhỏ và điều chỉnh vị trí logo trực quan trên Canvas.
 - Xuất file JPG chất lượng cao đúng chuẩn kích thước **900 × 600 px** để đăng CMS.
 
 ### 5. 📚 Trình tạo bài viết sách (CMS Books)
-*File: [`bai-viet-sach.html`](https://latanhusesai-beep.github.io/znews-editorial-tools/bai-viet-sach.html)*
+*File: [`bai-viet-sach.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/bai-viet-sach.html)*
 - Soạn bài điểm sách, giới thiệu tác phẩm hoặc trích đoạn sách.
 - Khối thông tin sách chuyên nghiệp: Bìa đứng/ngang, tên tác giả, NXB, năm phát hành, tóm tắt nổi bật.
 - Tự động chuẩn hóa dấu gạch ngang dài (`—`, `–`) thành dấu phẩy theo chuẩn Znews.
 - Tách biệt CSS với namespace độc lập `.container_AI`.
 
 ### 6. 🎞️ Công cụ tạo Carousel ảnh
-*File: [`carousel-tool.html`](https://latanhusesai-beep.github.io/znews-editorial-tools/carousel-tool.html)*
+*File: [`carousel-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/carousel-tool.html)*
 - Tạo slide trình chiếu ảnh nhúng gọn trong bài viết.
 - Tự do định tỷ lệ hiển thị: 16:9, 4:3, 3:2, 1:1 hoặc co giãn tự động.
 - Hỗ trợ chú thích từng ảnh, số trang (1/N) và tương thích cảm ứng vuốt trên thiết bị di động.
 
 ### 7. 📖 Cẩm nang Quy chuẩn Kỹ thuật CMS (Bản số hóa)
-*File: [`guide.html`](https://latanhusesai-beep.github.io/znews-editorial-tools/guide.html)*
+*File: [`guide.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/guide.html)*
 - Tổng hợp toàn bộ kinh nghiệm và quy tắc xử lý bố cục trang Znews dưới dạng web tương tác.
 - Mục lục điều hướng thông minh, tính năng sao chép nhanh các khối code mẫu.
 
@@ -98,7 +98,7 @@ Nếu bạn không có mạng Internet hoặc muốn chỉnh sửa trên máy t�
 
 1. **Clone repository về máy:**
    ```bash
-   git clone https://github.com/latanhusesai-beep/znews-editorial-tools.git
+   git clone https://github.com/latanh-ai-znews/znews-editorial-tools.git
    cd znews-editorial-tools
    ```
 2. **Khởi động server tĩnh cục bộ:**

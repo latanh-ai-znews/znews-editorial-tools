@@ -103,7 +103,7 @@ git push origin main
 ### Kiểm tra trạng thái deploy bằng GitHub CLI:
 ```bash
 # Xem trạng thái build của GitHub Pages
-gh api repos/latanhusesai-beep/znews-editorial-tools/pages --jq .status
+gh api repos/latanh-ai-znews/znews-editorial-tools/pages --jq .status
 # Khi trả về: "built" nghĩa là website đã cập nhật thành công!
 ```
 

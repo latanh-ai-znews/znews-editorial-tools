@@ -118,7 +118,7 @@ Bạn đã push code lên GitHub nhưng khi mở link `https://<username>.github
 1. **Kiểm tra trạng thái Build**:
    Mở terminal và gõ:
    ```bash
-   gh api repos/latanhusesai-beep/znews-editorial-tools/pages --jq .status
+   gh api repos/latanh-ai-znews/znews-editorial-tools/pages --jq .status
    ```
    Nếu trả về `"building"`: hãy đợi thêm 30 giây. Khi trả về `"built"` là trang đã sẵn sàng.
 2. **Xoá Cache trình duyệt**:
