@@ -65,22 +65,25 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 
 ---
 
-## 3. Công cụ Dựng bài ảnh (Photo Essay)
-*Tệp tin: `photo-essay-tool.html`*
+## 3. Công cụ dựng bài ảnh (Photo Essay v2)
+*Tệp tin: `photo-essay-tool.html` (hoặc `photo-essay-tool_ver2.html`)*
 
 ### 3.1. Mục đích và ứng dụng
 - Dành cho các tuyến bài phóng sự ảnh, chùm ảnh thời sự, ảnh nghệ thuật, lễ hội, thiên nhiên hoặc du lịch.
 - Tập trung vào tính trực quan: ảnh cỡ lớn (full-width), ảnh so sánh (Before/After), khối ảnh 2 cột, 3 cột và chú thích ảnh chuẩn phong cách tòa soạn.
 
-### 3.2. Tính năng Chuyển đổi nhanh (1-Click Converter)
-- Nếu bạn có một bài ảnh cũ ở định dạng chuẩn CMS thường, chỉ cần dán mã nguồn vào ô *"Chuyển đổi bài ảnh có sẵn"*, công cụ sẽ tự động sắp xếp lại thành layout Photo Essay hiện đại ngay lập tức.
+### 3.2. Điểm mới nổi bật trên bản 2.0 (v2)
+- **Tự động đồng bộ breadcrumb chuyên mục**: Bạn không cần nhập tay breadcrumb nữa. Khi bài đăng trên CMS, công cụ sẽ tự động đọc danh mục chính thức của bài viết từ CMS Znews và hiển thị thanh điều hướng chuyên mục ở cả đầu bài và cuối bài (`zp-endnav`).
+- **Cơ chế fallback ảnh CDN Znews tự động (`zpInitImgFallback`)**: Nếu ảnh gốc trên CDN Znews gặp sự cố hiển thị hoặc thiếu srcset, script nhúng sẽ tự động chuyển sang phân giải chuẩn cao cấp `photo.znews.vn/w1920/Uploaded/`, đảm bảo không bao giờ bị vỡ ảnh trên bài đăng.
+- **Bố cục lưới ảnh chống nhảy layout**: Áp dụng kỹ thuật padding-bottom theo tỷ lệ khung hình thật (`zp-pb-` và `zp-gw-`), loại bỏ hiện tượng giật trang khi ảnh đang tải.
+- **Lightbox zoom toàn màn hình thông minh**: Tối ưu hiển thị caption tự động co giãn, hỗ trợ thao tác vuốt trên cảm ứng và tự nhận diện click ra ngoài ảnh để đóng hộp thoại.
 
 ### 3.3. Các bước thực hiện
-1. Điền Tiêu đề bài viết, Sapo và chọn Ảnh bìa (Hero Cover Photo).
+1. Điền tiêu đề bài viết, sapo và chọn ảnh bìa (Hero cover photo).
 2. Thêm các phân đoạn ảnh:
    - **Ảnh toàn khổ (Full-width)**: Dành cho ảnh phong cảnh góc rộng, ảnh điểm nhấn chính.
    - **Cụm ảnh đôi / ảnh ba**: Dành cho các góc nhìn liên tiếp của cùng một sự kiện.
-   - **Tiêu đề phân đoạn (Section Title)**: Chia bài phóng sự thành các chương/hồi mạch lạc.
+   - **Tiêu đề phân đoạn (Section title)**: Chia bài phóng sự thành các chương/hồi mạch lạc.
 3. Điền chú thích cho từng ảnh (ghi rõ nguồn ảnh, tác giả).
 4. Nhấn **"Sao chép mã dán vào CMS"**.
 

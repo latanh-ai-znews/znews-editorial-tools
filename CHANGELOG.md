@@ -4,6 +4,20 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 
 ---
 
+## [2.1.0] - 2026-09-26
+
+### 🚀 Cập nhật công cụ dựng bài ảnh (Photo Essay v2)
+- **Tự động đồng bộ breadcrumb chuyên mục**:
+  - Tự động trích xuất breadcrumb chuyên mục từ CMS Znews hiển thị ở đầu bài và khối điều hướng chân trang (`zp-endnav`), loại bỏ việc phải nhập tay.
+- **Cơ chế fallback ảnh CDN Znews tự động (`zpInitImgFallback`)**:
+  - Tự động bắt lỗi tải ảnh và chuyển đổi sang URL độ phân giải cao `photo.znews.vn/w1920/Uploaded/` nếu ảnh gốc bị lỗi CDN hoặc thiếu srcset.
+- **Bố cục lưới ảnh chống giật layout**:
+  - Áp dụng kỹ thuật padding-bottom theo tỷ lệ khung hình thật (`zp-pb-` và `zp-gw-`), triệt tiêu hiện tượng Cumulative Layout Shift (CLS) khi tải trang.
+- **Nâng cấp trình xem Lightbox toàn màn hình**:
+  - Dynamic caption layout, click outside detection thông minh, vuốt chuyển ảnh mượt mà trên màn hình cảm ứng di động.
+
+---
+
 ## [2.0.0] - 2026-09-25
 
 ### ✨ Điểm Mới & Nâng Cấp Toàn Diện (Major Release)

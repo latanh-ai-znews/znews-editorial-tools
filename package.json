@@ -1,6 +1,6 @@
 {
   "name": "znews-editorial-tools",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Hệ thống công cụ biên tập, dàn trang tạp chí, xử lý ảnh và quy chuẩn CMS chuyên nghiệp cho Báo điện tử Znews",
   "homepage": "https://latanh-ai-znews.github.io/znews-editorial-tools/",
   "main": "index.html",
