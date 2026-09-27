@@ -4,6 +4,21 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 
 ---
 
+## [2.2.0] - 2026-09-27
+
+### 🌟 Nâng cấp công cụ dựng bài ảnh (Photo Essay v3)
+- **Thang phân giải thích ứng thông minh (Responsive Image Ladder)**:
+  - Tích hợp thang phân giải [360, 480, 660, 860, 960, 1024, 1200, 1920] qua các hàm `zpPick`, `zpSized` và `zpFixSize`.
+  - Tự động phát hiện khi CMS phục vụ ảnh thumbnail nhỏ (`w210`) và tự động nâng cấp độ phân giải sắc nét theo màn hình retina.
+- **Cơ chế chống méo tỷ lệ ảnh (Ratio Drift Guard - `zpCheckRatio`)**:
+  - Tự động phát hiện sai lệch tỷ lệ khung hình giữa ảnh thật và thuộc tính khai báo nếu lệch trên 5%, gắn cờ `zpv={w}x{h}` hoặc hoàn nguyên ảnh gốc để bảo vệ bố cục.
+- **Lightbox zoom độ phân giải cao (High-Res Lightbox)**:
+  - Tự động tải độ phân giải tối ưu (lên tới 1920px) khi mở phóng to trong Lightbox, mang lại chất lượng hiển thị sắc sảo trên màn hình 4K và Retina.
+- **Cơ chế fallback đa tầng (`data-zp-orig`)**:
+  - Ghi nhớ URL ảnh gốc, tự động hồi phục về ảnh gốc nếu bất kỳ link ảnh resize CDN nào bị lỗi mạng hoặc 404.
+
+---
+
 ## [2.1.0] - 2026-09-26
 
 ### 🚀 Cập nhật công cụ dựng bài ảnh (Photo Essay v2)

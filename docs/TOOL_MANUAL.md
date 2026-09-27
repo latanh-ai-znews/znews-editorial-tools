@@ -65,18 +65,19 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 
 ---
 
-## 3. Công cụ dựng bài ảnh (Photo Essay v2)
-*Tệp tin: `photo-essay-tool.html` (hoặc `photo-essay-tool_ver2.html`)*
+## 3. Công cụ dựng bài ảnh (Photo Essay v3)
+*Tệp tin: `photo-essay-tool.html` (hoặc `photo-essay-tool_ver_3.html`)*
 
 ### 3.1. Mục đích và ứng dụng
 - Dành cho các tuyến bài phóng sự ảnh, chùm ảnh thời sự, ảnh nghệ thuật, lễ hội, thiên nhiên hoặc du lịch.
 - Tập trung vào tính trực quan: ảnh cỡ lớn (full-width), ảnh so sánh (Before/After), khối ảnh 2 cột, 3 cột và chú thích ảnh chuẩn phong cách tòa soạn.
 
-### 3.2. Điểm mới nổi bật trên bản 2.0 (v2)
-- **Tự động đồng bộ breadcrumb chuyên mục**: Bạn không cần nhập tay breadcrumb nữa. Khi bài đăng trên CMS, công cụ sẽ tự động đọc danh mục chính thức của bài viết từ CMS Znews và hiển thị thanh điều hướng chuyên mục ở cả đầu bài và cuối bài (`zp-endnav`).
-- **Cơ chế fallback ảnh CDN Znews tự động (`zpInitImgFallback`)**: Nếu ảnh gốc trên CDN Znews gặp sự cố hiển thị hoặc thiếu srcset, script nhúng sẽ tự động chuyển sang phân giải chuẩn cao cấp `photo.znews.vn/w1920/Uploaded/`, đảm bảo không bao giờ bị vỡ ảnh trên bài đăng.
-- **Bố cục lưới ảnh chống nhảy layout**: Áp dụng kỹ thuật padding-bottom theo tỷ lệ khung hình thật (`zp-pb-` và `zp-gw-`), loại bỏ hiện tượng giật trang khi ảnh đang tải.
-- **Lightbox zoom toàn màn hình thông minh**: Tối ưu hiển thị caption tự động co giãn, hỗ trợ thao tác vuốt trên cảm ứng và tự nhận diện click ra ngoài ảnh để đóng hộp thoại.
+### 3.2. Điểm mới nổi bật trên bản 3.0 (v3)
+- **Thang phân giải thích ứng thông minh (Responsive Image Ladder)**: Tích hợp hàm `zpPick`, `zpSized` và `zpFixSize` với thang nấc [360, 480, 660, 860, 960, 1024, 1200, 1920]. Tự động phát hiện nếu CMS phục vụ ảnh thumbnail nhỏ (như `w210`) và tự động nâng cấp lên kích thước sắc nét đúng bằng độ phân giải màn hình thật (nhân với devicePixelRatio).
+- **Cơ chế chống méo tỷ lệ ảnh (Ratio Drift Guard - `zpCheckRatio`)**: Kiểm tra độ lệch tỷ lệ giữa ảnh thực tế và kích thước khai báo. Nếu phát hiện lệch trên 5%, hệ thống tự động gắn tham số bảo vệ `zpv={w}x{h}` hoặc lấy lại ảnh gốc để giữ nguyên khung hình, không bị co kéo dị dạng.
+- **Lightbox zoom siêu nét (High-Res Lightbox)**: Khi phóng to ảnh trong Lightbox, công cụ tự động tính toán và tải ảnh có độ phân giải cao nhất (từ 1024px đến 1920px), đảm bảo xem ảnh trên màn hình lớn hoặc Retina cực kỳ sắc sảo.
+- **Fallback đa tầng (`data-zp-orig`)**: Ghi nhớ đường dẫn ảnh gốc nguyên bản, tự động chuyển về ảnh gốc nếu các link CDN tỷ lệ co giãn gặp sự cố.
+- **Tự động đồng bộ breadcrumb chuyên mục**: Tự động nhận diện danh mục chính thức của bài viết từ CMS Znews ở cả đầu bài và khối điều hướng chân trang (`zp-endnav`), không cần nhập thủ công.
 
 ### 3.3. Các bước thực hiện
 1. Điền tiêu đề bài viết, sapo và chọn ảnh bìa (Hero cover photo).

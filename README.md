@@ -1,7 +1,7 @@
 # Studio biên tập Znews — Bộ công cụ dàn trang và xuất bản báo chí
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Website-success?style=for-the-badge&logo=github)](https://latanh-ai-znews.github.io/znews-editorial-tools/)
-[![Version](https://img.shields.io/badge/Version-2.1.0-blue?style=for-the-badge)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-2.2.0-blue?style=for-the-badge)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20Mobile%20%7C%20Desktop-orange?style=for-the-badge)](index.html)
 
@@ -60,11 +60,11 @@ Dự án được tài liệu hóa đầy đủ để các phóng viên, biên t
 - Giải pháp dàn trang đặc biệt trên layout `layout-no-sidebar` **bảo toàn 100% hiển thị cho các vùng quảng cáo** (banner đầu bài, giữa bài và chân trang).
 - Tự động quét bắt trích dẫn và nhận diện chuỗi từ 3 ảnh liên tiếp trở lên để ghép thành slide hoặc lưới ảnh.
 
-### 3. 📷 Công cụ dựng bài ảnh (photo essay)
+### 3. 📷 Công cụ dựng bài ảnh (photo essay v3)
 *Tệp tin: [`photo-essay-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/photo-essay-tool.html)*
 - Thiết kế riêng cho thể loại phóng sự ảnh, kể chuyện trực quan qua hình ảnh.
+- Bản 3.0: tự động tối ưu độ phân giải ảnh theo kích thước màn hình (thang ladder w360 - w1920), cơ chế chống méo tỷ lệ ảnh (ratio drift guard), tự đồng bộ breadcrumb chuyên mục từ CMS và lightbox zoom sắc nét tối đa.
 - Hỗ trợ ảnh bìa toàn cảnh, cụm ảnh đôi hoặc ba, ngắt chương hồi và chú thích ảnh chuẩn báo chí.
-- Bộ chuyển đổi nhanh một chạm từ cấu trúc bài ảnh cũ sang chuẩn hiện đại.
 
 ### 4. 🖼️ Đóng khung ảnh đại diện định dạng đặc biệt (900×600)
 *Tệp tin: [`Znews_Thumb_dinh_dang_dac_biet.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/Znews_Thumb_dinh_dang_dac_biet.html)*
