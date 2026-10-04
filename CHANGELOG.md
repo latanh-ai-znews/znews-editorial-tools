@@ -4,6 +4,21 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 
 ---
 
+## [2.3.0] - 2026-10-03
+
+### 🎙️ Tích hợp công cụ phỏng vấn (Interview Tool) & vá lỗi tràn viền layout-special
+- **Khắc phục triệt để lỗi tràn mép 130px trên bố cục `layout-special` của CMS**:
+  - Tự động tắt biến margin âm (`--bleed: 0px`) khi bài phỏng vấn đặt trong bố cục `layout-special` hoặc có lớp `mode-bleed`, loại bỏ hoàn toàn lỗi đẩy 7 khối phần tử ra ngoài viewport làm mất chữ đầu tiêu đề/sapo và tràn ảnh chèn.
+  - Xử lý dứt điểm trường hợp 3 ảnh chèn (`.zi-insert.zi-photo.zi-wide`) bị tràn khi áp dụng `mode-bleed` bằng cách đặt lại margin 0 an toàn.
+  - Căn giữa và thu gọn cột chữ (`.zi-intro`, `.zi-qa`, `.zi-toc`, `.zi-quote`, `.zi-book`, `.zi-endnav`) với độ rộng chuẩn `max-width: 760px; margin-inline: auto; padding-inline: 16px;`, giúp bài viết không bị dạt sang mép trái màn hình lớn (1629px) và dễ đọc tối ưu.
+  - Xuất trực tiếp thẻ `<article class="zac mode-bleed" id="zacInterview">` không phụ thuộc script đánh thức `zacWake`, đảm bảo hiển thị đúng 100% ngay cả khi CMS lọc thẻ `<script>`.
+- **Tích hợp Interview Tool vào Studio Hub (`index.html`)**:
+  - Thêm thẻ công cụ Phỏng vấn vào danh mục Dàn trang và layout trên trang chủ Studio.
+  - Cập nhật bộ chọn chuyển đổi nhanh (`#toolSwitcher`) trong khung làm việc đa nhiệm.
+  - Bổ sung tài liệu hướng dẫn chi tiết vào `docs/TOOL_MANUAL.md` và `README.md`.
+
+---
+
 ## [2.2.0] - 2026-09-27
 
 ### 🌟 Nâng cấp công cụ dựng bài ảnh (Photo Essay v3)

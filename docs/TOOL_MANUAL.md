@@ -1,6 +1,6 @@
 # Sổ tay hướng dẫn sử dụng chi tiết — Znews Editorial Tools
 
-Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước cho toàn bộ 6 công cụ trong bộ công cụ **Znews Editorial Studio**. Dành cho Phóng viên, Biên tập viên và Kỹ thuật viên Dàn trang Báo điện tử Znews.
+Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước cho toàn bộ 7 công cụ trong bộ công cụ **Znews Editorial Studio**. Dành cho Phóng viên, Biên tập viên và Kỹ thuật viên Dàn trang Báo điện tử Znews.
 
 ---
 
@@ -11,7 +11,8 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 4. [Znews Thumb định dạng đặc biệt (900×600)](#4-znews-thumb-định-dạng-đặc-biệt-900600)
 5. [Trình tạo bài viết sách (CMS Books)](#5-trình-tạo-bài-viết-sách-cms-books)
 6. [Công cụ tạo Carousel ảnh](#6-công-cụ-tạo-carousel-ảnh)
-7. [Quy trình chung dán mã vào CMS Znews](#7-quy-trình-chung-dán-mã-vào-cms-znews)
+7. [Công cụ dựng bài phỏng vấn (Interview Tool)](#7-công-cụ-dựng-bài-phỏng-vấn-interview-tool)
+8. [Quy trình chung dán mã vào CMS Znews](#8-quy-trình-chung-dán-mã-vào-cms-znews)
 
 ---
 
@@ -151,7 +152,40 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 
 ---
 
-## 7. Quy trình chung dán mã vào CMS Znews
+## 7. Công cụ dựng bài phỏng vấn (Interview Tool)
+*Tệp tin: `interview-tool.html`*
+
+### 7.1. Mục đích và ứng dụng
+- Chuyên biệt cho các bài phỏng vấn, tọa đàm chuyên sâu, giao lưu trực tuyến với chuyên gia, nhà khoa học, nhân vật có tầm ảnh hưởng.
+- Cung cấp 2 kiểu bố cục hỏi–đáp:
+  - **1 cột kinh điển**: Câu hỏi mang màu nhấn đặt phía trên câu trả lời, phù hợp bài dài, nhiều phần.
+  - **2 cột cố định (Sticky 2-column)**: Câu hỏi đánh số ở cột trái và đứng yên khi cuộn qua câu trả lời dài, phù hợp bài từ 5–8 câu hỏi đắt giá.
+- Tự động đánh số các phần, tạo mục lục điều hướng nhanh (TOC) khi bài có từ 2 phần, tích hợp dải số liệu (Stats band), trích dẫn nổi bật và thông điệp kết bài.
+
+### 7.2. Điểm đặc thù kỹ thuật & xử lý lỗi tràn viền (Bleed fix)
+- **Tự động thích ứng bố cục đặc biệt CMS (`layout-special`)**: Khắc phục triệt để lỗi khi bài phỏng vấn đặt ở bố cục `layout-special` (toàn màn hình, chiều rộng 100vw ~ 1629px) bị margin âm `--bleed: 130px` đẩy 7 phần tử ra ngoài mép màn hình (-130px), dẫn tới tít bị cắt mất chữ đầu và ảnh dạt mép.
+  - Tự động đặt `--bleed: 0px` trên mọi giao diện `layout-special` và `mode-bleed`, triệt tiêu 100% lỗi tràn mép.
+  - Tự động căn giữa chữ và giới hạn độ rộng đọc tối ưu (`max-width: 760px; margin-inline: auto; padding-inline: 16px;`) cho dẫn nhập, hỏi đáp, trích dẫn và mục lục, giúp bài viết trên màn hình máy tính lớn hiển thị hài hòa, không bị kéo dãn sát mép trái.
+  - Xuất trực tiếp thẻ `<article class="zac mode-bleed" id="zacInterview">` không phụ thuộc script `zacWake`, đảm bảo tương thích 100% ngay cả khi CMS lọc bỏ script.
+- **Tự động tối ưu độ phân giải ảnh CMS**: Tích hợp nấc thang phân giải `ziPick` từ 360 đến 1920px cho ảnh Znews CDN.
+
+### 7.3. Các bước thực hiện
+1. Điền thông tin nhân vật: tên gắn trên tít, chức danh, tiêu đề cuộc trò chuyện, sapo (tối đa 2 câu) và ảnh chân dung.
+2. Soạn đoạn dẫn nhập (mở đầu bằng *Tri Thức - Znews*).
+3. Thêm các phần và câu hỏi–đáp:
+   - Đặt tiêu đề phần.
+   - Nhập nội dung câu hỏi và câu trả lời.
+   - Tùy chọn chèn sau câu trả lời: trích dẫn nổi bật, ảnh chụp hoặc dải số liệu (2, 3 hoặc 4 cột).
+4. Thiết lập trình bày:
+   - Chọn kiểu hỏi–đáp (1 cột hoặc 2 cột).
+   - Chọn bố cục (No side-bar an toàn quảng cáo hoặc Tràn viền toàn màn hình).
+   - Chọn màu nhấn (Đỏ, Xanh dương, Xanh lá, Đen).
+5. Kiểm tra danh sách checklist ở mục kiểm tra trước khi xuất.
+6. Bấm **"Sao chép mã"** hoặc **"Tải file .html"**.
+
+---
+
+## 8. Quy trình chung dán mã vào CMS Znews
 
 Để đảm bảo bài viết hiển thị hoàn hảo sau khi xuất mã từ các công cụ:
 

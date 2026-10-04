@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Công cụ dựng bài phỏng vấn nhân vật</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#12141a;font-family:system-ui,-apple-system,sans-serif;color:#e7e6e3}
+.shell{display:flex;min-height:100vh}
+.editor{width:470px;flex:none;background:#181b22;border-right:1px solid #262a34;height:100vh;overflow-y:auto;padding:22px 20px 90px}
+.editor h1{font-size:18px;font-weight:800;margin:0 0 4px;color:#fff}
+.editor .sub{font-size:12.5px;color:#8a8f9a;margin:0 0 18px;line-height:1.5}
+.phase{margin-bottom:20px;padding-top:14px;border-top:1px solid #262a34}
+.phase-h{font-size:12px;font-weight:700;color:#c9ccd3;margin:0 0 10px}
+.hint{font-size:11.5px;color:#7d828d;line-height:1.5;margin:0 0 8px}
+.field{margin-bottom:9px}
+.field label{display:block;font-size:12px;color:#8a8f9a;margin-bottom:4px}
+.field input[type=text],.field textarea,.field select{width:100%;background:#0d0f14;border:1px solid #262a34;border-radius:7px;color:#e7e6e3;font-size:13px;padding:8px 9px;resize:vertical;font-family:inherit}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#3b6df0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{font-size:12.5px;border-radius:7px;padding:8px 13px;cursor:pointer;border:1px solid #2d323d;background:#0d0f14;color:#e7e6e3;font-family:inherit}
+.btn:hover{border-color:#4a5060}
+.btn:focus-visible{outline:2px solid #3b6df0;outline-offset:2px}
+.btn-block{width:100%}
+.btn-primary{background:#3b6df0;border-color:#3b6df0;color:#fff;font-weight:600}
+.btn-sm{padding:4px 9px;font-size:11.5px;border-radius:6px}
+.radio{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;cursor:pointer;font-size:13px;line-height:1.4}
+.radio input{margin-top:2px}
+.part{border:1px solid #2a2f3a;border-radius:10px;padding:12px;margin-bottom:12px;background:#14171e}
+.part-head{display:flex;gap:6px;align-items:center;margin-bottom:10px}
+.part-head .num{font-size:12px;font-weight:700;color:#8a8f9a;flex:none}
+.part-head input{flex:1}
+.item{border:1px solid #262a34;border-radius:8px;padding:10px;margin-bottom:8px;background:#0f1218}
+.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:11.5px;color:#7d828d}
+.actions{display:flex;gap:5px;flex-wrap:wrap}
+.insert-box{margin-top:6px;padding:8px;border:1px dashed #2d323d;border-radius:7px}
+.checks{list-style:none;margin:0;padding:0;font-size:12.5px;line-height:1.5}
+.checks li{display:flex;gap:7px;margin-bottom:5px}
+.checks .ok{color:#5cc98a}
+.checks .warn{color:#f2b641}
+.preview-col{flex:1;min-width:0;height:100vh;overflow-y:auto;overflow-x:hidden;background:#fff}
+.preview-bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:#fff;border-bottom:1px solid #e6e2d4}
+.preview-bar .label{font-size:12px;color:#8a8f9a}
+.preview-bar .actions .btn{background:#17181b;color:#fff;border-color:#17181b}
+.preview-bar .actions .btn-primary{background:#3b6df0;border-color:#3b6df0}
+.vp-toggle .btn{background:#fff!important;color:#17181b!important;border-color:#d8d3c4!important}
+.vp-toggle .btn.on{background:#17181b!important;color:#fff!important}
+#preview-wrap{margin:0 auto;padding:26px 20px 90px;max-width:860px}
+#preview-wrap.mobile{max-width:390px;padding:16px 0 90px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,10,12,.6);display:none;align-items:center;justify-content:center;z-index:50;padding:24px}
+.modal-backdrop.show{display:flex}
+.modal{background:#181b22;border:1px solid #262a34;border-radius:12px;max-width:820px;width:100%;max-height:82vh;display:flex;flex-direction:column}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #262a34}
+.modal-head h2{font-size:14px;margin:0;color:#fff}
+.modal textarea{flex:1;margin:12px 16px 16px;background:#0a0b0e;border:1px solid #262a34;border-radius:7px;color:#c9e6c9;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;padding:12px;resize:none;min-height:300px}
+@media (max-width:980px){.shell{flex-direction:column}.editor{width:auto;height:auto;max-height:60vh;border-right:0;border-bottom:1px solid #262a34}.preview-col{height:auto}}
+</style>
+<style id="zi-css"></style>
+</head>
+<body>
+<div class="shell">
+  <div class="editor">
+    <h1>Bài phỏng vấn nhân vật</h1>
+    <p class="sub">Dựng theo 2 mẫu phỏng vấn của Znews. Dán bản thảo để công cụ tự tách phần, câu hỏi và câu trả lời, rồi chỉnh tiếp bên dưới.</p>
+
+    <div class="phase">
+      <div class="phase-h">Nhập nhanh từ bản thảo</div>
+      <p class="hint">Dán chữ thường hoặc mã HTML từ CMS. Công cụ nhận: dòng bắt đầu bằng <b>##</b> hoặc tiêu đề h2/h3 là một phần; đoạn bắt đầu bằng <b>Hỏi:</b>, <b>PV:</b> hoặc đoạn in đậm toàn bộ là câu hỏi; khối ảnh CMS và &lt;blockquote&gt; được giữ lại sau câu trả lời. Các đoạn trước câu hỏi đầu tiên thành phần dẫn nhập.</p>
+      <div class="field"><textarea id="f-draft" rows="6" placeholder="## Tên phần 1&#10;Hỏi: Thưa ông, ...?&#10;Đoạn trả lời...&#10;&#10;Hỏi: Câu hỏi tiếp theo?&#10;..."></textarea></div>
+      <label class="radio"><input type="checkbox" id="f-qmark"><span>Coi mọi đoạn ngắn kết thúc bằng dấu "?" là câu hỏi (dùng khi bản thảo không đánh dấu câu hỏi)</span></label>
+      <div class="row2">
+        <button class="btn btn-primary" id="btnParse" type="button">Tách bản thảo</button>
+        <button class="btn" id="btnSample" type="button">Nạp bài mẫu</button>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h">Nhân vật và tiêu đề</div>
+      <div class="row2">
+        <div class="field"><label>Tên gắn trên tít</label><input type="text" id="f-name" placeholder="TS Lê Minh An"></div>
+        <div class="field"><label>Chức danh</label><input type="text" id="f-role" placeholder="Viện trưởng ..."></div>
+      </div>
+      <div class="field"><label>Tiêu đề (phần sau dấu hai chấm)</label><input type="text" id="f-title" placeholder="Câu nói đắt nhất của nhân vật"></div>
+      <div class="field"><label>Sapo (tối đa 2 câu)</label><textarea id="f-sapo" rows="2"></textarea></div>
+      <div class="row2">
+        <div class="field"><label>Tác giả</label><input type="text" id="f-author"></div>
+        <div class="field"><label>Ngày</label><input type="text" id="f-date"></div>
+      </div>
+      <div class="field"><label>Ảnh chân dung (dán ảnh từ CMS hoặc link)</label><input type="text" id="f-portrait" placeholder="&lt;table class=&quot;picture&quot;&gt;... hoặc &lt;img ...&gt;"></div>
+      <div class="field"><label>Tên dùng ở trích dẫn</label><input type="text" id="f-cite" placeholder="Mặc định lấy tên gắn trên tít"></div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h">Dẫn nhập</div>
+      <p class="hint">Mỗi đoạn cách nhau một dòng trống. Đoạn giới thiệu nhân vật nên mở bằng <i>Tri Thức - Znews</i>.</p>
+      <div class="field"><textarea id="f-intro" rows="5"></textarea></div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h">Nội dung phỏng vấn</div>
+      <p class="hint">Trong ô trả lời, mỗi đoạn cách nhau một dòng trống. Được dùng &lt;b&gt;, &lt;em&gt;, &lt;a href&gt;.</p>
+      <div id="parts"></div>
+      <button class="btn btn-block" id="btnAddPart" type="button">Thêm phần</button>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h">Kết bài</div>
+      <div class="field"><label>Thông điệp kết (câu chốt)</label><textarea id="f-final" rows="2"></textarea></div>
+      <div class="field"><label>Ảnh đi kèm thông điệp kết</label><input type="text" id="f-final-img"></div>
+      <div class="field"><label>Hộp sách: tiêu đề</label><input type="text" id="f-book-title"></div>
+      <div class="field"><label>Hộp sách: nội dung (được dùng &lt;a href&gt;)</label><textarea id="f-book-text" rows="3"></textarea></div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h">Trình bày</div>
+      <div class="field">
+        <label>Kiểu hỏi–đáp</label>
+        <label class="radio"><input type="radio" name="qa" value="1col" checked><span>1 cột: câu hỏi màu nhấn nằm trên câu trả lời (hợp bài dài, nhiều phần)</span></label>
+        <label class="radio"><input type="radio" name="qa" value="2col"><span>2 cột: câu hỏi đánh số bên trái, đứng yên khi đọc câu trả lời dài (hợp bài 5–8 câu)</span></label>
+      </div>
+      <div class="field">
+        <label>Bố cục</label>
+        <label class="radio"><input type="radio" name="layout" value="safe" checked><span>No side-bar (có hiển thị quảng cáo)</span></label>
+        <label class="radio"><input type="radio" name="layout" value="bleed"><span>Tràn viền toàn màn hình (có thể che quảng cáo)</span></label>
+      </div>
+      <div class="field">
+        <label>Màu nhấn</label>
+        <select id="f-accent">
+          <option value="red">Đỏ (mẫu GS Nguyễn Thiện Nhân)</option>
+          <option value="blue">Xanh dương (mẫu Eric Lee)</option>
+          <option value="green">Xanh lá</option>
+          <option value="dark">Đen</option>
+        </select>
+      </div>
+      <label class="radio"><input type="checkbox" id="f-bold" checked><span>Tự in đậm cụm mở đầu ý liệt kê (Thứ nhất, Một là, Cuối cùng...)</span></label>
+      <label class="radio"><input type="checkbox" id="f-toc" checked><span>Hiện mục lục khi bài có từ 2 phần</span></label>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h">Kiểm tra trước khi xuất</div>
+      <ul class="checks" id="checks"></ul>
+    </div>
+
+    <div class="phase"><button class="btn btn-block" id="btnReset" type="button">Xoá hết</button></div>
+  </div>
+
+  <div class="preview-col">
+    <div class="preview-bar">
+      <div class="actions vp-toggle"><button class="btn btn-sm on" id="vpDesk" type="button">Máy tính</button><button class="btn btn-sm" id="vpMob" type="button">Điện thoại</button></div>
+      <div class="actions"><button class="btn" id="btnCopy" type="button">Sao chép mã</button><button class="btn btn-primary" id="btnDownload" type="button">Tải file .html</button></div>
+    </div>
+    <div id="preview-wrap"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-head"><h2>Mã dán vào CMS</h2><button class="btn" id="btnCloseModal" type="button">Đóng</button></div>
+    <textarea id="exportArea" readonly></textarea>
+  </div>
+</div>
+
+<script>
+/* ===================== CSS của bài (xuất ra CMS) ===================== */
+var ACCENTS = {
+  red:   { band:'#dd4424', name:'#181a18', q:'#c63a1c' },
+  blue:  { band:'#3157f6', name:'#0b1640', q:'#2747d1' },
+  green: { band:'#1f7a4d', name:'#0b2a1a', q:'#1a6b43' },
+  dark:  { band:'#17181b', name:'#f2b641', q:'#17181b' }
+};
+var ARTICLE_CSS = [
+'.zac#zacInterview{--ink:#242420;--bodyc:#2e2e2a;--muted:#66645e;--line:#dcd7cf;--soft:#f6f4ef;--night:#181a18;--acc:#dd4424;--acc-name:#181a18;--q:#c63a1c;--bleed:130px;display:block;width:100%;margin:0;padding:0;background:transparent;color:var(--ink);font-family:inherit!important;font-size:18px;line-height:1.7;counter-reset:zisec ziq}',
+'.zac#zacInterview *{box-sizing:border-box}',
+'.zac#zacInterview p{margin:0}',
+'.zac#zacInterview b,.zac#zacInterview strong{font-weight:700}',
+'.zac#zacInterview a{color:inherit;text-decoration:underline;text-underline-offset:3px}',
+'@media (max-width:700px){.zac#zacInterview{--bleed:0px}}',
+'.layout-special .zac#zacInterview,body.layout-special #zacInterview,.the-article.layout-special #zacInterview,.the-article-body.layout-special #zacInterview,.zac#zacInterview.mode-bleed{--bleed:0px}',
+'.zac#zacInterview .zi-wide,.zac#zacInterview .zi-band{margin-left:calc(var(--bleed) * -1);margin-right:calc(var(--bleed) * -1)}',
+'.zac#zacInterview.mode-bleed .zi-band{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}',
+'.zac#zacInterview.mode-bleed .zi-wide{margin-left:0;margin-right:0}',
+/* hero */
+'.zac#zacInterview .zi-hero{background:var(--acc);color:#fff;padding:40px 44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:36px;align-items:end}',
+':is(.layout-special,body.layout-special,.the-article.layout-special) .zac#zacInterview .zi-hero,.zac#zacInterview.mode-bleed .zi-hero{padding-left:max(44px,calc(50vw - 520px));padding-right:max(44px,calc(50vw - 520px))}',
+'.zac#zacInterview .zi-kicker{margin:0 0 16px;font-size:12px;line-height:1.4;font-weight:600;letter-spacing:.06em;color:#fff}',
+'.zac#zacInterview .zi-kicker:empty{display:none}',
+'.zac#zacInterview .zi-kicker a{color:#fff!important;text-decoration:none!important}',
+'.zac#zacInterview .zi-kicker a:hover{text-decoration:underline!important}',
+'.zac#zacInterview .zi-kicker a + a::before{content:"›";display:inline-block;margin:0 8px;opacity:.7}',
+'.zac#zacInterview .zi-title{margin:0;font-family:inherit;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.18;letter-spacing:-.01em;color:#fff}',
+'.zac#zacInterview .zi-title .zi-name{color:var(--acc-name)}',
+'.zac#zacInterview .zi-sapo{margin:18px 0 0;font-size:18px;line-height:1.6;color:#fff;opacity:.94}',
+'.zac#zacInterview .zi-byline{margin:20px 0 0;font-size:13px;opacity:.85}',
+'.zac#zacInterview .zi-portrait{position:relative;overflow:hidden;background:rgba(0,0,0,.12)}',
+'.zac#zacInterview .zi-portrait::before{content:"";display:block;padding-bottom:125%}',
+'.zac#zacInterview .zi-portrait img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;object-fit:cover}',
+/* intro */
+'.zac#zacInterview .zi-intro{margin:40px auto 0;max-width:760px;padding-inline:16px}',
+'.zac#zacInterview .zi-intro p,.zac#zacInterview .zi-answer p{margin:0 0 22px;font-size:18px;line-height:1.75;color:var(--bodyc)}',
+'.zac#zacInterview .zi-intro p:first-child::first-letter{float:left;font-size:64px;line-height:.86;font-weight:800;color:var(--acc);margin:6px 10px 0 0}',
+/* profile (2 cột) */
+'.zac#zacInterview .zi-profile{display:none;align-items:center;gap:18px;margin:8px auto 28px;padding:16px;max-width:760px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}',
+'.zac#zacInterview.qa-2col .zi-profile{display:flex}',
+'.zac#zacInterview .zi-profile-pic{position:relative;width:76px;flex:none;border-radius:50%;overflow:hidden;background:var(--soft)}',
+'.zac#zacInterview .zi-profile-pic::before{content:"";display:block;padding-bottom:100%}',
+'.zac#zacInterview .zi-profile-pic img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;border:0!important;object-fit:cover}',
+'.zac#zacInterview .zi-profile-name{font-weight:800;font-size:19px;line-height:1.3;color:var(--ink)}',
+'.zac#zacInterview .zi-profile-role{font-size:14.5px;line-height:1.45;color:var(--muted)}',
+/* mục lục */
+'.zac#zacInterview .zi-toc{margin:8px auto 34px;padding:20px 22px;max-width:760px;background:var(--soft);border-left:4px solid var(--acc)}',
+'.zac#zacInterview .zi-toc-title{margin:0 0 8px;font-weight:800;font-size:15px;color:var(--ink)}',
+'.zac#zacInterview .zi-toc ol{margin:0;padding:0 0 0 22px}',
+'.zac#zacInterview .zi-toc li{margin:4px 0;font-size:16px;line-height:1.45}',
+'.zac#zacInterview .zi-toc a{text-decoration:none;color:var(--ink)}',
+'.zac#zacInterview .zi-toc a:hover{text-decoration:underline}',
+/* tiêu đề phần */
+'.zac#zacInterview .zi-part{position:relative;margin-top:52px;margin-bottom:0;padding:26px 44px 26px 96px;background:var(--acc);color:#fff;font-family:inherit;font-weight:800;font-size:clamp(22px,2.6vw,28px);line-height:1.3;counter-increment:zisec;scroll-margin-top:72px}',
+'.zac#zacInterview .zi-part:nth-of-type(even){background:var(--night)}',
+'.zac#zacInterview .zi-part::before{content:counter(zisec);position:absolute;left:44px;top:50%;width:36px;height:36px;margin-top:-18px;border-radius:50%;border:2px solid currentColor;font-size:17px;line-height:32px;text-align:center}',
+':is(.layout-special,body.layout-special,.the-article.layout-special) .zac#zacInterview .zi-part,.zac#zacInterview.mode-bleed .zi-part{padding-left:max(96px,calc(50vw - 300px));padding-right:max(44px,calc(50vw - 300px))}',
+':is(.layout-special,body.layout-special,.the-article.layout-special) .zac#zacInterview .zi-part::before,.zac#zacInterview.mode-bleed .zi-part::before{left:max(44px,calc(50vw - 352px))}',
+/* hỏi đáp 1 cột */
+'.zac#zacInterview:not(.qa-2col) .zi-qa{margin:40px auto 0;max-width:760px;padding-inline:16px}',
+'.zac#zacInterview:not(.qa-2col) .zi-part + .zi-qa{margin-top:30px}',
+'.zac#zacInterview p.question{margin:0 0 18px;font-size:20px;line-height:1.6;font-weight:700;color:var(--q)!important}',
+'.zac#zacInterview p.question :is(b,strong,em,i){color:var(--q)!important}',
+'.zac#zacInterview .zi-answer p:last-child{margin-bottom:0}',
+'.zac#zacInterview .zi-cont{margin-top:22px}',
+/* hỏi đáp 2 cột */
+'@media (min-width:761px){',
+'.zac#zacInterview.qa-2col .zi-qa{counter-increment:ziq;display:grid;grid-template-columns:minmax(200px,280px) minmax(0,1fr);gap:44px;margin:0 auto;max-width:1040px;padding:38px 16px 32px;border-top:1px solid var(--line)}',
+':is(.layout-special,body.layout-special,.the-article.layout-special) .zac#zacInterview.qa-2col .zi-qa,.zac#zacInterview.mode-bleed.qa-2col .zi-qa{width:min(1040px,calc(100vw - 64px));margin-left:auto;margin-right:auto}',
+'.zac#zacInterview.qa-2col .zi-part + .zi-qa{margin-top:0;border-top:0}',
+'.zac#zacInterview.qa-2col .zi-insert + .zi-qa{border-top:0}',
+'.zac#zacInterview.qa-2col .zi-qhold{position:sticky;top:72px;align-self:start}',
+'.zac#zacInterview.qa-2col .zi-qhold::before{content:counter(ziq) ".";display:block;margin:0 0 10px;font-weight:800;font-size:16px;line-height:1;color:var(--acc)}',
+'}',
+'.zac#zacInterview.qa-2col p.question{margin:0;font-size:20px;line-height:1.42;font-weight:600;font-style:italic;color:var(--ink)!important}',
+'.zac#zacInterview.qa-2col p.question :is(b,strong,em,i){color:var(--ink)!important;font-weight:600}',
+'@supports (overflow-x:clip){body:has(#zacInterview.qa-2col){overflow-x:clip!important;overflow-y:visible!important}}',
+/* chèn sau câu trả lời */
+'.zac#zacInterview .zi-insert{margin:36px auto 0;max-width:760px;padding-inline:16px}',
+'.zac#zacInterview .zi-insert.zi-wide{max-width:960px}',
+'.zac#zacInterview .zi-quote{position:relative;margin-top:40px;margin-bottom:4px;padding:6px 16px 0 58px}',
+'.zac#zacInterview .zi-quote svg{position:absolute;left:16px;top:6px;width:36px;height:28px;fill:var(--acc)}',
+'.zac#zacInterview .zi-quote p{font-size:24px;line-height:1.45;font-weight:700;color:var(--ink)}',
+'.zac#zacInterview cite{display:block;margin:12px 0 0;font-style:normal;font-size:14px;line-height:1.4;color:var(--muted)}',
+'.zac#zacInterview .zi-photo img{display:block!important;width:100%!important;height:auto!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important}',
+'.zac#zacInterview .zi-cap{margin:10px 0 0;font-size:14px;line-height:1.55;color:var(--muted)}',
+'.zac#zacInterview .zi-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}',
+'.zac#zacInterview .zi-stats.n3{grid-template-columns:repeat(3,minmax(0,1fr))}',
+'.zac#zacInterview .zi-stats.n2{grid-template-columns:repeat(2,minmax(0,1fr))}',
+'.zac#zacInterview .zi-stat-v{font-size:36px;line-height:1.1;font-weight:800;color:var(--acc)}',
+'.zac#zacInterview .zi-stat-l{margin-top:8px;font-size:14px;line-height:1.45;color:var(--muted)}',
+/* kết bài */
+'.zac#zacInterview .zi-final{margin-top:56px;padding:40px 44px;background:var(--soft);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:36px;align-items:center}',
+'.zac#zacInterview .zi-final.no-pic{grid-template-columns:1fr}',
+':is(.layout-special,body.layout-special,.the-article.layout-special) .zac#zacInterview .zi-final,.zac#zacInterview.mode-bleed .zi-final{padding-left:max(44px,calc(50vw - 520px));padding-right:max(44px,calc(50vw - 520px))}',
+'.zac#zacInterview .zi-final-text{font-size:26px;line-height:1.42;font-weight:800;color:var(--ink)}',
+'.zac#zacInterview .zi-final-pic{position:relative;overflow:hidden}',
+'.zac#zacInterview .zi-final-pic::before{content:"";display:block;padding-bottom:110%}',
+'.zac#zacInterview .zi-final-pic img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;border:0!important;object-fit:cover}',
+'.zac#zacInterview .zi-book{margin:40px auto 0;max-width:760px;padding:22px 24px;background:var(--soft);border-top:3px solid var(--acc)}',
+'.zac#zacInterview .zi-book-title{margin:0 0 8px;font-weight:800;font-size:18px;color:var(--ink)}',
+'.zac#zacInterview .zi-book p{font-size:15.5px;line-height:1.6;color:var(--bodyc)}',
+'.zac#zacInterview .zi-endnav{margin:40px auto 0;max-width:760px;padding:20px 16px 4px;border-top:1px solid var(--line);text-align:center}',
+'.zac#zacInterview .zi-endnav:has(.zi-kicker:empty){display:none}',
+'.zac#zacInterview .zi-endnav .zi-kicker{margin:0;color:var(--ink)}',
+'.zac#zacInterview .zi-endnav .zi-kicker a{color:var(--ink)!important}',
+'.zac#zacInterview .zi-endnav .zi-kicker::before{content:"← ";opacity:.6}',
+/* ẩn đầu bài mặc định của CMS (bài tự dựng tít) */
+'.the-article:has(#zacInterview .zi-kicker a) .the-article-category{display:none!important}',
+'.the-article:has(#zacInterview) .the-article-summary,.the-article:has(#zacInterview) .the-article-meta{display:none!important}',
+'.the-article:has(#zacInterview) .the-article-title{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;white-space:nowrap!important}',
+/* mobile */
+'@media (max-width:760px){',
+'.zac#zacInterview .zi-hero{grid-template-columns:1fr;padding:30px 20px;gap:22px}',
+'.zac#zacInterview .zi-sapo{font-size:16.5px}',
+'.zac#zacInterview .zi-portrait{width:72%;max-width:280px}',
+'.zac#zacInterview.qa-2col p.question{font-size:19px;margin-bottom:16px}',
+'.zac#zacInterview .zi-part{padding:20px 20px 20px 66px;font-size:21px}',
+'.zac#zacInterview .zi-part::before{left:20px;width:32px;height:32px;margin-top:-16px;line-height:28px;font-size:15px}',
+'.zac#zacInterview p.question{font-size:18px;margin-bottom:16px}',
+'.zac#zacInterview .zi-qa{margin-top:32px}',
+'.zac#zacInterview.qa-2col .zi-qa{counter-increment:ziq}',
+'.zac#zacInterview.qa-2col .zi-qhold::before{content:counter(ziq) ".";display:block;margin:0 0 8px;font-weight:800;font-size:15px;color:var(--acc)}',
+'.zac#zacInterview .zi-intro p,.zac#zacInterview .zi-answer p{font-size:17px;line-height:1.72}',
+'.zac#zacInterview .zi-quote{padding-left:46px}',
+'.zac#zacInterview .zi-quote svg{width:32px;height:24px;left:10px}',
+'.zac#zacInterview .zi-quote p{font-size:21px}',
+'.zac#zacInterview .zi-stats,.zac#zacInterview .zi-stats.n3{grid-template-columns:repeat(2,minmax(0,1fr))}',
+'.zac#zacInterview .zi-final{grid-template-columns:1fr;padding:30px 20px}',
+'.zac#zacInterview .zi-final-text{font-size:22px}',
+'}',
+'@media (prefers-reduced-motion:reduce){.zac#zacInterview *{transition:none!important;animation:none!important}}',
+/* chế độ soạn thảo khi dùng tràn viền */
+'[contenteditable="true"] .zac#zacInterview.mode-bleed .zi-band{width:100%!important;margin-left:0!important;margin-right:0!important}',
+'.zac-sleep{display:block;max-width:760px;margin:0 auto;padding:12px 0;background:#fff;color:#111;font:16px/1.6 Arial,sans-serif}',
+'.zac-sleep .zi-hero,.zac-sleep .zi-part,.zac-sleep .zi-final,.zac-sleep .zi-insert{display:block;margin:12px 0;padding:10px;border:1px dashed #bbb;background:#fff;color:#111}',
+'.zac-sleep .zi-title,.zac-sleep .zi-sapo,.zac-sleep .zi-part{color:#111}',
+'.zac-sleep p.question{color:#111;font-weight:700;margin:16px 0 8px}',
+'.zac-sleep img{display:block;max-width:300px;height:auto;margin:6px 0}',
+'.zac-sleep .zi-portrait::before,.zac-sleep .zi-final-pic::before,.zac-sleep .zi-profile-pic::before{display:none}'
+].join('\n');
+
+/* ===================== state ===================== */
+function emptyImg(){ return { src:'', alt:'', w:0, h:0, imgid:'', caption:'' }; }
+function newItem(){ return { q:'', a:'', insert:{ type:'none', text:'', cite:'', img:emptyImg(), stats:[{v:'',l:''},{v:'',l:''},{v:'',l:''},{v:'',l:''}] } }; }
+function newPart(){ return { title:'', items:[newItem()] }; }
+function freshState(){
+  return { name:'', role:'', title:'', sapo:'', author:'', date:'', cite:'', portrait:emptyImg(), intro:'',
+    parts:[newPart()], finalText:'', finalImg:emptyImg(), bookTitle:'', bookText:'',
+    qa:'1col', layout:'safe', accent:'red', autoBold:true, toc:true };
+}
+var state = freshState();
+
+/* ===================== helpers ===================== */
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function sanitizeInline(html){
+  var box = document.createElement('div');
+  box.innerHTML = html;
+  function walk(node){
+    var out = '';
+    node.childNodes.forEach(function(n){
+      if (n.nodeType === 3) { out += esc(n.textContent); return; }
+      if (n.nodeType !== 1) return;
+      var tag = n.tagName.toLowerCase(), inner = walk(n);
+      if (tag === 'b' || tag === 'strong') out += '<b>' + inner + '</b>';
+      else if (tag === 'em' || tag === 'i') out += '<em>' + inner + '</em>';
+      else if (tag === 'a' && n.getAttribute('href')) out += '<a href="' + esc(n.getAttribute('href')) + '">' + inner + '</a>';
+      else if (tag === 'br') out += ' ';
+      else out += inner;
+    });
+    return out;
+  }
+  return walk(box).replace(/\s+/g, ' ').trim();
+}
+function paras(text){ return String(text||'').split(/\n\s*\n/).map(function(p){ return p.replace(/\s*\n\s*/g,' ').trim(); }).filter(Boolean); }
+var ENUM_RE = /^((?:Thứ (?:nhất|hai|ba|tư|năm|sáu|bảy|tám|chín|mười))|(?:(?:Một|Hai|Ba|Bốn|Năm|Sáu) là)|Đầu tiên|Trước hết|Cuối cùng|Ngoài ra)([,:])/;
+function autoBold(html){ if (!state.autoBold || /^<b>/.test(html)) return html; return html.replace(ENUM_RE, '<b>$1$2</b>'); }
+function parseImage(value){
+  var v = String(value||'').trim(), im = emptyImg();
+  if (!v) return im;
+  if (v.charAt(0) === '<') {
+    var box = document.createElement('div'); box.innerHTML = v;
+    var tag = box.querySelector('img');
+    if (tag) {
+      im.src = tag.getAttribute('data-src') || tag.getAttribute('src') || '';
+      if (/^data:/.test(im.src)) im.src = tag.getAttribute('data-src') || '';
+      im.alt = tag.getAttribute('alt') || ''; im.imgid = tag.getAttribute('imgid') || '';
+      im.w = +tag.getAttribute('width') || 0; im.h = +tag.getAttribute('height') || 0;
+    }
+    var cap = box.querySelector('.pCaption p, .caption p, .pCaption, .caption');
+    if (cap) im.caption = sanitizeInline(cap.innerHTML);
+    return im;
+  }
+  im.src = v; return im;
+}
+function imgTag(im, alt){
+  if (!im || !im.src) return '';
+  return '<img src="' + esc(im.src) + '" alt="' + esc(im.alt || alt || '') + '"' + (im.imgid ? ' imgid="' + esc(im.imgid) + '"' : '') +
+    (im.w && im.h ? ' width="' + im.w + '" height="' + im.h + '"' : '') + ' loading="lazy" decoding="async">';
+}
+function citeName(){ return state.cite || state.name || ''; }
+var QUOTE_SVG = '<svg viewBox="0 0 120 90" aria-hidden="true" focusable="false"><path d="M0 90V52C0 26 12 8 38 0l6 11C30 17 24 27 23 40h21v50Z"></path><path d="M66 90V52c0-26 12-44 38-52l6 11c-14 6-20 16-21 29h21v50Z"></path></svg>';
+
+/* ===================== tách bản thảo ===================== */
+function parseDraft(raw, qmark){
+  var blocks = [];
+  if (/<(p|h2|h3|table|blockquote|div)[\s>]/i.test(raw)) {
+    var box = document.createElement('div'); box.innerHTML = raw;
+    box.querySelectorAll('h1,h2,h3,h4,p,table.picture,blockquote').forEach(function(n){
+      if (n.closest('table.picture') && n.tagName !== 'TABLE') return;
+      if (n.closest('blockquote') && n.tagName !== 'BLOCKQUOTE') return;
+      var tag = n.tagName.toLowerCase();
+      if (tag === 'table') { blocks.push({ kind:'img', html:n.outerHTML }); return; }
+      if (tag === 'blockquote') { blocks.push({ kind:'quote', html:sanitizeInline(n.innerHTML) }); return; }
+      var text = n.textContent.replace(/\s+/g,' ').trim();
+      if (!text) return;
+      if (/^h[1-4]$/.test(tag)) { blocks.push({ kind:'part', text:text }); return; }
+      var kids = [].filter.call(n.childNodes, function(c){ return c.nodeType === 1 || c.textContent.trim(); });
+      var allBold = kids.length === 1 && kids[0].nodeType === 1 && /^(B|STRONG)$/.test(kids[0].tagName);
+      blocks.push({ kind:'p', html:sanitizeInline(n.innerHTML), text:text, bold:allBold });
+    });
+  } else {
+    raw.split(/\n/).forEach(function(line){
+      var t = line.trim();
+      if (!t) { blocks.push({ kind:'gap' }); return; }
+      if (/^##\s*/.test(t)) { blocks.push({ kind:'part', text:t.replace(/^##\s*/, '') }); return; }
+      if (/^>\s*/.test(t)) { blocks.push({ kind:'quote', html:sanitizeInline(t.replace(/^>\s*/, '')) }); return; }
+      var tt = document.createElement('div'); tt.innerHTML = t;
+      blocks.push({ kind:'p', html:sanitizeInline(t), text:tt.textContent.trim(), bold:false });
+    });
+  }
+  var out = { intro:[], parts:[] }, part = null, item = null;
+  function ensurePart(){ if (!part) { part = { title:'', items:[] }; out.parts.push(part); } }
+  blocks.forEach(function(b){
+    if (b.kind === 'gap') return;
+    if (b.kind === 'part' || (b.kind === 'p' && /^PHẦN\s*\d*\s*[:.]/i.test(b.text))) {
+      part = { title:(b.text || '').replace(/^PHẦN\s*\d*\s*[:.]\s*/i, ''), items:[] }; out.parts.push(part); item = null; return;
+    }
+    if (b.kind === 'p') {
+      var pref = /^(Hỏi|PV|Q|H)\s*[:.]\s*/i.test(b.text);
+      var isQ = pref || b.bold || (qmark && /\?\s*$/.test(b.text) && b.text.length < 600);
+      if (isQ) {
+        ensurePart();
+        item = newItem(); item.q = b.html.replace(/^(<b>)?(Hỏi|PV|Q|H)\s*[:.]\s*/i, '$1').replace(/^<b>([\s\S]*)<\/b>$/, '$1');
+        part.items.push(item); return;
+      }
+      var html = b.html.replace(/^(Đáp|TL|A|Trả lời)\s*[:.]\s*/i, '');
+      if (!item) { if (part) { item = newItem(); part.items.push(item); item.a = html; } else out.intro.push(html); return; }
+      item.a = item.a ? item.a + '\n\n' + html : html; return;
+    }
+    if (b.kind === 'img' || b.kind === 'quote') {
+      if (!item) { if (b.kind === 'img' && !state.portrait.src) state.portrait = parseImage(b.html); return; }
+      var target = item;
+      if (target.insert.type !== 'none') { target = newItem(); target.q = ''; part.items.push(target); item = target; }
+      if (b.kind === 'img') { target.insert.type = 'photo'; target.insert.img = parseImage(b.html); }
+      else { target.insert.type = 'quote'; target.insert.text = b.html; }
+    }
+  });
+  out.parts.forEach(function(p){ p.items = p.items.filter(function(it){ return it.q || it.a || it.insert.type !== 'none'; }); });
+  out.parts = out.parts.filter(function(p){ return p.items.length || p.title; });
+  return out;
+}
+
+/* ===================== dựng HTML bài ===================== */
+function answerHtml(a){ return paras(a).map(function(p){ return '<p>' + autoBold(sanitizeInline(p)) + '</p>'; }).join(''); }
+function insertHtml(ins){
+  if (!ins || ins.type === 'none') return '';
+  if (ins.type === 'quote' && ins.text) {
+    return '<div class="zi-insert zi-quote">' + QUOTE_SVG + '<p>' + sanitizeInline(ins.text) + '</p>' + (ins.cite || citeName() ? '<cite>' + esc(ins.cite || citeName()) + '</cite>' : '') + '</div>';
+  }
+  if (ins.type === 'photo' && ins.img && ins.img.src) {
+    return '<div class="zi-insert zi-photo zi-wide">' + imgTag(ins.img, state.name) + (ins.img.caption ? '<p class="zi-cap">' + sanitizeInline(ins.img.caption) + '</p>' : '') + '</div>';
+  }
+  if (ins.type === 'stats') {
+    var st = (ins.stats || []).filter(function(s){ return s.v; });
+    if (!st.length) return '';
+    return '<div class="zi-insert zi-stats zi-wide n' + st.length + '">' + st.map(function(s){
+      return '<div class="zi-stat"><div class="zi-stat-v">' + esc(s.v) + '</div><div class="zi-stat-l">' + esc(s.l) + '</div></div>';
+    }).join('') + '</div>';
+  }
+  return '';
+}
+function articleInner(){
+  var h = '';
+  h += '<header class="zi-hero zi-band"><div class="zi-hero-text"><p class="zi-kicker"></p>' +
+    '<h2 class="zi-title">' + (state.name ? '<b class="zi-name">' + esc(state.name) + ': </b>' : '') + esc(state.title || 'Tiêu đề bài phỏng vấn') + '</h2>' +
+    (state.sapo ? '<p class="zi-sapo">' + esc(state.sapo) + '</p>' : '') +
+    ((state.author || state.date) ? '<p class="zi-byline">' + esc([state.author, state.date].filter(Boolean).join(' - ')) + '</p>' : '') + '</div>' +
+    (state.portrait.src ? '<div class="zi-portrait">' + imgTag(state.portrait, 'Chân dung ' + state.name) + '</div>' : '') + '</header>';
+  var intro = paras(state.intro);
+  if (intro.length) h += '<div class="zi-intro">' + intro.map(function(p){ return '<p>' + sanitizeInline(p) + '</p>'; }).join('') + '</div>';
+  if (state.name || state.role) {
+    h += '<div class="zi-profile">' + (state.portrait.src ? '<div class="zi-profile-pic">' + imgTag(state.portrait, state.name) + '</div>' : '') +
+      '<div><p class="zi-profile-name">' + esc(state.name) + '</p>' + (state.role ? '<p class="zi-profile-role">' + esc(state.role) + '</p>' : '') + '</div></div>';
+  }
+  var parts = state.parts.filter(function(p){ return p.title || p.items.some(function(it){ return it.q; }); });
+  var titled = parts.filter(function(p){ return p.title; });
+  if (state.toc && titled.length >= 2) {
+    h += '<nav class="zi-toc" aria-label="Nội dung"><p class="zi-toc-title">Nội dung cuộc trao đổi</p><ol>' +
+      titled.map(function(p){ return '<li><a href="#zi-phan-' + (parts.indexOf(p) + 1) + '">' + esc(p.title) + '</a></li>'; }).join('') + '</ol></nav>';
+  }
+  parts.forEach(function(p, pi){
+    if (p.title) h += '<h3 class="zi-part zi-band" id="zi-phan-' + (pi + 1) + '">' + esc(p.title) + '</h3>';
+    p.items.forEach(function(it){
+      if (it.q) {
+        h += '<div class="zi-qa"><div class="zi-qhold"><p class="question"><strong>' + sanitizeInline(it.q) + '</strong></p></div>' +
+          '<div class="zi-answer">' + answerHtml(it.a) + '</div></div>';
+      } else if (it.a) {
+        h += '<div class="zi-answer zi-cont">' + answerHtml(it.a) + '</div>';
+      }
+      h += insertHtml(it.insert);
+    });
+  });
+  if (state.finalText) {
+    h += '<section class="zi-final zi-band' + (state.finalImg.src ? '' : ' no-pic') + '"><div><p class="zi-final-text">' + sanitizeInline(state.finalText) + '</p>' +
+      (citeName() ? '<cite>' + esc(citeName()) + '</cite>' : '') + '</div>' +
+      (state.finalImg.src ? '<div class="zi-final-pic">' + imgTag(state.finalImg, state.name) + '</div>' : '') + '</section>';
+  }
+  if (state.bookTitle || state.bookText) {
+    h += '<aside class="zi-book">' + (state.bookTitle ? '<p class="zi-book-title">' + esc(state.bookTitle) + '</p>' : '') +
+      paras(state.bookText).map(function(p){ return '<p>' + sanitizeInline(p) + '</p>'; }).join('') + '</aside>';
+  }
+  h += '<nav class="zi-endnav" aria-label="Chuyên mục"><p class="zi-kicker"></p></nav>';
+  return h;
+}
+function rootClass(){ return 'zac' + (state.layout === 'bleed' ? ' mode-bleed' : '') + (state.qa === '2col' ? ' qa-2col' : ''); }
+function articleCss(){
+  var a = ACCENTS[state.accent] || ACCENTS.red;
+  return ARTICLE_CSS.replace('--acc:#dd4424;--acc-name:#181a18;--q:#c63a1c;', '--acc:' + a.band + ';--acc-name:' + a.name + ';--q:' + a.q + ';');
+}
+
+/* ===================== script chạy trên trang thật ===================== */
+function ziPick(px){
+  var ladder = [360, 480, 660, 860, 960, 1024, 1200, 1920];
+  for (var i = 0; i < ladder.length; i++) { if (px <= ladder[i]) { return ladder[i]; } }
+  return 1920;
+}
+function ziFixSize(img){
+  var s = img.currentSrc || img.src || '';
+  var m = s.match(/photo\.znews\.vn\/w(\d+)\/Uploaded\//);
+  if (!m) { return; }
+  var box = img.getBoundingClientRect().width || (img.parentNode && img.parentNode.getBoundingClientRect().width) || 0;
+  var need = ziPick(box * (window.devicePixelRatio || 1));
+  if ((+m[1] === 210 || +m[1] < need) && img._ziSize !== need) {
+    img._ziSize = need;
+    img.removeAttribute('srcset');
+    img.src = s.replace(/photo\.znews\.vn\/w\d+\/Uploaded\//, 'photo.znews.vn/w' + need + '/Uploaded/');
+  }
+}
+function ziInit(root){
+  var art = root.querySelector ? root.querySelector('#zacInterview') : null;
+  if (!art) { return; }
+  if (art.closest && art.closest('[contenteditable="true"]')) { return; }
+  var imgs = art.querySelectorAll('img');
+  for (var i = 0; i < imgs.length; i++) {
+    (function(img){
+      img.addEventListener('load', function(){ ziFixSize(img); });
+      if (img.complete && img.naturalWidth) { ziFixSize(img); }
+    })(imgs[i]);
+  }
+  var scope = (art.closest && art.closest('.the-article')) || document;
+  var src = scope.querySelector('.the-article-category') || document.querySelector('.the-article-category');
+  var links = src ? src.querySelectorAll('a[href]') : [];
+  if (!links.length) { return; }
+  var hero = art.querySelector('.zi-hero-text');
+  if (hero && !hero.querySelector('.zi-kicker')) { var k = document.createElement('p'); k.className = 'zi-kicker'; hero.insertBefore(k, hero.firstChild); }
+  if (!art.querySelector('.zi-endnav')) { var nav = document.createElement('nav'); nav.className = 'zi-endnav'; nav.innerHTML = '<p class="zi-kicker"></p>'; art.appendChild(nav); }
+  var slots = art.querySelectorAll('.zi-kicker');
+  for (var s2 = 0; s2 < slots.length; s2++) {
+    slots[s2].innerHTML = '';
+    for (var j = 0; j < links.length; j++) {
+      var a = document.createElement('a');
+      a.href = links[j].getAttribute('href');
+      a.textContent = links[j].textContent.replace(/\s+/g, ' ').trim();
+      a.className = 'parent_cate';
+      slots[s2].appendChild(a);
+    }
+  }
+}
+
+/* ===================== kiểm tra theo checklist ===================== */
+function runChecks(){
+  var out = [], qs = [];
+  state.parts.forEach(function(p){ p.items.forEach(function(it){ if (it.q) qs.push(it); }); });
+  function add(ok, text){ out.push({ ok:ok, text:text }); }
+  add(!!state.name, state.name ? 'Tít có tên nhân vật' : 'Chưa có tên nhân vật gắn trên tít');
+  var sapoSentences = (state.sapo.match(/[.!?…](\s|$)/g) || []).length;
+  add(!!state.sapo && sapoSentences <= 2, !state.sapo ? 'Chưa có sapo' : (sapoSentences <= 2 ? 'Sapo không quá 2 câu' : 'Sapo dài hơn 2 câu'));
+  add(/Tri Thức\s*-\s*Znews/i.test(state.intro), /Tri Thức\s*-\s*Znews/i.test(state.intro) ? 'Dẫn nhập có giới thiệu Tri Thức - Znews' : 'Dẫn nhập chưa có "Tri Thức - Znews"');
+  add(qs.length > 0, qs.length ? 'Có ' + qs.length + ' câu hỏi' : 'Chưa có câu hỏi nào');
+  if (qs.length) {
+    var plain = function(h){ var d = document.createElement('div'); d.innerHTML = h; return d.textContent.trim(); };
+    var first = plain(qs[0].q);
+    add(/^Thưa/i.test(first), /^Thưa/i.test(first) ? 'Câu hỏi đầu xưng hô "Thưa..."' : 'Câu hỏi đầu nên mở bằng "Thưa [học hàm, tên]"');
+    var noMark = qs.filter(function(it){ return !/\?\s*$/.test(plain(it.q)); }).length;
+    add(noMark === 0, noMark === 0 ? 'Mọi câu hỏi kết thúc bằng dấu "?"' : noMark + ' câu hỏi chưa kết thúc bằng dấu "?"');
+    var noAns = qs.filter(function(it){ return !paras(it.a).length; }).length;
+    add(noAns === 0, noAns === 0 ? 'Câu hỏi nào cũng có câu trả lời' : noAns + ' câu hỏi chưa có câu trả lời');
+  }
+  var untitled = state.parts.filter(function(p){ return !p.title; }).length;
+  if (state.parts.length > 1) add(untitled === 0, untitled === 0 ? 'Phần nào cũng có tiêu đề' : untitled + ' phần chưa có tiêu đề');
+  var quotes = 0; state.parts.forEach(function(p){ p.items.forEach(function(it){ if (it.insert.type === 'quote') quotes++; }); });
+  if (quotes || state.finalText) add(!!citeName(), citeName() ? 'Trích dẫn có tên người nói' : 'Trích dẫn chưa có tên người nói');
+  if (state.qa === '2col' && qs.length > 10) add(false, 'Kiểu 2 cột hợp với bài 5–8 câu; bài này có ' + qs.length + ' câu');
+  document.getElementById('checks').innerHTML = out.map(function(c){
+    return '<li><span class="' + (c.ok ? 'ok' : 'warn') + '">' + (c.ok ? '✓' : '!') + '</span><span>' + esc(c.text) + '</span></li>';
+  }).join('');
+}
+
+/* ===================== giao diện biên tập ===================== */
+function insertFields(it, pi, ii){
+  var ins = it.insert, t = ins.type, k = pi + '-' + ii;
+  var h = '<div class="field"><label>Chèn sau câu trả lời</label><select data-f="itype" data-p="' + pi + '" data-i="' + ii + '">' +
+    [['none','Không chèn'],['quote','Trích dẫn'],['photo','Ảnh'],['stats','Dải số liệu']].map(function(o){ return '<option value="' + o[0] + '"' + (t === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></div>';
+  if (t === 'quote') h += '<div class="insert-box"><div class="field"><textarea rows="2" data-f="qtext" data-p="' + pi + '" data-i="' + ii + '" placeholder="Nội dung trích dẫn">' + esc(ins.text) + '</textarea></div><div class="field"><input type="text" data-f="qcite" data-p="' + pi + '" data-i="' + ii + '" value="' + esc(ins.cite) + '" placeholder="Người nói (mặc định: tên nhân vật)"></div></div>';
+  if (t === 'photo') h += '<div class="insert-box"><div class="field"><input type="text" data-f="pimg" data-p="' + pi + '" data-i="' + ii + '" value="' + esc(ins.img.src) + '" placeholder="Dán khối ảnh CMS hoặc link ảnh"></div><div class="field"><input type="text" data-f="pcap" data-p="' + pi + '" data-i="' + ii + '" value="' + esc(ins.img.caption) + '" placeholder="Chú thích ảnh"></div>' + (ins.img.src ? '<p class="hint">' + (ins.img.w ? ins.img.w + '×' + ins.img.h : 'chưa rõ kích thước') + '</p>' : '') + '</div>';
+  if (t === 'stats') h += '<div class="insert-box">' + ins.stats.map(function(s, si){ return '<div class="row2"><div class="field"><input type="text" data-f="sv" data-s="' + si + '" data-p="' + pi + '" data-i="' + ii + '" value="' + esc(s.v) + '" placeholder="Con số"></div><div class="field"><input type="text" data-f="sl" data-s="' + si + '" data-p="' + pi + '" data-i="' + ii + '" value="' + esc(s.l) + '" placeholder="Giải thích"></div></div>'; }).join('') + '</div>';
+  return h;
+}
+function renderEditor(){
+  var host = document.getElementById('parts');
+  host.innerHTML = state.parts.map(function(p, pi){
+    return '<div class="part"><div class="part-head"><span class="num">Phần ' + (pi + 1) + '</span><input type="text" data-f="ptitle" data-p="' + pi + '" value="' + esc(p.title) + '" placeholder="Tiêu đề phần">' +
+      '<button class="btn btn-sm" data-a="pup" data-p="' + pi + '" type="button" aria-label="Đưa phần lên">↑</button><button class="btn btn-sm" data-a="pdel" data-p="' + pi + '" type="button">Xoá phần</button></div>' +
+      p.items.map(function(it, ii){
+        return '<div class="item"><div class="item-top"><span>' + (it.q ? 'Câu hỏi' : 'Đoạn tiếp') + '</span><span class="actions">' +
+          '<button class="btn btn-sm" data-a="iup" data-p="' + pi + '" data-i="' + ii + '" type="button" aria-label="Lên">↑</button>' +
+          '<button class="btn btn-sm" data-a="idown" data-p="' + pi + '" data-i="' + ii + '" type="button" aria-label="Xuống">↓</button>' +
+          '<button class="btn btn-sm" data-a="idel" data-p="' + pi + '" data-i="' + ii + '" type="button">Xoá</button></span></div>' +
+          '<div class="field"><textarea rows="2" data-f="q" data-p="' + pi + '" data-i="' + ii + '" placeholder="Câu hỏi">' + esc(it.q) + '</textarea></div>' +
+          '<div class="field"><textarea rows="5" data-f="a" data-p="' + pi + '" data-i="' + ii + '" placeholder="Câu trả lời">' + esc(it.a) + '</textarea></div>' +
+          insertFields(it, pi, ii) + '</div>';
+      }).join('') +
+      '<button class="btn btn-sm" data-a="iadd" data-p="' + pi + '" type="button">Thêm câu hỏi</button></div>';
+  }).join('');
+}
+document.getElementById('parts').addEventListener('input', function(e){
+  var el = e.target, f = el.dataset.f; if (!f) return;
+  var p = state.parts[+el.dataset.p], it = el.dataset.i != null ? p.items[+el.dataset.i] : null;
+  if (f === 'ptitle') p.title = el.value;
+  else if (f === 'q') it.q = el.value;
+  else if (f === 'a') it.a = el.value;
+  else if (f === 'qtext') it.insert.text = el.value;
+  else if (f === 'qcite') it.insert.cite = el.value;
+  else if (f === 'pimg') { var cap = it.insert.img.caption; it.insert.img = parseImage(el.value); if (!it.insert.img.caption) it.insert.img.caption = cap; }
+  else if (f === 'pcap') it.insert.img.caption = el.value;
+  else if (f === 'sv') it.insert.stats[+el.dataset.s].v = el.value;
+  else if (f === 'sl') it.insert.stats[+el.dataset.s].l = el.value;
+  render();
+});
+document.getElementById('parts').addEventListener('change', function(e){
+  var el = e.target;
+  if (el.dataset.f === 'itype') { state.parts[+el.dataset.p].items[+el.dataset.i].insert.type = el.value; renderEditor(); render(); }
+  if (el.dataset.f === 'pimg') renderEditor();
+});
+document.getElementById('parts').addEventListener('click', function(e){
+  var b = e.target.closest('[data-a]'); if (!b) return;
+  var pi = +b.dataset.p, ii = +b.dataset.i, P = state.parts, items = P[pi].items, t;
+  switch (b.dataset.a) {
+    case 'pdel': if (P.length > 1 || confirm('Xoá phần cuối cùng?')) { P.splice(pi, 1); if (!P.length) P.push(newPart()); } break;
+    case 'pup': if (pi > 0) { t = P[pi - 1]; P[pi - 1] = P[pi]; P[pi] = t; } break;
+    case 'iadd': items.push(newItem()); break;
+    case 'idel': items.splice(ii, 1); break;
+    case 'iup': if (ii > 0) { t = items[ii - 1]; items[ii - 1] = items[ii]; items[ii] = t; } break;
+    case 'idown': if (ii < items.length - 1) { t = items[ii + 1]; items[ii + 1] = items[ii]; items[ii] = t; } break;
+  }
+  renderEditor(); render();
+});
+document.getElementById('btnAddPart').addEventListener('click', function(){ state.parts.push(newPart()); renderEditor(); render(); });
+
+var SIMPLE = { 'f-name':'name', 'f-role':'role', 'f-title':'title', 'f-sapo':'sapo', 'f-author':'author', 'f-date':'date', 'f-cite':'cite', 'f-intro':'intro', 'f-final':'finalText', 'f-book-title':'bookTitle', 'f-book-text':'bookText' };
+Object.keys(SIMPLE).forEach(function(id){ document.getElementById(id).addEventListener('input', function(e){ state[SIMPLE[id]] = e.target.value; render(); }); });
+document.getElementById('f-portrait').addEventListener('input', function(e){ state.portrait = parseImage(e.target.value); render(); });
+document.getElementById('f-final-img').addEventListener('input', function(e){ state.finalImg = parseImage(e.target.value); render(); });
+document.getElementById('f-accent').addEventListener('change', function(e){ state.accent = e.target.value; render(); });
+document.getElementById('f-bold').addEventListener('change', function(e){ state.autoBold = e.target.checked; render(); });
+document.getElementById('f-toc').addEventListener('change', function(e){ state.toc = e.target.checked; render(); });
+document.querySelectorAll('input[name="qa"]').forEach(function(r){ r.addEventListener('change', function(e){ if (e.target.checked) { state.qa = e.target.value; render(); } }); });
+document.querySelectorAll('input[name="layout"]').forEach(function(r){ r.addEventListener('change', function(e){ if (e.target.checked) { state.layout = e.target.value; render(); } }); });
+
+function syncForm(){
+  Object.keys(SIMPLE).forEach(function(id){ document.getElementById(id).value = state[SIMPLE[id]] || ''; });
+  document.getElementById('f-portrait').value = state.portrait.src || '';
+  document.getElementById('f-final-img').value = state.finalImg.src || '';
+  document.getElementById('f-accent').value = state.accent;
+  document.getElementById('f-bold').checked = state.autoBold;
+  document.getElementById('f-toc').checked = state.toc;
+  document.querySelector('input[name="qa"][value="' + state.qa + '"]').checked = true;
+  document.querySelector('input[name="layout"][value="' + state.layout + '"]').checked = true;
+}
+document.getElementById('btnParse').addEventListener('click', function(){
+  var raw = document.getElementById('f-draft').value;
+  if (!raw.trim()) return;
+  var res = parseDraft(raw, document.getElementById('f-qmark').checked);
+  if (!res.parts.length) { alert('Không tìm thấy câu hỏi nào. Đánh dấu câu hỏi bằng "Hỏi:" hoặc in đậm, hoặc bật tuỳ chọn dấu "?".'); return; }
+  state.parts = res.parts;
+  if (res.intro.length) state.intro = res.intro.join('\n\n');
+  syncForm(); renderEditor(); render();
+});
+document.getElementById('btnSample').addEventListener('click', function(){
+  var s = freshState();
+  s.name = 'TS Lê Minh An'; s.role = 'Giám đốc Trung tâm Nghiên cứu Văn hoá đọc';
+  s.title = 'Muốn trẻ đọc sách, người lớn phải đọc trước';
+  s.sapo = 'Theo TS Lê Minh An, thói quen đọc của trẻ hình thành từ những gì trẻ thấy người lớn làm mỗi ngày. Ông cho rằng nhà trường và gia đình cần thay đổi cách khuyến đọc.';
+  s.author = 'Minh Châu'; s.date = '3/10/2026';
+  s.intro = 'Khảo sát gần đây cho thấy thời gian đọc sách giấy của học sinh tiểu học giảm rõ rệt trong 5 năm qua, trong khi thời gian dùng thiết bị điện tử tăng nhanh.\n\n<em>Tri Thức - Znews</em> đã trao đổi với TS Lê Minh An, Giám đốc Trung tâm Nghiên cứu Văn hoá đọc, về cách giúp trẻ quay lại với sách.';
+  s.parts = [
+    { title:'Trẻ không lười đọc', items:[
+      { q:'Thưa TS Lê Minh An, nhiều phụ huynh than rằng con mình lười đọc sách. Ông nhìn nhận điều này thế nào?', a:'Tôi không nghĩ trẻ lười đọc. Trẻ chỉ chưa có lý do để đọc.\n\nMột đứa trẻ lớn lên trong nhà có tủ sách và thấy bố mẹ đọc mỗi tối sẽ coi đọc là chuyện bình thường.', insert:{ type:'quote', text:'Trẻ không lười đọc. Trẻ chỉ chưa có lý do để đọc.', cite:'', img:emptyImg(), stats:[{v:'',l:''},{v:'',l:''},{v:'',l:''},{v:'',l:''}] } },
+      { q:'Vậy theo ông, gia đình nên bắt đầu từ đâu?', a:'Thứ nhất, mỗi ngày dành 15 phút đọc cùng con, không điện thoại.\n\nThứ hai, để con tự chọn sách, kể cả truyện tranh.\n\nCuối cùng, đừng biến việc đọc thành bài tập phải nộp.', insert:{ type:'stats', text:'', cite:'', img:emptyImg(), stats:[{v:'15 phút',l:'Thời gian đọc cùng con mỗi ngày được khuyến nghị'},{v:'3/5',l:'Phụ huynh trong khảo sát ít khi đọc trước mặt con'},{v:'',l:''},{v:'',l:''}] } }
+    ]},
+    { title:'Vai trò của nhà trường', items:[
+      { q:'Nhà trường có thể làm gì khác so với hiện nay?', a:'Thư viện trường cần mở cửa vào giờ trẻ rảnh, chứ không chỉ trong giờ học.\n\nGiáo viên cũng nên kể về cuốn sách mình đang đọc, thay vì chỉ giao danh sách sách bắt buộc.', insert:{ type:'none', text:'', cite:'', img:emptyImg(), stats:[{v:'',l:''},{v:'',l:''},{v:'',l:''},{v:'',l:''}] } }
+    ]}
+  ];
+  s.finalText = 'Đừng hỏi con đã đọc được bao nhiêu trang. Hãy hỏi con thích nhân vật nào.';
+  s.bookTitle = 'Sách liên quan';
+  s.bookText = 'Nếu quan tâm đến chủ đề này, độc giả có thể tìm đọc các bài về văn hoá đọc trên Tri Thức - Znews.';
+  state = s; syncForm(); renderEditor(); render();
+});
+document.getElementById('btnReset').addEventListener('click', function(){ if (!confirm('Xoá toàn bộ nội dung đang dựng?')) return; state = freshState(); document.getElementById('f-draft').value = ''; syncForm(); renderEditor(); render(); });
+
+/* ===================== xem trước ===================== */
+function render(){
+  document.getElementById('zi-css').textContent = articleCss();
+  var wrap = document.getElementById('preview-wrap');
+  wrap.innerHTML = '<article class="' + rootClass() + '" id="zacInterview">' + articleInner() + '</article>';
+  wrap.querySelectorAll('.zi-kicker').forEach(function(k){ k.innerHTML = '<a href="#" onclick="return false">Chuyên mục</a>'; });
+  runChecks();
+}
+document.getElementById('vpDesk').addEventListener('click', function(){ document.getElementById('preview-wrap').classList.remove('mobile'); this.classList.add('on'); document.getElementById('vpMob').classList.remove('on'); });
+document.getElementById('vpMob').addEventListener('click', function(){ document.getElementById('preview-wrap').classList.add('mobile'); this.classList.add('on'); document.getElementById('vpDesk').classList.remove('on'); });
+
+/* ===================== xuất mã ===================== */
+function oneLine(fn){ return fn.toString().replace(/\s*\n\s*/g, ' '); }
+function buildExport(){
+  var css = articleCss(), cls = rootClass(), inner = articleInner();
+  var js = '<script>(function(){if(window.ZAC_EDIT){return;}var ziPick=' + oneLine(ziPick) + ';var ziFixSize=' + oneLine(ziFixSize) + ';var ziInit=' + oneLine(ziInit) + ';ziInit(document);})();<\/script>';
+  return '<style>\n' + css + '\n</style>\n<article class="' + cls + '" id="zacInterview">\n' + inner + '\n</article>\n' + js;
+}
+function fallbackCopy(text){ var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.left = '-9999px'; document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} document.body.removeChild(t); return ok; }
+function flash(btn, ok){ var o = btn.textContent; btn.textContent = ok ? 'Đã sao chép' : 'Không sao chép được, mã ở khung dưới'; setTimeout(function(){ btn.textContent = o; }, 1800); }
+document.getElementById('btnCopy').addEventListener('click', function(){
+  var code = buildExport(), btn = this;
+  document.getElementById('exportArea').value = code;
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(function(){ flash(btn, true); }).catch(function(){ var ok = fallbackCopy(code); flash(btn, ok); if (!ok) document.getElementById('modal').classList.add('show'); });
+  else { var ok = fallbackCopy(code); flash(btn, ok); if (!ok) document.getElementById('modal').classList.add('show'); }
+});
+document.getElementById('btnCloseModal').addEventListener('click', function(){ document.getElementById('modal').classList.remove('show'); });
+document.getElementById('btnDownload').addEventListener('click', function(){
+  var blob = new Blob([buildExport()], { type:'text/html' }), url = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = url; a.download = 'bai-phong-van.html'; a.click(); URL.revokeObjectURL(url);
+});
+
+syncForm(); renderEditor(); render();
+</script>
+</body>
+</html>
