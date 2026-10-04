@@ -180,7 +180,7 @@ var ARTICLE_CSS = [
 '.layout-special .zac#zacInterview,body.layout-special #zacInterview,.the-article.layout-special #zacInterview,.the-article-body.layout-special #zacInterview,.zac#zacInterview.mode-bleed{--bleed:0px}',
 '.zac#zacInterview .zi-wide,.zac#zacInterview .zi-band{margin-left:calc(var(--bleed) * -1);margin-right:calc(var(--bleed) * -1)}',
 '.zac#zacInterview.mode-bleed .zi-band{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}',
-'.zac#zacInterview.mode-bleed .zi-wide{margin-left:0;margin-right:0}',
+':is(.layout-special,body.layout-special,.the-article.layout-special) .zac#zacInterview .zi-wide,.zac#zacInterview.mode-bleed .zi-wide{margin-left:auto;margin-right:auto}',
 /* hero */
 '.zac#zacInterview .zi-hero{background:var(--acc);color:#fff;padding:40px 44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:36px;align-items:end}',
 ':is(.layout-special,body.layout-special,.the-article.layout-special) .zac#zacInterview .zi-hero,.zac#zacInterview.mode-bleed .zi-hero{padding-left:max(44px,calc(50vw - 520px));padding-right:max(44px,calc(50vw - 520px))}',
@@ -242,7 +242,7 @@ var ARTICLE_CSS = [
 '@supports (overflow-x:clip){body:has(#zacInterview.qa-2col){overflow-x:clip!important;overflow-y:visible!important}}',
 /* chèn sau câu trả lời */
 '.zac#zacInterview .zi-insert{margin:36px auto 0;max-width:760px;padding-inline:16px}',
-'.zac#zacInterview .zi-insert.zi-wide{max-width:960px}',
+'.zac#zacInterview .zi-insert.zi-wide{max-width:960px;margin-left:auto;margin-right:auto}',
 '.zac#zacInterview .zi-quote{position:relative;margin-top:40px;margin-bottom:4px;padding:6px 16px 0 58px}',
 '.zac#zacInterview .zi-quote svg{position:absolute;left:16px;top:6px;width:36px;height:28px;fill:var(--acc)}',
 '.zac#zacInterview .zi-quote p{font-size:24px;line-height:1.45;font-weight:700;color:var(--ink)}',

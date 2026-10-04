@@ -4,6 +4,15 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 
 ---
 
+## [2.3.1] - 2026-10-04
+
+### 🎯 Sửa lỗi căn giữa ảnh đơn trong bài phỏng vấn (Interview Tool)
+- **Khắc phục lỗi ảnh đơn bị lệch trái trên chế độ tràn viền (`mode-bleed`)**:
+  - Đổi quy tắc `.zac#zacInterview.mode-bleed .zi-wide` từ `margin-left: 0; margin-right: 0;` sang `margin-left: auto; margin-right: auto;`.
+  - Bổ sung `margin-left: auto; margin-right: auto;` cho `.zi-insert.zi-wide` để đảm bảo 3 khối ảnh chèn (`.zi-insert.zi-photo.zi-wide`) và dải số liệu luôn được căn giữa hoàn hảo trong khung nhìn bài viết rộng 1268px - 1629px.
+
+---
+
 ## [2.3.0] - 2026-10-03
 
 ### 🎙️ Tích hợp công cụ phỏng vấn (Interview Tool) & vá lỗi tràn viền layout-special
