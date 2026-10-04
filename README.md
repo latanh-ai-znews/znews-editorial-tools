@@ -76,11 +76,12 @@ Dự án được tài liệu hóa đầy đủ để các phóng viên, biên t
 - Khắc phục triệt để lỗi tràn viền 130px trên bố cục `layout-special` của CMS và tự động giới hạn độ rộng cột chữ (760px) cho trải nghiệm đọc tối ưu trên màn hình lớn.
 
 ### 5. ⚖️ Công cụ bài so sánh đối chiếu (comparison tool)
-*Tệp tin: [`comparison-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/comparison-tool.html)*
+*Tệp tin: [`comparison-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/comparison-tool.html) | [Bài viết demo trực tuyến](https://latanh-ai-znews.github.io/znews-editorial-tools/demo-bai-viet-so-sanh.html)*
 - Dành riêng cho thể loại bài viết so sánh đa chiều, phân tích đối lập "Đánh đổi vs Lợi ích", "Trước vs Sau", "Lựa chọn A vs B".
 - Thanh trượt ảnh kép kiểu iPhone (iOS slide switcher) kèm hiệu ứng chữ nhấp nháy phát sáng (shimmer prompt) và nút nhấn chuyển nhanh giữa hai vùng.
 - Ma trận 2 cột văn bản cân đối (Balanced Text Matrix) nằm dưới ảnh, hỗ trợ 1–3 đoạn văn bản phân tích sâu mà không làm lệch bố cục.
 - Tương thích 100% CMS Znews, triệt tiêu lỗi tràn viền bleed (`--zc-bleed: 0px`) và hỗ trợ thang phân giải ảnh sắc nét `zcFixSize`.
+- Đi kèm trang bài viết demo mẫu [`demo-bai-viet-so-sanh.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/demo-bai-viet-so-sanh.html) hỗ trợ 3 chế độ xem (Máy tính, Di động 420px, Mô phỏng CMS Znews).
 
 ### 6. 🖼️ Đóng khung ảnh đại diện định dạng đặc biệt (900×600)
 *Tệp tin: [`Znews_Thumb_dinh_dang_dac_biet.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/Znews_Thumb_dinh_dang_dac_biet.html)*

@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài viết mẫu: Bỏ phố về ven — Đánh đổi và Lợi ích sau 3 năm nhìn lại | Znews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --demo-bg: #f5f4ef;
+      --demo-surface: #ffffff;
+      --demo-border: #e2ded5;
+      --demo-text: #242420;
+      --demo-muted: #737067;
+      --demo-accent: #d97706;
+      --demo-accent-green: #059669;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--demo-bg);
+      color: var(--demo-text);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* Thanh điều khiển thử nghiệm (Top Control Bar) */
+    .demo-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--demo-border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .demo-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .demo-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--demo-text);
+    }
+    .demo-bar-mid {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #eceae3;
+      padding: 3px;
+      border-radius: 999px;
+    }
+    .demo-mode-btn {
+      border: none;
+      background: transparent;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--demo-muted);
+      cursor: pointer;
+      transition: all .18s;
+      font-family: inherit;
+    }
+    .demo-mode-btn.active {
+      background: #ffffff;
+      color: var(--demo-text);
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+    .demo-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .demo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--demo-border);
+      background: #ffffff;
+      color: var(--demo-text);
+      transition: all .18s;
+    }
+    .demo-btn:hover {
+      background: #fbfaf7;
+      border-color: #cbbead;
+      transform: translateY(-1px);
+    }
+    .demo-btn-primary {
+      background: #1e1e1b;
+      color: #ffffff !important;
+      border-color: #1e1e1b;
+    }
+    .demo-btn-primary:hover {
+      background: #383733;
+      border-color: #383733;
+    }
+
+    /* Khung trang mô phỏng */
+    .page-wrapper {
+      max-width: 1040px;
+      margin: 24px auto 60px;
+      padding: 0 16px;
+      transition: max-width .3s cubic-bezier(.2,1,.3,1);
+    }
+    .page-wrapper.mobile-view {
+      max-width: 440px;
+    }
+    .page-wrapper.cms-mock {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 32px;
+      align-items: start;
+    }
+    .cms-mock-sidebar {
+      display: none;
+      position: sticky;
+      top: 76px;
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid var(--demo-border);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.03);
+    }
+    .page-wrapper.cms-mock .cms-mock-sidebar {
+      display: block;
+    }
+    .cms-mock-sidebar h4 {
+      margin: 0 0 14px;
+      font-size: 14px;
+      color: var(--demo-text);
+      border-bottom: 2px solid var(--demo-accent);
+      padding-bottom: 6px;
+    }
+    .sidebar-ad-box {
+      width: 100%;
+      height: 250px;
+      background: #f4f3ee;
+      border: 1px dashed #d5d1c5;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 12px;
+      color: #8b887f;
+      margin-bottom: 16px;
+    }
+
+    .article-sheet {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--demo-border);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+      padding: 24px 24px 48px;
+    }
+
+    /* Modal hiển thị mã CMS */
+    .demo-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .demo-modal-backdrop.show { display: flex; }
+    .demo-modal-window {
+      background: #ffffff;
+      width: 100%;
+      max-width: 780px;
+      max-height: 85vh;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+      overflow: hidden;
+    }
+    .demo-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .demo-modal-head h3 { margin: 0; font-size: 16px; font-weight: 700; }
+    .demo-modal-body {
+      padding: 16px 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .demo-code-area {
+      width: 100%;
+      height: 380px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.5;
+      padding: 12px;
+      border: 1px solid #d5d1c5;
+      border-radius: 8px;
+      background: #faf9f6;
+      resize: vertical;
+      color: #242420;
+    }
+
+    @media (max-width: 768px) {
+      .demo-bar { padding: 8px 12px; }
+      .demo-title { display: none; }
+      .page-wrapper { margin: 12px auto 40px; padding: 0 10px; }
+      .article-sheet { padding: 16px 14px 32px; border-radius: 12px; }
+    }
+  </style>
+
+  <!-- ==================== CSS CỦA BÀI VIẾT SO SÁNH ==================== -->
+  <style id="zac-comparison-css">
+.zac#zacCompare{
+  --zc-ink: #242420;
+  --zc-bodyc: #383733;
+  --zc-muted: #737067;
+  --zc-line: #e6e2d8;
+  --zc-soft: #fbfaf7;
+  --zc-bar-bg: #f4f3ef;
+  --zc-bar-border: #e2dfd5;
+  --zc-card-bg: #ffffff;
+  --zc-card-border: #e5e1d7;
+  --zc-bleed: 0px;
+  --zc-a: #d97706;
+  --zc-b: #059669;
+  --zc-a-bg: #fffbeb;
+  --zc-b-bg: #f0fdf4;
+  --zc-a-badge-bg: #fef3c7;
+  --zc-a-badge-color: #92400e;
+  --zc-b-badge-bg: #d1fae5;
+  --zc-b-badge-color: #065f46;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--zc-ink);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  counter-reset: zsec;
+}
+.zac#zacCompare *{ box-sizing: border-box; }
+.zac#zacCompare p{ margin: 0; }
+.zac#zacCompare b, .zac#zacCompare strong{ font-weight: 700; }
+.zac#zacCompare a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 700px){ .zac#zacCompare{ --zc-bleed: 0px; } }
+.layout-special .zac#zacCompare, body.layout-special #zacCompare, .the-article.layout-special #zacCompare, .the-article-body.layout-special #zacCompare, .zac#zacCompare.mode-bleed{ --zc-bleed: 0px; }
+
+/* Phần đầu bài */
+.zac#zacCompare .zc-hero{
+  max-width: 880px;
+  margin: 0 auto 36px;
+  padding: 16px 16px 28px;
+  border-bottom: 1px solid var(--zc-line);
+  text-align: left;
+}
+.zac#zacCompare .zc-kicker{
+  margin: 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--zc-a);
+}
+.zac#zacCompare .zc-kicker a{ color: inherit !important; text-decoration: none !important; }
+.zac#zacCompare .zc-kicker a:hover{ text-decoration: underline !important; }
+.zac#zacCompare .zc-title{
+  margin: 0 0 16px;
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.22;
+  letter-spacing: -.02em;
+  color: var(--zc-ink);
+}
+.zac#zacCompare .zc-sapo{
+  margin: 0 0 18px;
+  font-size: 19.5px;
+  line-height: 1.62;
+  color: var(--zc-bodyc);
+  font-weight: 400;
+  opacity: .95;
+}
+.zac#zacCompare .zc-byline{
+  font-size: 13.5px;
+  color: var(--zc-muted);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Dẫn nhập và mục lục */
+.zac#zacCompare .zc-intro{
+  max-width: 760px;
+  margin: 0 auto 36px;
+  padding: 0 16px;
+}
+.zac#zacCompare .zc-intro p{
+  margin: 0 0 20px;
+  font-size: 18px;
+  line-height: 1.78;
+  color: var(--zc-bodyc);
+}
+.zac#zacCompare .zc-toc{
+  max-width: 760px;
+  margin: 0 auto 40px;
+  padding: 22px 24px;
+  background: var(--zc-soft);
+  border-left: 4px solid var(--zc-a);
+  border-radius: 0 10px 10px 0;
+}
+.zac#zacCompare .zc-toc-title{
+  margin: 0 0 12px;
+  font-weight: 800;
+  font-size: 15.5px;
+  color: var(--zc-ink);
+  letter-spacing: .02em;
+}
+.zac#zacCompare .zc-toc ol{
+  margin: 0;
+  padding: 0 0 0 22px;
+}
+.zac#zacCompare .zc-toc li{
+  margin: 8px 0;
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+.zac#zacCompare .zc-toc a{
+  text-decoration: none;
+  color: var(--zc-ink);
+  font-weight: 600;
+}
+.zac#zacCompare .zc-toc a:hover{
+  text-decoration: underline;
+  color: var(--zc-a);
+}
+
+/* Các phân đoạn so sánh */
+.zac#zacCompare .zc-item{
+  max-width: 920px;
+  margin: 58px auto 0;
+  padding: 0 16px;
+  counter-increment: zsec;
+  scroll-margin-top: 80px;
+}
+.zac#zacCompare .zc-item-head{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.zac#zacCompare .zc-item-num{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--zc-a);
+  background: rgba(217, 119, 6, .12);
+  padding: 5px 12px;
+  border-radius: 6px;
+  flex: none;
+}
+.zac#zacCompare .zc-item-title{
+  margin: 0;
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.3;
+  color: var(--zc-ink);
+}
+
+/* Khung so sánh ảnh trực quan */
+.zac#zacCompare .zc-media-wrap{
+  background: var(--zc-soft);
+  border: 1px solid var(--zc-line);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .04);
+}
+.zac#zacCompare .zc-cmp-box{
+  --pos: 50%;
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Tỷ lệ 16:9 */
+  overflow: hidden;
+  border-radius: 10px;
+  background: #e2dfd5;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  cursor: ew-resize;
+}
+.zac#zacCompare .zc-img-layer{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.zac#zacCompare .zc-img-layer img{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.zac#zacCompare .zc-img-layer.zc-img-b{ z-index: 1; }
+.zac#zacCompare .zc-img-layer.zc-img-a{
+  z-index: 2;
+  clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+}
+.zac#zacCompare .zc-img-tag{
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: #fff;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+}
+.zac#zacCompare .zc-tag-a{
+  left: 14px;
+  background: rgba(217, 119, 6, .92);
+}
+.zac#zacCompare .zc-tag-b{
+  right: 14px;
+  background: rgba(5, 150, 105, .92);
+}
+.zac#zacCompare .zc-img-caption{
+  position: absolute;
+  z-index: 3;
+  bottom: 12px;
+  padding: 5px 12px;
+  background: rgba(0, 0, 0, .72);
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 6px;
+  pointer-events: none;
+  max-width: 82%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.zac#zacCompare .zc-img-a .zc-img-caption{ left: 12px; }
+.zac#zacCompare .zc-img-b .zc-img-caption{ right: 12px; }
+
+/* Thanh phân chia trên ảnh */
+.zac#zacCompare .zc-divider{
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  left: var(--pos, 50%);
+  width: 2px;
+  margin-left: -1px;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .6);
+  pointer-events: none;
+}
+.zac#zacCompare .zc-divider-handle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
+  pointer-events: auto;
+}
+.zac#zacCompare .zc-divider-handle svg{
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #17181b;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Thanh trượt phong cách iPhone */
+.zac#zacCompare .zc-ios-bar{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 6px 10px;
+  background: var(--zc-bar-bg);
+  border: 1px solid var(--zc-bar-border);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .03);
+}
+.zac#zacCompare .zc-tab-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--zc-muted);
+  cursor: pointer;
+  transition: all .22s ease;
+  white-space: nowrap;
+  flex: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.zac#zacCompare .zc-tab-btn:hover{
+  color: var(--zc-ink);
+  background: rgba(255, 255, 255, .7);
+}
+.zac#zacCompare .zc-tab-btn.is-active{
+  background: #ffffff;
+  color: var(--zc-ink);
+  border-color: rgba(0, 0, 0, .08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+}
+.zac#zacCompare .zc-tab-a.is-active .zc-dot{ background: var(--zc-a); }
+.zac#zacCompare .zc-tab-b.is-active .zc-dot{ background: var(--zc-b); }
+.zac#zacCompare .zc-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c5c1b8;
+  transition: background .2s ease;
+}
+
+/* Rãnh trượt iPhone */
+.zac#zacCompare .zc-ios-track{
+  position: relative;
+  flex: 1;
+  height: 44px;
+  background: rgba(0, 0, 0, .06);
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  display: flex;
+  align-items: center;
+}
+.zac#zacCompare .zc-ios-shimmer{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.zac#zacCompare .zc-shimmer-text{
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  background: linear-gradient(90deg, #9b988f 0%, #1a1a18 45%, #9b988f 90%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: zcShimmer 2.4s infinite linear;
+  white-space: nowrap;
+  cursor: pointer;
+}
+@keyframes zcShimmer{
+  0%{ background-position: 100% 0; }
+  100%{ background-position: -100% 0; }
+}
+
+/* Nút trượt tròn iPhone */
+.zac#zacCompare .zc-ios-knob{
+  position: absolute;
+  top: 4px;
+  left: calc(4px + (100% - 44px) * (var(--pos, 50) / 100));
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, .08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  z-index: 2;
+}
+.zac#zacCompare .zc-ios-knob:active{
+  cursor: grabbing;
+  transform: scale(1.08);
+}
+.zac#zacCompare .zc-knob-icon{
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: #17181b;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Hiệu ứng trượt mượt mà khi bấm */
+.zac#zacCompare .zc-item.is-animating .zc-img-a{ transition: clip-path .38s cubic-bezier(.22, 1, .36, 1); }
+.zac#zacCompare .zc-item.is-animating .zc-divider{ transition: left .38s cubic-bezier(.22, 1, .36, 1); }
+.zac#zacCompare .zc-item.is-animating .zc-ios-knob{ transition: left .38s cubic-bezier(.22, 1, .36, 1); }
+
+/* Khối ma trận văn bản 2 cột cân đối */
+.zac#zacCompare .zc-text-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+@media (max-width: 720px){
+  .zac#zacCompare .zc-text-grid{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+.zac#zacCompare .zc-card{
+  border-radius: 14px;
+  padding: 24px 26px;
+  background: var(--zc-card-bg);
+  border: 1px solid var(--zc-card-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .03);
+  transition: all .25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.zac#zacCompare .zc-card-head{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.zac#zacCompare .zc-badge{
+  padding: 4px 11px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  flex: none;
+}
+.zac#zacCompare .zc-badge-a{
+  background: var(--zc-a-badge-bg);
+  color: var(--zc-a-badge-color);
+}
+.zac#zacCompare .zc-badge-b{
+  background: var(--zc-b-badge-bg);
+  color: var(--zc-b-badge-color);
+}
+.zac#zacCompare .zc-card-title{
+  margin: 0;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--zc-ink);
+  line-height: 1.35;
+}
+.zac#zacCompare .zc-card-body p{
+  margin: 0 0 14px;
+  font-size: 16.5px;
+  line-height: 1.74;
+  color: var(--zc-bodyc);
+}
+.zac#zacCompare .zc-card-body p:last-child{ margin-bottom: 0; }
+.zac#zacCompare .zc-card.is-active{
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+}
+.zac#zacCompare .zc-card-a.is-active{
+  border-color: var(--zc-a);
+  background: var(--zc-a-bg);
+}
+.zac#zacCompare .zc-card-b.is-active{
+  border-color: var(--zc-b);
+  background: var(--zc-b-bg);
+}
+
+/* Phần kết luận & điều hướng */
+.zac#zacCompare .zc-verdict{
+  max-width: 880px;
+  margin: 58px auto 0;
+  padding: 30px 32px;
+  background: var(--zc-soft);
+  border-radius: 14px;
+  border: 1px solid var(--zc-line);
+  border-left: 5px solid var(--zc-b);
+}
+.zac#zacCompare .zc-verdict-title{
+  margin: 0 0 12px;
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 700;
+  font-size: 21px;
+  color: var(--zc-ink);
+}
+.zac#zacCompare .zc-verdict p{
+  margin: 0 0 12px;
+  font-size: 17.5px;
+  line-height: 1.74;
+  color: var(--zc-bodyc);
+}
+.zac#zacCompare .zc-verdict p:last-child{ margin-bottom: 0; }
+.zac#zacCompare .zc-note{
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: var(--zc-muted);
+  font-style: italic;
+}
+.zac#zacCompare .zc-endnav{
+  max-width: 880px;
+  margin: 44px auto 0;
+  padding: 24px 16px 8px;
+  border-top: 1px solid var(--zc-line);
+  text-align: center;
+}
+.zac#zacCompare .zc-endnav .zc-kicker{ margin: 0; color: var(--zc-ink); }
+.zac#zacCompare .zc-endnav .zc-kicker a{ color: var(--zc-ink) !important; }
+.zac#zacCompare .zc-endnav .zc-kicker::before{ content: "← "; opacity: .6; }
+  </style>
+</head>
+<body>
+
+  <!-- Thanh điều khiển thử nghiệm -->
+  <header class="demo-bar">
+    <div class="demo-bar-left">
+      <span class="demo-badge">ZNEWS DEMO</span>
+      <span class="demo-title">Bài viết so sánh đối chiếu: Bỏ phố về ven</span>
+    </div>
+
+    <div class="demo-bar-mid">
+      <button class="demo-mode-btn active" id="btnModeDesktop" onclick="setMode('desktop')">Máy tính</button>
+      <button class="demo-mode-btn" id="btnModeMobile" onclick="setMode('mobile')">Di động (420px)</button>
+      <button class="demo-mode-btn" id="btnModeCMS" onclick="setMode('cms')">Mô phỏng CMS</button>
+    </div>
+
+    <div class="demo-bar-right">
+      <button class="demo-btn" onclick="openCodeModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        Mã CMS
+      </button>
+      <a href="comparison-tool.html" class="demo-btn demo-btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        Soạn bài mới
+      </a>
+    </div>
+  </header>
+
+  <!-- Khung hiển thị bài viết -->
+  <div class="page-wrapper" id="pageWrapper">
+    <main class="article-sheet">
+
+      <!-- ==================== NỘI DUNG BÀI VIẾT SO SÁNH ==================== -->
+      <article class="zac" id="zacCompare">
+
+        <!-- Header bài viết -->
+        <header class="zc-hero">
+          <div class="zc-kicker">
+            <a href="https://znews.vn/doi-song.html" target="_blank">Đời sống & Đô thị</a> · <a href="#" onclick="return false">Góc nhìn & Đối chiếu</a>
+          </div>
+          <h1 class="zc-title">Bỏ phố về ven: Đánh đổi và Lợi ích sau 3 năm nhìn lại</h1>
+          <p class="zc-sapo">
+            Xu hướng rời trung tâm để ra các khu đô thị vệ tinh mang lại không gian sống thoáng đãng và giảm bớt áp lực tài chính, nhưng cũng buộc người trẻ phải đối mặt với bài toán thời gian di chuyển và dịch vụ xung quanh.
+          </p>
+          <div class="zc-byline">
+            <span>Tác giả: <b>Minh Châu - Phương Linh</b></span>
+            <span>·</span>
+            <span>Thứ hai, 5/10/2026, 07:00 (GMT+7)</span>
+          </div>
+        </header>
+
+        <!-- Dẫn nhập -->
+        <section class="zc-intro">
+          <p>
+            Trong 5 năm qua, làn sóng dịch chuyển an cư từ lõi trung tâm ra các khu đô thị vệ tinh vùng ven ngày càng trở nên rõ nét đối với các gia đình trẻ tại Hà Nội và TP.HCM.
+          </p>
+          <p>
+            Nhìn từ bên ngoài, đó là sự lựa chọn lý tưởng cho một lối sống xanh, rời xa khói bụi và chật chội. Nhưng trên thực tế sau hơn 3 năm trải nghiệm, mỗi quyết định an cư đều là một bài toán cân đo giữa những giá trị nhận lại và cái giá thực tế phải trả.
+          </p>
+        </section>
+
+        <!-- Mục lục nhanh -->
+        <nav class="zc-toc">
+          <div class="zc-toc-title">Nội dung đối chiếu trong bài:</div>
+          <ol>
+            <li><a href="#cmp-sec-1">Không gian sống và môi trường sinh hoạt</a></li>
+            <li><a href="#cmp-sec-2">Chi phí tài chính và gánh nặng nợ vay</a></li>
+            <li><a href="#cmp-sec-3">Quãng đường di chuyển và nhịp sống thường nhật</a></li>
+          </ol>
+        </nav>
+
+        <!-- MỤC 1: KHÔNG GIAN SỐNG -->
+        <section class="zc-item" id="cmp-sec-1" data-label-a="Đánh đổi" data-label-b="Lợi ích">
+          <div class="zc-item-head">
+            <span class="zc-item-num">01</span>
+            <h2 class="zc-item-title">Không gian sống và môi trường sinh hoạt</h2>
+          </div>
+
+          <div class="zc-media-wrap">
+            <div class="zc-cmp-box" role="region" aria-label="So sánh ảnh Không gian sống">
+              <div class="zc-img-layer zc-img-b">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1400&q=80"
+                     alt="Khu đô thị vệ tinh xanh"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'960\' height=\'540\' viewBox=\'0 0 960 540\'><rect fill=\'%23065f46\' width=\'960\' height=\'540\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Khu đô thị vệ tinh sinh thái</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%23a7f3d0\' text-anchor=\'middle\'>Không gian xanh, công viên rộng lớn và ánh sáng tự nhiên</text></svg>';">
+                <span class="zc-img-tag zc-tag-b">Lợi ích</span>
+                <span class="zc-img-caption">Không gian sống 95m² vùng ven với ban công mở ra công viên cây xanh</span>
+              </div>
+              <div class="zc-img-layer zc-img-a">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1400&q=80"
+                     alt="Căn hộ nội đô chật hẹp"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'960\' height=\'540\' viewBox=\'0 0 960 540\'><rect fill=\'%2392400e\' width=\'960\' height=\'540\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Căn hộ nội đô chật hẹp</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%23fde68a\' text-anchor=\'middle\'>Diện tích 48m2, tầm nhìn bị vây kín bởi các khối bê tông</text></svg>';">
+                <span class="zc-img-tag zc-tag-a">Đánh đổi</span>
+                <span class="zc-img-caption">Căn hộ nội đô 48m² chật hẹp, tầm nhìn bị che khuất</span>
+              </div>
+              <div class="zc-divider">
+                <div class="zc-divider-handle" title="Kéo để so sánh hai ảnh">
+                  <svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thanh trượt phong cách iPhone -->
+            <div class="zc-ios-bar">
+              <button type="button" class="zc-tab-btn zc-tab-a" aria-label="Xem Đánh đổi">
+                <span class="zc-dot"></span>
+                <span>Đánh đổi</span>
+              </button>
+              <div class="zc-ios-track" role="slider" aria-label="Thanh trượt chuyển ảnh kiểu iPhone" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                <div class="zc-ios-shimmer">
+                  <span class="zc-shimmer-text">Trượt để xem lợi ích ›››</span>
+                </div>
+                <div class="zc-ios-knob" title="Vuốt hoặc kéo trượt">
+                  <svg class="zc-knob-icon" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+                </div>
+              </div>
+              <button type="button" class="zc-tab-btn zc-tab-b" aria-label="Xem Lợi ích">
+                <span class="zc-dot"></span>
+                <span>Lợi ích</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ma trận văn bản 2 cột cân đối -->
+          <div class="zc-text-grid">
+            <div class="zc-card zc-card-a">
+              <div class="zc-card-head">
+                <span class="zc-badge zc-badge-a">Đánh đổi</span>
+                <h3 class="zc-card-title">Thu hẹp tối đa không gian cá nhân</h3>
+              </div>
+              <div class="zc-card-body">
+                <p>
+                  Sống trong lõi đô thị cũ đồng nghĩa với việc chấp nhận diện tích khiêm tốn. Căn hộ dưới 50m² vừa là phòng khách, góc làm việc và nơi sinh hoạt chung, khiến ranh giới riêng tư giữa các thành viên gần như không tồn tại.
+                </p>
+                <p>
+                  Tiếng còi xe và khói bụi từ mặt đường lớn cũng khiến việc mở cửa sổ đón gió tự nhiên trở thành điều xa xỉ trong phần lớn thời gian trong ngày.
+                </p>
+              </div>
+            </div>
+
+            <div class="zc-card zc-card-b">
+              <div class="zc-card-head">
+                <span class="zc-badge zc-badge-b">Lợi ích</span>
+                <h3 class="zc-card-title">Bầu không khí trong lành và diện tích gấp đôi</h3>
+              </div>
+              <div class="zc-card-body">
+                <p>
+                  Cùng số tiền đó tại vùng ven, gia đình có thể sở hữu căn hộ 3 phòng ngủ với diện tích gần 100m², đón ánh sáng tự nhiên từ mọi phòng ngủ và ban công rộng mở.
+                </p>
+                <p>
+                  Quan trọng hơn cả là môi trường cho con nhỏ: trẻ có sân chơi nội khu an toàn, đường chạy bộ dưới bóng cây và không gian vận động ngoài trời mà không lo lắng về mật độ giao thông nguy hiểm.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MỤC 2: CHI PHÍ TÀI CHÍNH -->
+        <section class="zc-item" id="cmp-sec-2" data-label-a="Đánh đổi" data-label-b="Lợi ích">
+          <div class="zc-item-head">
+            <span class="zc-item-num">02</span>
+            <h2 class="zc-item-title">Chi phí tài chính và gánh nặng nợ vay</h2>
+          </div>
+
+          <div class="zc-media-wrap">
+            <div class="zc-cmp-box" role="region" aria-label="So sánh ảnh Chi phí tài chính">
+              <div class="zc-img-layer zc-img-b">
+                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1400&q=80"
+                     alt="Tài chính nhẹ gánh và tích lũy"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'960\' height=\'540\' viewBox=\'0 0 960 540\'><rect fill=\'%23065f46\' width=\'960\' height=\'540\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Tài chính nhẹ gánh và tích lũy</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%23a7f3d0\' text-anchor=\'middle\'>Giảm 45% gánh nặng trả nợ, thêm dòng tiền tích lũy</text></svg>';">
+                <span class="zc-img-tag zc-tag-b">Lợi ích</span>
+                <span class="zc-img-caption">Chi phí sở hữu vừa tầm giúp gia đình duy trì dòng tiền ổn định</span>
+              </div>
+              <div class="zc-img-layer zc-img-a">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1400&q=80"
+                     alt="Áp lực tài chính và nợ vay"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'960\' height=\'540\' viewBox=\'0 0 960 540\'><rect fill=\'%2392400e\' width=\'960\' height=\'540\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Áp lực tài chính và nợ vay</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%23fde68a\' text-anchor=\'middle\'>Giá nhà trung tâm leo thang, đòn bẩy tài chính căng thẳng</text></svg>';">
+                <span class="zc-img-tag zc-tag-a">Đánh đổi</span>
+                <span class="zc-img-caption">Giá nhà trung tâm neo ở mức cao kỷ lục, đòi hỏi đòn bẩy tài chính lớn</span>
+              </div>
+              <div class="zc-divider">
+                <div class="zc-divider-handle" title="Kéo để so sánh hai ảnh">
+                  <svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thanh trượt phong cách iPhone -->
+            <div class="zc-ios-bar">
+              <button type="button" class="zc-tab-btn zc-tab-a" aria-label="Xem Đánh đổi">
+                <span class="zc-dot"></span>
+                <span>Đánh đổi</span>
+              </button>
+              <div class="zc-ios-track" role="slider" aria-label="Thanh trượt chuyển ảnh kiểu iPhone" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                <div class="zc-ios-shimmer">
+                  <span class="zc-shimmer-text">Trượt để xem lợi ích ›››</span>
+                </div>
+                <div class="zc-ios-knob" title="Vuốt hoặc kéo trượt">
+                  <svg class="zc-knob-icon" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+                </div>
+              </div>
+              <button type="button" class="zc-tab-btn zc-tab-b" aria-label="Xem Lợi ích">
+                <span class="zc-dot"></span>
+                <span>Lợi ích</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ma trận văn bản 2 cột cân đối -->
+          <div class="zc-text-grid">
+            <div class="zc-card zc-card-a">
+              <div class="zc-card-head">
+                <span class="zc-badge zc-badge-a">Đánh đổi</span>
+                <h3 class="zc-card-title">Tốc độ tăng giá tài sản chậm hơn</h3>
+              </div>
+              <div class="zc-card-body">
+                <p>
+                  Bất động sản trung tâm luôn có tính thanh khoản cao và khả năng giữ giá vượt trội qua các chu kỳ kinh tế nhiều biến động.
+                </p>
+                <p>
+                  Khi chọn mua căn hộ vùng ven, người mua phải chấp nhận biên độ tăng giá có thể không đột biến, đồng thời thị trường thứ cấp cần nhiều thời gian hơn để tìm kiếm người mua lại khi có nhu cầu thanh khoản.
+                </p>
+              </div>
+            </div>
+
+            <div class="zc-card zc-card-b">
+              <div class="zc-card-head">
+                <span class="zc-badge zc-badge-b">Lợi ích</span>
+                <h3 class="zc-card-title">Giảm 45% áp lực trả nợ ngân hàng mỗi tháng</h3>
+              </div>
+              <div class="zc-card-body">
+                <p>
+                  Khoản vay ngân hàng giảm từ 2,5 tỷ xuống chỉ còn khoảng 1,1 tỷ đồng giúp số tiền trả gốc lãi hàng tháng giảm đi gần một nửa, giải phóng gánh nặng tâm lý đè nặng lên cả gia đình.
+                </p>
+                <p>
+                  Sự thảnh thơi về mặt tinh thần giúp người trẻ không còn rơi vào trạng thái kiệt sức vì công việc, đồng thời có thêm ngân sách dự phòng cho y tế, bảo hiểm và những chuyến du lịch tái tạo năng lượng cùng gia đình.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MỤC 3: QUÃNG ĐƯỜNG DI CHUYỂN -->
+        <section class="zc-item" id="cmp-sec-3" data-label-a="Đánh đổi" data-label-b="Lợi ích">
+          <div class="zc-item-head">
+            <span class="zc-item-num">03</span>
+            <h2 class="zc-item-title">Quãng đường di chuyển và nhịp sống thường nhật</h2>
+          </div>
+
+          <div class="zc-media-wrap">
+            <div class="zc-cmp-box" role="region" aria-label="So sánh ảnh Quãng đường di chuyển">
+              <div class="zc-img-layer zc-img-b">
+                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1400&q=80"
+                     alt="Buổi tối bình yên bên gia đình"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'960\' height=\'540\' viewBox=\'0 0 960 540\'><rect fill=\'%23065f46\' width=\'960\' height=\'540\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Buổi tối bình yên</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%23a7f3d0\' text-anchor=\'middle\'>Tách biệt hoàn toàn khỏi áp lực công sở sau giờ làm</text></svg>';">
+                <span class="zc-img-tag zc-tag-b">Lợi ích</span>
+                <span class="zc-img-caption">Bữa cơm gia đình đúng giờ và buổi tối tách biệt hoàn toàn khỏi áp lực công sở</span>
+              </div>
+              <div class="zc-img-layer zc-img-a">
+                <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1400&q=80"
+                     alt="Kẹt xe giờ cao điểm"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'960\' height=\'540\' viewBox=\'0 0 960 540\'><rect fill=\'%2392400e\' width=\'960\' height=\'540\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Kẹt xe giờ cao điểm</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%23fde68a\' text-anchor=\'middle\'>Hành trình 18 km mỗi chiều trong khói bụi và mưa ngập</text></svg>';">
+                <span class="zc-img-tag zc-tag-a">Đánh đổi</span>
+                <span class="zc-img-caption">Hành trình 18 km mỗi chiều trên trục đường hướng tâm giờ cao điểm</span>
+              </div>
+              <div class="zc-divider">
+                <div class="zc-divider-handle" title="Kéo để so sánh hai ảnh">
+                  <svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thanh trượt phong cách iPhone -->
+            <div class="zc-ios-bar">
+              <button type="button" class="zc-tab-btn zc-tab-a" aria-label="Xem Đánh đổi">
+                <span class="zc-dot"></span>
+                <span>Đánh đổi</span>
+              </button>
+              <div class="zc-ios-track" role="slider" aria-label="Thanh trượt chuyển ảnh kiểu iPhone" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                <div class="zc-ios-shimmer">
+                  <span class="zc-shimmer-text">Trượt để xem lợi ích ›››</span>
+                </div>
+                <div class="zc-ios-knob" title="Vuốt hoặc kéo trượt">
+                  <svg class="zc-knob-icon" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+                </div>
+              </div>
+              <button type="button" class="zc-tab-btn zc-tab-b" aria-label="Xem Lợi ích">
+                <span class="zc-dot"></span>
+                <span>Lợi ích</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ma trận văn bản 2 cột cân đối -->
+          <div class="zc-text-grid">
+            <div class="zc-card zc-card-a">
+              <div class="zc-card-head">
+                <span class="zc-badge zc-badge-a">Đánh đổi</span>
+                <h3 class="zc-card-title">Mỗi ngày mất thêm 80-90 phút trên đường</h3>
+              </div>
+              <div class="zc-card-body">
+                <p>
+                  Đây là cái giá lớn nhất mà hầu hết cư dân vùng ven đều phải nếm trải: phải thức dậy từ 6h15 sáng để kịp đưa con đến trường và đến công sở trước giờ chấm công.
+                </p>
+                <p>
+                  Những ngày mưa lớn ngập đường hay xảy ra va chạm giao thông trên tuyến cầu huyết mạch, thời gian trên đường có thể kéo dài tới gần 2 giờ đồng hồ, tiêu hao đáng kể năng lượng thể chất và sự kiên nhẫn.
+                </p>
+              </div>
+            </div>
+
+            <div class="zc-card zc-card-b">
+              <div class="zc-card-head">
+                <span class="zc-badge zc-badge-b">Lợi ích</span>
+                <h3 class="zc-card-title">Thói quen kỷ luật và ranh giới rõ ràng cho công việc</h3>
+              </div>
+              <div class="zc-card-body">
+                <p>
+                  Chính quãng đường xa lại tạo ra động lực chuyển đổi: nhiều người chủ động đàm phán chế độ làm việc từ xa 2 ngày mỗi tuần, hoặc chuyển dịch công việc sang các nền tảng số hóa.
+                </p>
+                <p>
+                  Khi bước chân về đến nhà ở vùng ven, sự yên tĩnh gần như tuyệt đối giúp não bộ ngắt kết nối hoàn toàn với công việc, dành trọn vẹn buổi tối cho người thân và giấc ngủ trọn vẹn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Khối kết bài / Lời khuyên -->
+        <section class="zc-verdict">
+          <h3 class="zc-verdict-title">Lời kết và góc nhìn đa chiều</h3>
+          <p>
+            Không có phương án nào là hoàn hảo tuyệt đối trong bài toán an cư. Vùng ven hay nội đô không phải là câu chuyện đúng hay sai, mà là sự lựa chọn phù hợp với thứ tự ưu tiên của mỗi người tại từng giai đoạn cuộc đời.
+          </p>
+          <p>
+            Nếu gia đình bạn đang cần một điểm tựa nuôi dạy con nhỏ trong không gian xanh và muốn giảm bớt áp lực nợ nần, vùng ven là một khoản đầu tư xứng đáng. Nhưng nếu công việc gắn liền với trung tâm và sự linh hoạt thời gian là ưu tiên số 1, thì việc chấp nhận căn nhà nhỏ ở lõi đô thị vẫn là quyết định hợp lý.
+          </p>
+          <div class="zc-note">
+            Tư liệu và khảo sát thực tế: Tri Thức - Znews
+          </div>
+        </section>
+
+        <!-- Điều hướng chân bài -->
+        <footer class="zc-endnav">
+          <div class="zc-kicker">
+            <a href="https://znews.vn/doi-song.html" target="_blank">Đời sống & Đô thị</a>
+          </div>
+        </footer>
+
+      </article>
+
+    </main>
+
+    <!-- Sidebar mô phỏng cho chế độ CMS Znews -->
+    <aside class="cms-mock-sidebar" id="cmsMockSidebar">
+      <h4>Vùng quảng cáo mô phỏng (CMS)</h4>
+      <div class="sidebar-ad-box">
+        Banner Quảng cáo 300×250<br>
+        (Bảo vệ 100% không bị xô lệch)
+      </div>
+      <div class="sidebar-ad-box" style="height: 600px;">
+        Sticky Banner 300×600<br>
+        (Sidebar Znews)
+      </div>
+    </aside>
+  </div>
+
+  <!-- Modal mã nguồn CMS -->
+  <div class="demo-modal-backdrop" id="demoModal">
+    <div class="demo-modal-window">
+      <div class="demo-modal-head">
+        <h3>Mã nhúng HTML/CSS chuẩn CMS Znews</h3>
+        <button class="demo-btn" onclick="closeCodeModal()">Đóng</button>
+      </div>
+      <div class="demo-modal-body">
+        <p style="font-size:13px; color:#666; margin:0 0 10px;">
+          Đoạn mã dưới đây là mã nguồn thuần túy được tạo từ công cụ, bạn có thể bấm sao chép và dán trực tiếp vào chế độ <b>Source Code / HTML</b> của CMS Znews:
+        </p>
+        <textarea id="demoCodeText" class="demo-code-area" readonly></textarea>
+        <div style="margin-top:12px; display:flex; justify-content:flex-end; gap:8px;">
+          <button class="demo-btn demo-btn-primary" id="btnCopySnippet" onclick="copySnippet()">
+            Sao chép toàn bộ mã CMS
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== RUNTIME SCRIPT TƯƠNG TÁC ==================== -->
+  <script>
+    /* Chuyển chế độ xem thử nghiệm */
+    function setMode(mode) {
+      var wrap = document.getElementById('pageWrapper');
+      document.getElementById('btnModeDesktop').classList.toggle('active', mode === 'desktop');
+      document.getElementById('btnModeMobile').classList.toggle('active', mode === 'mobile');
+      document.getElementById('btnModeCMS').classList.toggle('active', mode === 'cms');
+
+      wrap.classList.remove('mobile-view', 'cms-mock');
+      if (mode === 'mobile') wrap.classList.add('mobile-view');
+      if (mode === 'cms') wrap.classList.add('cms-mock');
+    }
+
+    /* Modal mã nguồn */
+    function openCodeModal() {
+      var css = document.getElementById('zac-comparison-css').innerHTML.trim();
+      var art = document.getElementById('zacCompare').outerHTML;
+      var jsSnippet = '<script>\n' +
+        '(function(){\n' +
+        '  if(window.ZAC_EDIT){return;}\n' +
+        '  var zcFixSize=' + zcFixSize.toString().replace(/\s+/g, ' ') + ';\n' +
+        '  var zcInitCompare=' + zcInitCompare.toString().replace(/\s+/g, ' ') + ';\n' +
+        '  zcInitCompare(document);\n' +
+        '})();\n' +
+        '<\/script>';
+
+      var fullCode = '<style>\n' + css + '\n</style>\n' + art + '\n' + jsSnippet;
+      document.getElementById('demoCodeText').value = fullCode;
+      document.getElementById('demoModal').classList.add('show');
+    }
+    function closeCodeModal() {
+      document.getElementById('demoModal').classList.remove('show');
+    }
+    function copySnippet() {
+      var ta = document.getElementById('demoCodeText');
+      ta.select();
+      navigator.clipboard.writeText(ta.value).then(function(){
+        var btn = document.getElementById('btnCopySnippet');
+        var old = btn.textContent;
+        btn.textContent = 'Đã sao chép vào bộ nhớ tạm!';
+        setTimeout(function(){ btn.textContent = old; }, 2000);
+      });
+    }
+
+    /* Logic xử lý ảnh thích ứng kích thước Znews */
+    function zcFixSize(img){
+      var s = img.currentSrc || img.src || '';
+      var m = s.match(/photo\.znews\.vn\/w(\d+)\/Uploaded\//);
+      if (!m) return;
+      var ladder = [360, 480, 660, 860, 960, 1024, 1200, 1920];
+      var box = img.getBoundingClientRect().width || 960;
+      var target = box * (window.devicePixelRatio || 1);
+      var need = 1920;
+      for (var i = 0; i < ladder.length; i++) { if (target <= ladder[i]) { need = ladder[i]; break; } }
+      if ((+m[1] === 210 || +m[1] < need) && img._zcSize !== need) {
+        img._zcSize = need;
+        img.removeAttribute('srcset');
+        img.src = s.replace(/photo\.znews\.vn\/w\d+\/Uploaded\//, 'photo.znews.vn/w' + need + '/Uploaded/');
+      }
+    }
+
+    /* Logic điều khiển thanh trượt iPhone & Đồng bộ văn bản */
+    function zcInitCompare(root){
+      var art = root.querySelector ? root.querySelector('#zacCompare') : null;
+      if (!art) return;
+
+      var items = art.querySelectorAll('.zc-item');
+      for (var i = 0; i < items.length; i++) {
+        (function(item){
+          if (item._zcInit) return;
+          item._zcInit = true;
+
+          var cmpBox = item.querySelector('.zc-cmp-box');
+          var track = item.querySelector('.zc-ios-track');
+          var knob = item.querySelector('.zc-ios-knob');
+          var tabA = item.querySelector('.zc-tab-a');
+          var tabB = item.querySelector('.zc-tab-b');
+          var cardA = item.querySelector('.zc-card-a');
+          var cardB = item.querySelector('.zc-card-b');
+          var shimmer = item.querySelector('.zc-shimmer-text');
+          var knobIcon = item.querySelector('.zc-knob-icon');
+
+          var labelA = item.getAttribute('data-label-a') || 'Đánh đổi';
+          var labelB = item.getAttribute('data-label-b') || 'Lợi ích';
+          var pos = 50;
+          var isDragging = false;
+          var source = null;
+
+          function updateUI(p, smooth){
+            pos = Math.max(0, Math.min(100, p));
+            if (smooth) {
+              item.classList.add('is-animating');
+              setTimeout(function(){ item.classList.remove('is-animating'); }, 380);
+            }
+            item.style.setProperty('--pos', pos + '%');
+
+            if (pos <= 42) {
+              if (tabA) tabA.classList.add('is-active');
+              if (tabB) tabB.classList.remove('is-active');
+              if (cardA) cardA.classList.add('is-active');
+              if (cardB) cardB.classList.remove('is-active');
+              if (shimmer) shimmer.textContent = 'Trượt để xem ' + labelB.toLowerCase() + ' ›››';
+              if (knobIcon) knobIcon.innerHTML = '<path d="M9 18l6-6-6-6"/>';
+            } else if (pos >= 58) {
+              if (tabA) tabA.classList.remove('is-active');
+              if (tabB) tabB.classList.add('is-active');
+              if (cardA) cardA.classList.remove('is-active');
+              if (cardB) cardB.classList.add('is-active');
+              if (shimmer) shimmer.textContent = '‹‹‹ Trượt để xem ' + labelA.toLowerCase();
+              if (knobIcon) knobIcon.innerHTML = '<path d="M15 18l-6-6 6-6"/>';
+            } else {
+              if (tabA) tabA.classList.remove('is-active');
+              if (tabB) tabB.classList.remove('is-active');
+              if (cardA) cardA.classList.add('is-active');
+              if (cardB) cardB.classList.add('is-active');
+              if (shimmer) shimmer.textContent = 'Trượt mở sang hai phía ‹ ›';
+              if (knobIcon) knobIcon.innerHTML = '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>';
+            }
+
+            if (track) track.setAttribute('aria-valuenow', Math.round(pos));
+          }
+
+          if (cmpBox) {
+            function fromBox(e){
+              var r = cmpBox.getBoundingClientRect();
+              if (r.width > 0) updateUI((e.clientX - r.left) / r.width * 100, false);
+            }
+            cmpBox.addEventListener('pointerdown', function(e){
+              if (e.pointerType === 'mouse' && e.button !== 0) return;
+              isDragging = true; source = 'box';
+              try { cmpBox.setPointerCapture(e.pointerId); } catch(err){}
+              fromBox(e);
+            });
+            cmpBox.addEventListener('pointermove', function(e){ if (isDragging && source === 'box') fromBox(e); });
+            function stopBox(){ if (isDragging && source === 'box') { isDragging = false; source = null; } }
+            cmpBox.addEventListener('pointerup', stopBox);
+            cmpBox.addEventListener('pointercancel', stopBox);
+            cmpBox.addEventListener('lostpointercapture', stopBox);
+          }
+
+          if (track) {
+            function fromTrack(e){
+              var r = track.getBoundingClientRect();
+              if (r.width > 0) updateUI((e.clientX - r.left) / r.width * 100, false);
+            }
+            track.addEventListener('pointerdown', function(e){
+              if (e.pointerType === 'mouse' && e.button !== 0) return;
+              isDragging = true; source = 'track';
+              try { track.setPointerCapture(e.pointerId); } catch(err){}
+              fromTrack(e);
+            });
+            track.addEventListener('pointermove', function(e){ if (isDragging && source === 'track') fromTrack(e); });
+            function stopTrack(){ if (isDragging && source === 'track') { isDragging = false; source = null; } }
+            track.addEventListener('pointerup', stopTrack);
+            track.addEventListener('pointercancel', stopTrack);
+            track.addEventListener('lostpointercapture', stopTrack);
+          }
+
+          if (tabA) tabA.addEventListener('click', function(){ updateUI(0, true); });
+          if (tabB) tabB.addEventListener('click', function(){ updateUI(100, true); });
+          if (shimmer) {
+            shimmer.addEventListener('click', function(){
+              if (pos <= 50) updateUI(100, true);
+              else updateUI(0, true);
+            });
+          }
+
+          updateUI(50, false);
+        })(items[i]);
+      }
+
+      var imgs = art.querySelectorAll('img');
+      for (var j = 0; j < imgs.length; j++) {
+        (function(im){
+          im.addEventListener('load', function(){ zcFixSize(im); });
+          if (im.complete && im.naturalWidth) zcFixSize(im);
+        })(imgs[j]);
+      }
+    }
+
+    // Khởi tạo tương tác
+    document.addEventListener('DOMContentLoaded', function(){
+      zcInitCompare(document);
+    });
+  </script>
+</body>
+</html>

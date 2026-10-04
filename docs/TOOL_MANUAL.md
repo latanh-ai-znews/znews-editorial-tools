@@ -228,6 +228,10 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 4. **Bước 4: Xuất mã nhúng**
    - Bấm **"Sao chép mã"** để lưu mã nguồn HTML/CSS vào clipboard, hoặc bấm **"Tải file .html"** để lưu trữ.
 
+> [!TIP]
+> **Bài viết demo mẫu để kiểm tra:**
+> Bạn có thể mở trực tiếp tệp [`demo-bai-viet-so-sanh.html`](../demo-bai-viet-so-sanh.html) để trải nghiệm bài viết hoàn chỉnh *"Bỏ phố về ven: Đánh đổi và Lợi ích sau 3 năm nhìn lại"*, thử nghiệm trượt ảnh kiểu iPhone, chuyển chế độ màn hình (Desktop/Mobile/CMS) và sao chép mã nguồn mẫu.
+
 ---
 
 ## 9. Quy trình chung dán mã vào CMS Znews
