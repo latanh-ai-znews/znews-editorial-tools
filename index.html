@@ -681,7 +681,7 @@
     </p>
 
     <div class="stats-row">
-      <div class="stat-pill"><b>7</b> công cụ chuyên dụng</div>
+      <div class="stat-pill"><b>8</b> công cụ chuyên dụng</div>
       <div class="stat-pill"><b>5</b> tài liệu quy chuẩn CMS</div>
       <div class="stat-pill"><b>100%</b> an toàn quảng cáo</div>
       <div class="stat-pill">Truy cập mọi nơi qua GitHub Pages</div>
@@ -699,8 +699,8 @@
     </div>
 
     <div class="filter-chips">
-      <button class="chip active" onclick="setCategory('all', this)">Tất cả (12)</button>
-      <button class="chip" onclick="setCategory('layout', this)">Dàn trang và layout (4)</button>
+      <button class="chip active" onclick="setCategory('all', this)">Tất cả (13)</button>
+      <button class="chip" onclick="setCategory('layout', this)">Dàn trang và layout (5)</button>
       <button class="chip" onclick="setCategory('media', this)">Đồ họa và ảnh (2)</button>
       <button class="chip" onclick="setCategory('special', this)">Chuyên đề sách (1)</button>
       <button class="chip" data-cat-btn="docs" onclick="setCategory('docs', this)">Tài liệu và quy chuẩn (5)</button>
@@ -858,7 +858,44 @@
       </div>
     </article>
 
-    <!-- Thẻ 5: Znews Thumb Generator -->
+    <!-- Thẻ 5: Comparison Story Tool -->
+    <article class="tool-card" data-category="layout" data-keywords="so sanh doi chieu comparison slide iphone truot mo danh doi loi ich truoc sau before after can doi van ban text matrix ad-safe">
+      <div class="card-top">
+        <div class="card-meta-row">
+          <div class="tool-icon-wrap">⚖️</div>
+          <span class="category-badge">Dàn trang · So sánh tương tác</span>
+        </div>
+        <h3 class="tool-title">Công cụ bài so sánh đối chiếu (comparison tool)</h3>
+        <p class="tool-desc">
+          Công cụ tạo bài viết so sánh đa phần trực quan: thanh trượt ảnh kiểu iPhone (vuốt ngang hoặc nhấn chuyển vùng "Đánh đổi / Lợi ích") kết hợp ma trận 2 cột văn bản cân đối, hỗ trợ bài viết có nhiều đoạn phân tích sâu mà không bị lệch bố cục.
+        </p>
+        <ul class="features-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Thanh trượt kiểu iPhone chuyển cảnh ảnh kèm chữ nhấp nháy phát sáng</span>
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Bố cục văn bản 2 cột cân đối, hỗ trợ 1–3 đoạn phân tích mỗi bên</span>
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Tương thích 100% CMS Znews, tự động triệt tiêu lỗi tràn viền bleed</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="launchApp('comparison-tool.html', 'Công cụ bài so sánh đối chiếu (comparison tool)')">
+          Mở công cụ
+        </button>
+        <a href="comparison-tool.html" target="_blank" class="btn btn-secondary" title="Mở trong tab mới">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Tab mới
+        </a>
+      </div>
+    </article>
+
+    <!-- Thẻ 6: Znews Thumb Generator -->
     <article class="tool-card" data-category="media" data-keywords="thumb thumbnail anh dai dien 900x600 logo dinh dang dac biet crop zoom export jpg">
       <div class="card-top">
         <div class="card-meta-row">
@@ -1157,6 +1194,7 @@
             <option value="no-side-bar-ad-safe-tool.html">Dựng bài no side-bar (an toàn quảng cáo)</option>
             <option value="photo-essay-tool.html">Công cụ dựng bài ảnh (photo essay v3)</option>
             <option value="interview-tool.html">Công cụ dựng bài phỏng vấn (interview tool)</option>
+            <option value="comparison-tool.html">Công cụ bài so sánh đối chiếu (comparison tool)</option>
           </optgroup>
           <optgroup label="Đồ họa và ảnh">
             <option value="Znews_Thumb_dinh_dang_dac_biet.html">Đóng khung ảnh đại diện định dạng đặc biệt</option>

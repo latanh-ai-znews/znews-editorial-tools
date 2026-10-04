@@ -4,6 +4,29 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 
 ---
 
+## [2.4.0] - 2026-10-04
+
+### ⚖️ Ra mắt công cụ bài so sánh đối chiếu (Comparison Story Tool)
+- **Thiết kế chuyên sâu cho bài viết so sánh đa chiều**:
+  - Hỗ trợ bài viết có nhiều mục nhỏ (sections), mỗi mục gồm 2 hình ảnh đại diện cho hai góc nhìn (ví dụ: "Đánh đổi" và "Lợi ích", "Trước" và "Sau", "Lựa chọn A" và "Lựa chọn B") cùng 2 phần mô tả phân tích chuyên sâu.
+- **Thanh trượt ảnh kép kiểu iPhone (iOS slide switcher)**:
+  - Tích hợp đồng thời vạch chia trượt trực tiếp trên ảnh (split handle) và thanh trượt viên thuốc kiểu iOS (iOS pill slider) phía dưới ảnh.
+  - Hiệu ứng chữ nhấp nháy phát sáng (shimmer animation) gợi ý hướng trượt: *"Trượt để xem lợi ích ›››"* hoặc *"‹‹‹ Trượt để xem đánh đổi"*.
+  - Nút bấm chọn nhanh (tab badges): Người đọc có thể bấm trực tiếp vào nhãn "Đánh đổi" hoặc "Lợi ích" để trượt chuyển cảnh mượt mà.
+- **Ma trận 2 cột văn bản cân đối (Balanced Text Matrix)**:
+  - Khối văn bản 2 cột nằm ngay dưới ảnh, hai thẻ (Card A và Card B) tự động kéo dãn bằng nhau (`align-items: stretch`).
+  - Cho phép người viết nhập 1 hoặc 2–3 đoạn văn bản phân tích dài cho mỗi bên mà vẫn giữ tỷ lệ 50/50 hoàn hảo trên desktop và tự động xếp chồng thông minh trên di động.
+  - Đồng bộ độ sáng tương tác theo vị trí thanh trượt: bên được chọn sẽ sáng rõ, bên đối lập mờ nhẹ, ở giữa thì cả hai cùng nổi bật.
+- **Tương thích toàn diện CMS Znews & bảo toàn quảng cáo (Ad-Safe)**:
+  - Sử dụng namespace độc lập `.zac#zacCompare` ngăn ngừa xung đột giao diện toàn trang.
+  - Tự động triệt tiêu lỗi tràn viền bleed (`--zc-bleed: 0px`) trên bố cục `layout-special` và `mode-bleed`, chống hiện tượng mất chữ hoặc lệch ảnh.
+  - Thang độ phân giải ảnh retina thích ứng `zcFixSize` (từ 360px đến 1920px) cho toàn bộ ảnh trên Znews CDN.
+- **Tích hợp vào hệ sinh thái Studio Hub**:
+  - Thêm thẻ công cụ trên trang chủ `index.html` với đầy đủ bộ lọc, tìm kiếm và bộ chọn nhanh `#toolSwitcher`.
+  - Cập nhật số liệu thống kê (8 công cụ chuyên dụng) và sổ tay hướng dẫn chi tiết `docs/TOOL_MANUAL.md`.
+
+---
+
 ## [2.3.1] - 2026-10-04
 
 ### 🎯 Sửa lỗi căn giữa ảnh đơn trong bài phỏng vấn (Interview Tool)

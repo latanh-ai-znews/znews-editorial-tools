@@ -1,6 +1,6 @@
 # Sổ tay hướng dẫn sử dụng chi tiết — Znews Editorial Tools
 
-Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước cho toàn bộ 7 công cụ trong bộ công cụ **Znews Editorial Studio**. Dành cho Phóng viên, Biên tập viên và Kỹ thuật viên Dàn trang Báo điện tử Znews.
+Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước cho toàn bộ 8 công cụ trong bộ công cụ **Znews Editorial Studio**. Dành cho Phóng viên, Biên tập viên và Kỹ thuật viên Dàn trang Báo điện tử Znews.
 
 ---
 
@@ -12,7 +12,8 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 5. [Trình tạo bài viết sách (CMS Books)](#5-trình-tạo-bài-viết-sách-cms-books)
 6. [Công cụ tạo Carousel ảnh](#6-công-cụ-tạo-carousel-ảnh)
 7. [Công cụ dựng bài phỏng vấn (Interview Tool)](#7-công-cụ-dựng-bài-phỏng-vấn-interview-tool)
-8. [Quy trình chung dán mã vào CMS Znews](#8-quy-trình-chung-dán-mã-vào-cms-znews)
+8. [Công cụ bài so sánh đối chiếu (Comparison Story Tool)](#8-công-cụ-bài-so-sánh-đối-chiếu-comparison-story-tool)
+9. [Quy trình chung dán mã vào CMS Znews](#9-quy-trình-chung-dán-mã-vào-cms-znews)
 
 ---
 
@@ -185,7 +186,51 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 
 ---
 
-## 8. Quy trình chung dán mã vào CMS Znews
+## 8. Công cụ bài so sánh đối chiếu (Comparison Story Tool)
+*Tệp tin: `comparison-tool.html`*
+
+### 8.1. Mục đích và ứng dụng
+- Dành cho các tuyến bài so sánh đa chiều, phân tích đối lập, trước và sau (Before & After), sự đánh đổi và lợi ích (Trade-off & Benefit), hoặc so sánh hai phương án lựa chọn A và B.
+- Mỗi bài viết được tổ chức thành nhiều mục nhỏ (sections). Mỗi mục nhỏ gồm một khối media tương tác và một ma trận văn bản 2 cột cân đối.
+- Giữ được sự cân bằng thị giác hoàn hảo ngay cả khi nội dung phân tích rất dài (từ 1 đến 2–3 đoạn văn chi tiết cho mỗi bên).
+
+### 8.2. Điểm đặc thù kỹ thuật & thiết kế tương tác
+- **Thanh trượt ảnh kép kiểu iPhone (iOS slide reveal)**:
+  - Cho phép người đọc kéo trực tiếp con trỏ phân chia trên ảnh hoặc trượt thanh trượt viên thuốc kiểu iOS ở ngay dưới ảnh.
+  - Hiệu ứng chữ nhấp nháy phát sáng (shimmer animation): *"Trượt để xem lợi ích ›››"* khi đang ở vùng Đánh đổi, và *"‹‹‹ Trượt để xem đánh đổi"* khi đang ở vùng Lợi ích.
+  - Nút bấm chọn nhanh (tab badges): Người đọc có thể bấm trực tiếp vào vùng "Đánh đổi" hoặc "Lợi ích" để ảnh tự động trượt mượt mà sang vị trí 0% hoặc 100%.
+- **Ma trận văn bản 2 cột cân đối (Balanced Text Matrix)**:
+  - Bố cục 2 cột nằm ngay dưới ảnh, hai thẻ (Card A và Card B) tự động kéo dãn chiều cao bằng nhau (`align-items: stretch`).
+  - Hỗ trợ văn bản phân tích dài (1 đến 2–3 đoạn văn cho mỗi phía) mà không bị co cụm hay làm lệch bố cục.
+  - Tự động đồng bộ độ sáng với thanh trượt: khi kéo về phía Đánh đổi, thẻ Đánh đổi sáng rõ; khi kéo về phía Lợi ích, thẻ Lợi ích sáng rõ; khi ở vị trí cân bằng giữa, cả hai thẻ đều nổi bật ngang nhau.
+- **Tương thích toàn diện CMS Znews & an toàn quảng cáo**:
+  - Tích hợp namespace độc lập `.zac#zacCompare` ngăn ngừa xung đột CSS toàn trang.
+  - Tự động đặt lại `--zc-bleed: 0px` trên giao diện `layout-special` và `mode-bleed`, triệt tiêu hoàn toàn lỗi tràn mép 130px.
+  - Tự động nâng cấp thang phân giải ảnh sắc nét `zcFixSize` (từ 360 đến 1920px) cho ảnh Znews CDN.
+  - Tự động lấy breadcrumb chuyên mục từ CMS và giữ nguyên định dạng khi dán mã nguồn.
+
+### 8.3. Các bước thực hiện
+1. **Bước 1: Thiết lập thông tin chung**
+   - Điền tiêu đề bài viết, sapo, tác giả, ngày xuất bản và mở đầu bài (dẫn nhập).
+   - Đặt nhãn mặc định cho hai phía: ví dụ "Đánh đổi" (phía A) và "Lợi ích" (phía B), hoặc "Trước" và "Sau", "Phương án A" và "Phương án B".
+   - Chọn bộ màu sắc: *Hổ phách – Ngọc lục bảo (Amber & Emerald), Đỏ – Xanh dương, Hoa hồng – Mòng két, hoặc Xám đá – Chàm*.
+   - Chọn tỷ lệ khung hình ảnh: `16:9`, `3:2`, `4:3` hoặc `1:1`.
+   - Chọn chế độ hiển thị: *An toàn quảng cáo (khung đọc 760px / ảnh 960px)* hoặc *Tràn viền màn hình (Full-width bleed)*.
+2. **Bước 2: Soạn thảo các mục so sánh chi tiết**
+   - Thêm từng mục so sánh nhỏ: nhập tiêu đề mục (ví dụ: *Chi phí tài chính và tích lũy*, *Chất lượng sống và thời gian di chuyển*...).
+   - Nhập ảnh phía A và ảnh phía B (hỗ trợ dán đường dẫn trực tiếp hoặc dán mã ảnh CMS Znews).
+   - Nhập nội dung văn bản cho từng phía: có thể nhập nhiều đoạn văn, hệ thống sẽ tự động định dạng và cân đối 2 cột.
+   - Thêm nhãn gợi ý hành động vuốt trượt cho từng mục nếu muốn tùy biến lời nhắc.
+3. **Bước 3: Nhập kết luận và kiểm tra**
+   - Soạn thông điệp tổng kết hoặc lời khuyên ở khối kết bài.
+   - Kiểm tra tương tác trượt, nhấn tab và độ cân đối văn bản ở khung xem trước bên phải.
+   - Đối chiếu danh sách kiểm tra (checklist) ở chân bảng điều khiển.
+4. **Bước 4: Xuất mã nhúng**
+   - Bấm **"Sao chép mã"** để lưu mã nguồn HTML/CSS vào clipboard, hoặc bấm **"Tải file .html"** để lưu trữ.
+
+---
+
+## 9. Quy trình chung dán mã vào CMS Znews
 
 Để đảm bảo bài viết hiển thị hoàn hảo sau khi xuất mã từ các công cụ:
 
