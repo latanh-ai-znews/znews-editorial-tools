@@ -78,7 +78,7 @@ Dự án được tài liệu hóa đầy đủ để các phóng viên, biên t
 ### 5. ⚖️ Công cụ bài so sánh đối chiếu (comparison tool)
 *Tệp tin: [`comparison-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/comparison-tool.html) | [Bài viết demo trực tuyến](https://latanh-ai-znews.github.io/znews-editorial-tools/demo-bai-viet-so-sanh.html)*
 - Dành riêng cho thể loại bài viết so sánh đa chiều, phân tích đối lập "Đánh đổi vs Lợi ích", "Trước vs Sau", "Lựa chọn A vs B".
-- **Phong cách thiết kế Superr Notebook**: Tông giấy kem (Cream Paper), đường viền than 1.5px (Charcoal), điểm nhấn bút dạ cam (Marker Orange), nhãn dán sticker và chữ viết tay chú thích tự nhiên.
+- **Hệ thống thẩm mỹ cao cấp**: Phong cách **Officevibe Editorial** (nền Warm Canvas `#f9f8f6`, viền Cream Border `#f0e9e1`, tít Ink Navy `#0c1754` với chữ nghiêng *italic accent* mang tính văn chương, nút bấm Electric Cobalt `#2545ff` bo pill 100px) kết hợp tùy chọn **Superr Notebook** (giấy kem, viền than 1.5px, bút dạ cam).
 - Cơ chế ẩn hiện triệt để hai vế: khi xem góc nhìn Đánh đổi thì Lợi ích ẩn hoàn toàn 100% và ngược lại, giúp thao tác trượt mở thực sự có ý nghĩa.
 - Khung nội dung tích hợp (Integrated Visual Frame): ảnh sắc nét và cột văn bản phân tích (1–3 đoạn) nằm liền khối, tự động cân đối tỷ lệ trên mọi kích cỡ màn hình.
 - Thanh trượt kiểu iPhone chuyển cảnh mượt mà kèm dòng chữ phát sáng nhấp nháy, hỗ trợ vuốt chạm trên màn hình cảm ứng.

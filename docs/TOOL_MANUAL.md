@@ -195,12 +195,13 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 - Giữ được sự cân bằng thị giác hoàn hảo ngay cả khi nội dung phân tích rất dài (từ 1 đến 2–3 đoạn văn chi tiết cho mỗi bên).
 
 ### 8.2. Điểm đặc thù kỹ thuật & thiết kế tương tác
-- **Hệ thống thẩm mỹ Superr Notebook (Schoolyard Notebook Style)**:
-  - Bảng màu giấy kem ấm áp (`--color-cream-paper: #fdfbf9`, `--color-dew-drop: #f7efe9`), đường viền mực than mảnh sắc nét (`1.5px solid #171717`), tít lớn màu mực da thuộc (`#2b1a07`), và điểm nhấn bút dạ cam (`#ff6f1e`).
-  - Nhãn góc nhìn thiết kế kiểu tem nhãn dán học đường (Name Label Stickers) bo tròn 8px với viền than và bóng đổ nhẹ.
-  - Chú thích viết tay kèm mũi tên uốn lượn phong cách bút dạ (font Caveat / script annotation), tạo cảm giác ghi chú thủ công chân thực và sinh động.
-  - Gạch chân bút dạ cam wobbly highlight (`.zc-marker-highlight`) nhấn mạnh các từ khóa trọng tâm trong bài.
-  - Chân trang bài viết kết thúc bằng dải màu nhận diện cam (Footer Brand Band) với góc bo bất đối xứng 56px độc đáo.
+- **Hệ thống thẩm mỹ phong cách tạp chí Officevibe (Officevibe Editorial Style)**:
+  - Bảng màu giấy kem ấm áp (`--color-warm-canvas: #f9f8f6`, `--color-paper-white: #ffffff`), đường viền kem trang nhã (`--color-cream-border: #f0e9e1`), tít lớn màu xanh mực đậm (`--color-ink-navy: #0c1754`), và điểm nhấn nút bấm xanh điện sống động (`--color-electric-cobalt: #2545ff`).
+  - Tiêu đề sử dụng font chữ có chân (Serif Newsreader) với điểm nhấn chữ nghiêng mang tính văn chương (*italic accent cuts*), phá vỡ sự đơn điệu và mang lại chiều sâu như một bài luận chuyên khảo.
+  - Nhãn góc nhìn và chip trạng thái sử dụng tông sương hoa cà (`--color-lavender-mist: #eaebf8`) bo tròn 16px tạo điểm nhấn tinh tế.
+  - Nút bấm và rãnh trượt bo tròn 100px (full pill radius) mang lại cảm giác tiếp cận thân thiện, thanh lịch.
+  - Chân trang kết thúc bằng dải màu xanh mực đậm Ink Navy (`#0c1754`) sang trọng với chữ nghiêng văn chương.
+  - Vẫn hỗ trợ chuyển đổi linh hoạt sang chủ đề **Superr Notebook** (giấy kem, viền than 1.5px, bút dạ cam).
 - **Cơ chế ẩn hiện triệt để hai vế (Exclusive View Switching)**:
   - Khi đang ở góc nhìn "Đánh đổi", toàn bộ phần "Lợi ích" bị ẩn hoàn toàn (100%), và ngược lại. Nhờ đó, hành động trượt mở mang ý nghĩa trực quan và rõ ràng nhất.
 - **Tích hợp caption và văn bản phân tích liền khối với ảnh**:
