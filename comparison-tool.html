@@ -235,69 +235,70 @@ var ARTICLE_CSS = [
 '.zac#zacCompare .zc-toc a:hover{text-decoration:underline;color:var(--zc-a)}',
 
 /* mục so sánh */
-'.zac#zacCompare .zc-item{max-width:920px;margin:54px auto 0;padding:0 16px;counter-increment:zsec;scroll-margin-top:72px}',
-'.zac#zacCompare .zc-item-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}',
-'.zac#zacCompare .zc-item-num{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:17px;font-weight:800;color:var(--zc-a);background:rgba(217,119,6,.1);padding:4px 11px;border-radius:6px;flex:none}',
-'.zac#zacCompare .zc-item-title{margin:0;font-family:inherit;font-weight:800;font-size:clamp(22px,2.6vw,28px);line-height:1.3;color:var(--zc-ink)}',
-
-/* khung so sánh ảnh */
-'.zac#zacCompare .zc-media-wrap{background:var(--zc-soft);border:1px solid var(--zc-line);border-radius:16px;padding:14px;box-shadow:0 4px 20px rgba(0,0,0,.04)}',
-'.zac#zacCompare .zc-cmp-box{--pos:50%;position:relative;width:100%;padding-bottom:var(--ratio,56.25%);overflow:hidden;border-radius:10px;background:#e2dfd5;user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:ew-resize}',
-'.zac#zacCompare .zc-img-layer{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}',
-'.zac#zacCompare .zc-img-layer img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;object-fit:cover;pointer-events:none;-webkit-user-drag:none}',
-'.zac#zacCompare .zc-img-layer.zc-img-b{z-index:1}',
-'.zac#zacCompare .zc-img-layer.zc-img-a{z-index:2;clip-path:inset(0 calc(100% - var(--pos, 50%)) 0 0)}',
-'.zac#zacCompare .zc-img-tag{position:absolute;z-index:3;top:12px;padding:5px 12px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.03em;color:#fff;backdrop-filter:blur(8px);pointer-events:none;box-shadow:0 2px 6px rgba(0,0,0,.25)}',
-'.zac#zacCompare .zc-tag-a{left:12px;background:rgba(217,119,6,.88)}',
-'.zac#zacCompare .zc-tag-b{right:12px;background:rgba(5,150,105,.88)}',
-'.zac#zacCompare .zc-img-caption{position:absolute;z-index:3;bottom:10px;padding:4px 10px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;border-radius:4px;pointer-events:none;max-width:80%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
-'.zac#zacCompare .zc-img-a .zc-img-caption{left:10px}',
-'.zac#zacCompare .zc-img-b .zc-img-caption{right:10px}',
-
-/* thanh phân cách trên ảnh */
-'.zac#zacCompare .zc-divider{position:absolute;z-index:4;top:0;bottom:0;left:var(--pos, 50%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 10px rgba(0,0,0,.5);pointer-events:none}',
-'.zac#zacCompare .zc-divider-handle{position:absolute;top:50%;left:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:#ffffff;border:3px solid #ffffff;box-shadow:0 2px 12px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;cursor:ew-resize;pointer-events:auto}',
-'.zac#zacCompare .zc-divider-handle svg{width:18px;height:18px;fill:none;stroke:#17181b;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}',
+'.zac#zacCompare .zc-item{max-width:980px;margin:54px auto 0;padding:0 16px;counter-increment:zsec;scroll-margin-top:76px}',
+'.zac#zacCompare .zc-item-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}',
+'.zac#zacCompare .zc-item-num{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:16px;font-weight:800;color:var(--zc-a);background:rgba(217,119,6,.12);padding:5px 12px;border-radius:6px;flex:none}',
+'.zac#zacCompare .zc-item-title{margin:0;font-family:inherit;font-weight:800;font-size:clamp(24px,3vw,30px);line-height:1.3;color:var(--zc-ink)}',
 
 /* thanh trượt phong cách iPhone */
-'.zac#zacCompare .zc-ios-bar{display:flex;align-items:center;gap:10px;margin:14px 0 0;padding:6px 10px;background:var(--zc-bar-bg);border:1px solid var(--zc-bar-border);border-radius:999px;box-shadow:inset 0 1px 3px rgba(0,0,0,.03)}',
-'.zac#zacCompare .zc-tab-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:999px;border:1px solid transparent;background:transparent;font-family:inherit;font-size:13px;font-weight:700;color:var(--zc-muted);cursor:pointer;transition:all .22s ease;white-space:nowrap;flex:none;-webkit-tap-highlight-color:transparent}',
-'.zac#zacCompare .zc-tab-btn:hover{color:var(--zc-ink);background:rgba(255,255,255,.6)}',
-'.zac#zacCompare .zc-tab-btn.is-active{background:#ffffff;color:var(--zc-ink);border-color:rgba(0,0,0,.08);box-shadow:0 2px 6px rgba(0,0,0,.08)}',
+'.zac#zacCompare .zc-ios-bar{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding:6px 12px;background:var(--zc-bar-bg);border:1px solid var(--zc-bar-border);border-radius:999px;box-shadow:inset 0 1px 3px rgba(0,0,0,.03)}',
+'.zac#zacCompare .zc-tab-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;border:1px solid transparent;background:transparent;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--zc-muted);cursor:pointer;transition:all .25s ease;white-space:nowrap;flex:none;-webkit-tap-highlight-color:transparent}',
+'.zac#zacCompare .zc-tab-btn:hover{color:var(--zc-ink);background:rgba(255,255,255,.7)}',
+'.zac#zacCompare .zc-tab-btn.is-active{background:#ffffff;color:var(--zc-ink);border-color:rgba(0,0,0,.08);box-shadow:0 2px 8px rgba(0,0,0,.08)}',
+'.zac#zacCompare .zc-tab-a.is-active{color:var(--zc-a)}',
+'.zac#zacCompare .zc-tab-b.is-active{color:var(--zc-b)}',
+'.zac#zacCompare .zc-dot{width:8px;height:8px;border-radius:50%;background:#c5c1b8;transition:background .2s ease}',
 '.zac#zacCompare .zc-tab-a.is-active .zc-dot{background:var(--zc-a)}',
 '.zac#zacCompare .zc-tab-b.is-active .zc-dot{background:var(--zc-b)}',
-'.zac#zacCompare .zc-dot{width:8px;height:8px;border-radius:50%;background:#c5c1b8;transition:background .2s ease}',
 
 /* track trượt iPhone */
-'.zac#zacCompare .zc-ios-track{position:relative;flex:1;height:42px;background:rgba(0,0,0,.05);border-radius:999px;overflow:hidden;cursor:ew-resize;user-select:none;-webkit-user-select:none;touch-action:pan-y;display:flex;align-items:center}',
-'.zac#zacCompare .zc-ios-shimmer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}',
-'.zac#zacCompare .zc-shimmer-text{font-size:12.5px;font-weight:700;letter-spacing:.03em;background:linear-gradient(90deg, #9b988f 0%, #1a1a18 45%, #9b988f 90%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:zcShimmer 2.4s infinite linear;white-space:nowrap}',
+'.zac#zacCompare .zc-ios-track{position:relative;flex:1;height:44px;background:rgba(0,0,0,.06);border-radius:999px;overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:pan-y;display:flex;align-items:center}',
+'.zac#zacCompare .zc-ios-shimmer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;padding:0 46px}',
+'.zac#zacCompare .zc-shimmer-text{font-size:13px;font-weight:700;letter-spacing:.02em;background:linear-gradient(90deg, #9b988f 0%, #1a1a18 45%, #9b988f 90%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:zcShimmer 2.4s infinite linear;white-space:nowrap}',
 '@keyframes zcShimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}',
 
 /* knob tròn iPhone */
-'.zac#zacCompare .zc-ios-knob{position:absolute;top:4px;left:calc(4px + (100% - 42px) * (var(--pos, 50) / 100));width:34px;height:34px;border-radius:50%;background:#ffffff;border:1px solid rgba(0,0,0,.08);box-shadow:0 2px 8px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;cursor:grab;z-index:2}',
+'.zac#zacCompare .zc-ios-knob{position:absolute;top:4px;left:4px;width:36px;height:36px;border-radius:50%;background:#ffffff;border:1px solid rgba(0,0,0,.08);box-shadow:0 2px 8px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;cursor:grab;z-index:2;transition:left .32s cubic-bezier(.22,1,.36,1),transform .18s ease}',
 '.zac#zacCompare .zc-ios-knob:active{cursor:grabbing;transform:scale(1.08)}',
-'.zac#zacCompare .zc-knob-icon{width:16px;height:16px;fill:none;stroke:#17181b;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}',
+'.zac#zacCompare .zc-knob-icon{width:17px;height:17px;fill:none;stroke:#17181b;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}',
+'.zac#zacCompare .zc-item.side-b .zc-ios-knob{left:calc(100% - 40px)}',
 
-/* chuyển động mượt khi bấm nút chuyển */
-'.zac#zacCompare .zc-item.is-animating .zc-img-a{transition:clip-path .38s cubic-bezier(.22,1,.36,1)}',
-'.zac#zacCompare .zc-item.is-animating .zc-divider{transition:left .38s cubic-bezier(.22,1,.36,1)}',
-'.zac#zacCompare .zc-item.is-animating .zc-ios-knob{transition:left .38s cubic-bezier(.22,1,.36,1)}',
+/* Khung nội dung tích hợp */
+'.zac#zacCompare .zc-integrated-frame{position:relative;background:var(--zc-card-bg);border-radius:16px;border:1px solid var(--zc-card-border);box-shadow:0 4px 22px rgba(0,0,0,.04);overflow:hidden}',
 
-/* khối text đối chiếu 2 cột */
-'.zac#zacCompare .zc-text-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;align-items:stretch}',
-'@media (max-width:720px){.zac#zacCompare .zc-text-grid{grid-template-columns:1fr;gap:16px}}',
-'.zac#zacCompare .zc-card{border-radius:12px;padding:22px 24px;background:var(--zc-card-bg);border:1px solid var(--zc-card-border);box-shadow:0 2px 8px rgba(0,0,0,.03);transition:all .25s ease;display:flex;flex-direction:column}',
-'.zac#zacCompare .zc-card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}',
-'.zac#zacCompare .zc-badge{padding:3px 10px;border-radius:5px;font-size:12px;font-weight:700;letter-spacing:.02em;flex:none}',
-'.zac#zacCompare .zc-badge-a{background:var(--zc-a-badge-bg, #fef3c7);color:var(--zc-a-badge-color, #92400e)}',
-'.zac#zacCompare .zc-badge-b{background:var(--zc-b-badge-bg, #d1fae5);color:var(--zc-b-badge-color, #065f46)}',
-'.zac#zacCompare .zc-card-title{margin:0;font-family:inherit;font-size:17.5px;font-weight:800;color:var(--zc-ink);line-height:1.4}',
-'.zac#zacCompare .zc-card-body p{margin:0 0 14px;font-size:16.5px;line-height:1.72;color:var(--zc-bodyc)}',
-'.zac#zacCompare .zc-card-body p:last-child{margin-bottom:0}',
-'.zac#zacCompare .zc-card.is-active{box-shadow:0 6px 18px rgba(0,0,0,.07)}',
-'.zac#zacCompare .zc-card-a.is-active{border-color:var(--zc-a);background:var(--zc-a-bg, #fffbeb)}',
-'.zac#zacCompare .zc-card-b.is-active{border-color:var(--zc-b);background:var(--zc-b-bg, #f0fdf4)}',
+/* Ẩn hiện tuyệt đối: Ở vế A thì vế B ẩn 100%, ở vế B thì vế A ẩn 100% */
+'.zac#zacCompare .zc-view-panel{display:none;animation:zcFadeIn .32s cubic-bezier(.2,1,.3,1)}',
+'.zac#zacCompare .zc-item.side-a .zc-view-a{display:grid}',
+'.zac#zacCompare .zc-item.side-a .zc-view-b{display:none!important}',
+'.zac#zacCompare .zc-item.side-b .zc-view-b{display:grid}',
+'.zac#zacCompare .zc-item.side-b .zc-view-a{display:none!important}',
+'@keyframes zcFadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}',
+
+/* Bố cục 2 cột tích hợp (Ảnh bên cạnh Chữ): cân đối cho 1-3 đoạn văn */
+'.zac#zacCompare .zc-view-panel{grid-template-columns:1.15fr 1fr;align-items:stretch;min-height:440px}',
+'@media (max-width:768px){.zac#zacCompare .zc-view-panel{grid-template-columns:1fr;min-height:auto}}',
+
+/* Cột Ảnh */
+'.zac#zacCompare .zc-panel-media{position:relative;background:#17181b;min-height:300px;overflow:hidden}',
+'@media (max-width:768px){.zac#zacCompare .zc-panel-media{padding-bottom:56.25%;min-height:auto}}',
+'.zac#zacCompare .zc-panel-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}',
+'.zac#zacCompare .zc-media-badge{position:absolute;top:14px;left:14px;padding:6px 14px;border-radius:8px;font-size:12.5px;font-weight:700;color:#fff;letter-spacing:.03em;backdrop-filter:blur(8px);box-shadow:0 2px 8px rgba(0,0,0,.3);z-index:2}',
+'.zac#zacCompare .zc-view-a .zc-media-badge{background:rgba(217,119,6,.92)}',
+'.zac#zacCompare .zc-view-b .zc-media-badge{background:rgba(5,150,105,.92)}',
+'.zac#zacCompare .zc-media-caption{position:absolute;bottom:12px;left:12px;right:12px;padding:6px 12px;background:rgba(0,0,0,.75);color:#ffffff;font-size:12px;border-radius:6px;line-height:1.45;z-index:2}',
+
+/* Cột Văn bản tích hợp */
+'.zac#zacCompare .zc-panel-content{padding:28px 32px;display:flex;flex-direction:column;justify-content:center;background:#ffffff}',
+'.zac#zacCompare .zc-view-a .zc-panel-content{border-left:4px solid var(--zc-a);background:var(--zc-a-bg)}',
+'.zac#zacCompare .zc-view-b .zc-panel-content{border-left:4px solid var(--zc-b);background:var(--zc-b-bg)}',
+'@media (max-width:768px){.zac#zacCompare .zc-view-a .zc-panel-content,.zac#zacCompare .zc-view-b .zc-panel-content{border-left:none;border-top:4px solid var(--zc-a);padding:22px 20px}.zac#zacCompare .zc-view-b .zc-panel-content{border-top-color:var(--zc-b)}}',
+'.zac#zacCompare .zc-content-header{margin-bottom:14px}',
+'.zac#zacCompare .zc-status-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:10px;letter-spacing:.02em}',
+'.zac#zacCompare .zc-view-a .zc-status-chip{background:var(--zc-a-badge-bg);color:var(--zc-a-badge-color)}',
+'.zac#zacCompare .zc-view-b .zc-status-chip{background:var(--zc-b-badge-bg);color:var(--zc-b-badge-color)}',
+'.zac#zacCompare .zc-content-title{margin:0;font-family:inherit;font-size:22px;font-weight:700;color:var(--zc-ink);line-height:1.35}',
+'.zac#zacCompare .zc-content-body p{margin:0 0 14px;font-size:16.5px;line-height:1.74;color:var(--zc-bodyc)}',
+'.zac#zacCompare .zc-content-body p:last-child{margin-bottom:0}',
 
 /* kết bài & endnav */
 '.zac#zacCompare .zc-verdict{max-width:880px;margin:54px auto 0;padding:28px 30px;background:var(--zc-soft);border-radius:14px;border:1px solid var(--zc-line);border-left:5px solid var(--zc-b)}',
@@ -427,77 +428,70 @@ function articleInnerHtml(){
   state.items.forEach(function(it, idx){
     var labelA = it.labelA || state.defaultLabelA || 'Đánh đổi';
     var labelB = it.labelB || state.defaultLabelB || 'Lợi ích';
-    var ratioVal = RATIOS[state.ratio] || '56.25%';
 
-    var imgASrc = it.imgA.src || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"><rect fill="%23f3f0e6" width="800" height="450"/><text fill="%23a8a29e" font-family="sans-serif" font-size="24" font-weight="bold" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">Ảnh ' + encodeURIComponent(labelA) + '</text></svg>';
-    var imgBSrc = it.imgB.src || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"><rect fill="%23e6f4ea" width="800" height="450"/><text fill="%23059669" font-family="sans-serif" font-size="24" font-weight="bold" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">Ảnh ' + encodeURIComponent(labelB) + '</text></svg>';
+    var imgASrc = it.imgA.src || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect fill="%2378350f" width="800" height="600"/><text fill="%23ffffff" font-family="sans-serif" font-size="28" font-weight="bold" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">Ảnh ' + encodeURIComponent(labelA) + '</text></svg>';
+    var imgBSrc = it.imgB.src || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect fill="%23064e3b" width="800" height="600"/><text fill="%23ffffff" font-family="sans-serif" font-size="28" font-weight="bold" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">Ảnh ' + encodeURIComponent(labelB) + '</text></svg>';
 
     var pA = paras(it.textA);
     var pB = paras(it.textB);
 
-    h += '<section class="zc-item" id="zc-sec-' + (idx + 1) + '" data-label-a="' + esc(labelA) + '" data-label-b="' + esc(labelB) + '">' +
+    h += '<section class="zc-item side-a" id="zc-sec-' + (idx + 1) + '" data-label-a="' + esc(labelA) + '" data-label-b="' + esc(labelB) + '">' +
       '<div class="zc-item-head">' +
         '<div class="zc-item-num">' + (idx < 9 ? '0' : '') + (idx + 1) + '</div>' +
         '<h2 class="zc-item-title">' + esc(it.title || ('Mục ' + (idx + 1))) + '</h2>' +
       '</div>' +
 
-      '<div class="zc-media-wrap">' +
-        '<div class="zc-cmp-box" style="--ratio:' + ratioVal + ';--pos:50%;">' +
-          '<div class="zc-img-layer zc-img-b">' +
-            '<img src="' + esc(imgBSrc) + '" alt="' + esc(it.imgB.alt || labelB) + '" loading="lazy">' +
-            '<span class="zc-img-tag zc-tag-b">' + esc(labelB) + '</span>' +
-            (it.imgB.caption ? '<span class="zc-img-caption">' + esc(it.imgB.caption) + '</span>' : '') +
+      '<div class="zc-ios-bar">' +
+        '<button type="button" class="zc-tab-btn zc-tab-a is-active">' +
+          '<span class="zc-dot"></span>' +
+          '<span>' + esc(labelA) + '</span>' +
+        '</button>' +
+        '<div class="zc-ios-track" role="slider" aria-label="Thanh trượt chuyển đổi góc nhìn" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">' +
+          '<div class="zc-ios-shimmer">' +
+            '<span class="zc-shimmer-text">Trượt để xem ' + esc(labelB.toLowerCase()) + ' ›››</span>' +
           '</div>' +
-          '<div class="zc-img-layer zc-img-a">' +
-            '<img src="' + esc(imgASrc) + '" alt="' + esc(it.imgA.alt || labelA) + '" loading="lazy">' +
-            '<span class="zc-img-tag zc-tag-a">' + esc(labelA) + '</span>' +
-            (it.imgA.caption ? '<span class="zc-img-caption">' + esc(it.imgA.caption) + '</span>' : '') +
-          '</div>' +
-          '<div class="zc-divider">' +
-            '<div class="zc-divider-handle" aria-label="Kéo để so sánh hai ảnh">' +
-              '<svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>' +
-            '</div>' +
+          '<div class="zc-ios-knob">' +
+            '<svg class="zc-knob-icon" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>' +
           '</div>' +
         '</div>' +
-
-        '<div class="zc-ios-bar">' +
-          '<button type="button" class="zc-tab-btn zc-tab-a" data-side="a">' +
-            '<span class="zc-dot"></span>' +
-            '<span>' + esc(labelA) + '</span>' +
-          '</button>' +
-          '<div class="zc-ios-track" role="slider" aria-label="Thanh trượt chuyển đổi góc nhìn" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">' +
-            '<div class="zc-ios-shimmer">' +
-              '<span class="zc-shimmer-text">Trượt để xem ' + esc(labelB.toLowerCase()) + ' ›››</span>' +
-            '</div>' +
-            '<div class="zc-ios-knob">' +
-              '<svg class="zc-knob-icon" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>' +
-            '</div>' +
-          '</div>' +
-          '<button type="button" class="zc-tab-btn zc-tab-b" data-side="b">' +
-            '<span>' + esc(labelB) + '</span>' +
-            '<span class="zc-dot"></span>' +
-          '</button>' +
-        '</div>' +
+        '<button type="button" class="zc-tab-btn zc-tab-b">' +
+          '<span class="zc-dot"></span>' +
+          '<span>' + esc(labelB) + '</span>' +
+        '</button>' +
       '</div>' +
 
-      '<div class="zc-text-grid">' +
-        '<div class="zc-card zc-card-a is-active">' +
-          '<div class="zc-card-head">' +
-            '<span class="zc-badge zc-badge-a">' + esc(labelA) + '</span>' +
-            (it.titleA ? '<h3 class="zc-card-title">' + esc(it.titleA) + '</h3>' : '') +
+      '<div class="zc-integrated-frame">' +
+        '<div class="zc-view-panel zc-view-a">' +
+          '<div class="zc-panel-media">' +
+            '<img src="' + esc(imgASrc) + '" alt="' + esc(it.imgA.alt || labelA) + '" loading="lazy">' +
+            '<span class="zc-media-badge">' + esc(labelA) + '</span>' +
+            (it.imgA.caption ? '<div class="zc-media-caption">' + esc(it.imgA.caption) + '</div>' : '') +
           '</div>' +
-          '<div class="zc-card-body">' +
-            (pA.length ? pA.map(function(p){ return '<p>' + sanitizeInline(p) + '</p>'; }).join('') : '<p class="hint">Chưa có nội dung mô tả cho vế này.</p>') +
+          '<div class="zc-panel-content">' +
+            '<div class="zc-content-header">' +
+              '<span class="zc-status-chip">Góc nhìn ' + esc(labelA.toLowerCase()) + '</span>' +
+              (it.titleA ? '<h3 class="zc-content-title">' + esc(it.titleA) + '</h3>' : '') +
+            '</div>' +
+            '<div class="zc-content-body">' +
+              (pA.length ? pA.map(function(p){ return '<p>' + sanitizeInline(p) + '</p>'; }).join('') : '<p class="hint">Chưa có nội dung mô tả cho vế này.</p>') +
+            '</div>' +
           '</div>' +
         '</div>' +
 
-        '<div class="zc-card zc-card-b is-active">' +
-          '<div class="zc-card-head">' +
-            '<span class="zc-badge zc-badge-b">' + esc(labelB) + '</span>' +
-            (it.titleB ? '<h3 class="zc-card-title">' + esc(it.titleB) + '</h3>' : '') +
+        '<div class="zc-view-panel zc-view-b">' +
+          '<div class="zc-panel-media">' +
+            '<img src="' + esc(imgBSrc) + '" alt="' + esc(it.imgB.alt || labelB) + '" loading="lazy">' +
+            '<span class="zc-media-badge">' + esc(labelB) + '</span>' +
+            (it.imgB.caption ? '<div class="zc-media-caption">' + esc(it.imgB.caption) + '</div>' : '') +
           '</div>' +
-          '<div class="zc-card-body">' +
-            (pB.length ? pB.map(function(p){ return '<p>' + sanitizeInline(p) + '</p>'; }).join('') : '<p class="hint">Chưa có nội dung mô tả cho vế này.</p>') +
+          '<div class="zc-panel-content">' +
+            '<div class="zc-content-header">' +
+              '<span class="zc-status-chip">Góc nhìn ' + esc(labelB.toLowerCase()) + '</span>' +
+              (it.titleB ? '<h3 class="zc-content-title">' + esc(it.titleB) + '</h3>' : '') +
+            '</div>' +
+            '<div class="zc-content-body">' +
+              (pB.length ? pB.map(function(p){ return '<p>' + sanitizeInline(p) + '</p>'; }).join('') : '<p class="hint">Chưa có nội dung mô tả cho vế này.</p>') +
+            '</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -566,102 +560,101 @@ function zcInitCompare(root){
       if (item._zcInit) return;
       item._zcInit = true;
 
-      var cmpBox = item.querySelector('.zc-cmp-box');
       var track = item.querySelector('.zc-ios-track');
       var knob = item.querySelector('.zc-ios-knob');
       var tabA = item.querySelector('.zc-tab-a');
       var tabB = item.querySelector('.zc-tab-b');
-      var cardA = item.querySelector('.zc-card-a');
-      var cardB = item.querySelector('.zc-card-b');
       var shimmer = item.querySelector('.zc-shimmer-text');
       var knobIcon = item.querySelector('.zc-knob-icon');
+      var frame = item.querySelector('.zc-integrated-frame');
 
       var labelA = item.getAttribute('data-label-a') || 'Đánh đổi';
       var labelB = item.getAttribute('data-label-b') || 'Lợi ích';
-      var pos = 50;
+      var currentSide = item.classList.contains('side-b') ? 'b' : 'a';
       var isDragging = false;
-      var source = null;
+      var startX = 0;
 
-      function updateUI(p, smooth){
-        pos = Math.max(0, Math.min(100, p));
-        if (smooth) {
-          item.classList.add('is-animating');
-          setTimeout(function(){ item.classList.remove('is-animating'); }, 380);
-        }
-        item.style.setProperty('--pos', pos + '%');
-
-        if (pos <= 42) {
+      function setSide(side){
+        currentSide = side;
+        if (side === 'a') {
+          item.classList.remove('side-b');
+          item.classList.add('side-a');
           if (tabA) tabA.classList.add('is-active');
           if (tabB) tabB.classList.remove('is-active');
-          if (cardA) cardA.classList.add('is-active');
-          if (cardB) cardB.classList.remove('is-active');
           if (shimmer) shimmer.textContent = 'Trượt để xem ' + labelB.toLowerCase() + ' ›››';
           if (knobIcon) knobIcon.innerHTML = '<path d="M9 18l6-6-6-6"/>';
-        } else if (pos >= 58) {
+          if (track) track.setAttribute('aria-valuenow', '0');
+        } else {
+          item.classList.remove('side-a');
+          item.classList.add('side-b');
           if (tabA) tabA.classList.remove('is-active');
           if (tabB) tabB.classList.add('is-active');
-          if (cardA) cardA.classList.remove('is-active');
-          if (cardB) cardB.classList.add('is-active');
           if (shimmer) shimmer.textContent = '‹‹‹ Trượt để xem ' + labelA.toLowerCase();
           if (knobIcon) knobIcon.innerHTML = '<path d="M15 18l-6-6 6-6"/>';
-        } else {
-          if (tabA) tabA.classList.remove('is-active');
-          if (tabB) tabB.classList.remove('is-active');
-          if (cardA) cardA.classList.add('is-active');
-          if (cardB) cardB.classList.add('is-active');
-          if (shimmer) shimmer.textContent = 'Trượt mở sang hai phía ‹ ›';
-          if (knobIcon) knobIcon.innerHTML = '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>';
+          if (track) track.setAttribute('aria-valuenow', '100');
         }
-
-        if (track) track.setAttribute('aria-valuenow', Math.round(pos));
       }
 
-      if (cmpBox) {
-        function fromBox(e){
-          var r = cmpBox.getBoundingClientRect();
-          if (r.width > 0) updateUI((e.clientX - r.left) / r.width * 100, false);
-        }
-        cmpBox.addEventListener('pointerdown', function(e){
-          if (e.pointerType === 'mouse' && e.button !== 0) return;
-          isDragging = true; source = 'box';
-          try { cmpBox.setPointerCapture(e.pointerId); } catch(err){}
-          fromBox(e);
-        });
-        cmpBox.addEventListener('pointermove', function(e){ if (isDragging && source === 'box') fromBox(e); });
-        function stopBox(){ if (isDragging && source === 'box') { isDragging = false; source = null; } }
-        cmpBox.addEventListener('pointerup', stopBox);
-        cmpBox.addEventListener('pointercancel', stopBox);
-        cmpBox.addEventListener('lostpointercapture', stopBox);
-      }
+      if (tabA) tabA.addEventListener('click', function(){ setSide('a'); });
+      if (tabB) tabB.addEventListener('click', function(){ setSide('b'); });
 
       if (track) {
-        function fromTrack(e){
+        track.addEventListener('click', function(e){
+          if (e.target.closest('.zc-ios-knob')) return;
           var r = track.getBoundingClientRect();
-          if (r.width > 0) updateUI((e.clientX - r.left) / r.width * 100, false);
+          if (e.clientX - r.left > r.width / 2) setSide('b');
+          else setSide('a');
+        });
+
+        if (knob) {
+          knob.addEventListener('pointerdown', function(e){
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
+            isDragging = true;
+            startX = e.clientX;
+            try { knob.setPointerCapture(e.pointerId); } catch(err){}
+          });
+
+          knob.addEventListener('pointermove', function(e){
+            if (!isDragging) return;
+            var delta = e.clientX - startX;
+            if (currentSide === 'a' && delta > 40) {
+              setSide('b');
+              isDragging = false;
+            } else if (currentSide === 'b' && delta < -40) {
+              setSide('a');
+              isDragging = false;
+            }
+          });
+
+          function endDrag(){ isDragging = false; }
+          knob.addEventListener('pointerup', endDrag);
+          knob.addEventListener('pointercancel', endDrag);
+          knob.addEventListener('lostpointercapture', endDrag);
         }
-        track.addEventListener('pointerdown', function(e){
-          if (e.pointerType === 'mouse' && e.button !== 0) return;
-          isDragging = true; source = 'track';
-          try { track.setPointerCapture(e.pointerId); } catch(err){}
-          fromTrack(e);
-        });
-        track.addEventListener('pointermove', function(e){ if (isDragging && source === 'track') fromTrack(e); });
-        function stopTrack(){ if (isDragging && source === 'track') { isDragging = false; source = null; } }
-        track.addEventListener('pointerup', stopTrack);
-        track.addEventListener('pointercancel', stopTrack);
-        track.addEventListener('lostpointercapture', stopTrack);
       }
 
-      if (tabA) tabA.addEventListener('click', function(){ updateUI(0, true); });
-      if (tabB) tabB.addEventListener('click', function(){ updateUI(100, true); });
-      if (shimmer) {
-        shimmer.addEventListener('click', function(){
-          if (pos <= 50) updateUI(100, true);
-          else updateUI(0, true);
-        });
+      if (frame) {
+        var swipeStartX = 0, swipeStartY = 0;
+        frame.addEventListener('touchstart', function(e){
+          if (e.touches && e.touches[0]) {
+            swipeStartX = e.touches[0].clientX;
+            swipeStartY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        frame.addEventListener('touchend', function(e){
+          if (e.changedTouches && e.changedTouches[0]) {
+            var diffX = e.changedTouches[0].clientX - swipeStartX;
+            var diffY = e.changedTouches[0].clientY - swipeStartY;
+            if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+              if (diffX < 0 && currentSide === 'a') setSide('b');
+              else if (diffX > 0 && currentSide === 'b') setSide('a');
+            }
+          }
+        }, { passive: true });
       }
 
-      updateUI(50, false);
+      setSide(currentSide);
     })(items[i]);
   }
 

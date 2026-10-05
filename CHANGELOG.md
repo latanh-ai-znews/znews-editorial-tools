@@ -4,6 +4,22 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 
 ---
 
+## [2.4.1] - 2026-10-04
+
+### 🔄 Tinh chỉnh cơ chế trượt ẩn/hiện & tích hợp caption liền khối với ảnh
+- **Ẩn triệt để vế đối lập khi đang ở vế hiện tại**:
+  - Khi đang ở góc nhìn "Đánh đổi", toàn bộ phần "Lợi ích" bị ẩn hoàn toàn (100%), và ngược lại.
+  - Thanh trượt kiểu iPhone hoạt động như một công tắc chuyển cảnh trượt mở đích thực (Slide to Reveal).
+- **Tích hợp caption và văn bản phân tích vào cùng khối ảnh**:
+  - Khung nội dung tích hợp (Integrated Visual Frame) kết hợp ảnh chất lượng cao và cột văn bản phân tích (1 đến 2–3 đoạn) trong cùng một thẻ card liền khối.
+  - Bố cục 2 cột (Ảnh 55% - Chữ 45%) trên máy tính và tự động xếp chồng trên di động, giữ sự cân bằng thị giác hoàn hảo cho các bài viết có nhiều đoạn văn phân tích sâu.
+- **Loại bỏ vạch chia cắt ảnh thừa trên ảnh**:
+  - Bỏ hoàn toàn thanh chia đôi và biểu tượng trượt trên bề mặt ảnh; ảnh của từng vế hiển thị trọn vẹn 100%, không bị cắt ngang hay xô lệch.
+- **Tối ưu trải nghiệm điều khiển iPhone**:
+  - Kéo núm tròn từ bên này sang bên kia, bấm tab chọn nhanh, bấm trên rãnh trượt hoặc vuốt (swipe) trực tiếp trên khung ảnh để lướt qua lại giữa hai góc nhìn.
+
+---
+
 ## [2.4.0] - 2026-10-04
 
 ### ⚖️ Ra mắt công cụ bài so sánh đối chiếu (Comparison Story Tool)

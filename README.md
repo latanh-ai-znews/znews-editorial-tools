@@ -1,7 +1,7 @@
 # Studio biên tập Znews — Bộ công cụ dàn trang và xuất bản báo chí
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Website-success?style=for-the-badge&logo=github)](https://latanh-ai-znews.github.io/znews-editorial-tools/)
-[![Version](https://img.shields.io/badge/Version-2.4.0-blue?style=for-the-badge)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-2.4.1-blue?style=for-the-badge)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20Mobile%20%7C%20Desktop-orange?style=for-the-badge)](index.html)
 
@@ -78,9 +78,9 @@ Dự án được tài liệu hóa đầy đủ để các phóng viên, biên t
 ### 5. ⚖️ Công cụ bài so sánh đối chiếu (comparison tool)
 *Tệp tin: [`comparison-tool.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/comparison-tool.html) | [Bài viết demo trực tuyến](https://latanh-ai-znews.github.io/znews-editorial-tools/demo-bai-viet-so-sanh.html)*
 - Dành riêng cho thể loại bài viết so sánh đa chiều, phân tích đối lập "Đánh đổi vs Lợi ích", "Trước vs Sau", "Lựa chọn A vs B".
-- Thanh trượt ảnh kép kiểu iPhone (iOS slide switcher) kèm hiệu ứng chữ nhấp nháy phát sáng (shimmer prompt) và nút nhấn chuyển nhanh giữa hai vùng.
-- Ma trận 2 cột văn bản cân đối (Balanced Text Matrix) nằm dưới ảnh, hỗ trợ 1–3 đoạn văn bản phân tích sâu mà không làm lệch bố cục.
-- Tương thích 100% CMS Znews, triệt tiêu lỗi tràn viền bleed (`--zc-bleed: 0px`) và hỗ trợ thang phân giải ảnh sắc nét `zcFixSize`.
+- Cơ chế ẩn hiện triệt để hai vế: khi xem góc nhìn Đánh đổi thì Lợi ích ẩn hoàn toàn 100% và ngược lại, giúp thao tác trượt mở thực sự có ý nghĩa.
+- Khung nội dung tích hợp (Integrated Visual Frame): ảnh sắc nét và cột văn bản phân tích (1–3 đoạn) nằm liền khối, tự động cân đối tỷ lệ trên mọi kích cỡ màn hình.
+- Thanh trượt kiểu iPhone chuyển cảnh mượt mà kèm dòng chữ phát sáng nhấp nháy, hỗ trợ vuốt chạm trên màn hình cảm ứng.
 - Đi kèm trang bài viết demo mẫu [`demo-bai-viet-so-sanh.html`](https://latanh-ai-znews.github.io/znews-editorial-tools/demo-bai-viet-so-sanh.html) hỗ trợ 3 chế độ xem (Máy tính, Di động 420px, Mô phỏng CMS Znews).
 
 ### 6. 🖼️ Đóng khung ảnh đại diện định dạng đặc biệt (900×600)

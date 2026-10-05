@@ -195,14 +195,16 @@ Tài liệu này cung cấp hướng dẫn thao tác chi tiết từng bước c
 - Giữ được sự cân bằng thị giác hoàn hảo ngay cả khi nội dung phân tích rất dài (từ 1 đến 2–3 đoạn văn chi tiết cho mỗi bên).
 
 ### 8.2. Điểm đặc thù kỹ thuật & thiết kế tương tác
-- **Thanh trượt ảnh kép kiểu iPhone (iOS slide reveal)**:
-  - Cho phép người đọc kéo trực tiếp con trỏ phân chia trên ảnh hoặc trượt thanh trượt viên thuốc kiểu iOS ở ngay dưới ảnh.
-  - Hiệu ứng chữ nhấp nháy phát sáng (shimmer animation): *"Trượt để xem lợi ích ›››"* khi đang ở vùng Đánh đổi, và *"‹‹‹ Trượt để xem đánh đổi"* khi đang ở vùng Lợi ích.
-  - Nút bấm chọn nhanh (tab badges): Người đọc có thể bấm trực tiếp vào vùng "Đánh đổi" hoặc "Lợi ích" để ảnh tự động trượt mượt mà sang vị trí 0% hoặc 100%.
-- **Ma trận văn bản 2 cột cân đối (Balanced Text Matrix)**:
-  - Bố cục 2 cột nằm ngay dưới ảnh, hai thẻ (Card A và Card B) tự động kéo dãn chiều cao bằng nhau (`align-items: stretch`).
-  - Hỗ trợ văn bản phân tích dài (1 đến 2–3 đoạn văn cho mỗi phía) mà không bị co cụm hay làm lệch bố cục.
-  - Tự động đồng bộ độ sáng với thanh trượt: khi kéo về phía Đánh đổi, thẻ Đánh đổi sáng rõ; khi kéo về phía Lợi ích, thẻ Lợi ích sáng rõ; khi ở vị trí cân bằng giữa, cả hai thẻ đều nổi bật ngang nhau.
+- **Cơ chế ẩn hiện triệt để hai vế (Exclusive View Switching)**:
+  - Khi đang ở góc nhìn "Đánh đổi", toàn bộ phần "Lợi ích" bị ẩn hoàn toàn (100%), và ngược lại. Nhờ đó, hành động trượt mở mang ý nghĩa trực quan và rõ ràng nhất.
+- **Tích hợp caption và văn bản phân tích liền khối với ảnh**:
+  - Khung nội dung tích hợp (Integrated Visual Frame) đặt ảnh sắc nét và cột nội dung phân tích (1 đến 2–3 đoạn văn bản) trong cùng một khối thẻ thống nhất, có badge nhận diện và màu nhấn đồng bộ.
+  - Bố cục 2 cột (Ảnh 55% - Chữ 45%) trên máy tính và tự động xếp chồng trên di động, giữ tỷ lệ thị giác cân xứng hoàn hảo cho các bài viết dài.
+- **Thanh trượt chuyển cảnh phong cách iPhone**:
+  - Rãnh trượt với dòng chữ phát sáng nhấp nháy: *"Trượt để xem lợi ích ›››"* khi ở bên Đánh đổi, và *"‹‹‹ Trượt để xem đánh đổi"* khi ở bên Lợi ích.
+  - Người đọc có thể kéo núm tròn từ bên này sang bên kia, bấm nút tab nhanh, bấm vào rãnh trượt hoặc vuốt (swipe) trực tiếp trên khung nội dung để đổi góc nhìn.
+- **Loại bỏ vạch chia cắt ảnh thừa trên ảnh**:
+  - Không có vạch chia cắt đôi hay biểu tượng thừa trên bề mặt bức ảnh; ảnh hiển thị trọn vẹn 100%, rõ nét và đúng tỷ lệ.
 - **Tương thích toàn diện CMS Znews & an toàn quảng cáo**:
   - Tích hợp namespace độc lập `.zac#zacCompare` ngăn ngừa xung đột CSS toàn trang.
   - Tự động đặt lại `--zc-bleed: 0px` trên giao diện `layout-special` và `mode-bleed`, triệt tiêu hoàn toàn lỗi tràn mép 130px.
