@@ -3,32 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bài viết mẫu: Bỏ phố về ven — Đánh đổi và lợi ích sau 3 năm nhìn lại | Znews</title>
+  <title>Bỏ phố về ven: Đánh đổi và lợi ích sau 3 năm nhìn lại | Znews Special</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================================
-       OFFICEVIBE DESIGN SYSTEM — Calm Editorial Journal on Warm Cream Paper
+       APPLE (ESPAÑA) DESIGN SYSTEM — Obsidian Gallery Vitrine & Dark Stage
        ========================================================================== */
     :root {
-      --color-ink-navy: #0c1754;
-      --color-electric-cobalt: #2545ff;
-      --color-charcoal: #171417;
-      --color-warm-canvas: #f9f8f6;
+      --color-obsidian: #1d1d1f;
+      --color-frost-white: #f5f5f7;
+      --color-pure-black: #000000;
       --color-paper-white: #ffffff;
-      --color-cream-border: #f0e9e1;
-      --color-graphite: #222222;
-      --color-stone: #969696;
-      --color-smoke: #cccccc;
-      --color-lavender-mist: #eaebf8;
+      --color-carbon: #111111;
+      --color-platinum: #86868b;
+      --color-graphite: #333336;
+      --color-silver-mist: #cccccc;
+      --color-smoke: #424245;
+      --color-apple-blue: #0071e3;
+      --color-link-blue: #0066cc;
+      --color-halo-blue: #2997ff;
+      --color-signal-orange: #f56900;
+      --color-iris-violet: #8668ff;
+      --color-reef-teal: #00a1b3;
 
-      --demo-bg: var(--color-warm-canvas);
-      --demo-sheet: var(--color-paper-white);
-      --demo-border: var(--color-cream-border);
-      --demo-text: var(--color-charcoal);
-      --demo-headline: var(--color-ink-navy);
-      --demo-muted: var(--color-stone);
+      --demo-bg: var(--color-pure-black);
+      --demo-sheet: var(--color-pure-black);
+      --demo-border: var(--color-graphite);
+      --demo-text: var(--color-frost-white);
+      --demo-headline: var(--color-frost-white);
+      --demo-muted: var(--color-platinum);
     }
 
     * { box-sizing: border-box; }
@@ -37,12 +42,12 @@
       padding: 0;
       background: var(--demo-bg);
       color: var(--demo-text);
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Plus Jakarta Sans", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
-      line-height: 1.65;
+      line-height: 1.55;
     }
 
-    /* Thanh điều khiển thử nghiệm (Top Control Bar) */
+    /* Thanh điều khiển thử nghiệm (Top Control Bar — Frosted Obsidian Nav) */
     .demo-bar {
       position: sticky;
       top: 0;
@@ -51,12 +56,11 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 12px 24px;
-      background: rgba(249, 248, 246, 0.94);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--color-cream-border);
-      box-shadow: 0 2px 14px rgba(12, 23, 84, 0.03);
+      padding: 12px 28px;
+      background: rgba(29, 29, 31, 0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
     .demo-bar-left {
       display: flex;
@@ -68,12 +72,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 14px;
-      border-radius: 16px;
-      background: var(--color-lavender-mist);
-      color: var(--color-ink-navy);
-      font-size: 11.5px;
-      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 980px;
+      background: var(--color-carbon);
+      border: 1px solid var(--color-graphite);
+      color: var(--color-frost-white);
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: .06em;
       text-transform: uppercase;
     }
@@ -81,134 +86,136 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--color-electric-cobalt);
+      background: var(--color-signal-orange);
     }
     .demo-title {
       font-size: 13.5px;
       font-weight: 600;
-      color: var(--color-ink-navy);
+      color: var(--color-frost-white);
       letter-spacing: -.01em;
     }
     .demo-bar-mid {
       display: flex;
       align-items: center;
       gap: 4px;
-      background: #eee9e0;
+      background: var(--color-carbon);
+      border: 1px solid var(--color-graphite);
       padding: 3px;
-      border-radius: 100px;
+      border-radius: 980px;
     }
     .demo-mode-btn {
       border: none;
       background: transparent;
-      padding: 6px 14px;
-      border-radius: 100px;
+      padding: 6px 16px;
+      border-radius: 980px;
       font-size: 12px;
-      font-weight: 600;
-      color: var(--color-graphite);
+      font-weight: 500;
+      color: var(--color-platinum);
       cursor: pointer;
       transition: all .18s ease;
       font-family: inherit;
     }
+    .demo-mode-btn:hover {
+      color: var(--color-frost-white);
+    }
     .demo-mode-btn.active {
-      background: var(--color-paper-white);
-      color: var(--color-ink-navy);
-      box-shadow: 0 2px 6px rgba(12, 23, 84, 0.08);
+      background: var(--color-graphite);
+      color: var(--color-frost-white);
+      font-weight: 600;
     }
     .demo-bar-right {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .demo-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 18px;
-      border-radius: 100px;
+      padding: 7px 18px;
+      border-radius: 36px;
       font-size: 12.5px;
       font-weight: 600;
       text-decoration: none;
       cursor: pointer;
-      border: 1px solid var(--color-cream-border);
-      background: var(--color-paper-white);
-      color: var(--color-ink-navy);
+      border: 1px solid var(--color-graphite);
+      background: var(--color-carbon);
+      color: var(--color-frost-white);
       transition: all .15s ease;
     }
     .demo-btn:hover {
-      background: #faf8f5;
-      border-color: #e2dad0;
+      background: var(--color-graphite);
+      border-color: var(--color-smoke);
     }
     .demo-btn-primary {
-      background: var(--color-electric-cobalt);
+      background: var(--color-apple-blue);
       color: #ffffff !important;
-      border-color: var(--color-electric-cobalt);
+      border-color: var(--color-apple-blue);
     }
     .demo-btn-primary:hover {
-      background: #1c39e0;
-      border-color: #1c39e0;
+      background: #0077ed;
+      border-color: #0077ed;
     }
 
     /* Khung trang mô phỏng */
     .page-wrapper {
-      max-width: 1100px;
-      margin: 32px auto 70px;
-      padding: 0 16px;
+      max-width: 1200px;
+      margin: 36px auto 80px;
+      padding: 0 20px;
       transition: max-width .3s cubic-bezier(.2,1,.3,1);
     }
     .page-wrapper.mobile-view {
       max-width: 440px;
     }
     .page-wrapper.cms-mock {
-      max-width: 1280px;
+      max-width: 1360px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 300px;
-      gap: 36px;
+      gap: 40px;
       align-items: start;
     }
     .cms-mock-sidebar {
       display: none;
       position: sticky;
       top: 86px;
-      padding: 22px;
-      background: var(--color-paper-white);
-      border: 1px solid var(--color-cream-border);
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(12, 23, 84, 0.04);
+      padding: 24px;
+      background: var(--color-obsidian);
+      border: 1px solid var(--color-graphite);
+      border-radius: 28px;
     }
     .page-wrapper.cms-mock .cms-mock-sidebar {
       display: block;
     }
     .cms-mock-sidebar h4 {
       margin: 0 0 16px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: var(--color-ink-navy);
-      border-bottom: 2px solid var(--color-electric-cobalt);
-      padding-bottom: 6px;
+      color: var(--color-platinum);
+      border-bottom: 1px solid var(--color-graphite);
+      padding-bottom: 8px;
     }
     .sidebar-ad-box {
       width: 100%;
       height: 250px;
-      background: #f4efe8;
-      border: 1px dashed #d5cbc0;
-      border-radius: 12px;
+      background: var(--color-carbon);
+      border: 1px dashed var(--color-smoke);
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       font-size: 12px;
-      color: var(--color-stone);
+      color: var(--color-platinum);
       margin-bottom: 16px;
     }
 
     .article-sheet {
-      background: var(--color-paper-white);
-      border-radius: 16px;
-      border: 1px solid var(--color-cream-border);
-      box-shadow: 0 4px 28px rgba(12, 23, 84, 0.05);
-      padding: 44px 44px 0;
+      background: var(--color-pure-black);
+      border-radius: 28px;
+      border: 1px solid var(--color-graphite);
+      padding: 48px 48px 0;
       overflow: hidden;
     }
 
@@ -218,23 +225,22 @@
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(12, 23, 84, 0.45);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(14px);
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
     .demo-modal-backdrop.show { display: flex; }
     .demo-modal-window {
-      background: var(--color-paper-white);
+      background: var(--color-obsidian);
       width: 100%;
-      max-width: 820px;
+      max-width: 840px;
       max-height: 85vh;
-      border-radius: 16px;
-      border: 1px solid var(--color-cream-border);
+      border-radius: 28px;
+      border: 1px solid var(--color-graphite);
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 60px rgba(12, 23, 84, 0.2);
       overflow: hidden;
     }
     .demo-modal-head {
@@ -242,10 +248,10 @@
       align-items: center;
       justify-content: space-between;
       padding: 18px 24px;
-      border-bottom: 1px solid var(--color-cream-border);
-      background: var(--color-warm-canvas);
+      border-bottom: 1px solid var(--color-graphite);
+      background: var(--color-carbon);
     }
-    .demo-modal-head h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--color-ink-navy); }
+    .demo-modal-head h3 { margin: 0; font-size: 15px; font-weight: 600; color: var(--color-frost-white); }
     .demo-modal-body {
       padding: 20px 24px;
       flex: 1;
@@ -259,70 +265,66 @@
       line-height: 1.5;
       padding: 14px;
       border: 1px solid var(--color-smoke);
-      border-radius: 12px;
-      background: #faf9f6;
+      border-radius: 16px;
+      background: var(--color-carbon);
       resize: vertical;
-      color: var(--color-charcoal);
+      color: var(--color-frost-white);
     }
 
     @media (max-width: 768px) {
       .demo-bar { padding: 10px 14px; }
       .demo-title { display: none; }
       .page-wrapper { margin: 12px auto 40px; padding: 0 8px; }
-      .article-sheet { padding: 24px 16px 0; border-radius: 14px; }
+      .article-sheet { padding: 28px 16px 0; border-radius: 20px; }
     }
   </style>
 
-  <!-- ==================== CSS CỦA BÀI VIẾT SO SÁNH (OFFICEVIBE STYLE) ==================== -->
+  <!-- ==================== CSS CỦA BÀI VIẾT SO SÁNH (CHUẨN APPLE CINEMATIC) ==================== -->
   <style id="zac-comparison-css">
-/* --- TỔNG THỂ BÀI VIẾT: OFFICEVIBE CALM EDITORIAL JOURNAL --- */
+/* --- TỔNG THỂ BÀI VIẾT: APPLE OBSIDIAN GALLERY STAGE --- */
 .zac#zacCompare{
-  --zc-navy: #0c1754;
-  --zc-cobalt: #2545ff;
-  --zc-charcoal: #171417;
-  --zc-canvas: #f9f8f6;
+  --zc-obsidian: #1d1d1f;
+  --zc-frost: #f5f5f7;
+  --zc-black: #000000;
   --zc-paper: #ffffff;
-  --zc-cream-border: #f0e9e1;
-  --zc-graphite: #222222;
-  --zc-stone: #969696;
-  --zc-smoke: #cccccc;
-  --zc-lavender: #eaebf8;
+  --zc-carbon: #111111;
+  --zc-platinum: #86868b;
+  --zc-graphite: #333336;
+  --zc-smoke: #424245;
+  --zc-blue: #0071e3;
+  --zc-halo: #2997ff;
+  --zc-orange: #f56900;
   --zc-bleed: 0px;
 
   /* Hai vế đối chiếu */
-  --zc-a: var(--zc-navy);
-  --zc-b: var(--zc-cobalt);
-  --zc-a-bg: #f5f4fb;
-  --zc-b-bg: #f8faff;
-  --zc-a-badge-bg: var(--zc-lavender);
-  --zc-a-badge-color: var(--zc-navy);
-  --zc-b-badge-bg: var(--zc-lavender);
-  --zc-b-badge-color: var(--zc-cobalt);
+  --zc-a: var(--zc-orange);
+  --zc-b: var(--zc-halo);
 
   display: block;
   width: 100%;
   margin: 0;
   padding: 0;
-  background: transparent;
-  color: var(--zc-charcoal);
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  font-size: 18px;
-  line-height: 1.7;
+  background: var(--zc-black);
+  color: var(--zc-frost);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
   counter-reset: zsec;
 }
 .zac#zacCompare *{ box-sizing: border-box; }
 .zac#zacCompare p{ margin: 0; }
-.zac#zacCompare b, .zac#zacCompare strong{ font-weight: 700; color: var(--zc-charcoal); }
-.zac#zacCompare a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.zac#zacCompare b, .zac#zacCompare strong{ font-weight: 600; color: var(--zc-frost); }
+.zac#zacCompare a{ color: var(--zc-halo); text-decoration: none; }
+.zac#zacCompare a:hover{ text-decoration: underline; }
 @media (max-width: 700px){ .zac#zacCompare{ --zc-bleed: 0px; } }
 .layout-special .zac#zacCompare, body.layout-special #zacCompare, .the-article.layout-special #zacCompare, .the-article-body.layout-special #zacCompare, .zac#zacCompare.mode-bleed{ --zc-bleed: 0px; }
 
-/* Phần đầu bài (Hero) */
+/* Phần đầu bài (Hero Stage) */
 .zac#zacCompare .zc-hero{
-  max-width: 880px;
-  margin: 0 auto 36px;
-  padding: 10px 16px 32px;
-  border-bottom: 1px solid var(--zc-cream-border);
+  max-width: 960px;
+  margin: 0 auto 44px;
+  padding: 16px 16px 36px;
+  border-bottom: 1px solid var(--zc-graphite);
   text-align: left;
 }
 .zac#zacCompare .zc-eyebrow{
@@ -330,77 +332,59 @@
   align-items: center;
   gap: 8px;
   margin: 0 0 16px;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
-  font-weight: 700;
-  letter-spacing: .12em;
+  font-weight: 600;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--zc-navy);
+  color: var(--zc-orange);
 }
-.zac#zacCompare .zc-eyebrow-badge{
-  background: var(--zc-lavender);
-  border-radius: 16px;
-  padding: 3px 12px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--zc-navy);
-}
-.zac#zacCompare .zc-kicker a{ color: inherit !important; text-decoration: none !important; }
-.zac#zacCompare .zc-kicker a:hover{ text-decoration: underline !important; }
 .zac#zacCompare .zc-title{
   margin: 0 0 20px;
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(34px, 4.4vw, 50px);
-  line-height: 1.14;
-  letter-spacing: -.02em;
-  color: var(--zc-navy);
-}
-.zac#zacCompare .zc-title em{
-  font-family: 'Newsreader', Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--zc-electric-cobalt, #2545ff);
+  font-weight: 700;
+  font-size: clamp(34px, 4.8vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -.028em;
+  color: var(--zc-frost);
 }
 .zac#zacCompare .zc-sapo{
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   font-size: 20px;
-  line-height: 1.62;
-  color: var(--zc-charcoal);
+  line-height: 1.55;
+  color: var(--zc-platinum);
   font-weight: 400;
-  opacity: .92;
+  letter-spacing: -.01em;
 }
 .zac#zacCompare .zc-byline{
   font-size: 13.5px;
-  color: var(--zc-stone);
+  color: var(--zc-platinum);
   margin: 0;
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
-.zac#zacCompare .zc-byline b{ color: var(--zc-navy); }
+.zac#zacCompare .zc-byline b{ color: var(--zc-frost); }
 
 /* Dẫn nhập và mục lục */
 .zac#zacCompare .zc-intro{
-  max-width: 760px;
-  margin: 0 auto 38px;
+  max-width: 820px;
+  margin: 0 auto 40px;
   padding: 0 16px;
 }
 .zac#zacCompare .zc-intro p{
   margin: 0 0 22px;
-  font-size: 18.5px;
-  line-height: 1.76;
-  color: var(--zc-charcoal);
+  font-size: 18px;
+  line-height: 1.72;
+  color: var(--zc-frost);
 }
 .zac#zacCompare .zc-toc{
-  max-width: 760px;
-  margin: 0 auto 48px;
-  padding: 24px 28px;
-  background: var(--zc-canvas);
-  border: 1px solid var(--zc-cream-border);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(12, 23, 84, 0.04);
+  max-width: 820px;
+  margin: 0 auto 52px;
+  padding: 26px 30px;
+  background: var(--zc-carbon);
+  border: 1px solid var(--zc-graphite);
+  border-radius: 28px;
 }
 .zac#zacCompare .zc-toc-header{
   display: flex;
@@ -412,20 +396,21 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--zc-lavender);
-  border-radius: 16px;
+  background: var(--zc-obsidian);
+  border: 1px solid var(--zc-graphite);
+  border-radius: 980px;
   padding: 3px 12px;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--zc-navy);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--zc-halo);
   letter-spacing: .06em;
   text-transform: uppercase;
 }
 .zac#zacCompare .zc-toc-title{
   margin: 0;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
-  color: var(--zc-navy);
+  color: var(--zc-frost);
 }
 .zac#zacCompare .zc-toc ol{
   margin: 0;
@@ -433,23 +418,23 @@
 }
 .zac#zacCompare .zc-toc li{
   margin: 8px 0;
-  font-size: 15.5px;
+  font-size: 15px;
   line-height: 1.45;
 }
 .zac#zacCompare .zc-toc a{
   text-decoration: none;
-  color: var(--zc-charcoal);
+  color: var(--zc-frost);
   font-weight: 500;
 }
 .zac#zacCompare .zc-toc a:hover{
+  color: var(--zc-halo);
   text-decoration: underline;
-  color: var(--zc-cobalt);
 }
 
 /* Từng mục so sánh */
 .zac#zacCompare .zc-item{
-  max-width: 980px;
-  margin: 64px auto 0;
+  max-width: 1020px;
+  margin: 68px auto 0;
   padding: 0 16px;
   counter-increment: zsec;
   scroll-margin-top: 80px;
@@ -462,38 +447,34 @@
 }
 .zac#zacCompare .zc-item-num{
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
-  color: var(--zc-paper);
-  background: var(--zc-cobalt);
+  color: var(--zc-frost);
+  background: var(--zc-carbon);
+  border: 1px solid var(--zc-graphite);
   padding: 5px 12px;
-  border-radius: 16px;
+  border-radius: 980px;
   flex: none;
 }
 .zac#zacCompare .zc-item-title{
   margin: 0;
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(24px, 3.2vw, 32px);
-  line-height: 1.25;
-  color: var(--zc-navy);
-}
-.zac#zacCompare .zc-item-title em{
-  font-style: italic;
-  color: var(--zc-cobalt);
+  font-weight: 700;
+  font-size: clamp(24px, 3.4vw, 34px);
+  line-height: 1.18;
+  letter-spacing: -.02em;
+  color: var(--zc-frost);
 }
 
-/* ==================== THANH ĐIỀU KHIỂN TRƯỢT IPHONE (OFFICEVIBE 100PX PILL) ==================== */
+/* ==================== THANH ĐIỀU KHIỂN TRƯỢT IPHONE CHUẨN APPLE ==================== */
 .zac#zacCompare .zc-ios-bar{
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   padding: 6px 10px;
-  background: var(--zc-paper);
-  border: 1px solid var(--zc-cream-border);
-  border-radius: 100px;
-  box-shadow: 0 4px 18px rgba(12, 23, 84, 0.05);
+  background: var(--zc-obsidian);
+  border: 1px solid var(--zc-graphite);
+  border-radius: 980px;
 }
 
 /* Nút tab nhanh 2 bên */
@@ -501,14 +482,14 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  border-radius: 100px;
+  padding: 9px 20px;
+  border-radius: 980px;
   border: 1px solid transparent;
   background: transparent;
   font-family: inherit;
   font-size: 13.5px;
-  font-weight: 600;
-  color: var(--zc-graphite);
+  font-weight: 500;
+  color: var(--zc-platinum);
   cursor: pointer;
   transition: all .2s ease;
   white-space: nowrap;
@@ -516,34 +497,31 @@
   -webkit-tap-highlight-color: transparent;
 }
 .zac#zacCompare .zc-tab-btn:hover{
-  background: var(--zc-lavender);
-  color: var(--zc-navy);
+  color: var(--zc-frost);
 }
 .zac#zacCompare .zc-tab-btn.is-active{
-  background: var(--zc-paper);
-  color: var(--zc-navy);
-  border-color: var(--zc-cream-border);
-  box-shadow: 0 2px 8px rgba(12, 23, 84, 0.08);
-  font-weight: 700;
+  background: var(--zc-graphite);
+  color: var(--zc-frost);
+  font-weight: 600;
 }
 .zac#zacCompare .zc-dot{
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #d6d3d1;
+  background: var(--zc-smoke);
   transition: background .2s ease;
 }
-.zac#zacCompare .zc-tab-a.is-active .zc-dot{ background: var(--zc-navy); }
-.zac#zacCompare .zc-tab-b.is-active .zc-dot{ background: var(--zc-cobalt); }
+.zac#zacCompare .zc-tab-a.is-active .zc-dot{ background: var(--zc-orange); }
+.zac#zacCompare .zc-tab-b.is-active .zc-dot{ background: var(--zc-halo); }
 
 /* Rãnh trượt iPhone */
 .zac#zacCompare .zc-ios-track{
   position: relative;
   flex: 1;
   height: 44px;
-  background: var(--zc-canvas);
-  border: 1px solid var(--zc-cream-border);
-  border-radius: 100px;
+  background: var(--zc-black);
+  border: 1px solid var(--zc-graphite);
+  border-radius: 980px;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
@@ -563,9 +541,9 @@
 }
 .zac#zacCompare .zc-shimmer-text{
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: .02em;
-  background: linear-gradient(90deg, var(--zc-stone) 0%, var(--zc-cobalt) 50%, var(--zc-stone) 100%);
+  background: linear-gradient(90deg, var(--zc-platinum) 0%, var(--zc-halo) 50%, var(--zc-platinum) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -573,7 +551,7 @@
   white-space: nowrap;
 }
 .zac#zacCompare .zc-item.side-b .zc-shimmer-text{
-  background: linear-gradient(90deg, var(--zc-stone) 0%, var(--zc-navy) 50%, var(--zc-stone) 100%);
+  background: linear-gradient(90deg, var(--zc-platinum) 0%, var(--zc-orange) 50%, var(--zc-platinum) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -591,8 +569,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--zc-cobalt);
-  box-shadow: 0 2px 8px rgba(37, 69, 255, 0.35);
+  background: var(--zc-paper);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -608,7 +585,7 @@
   width: 16px;
   height: 16px;
   fill: none;
-  stroke: #ffffff;
+  stroke: var(--zc-obsidian);
   stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -619,13 +596,12 @@
   left: calc(100% - 40px);
 }
 
-/* ==================== KHUNG NỘI DUNG TÍCH HỢP LIỀN KHỐI ==================== */
+/* ==================== KHUNG NỘI DUNG TÍCH HỢP LIỀN KHỐI (28PX RADIUS) ==================== */
 .zac#zacCompare .zc-integrated-frame{
   position: relative;
-  background: var(--zc-paper);
-  border-radius: 16px;
-  border: 1px solid var(--zc-cream-border);
-  box-shadow: 0 4px 24px rgba(12, 23, 84, 0.08);
+  background: var(--zc-obsidian);
+  border-radius: 28px;
+  border: 1px solid var(--zc-graphite);
   overflow: hidden;
 }
 
@@ -656,7 +632,7 @@
 .zac#zacCompare .zc-view-panel{
   grid-template-columns: 1.15fr 1fr;
   align-items: stretch;
-  min-height: 460px;
+  min-height: 480px;
 }
 @media (max-width: 768px){
   .zac#zacCompare .zc-view-panel{
@@ -668,13 +644,13 @@
 /* Cột Ảnh tích hợp */
 .zac#zacCompare .zc-panel-media{
   position: relative;
-  background: #080f33;
-  min-height: 320px;
+  background: var(--zc-black);
+  min-height: 340px;
   overflow: hidden;
 }
 @media (max-width: 768px){
   .zac#zacCompare .zc-panel-media{
-    padding-bottom: 56.25%;
+    padding-bottom: 60%;
     min-height: auto;
   }
 }
@@ -690,246 +666,221 @@
 /* Badge góc nhìn trên ảnh */
 .zac#zacCompare .zc-sticker-tag{
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 18px;
+  left: 18px;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 14px;
-  border-radius: 16px;
-  background: var(--zc-paper);
-  border: 1px solid var(--zc-cream-border);
-  color: var(--zc-navy);
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 980px;
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--zc-graphite);
+  color: var(--zc-frost);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: .02em;
-  box-shadow: 0 4px 12px rgba(12, 23, 84, 0.15);
   z-index: 3;
 }
 .zac#zacCompare .zc-view-a .zc-sticker-tag .tag-dot{
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--zc-navy);
+  background: var(--zc-orange);
 }
 .zac#zacCompare .zc-view-b .zc-sticker-tag .tag-dot{
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--zc-cobalt);
+  background: var(--zc-halo);
 }
 
-/* Nhãn chú thích điểm nhấn góc phải ảnh */
-.zac#zacCompare .zc-script-annotation{
+/* Tag danh mục góc phải ảnh */
+.zac#zacCompare .zc-spec-tag{
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 18px;
+  right: 18px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 5px 14px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--zc-cream-border);
-  border-radius: 100px;
-  font-family: 'Newsreader', Georgia, serif;
-  font-style: italic;
-  font-size: 14.5px;
-  font-weight: 500;
-  color: var(--zc-navy);
-  box-shadow: 0 4px 14px rgba(12, 23, 84, 0.12);
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--zc-graphite);
+  border-radius: 980px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--zc-platinum);
   z-index: 3;
 }
-.zac#zacCompare .zc-view-b .zc-script-annotation{
-  color: var(--zc-cobalt);
-}
-.zac#zacCompare .zc-script-arrow{
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
-}
+.zac#zacCompare .zc-view-a .zc-spec-tag{ color: var(--zc-orange); }
+.zac#zacCompare .zc-view-b .zc-spec-tag{ color: var(--zc-halo); }
 
 /* Chú thích ảnh tích hợp bên dưới ảnh */
 .zac#zacCompare .zc-media-caption{
   position: absolute;
-  bottom: 14px;
-  left: 14px;
-  right: 14px;
-  padding: 9px 16px;
-  background: rgba(12, 23, 84, 0.88);
-  color: #ffffff;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(12px);
+  color: var(--zc-frost);
   font-size: 12.5px;
-  border-radius: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   line-height: 1.45;
   z-index: 3;
-  backdrop-filter: blur(6px);
 }
 
 /* Cột Văn bản phân tích tích hợp */
 .zac#zacCompare .zc-panel-content{
-  padding: 36px 40px;
+  padding: 40px 44px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--zc-paper);
-  border-left: 1px solid var(--zc-cream-border);
-}
-.zac#zacCompare .zc-view-a .zc-panel-content{
-  background: var(--zc-paper);
-}
-.zac#zacCompare .zc-view-b .zc-panel-content{
-  background: #fbfcfe;
+  background: var(--zc-carbon);
+  border-left: 1px solid var(--zc-graphite);
 }
 @media (max-width: 768px){
   .zac#zacCompare .zc-panel-content{
     border-left: none;
-    border-top: 1px solid var(--zc-cream-border);
-    padding: 26px 22px;
+    border-top: 1px solid var(--zc-graphite);
+    padding: 28px 24px;
   }
 }
 
 .zac#zacCompare .zc-content-header{
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .zac#zacCompare .zc-status-chip{
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   padding: 4px 12px;
-  border-radius: 16px;
-  background: var(--zc-lavender);
+  border-radius: 980px;
+  background: var(--zc-obsidian);
+  border: 1px solid var(--zc-graphite);
   margin-bottom: 12px;
-  letter-spacing: .04em;
+  letter-spacing: .06em;
   text-transform: uppercase;
 }
 .zac#zacCompare .zc-view-a .zc-status-chip{
-  color: var(--zc-navy);
+  color: var(--zc-orange);
 }
 .zac#zacCompare .zc-view-b .zc-status-chip{
-  color: var(--zc-cobalt);
+  color: var(--zc-halo);
 }
 .zac#zacCompare .zc-content-title{
   margin: 0;
-  font-family: 'Newsreader', Georgia, serif;
   font-size: 24px;
-  font-weight: 400;
-  color: var(--zc-navy);
-  line-height: 1.3;
-}
-.zac#zacCompare .zc-content-title em{
-  font-style: italic;
-  color: var(--zc-cobalt);
+  font-weight: 700;
+  color: var(--zc-frost);
+  line-height: 1.25;
+  letter-spacing: -.015em;
 }
 .zac#zacCompare .zc-content-body p{
   margin: 0 0 16px;
-  font-size: 16.5px;
-  line-height: 1.74;
-  color: var(--zc-charcoal);
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--zc-platinum);
 }
 .zac#zacCompare .zc-content-body p:last-child{
   margin-bottom: 0;
 }
 
-/* Nét chữ nghiêng nhấn mạnh mang phong cách tạp chí Officevibe */
-.zac#zacCompare .zc-editorial-em{
-  font-family: 'Newsreader', Georgia, serif;
-  font-style: italic;
-  font-weight: 500;
-  color: var(--zc-cobalt);
-  font-size: 18px;
+/* Điểm nhấn chữ Apple */
+.zac#zacCompare .zc-apple-highlight{
+  color: var(--zc-frost);
+  font-weight: 600;
+}
+.zac#zacCompare .zc-view-b .zc-apple-highlight{
+  color: var(--zc-halo);
 }
 
 /* Phần kết luận & đúc kết */
 .zac#zacCompare .zc-verdict{
-  max-width: 880px;
-  margin: 64px auto 0;
-  padding: 36px 40px;
-  background: var(--zc-paper);
-  border-radius: 16px;
-  border: 1px solid var(--zc-cream-border);
-  box-shadow: 0 4px 24px rgba(12, 23, 84, 0.08);
+  max-width: 1020px;
+  margin: 68px auto 0;
+  padding: 40px 44px;
+  background: var(--zc-carbon);
+  border-radius: 28px;
+  border: 1px solid var(--zc-graphite);
 }
 .zac#zacCompare .zc-verdict-badge{
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--zc-lavender);
-  border-radius: 16px;
+  background: var(--zc-obsidian);
+  border: 1px solid var(--zc-graphite);
+  border-radius: 980px;
   padding: 4px 14px;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
-  color: var(--zc-navy);
-  margin-bottom: 14px;
+  color: var(--zc-orange);
+  margin-bottom: 16px;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
 .zac#zacCompare .zc-verdict-title{
   margin: 0 0 16px;
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 400;
-  font-size: 24px;
-  color: var(--zc-navy);
-}
-.zac#zacCompare .zc-verdict-title em{
-  font-style: italic;
-  color: var(--zc-cobalt);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--zc-frost);
+  letter-spacing: -.02em;
 }
 .zac#zacCompare .zc-verdict p{
   margin: 0 0 16px;
-  font-size: 17.5px;
-  line-height: 1.74;
-  color: var(--zc-charcoal);
+  font-size: 17px;
+  line-height: 1.68;
+  color: var(--zc-platinum);
 }
 .zac#zacCompare .zc-verdict p:last-child{ margin-bottom: 0; }
 .zac#zacCompare .zc-note{
-  margin-top: 18px;
+  margin-top: 20px;
   font-size: 13.5px;
-  color: var(--zc-stone);
-  font-style: italic;
+  color: var(--zc-platinum);
+  opacity: .8;
 }
 
-/* Dải nhận diện chân trang (Officevibe Deep Ink Navy Footer) */
+/* Dải nhận diện chân trang (Apple Product Stage Footer) */
 .zac#zacCompare .zc-brand-band{
-  margin-top: 64px;
-  background: var(--zc-navy);
-  border-radius: 24px 24px 0 0;
-  padding: 44px 28px 40px;
+  margin-top: 68px;
+  background: var(--zc-black);
+  border-top: 1px solid var(--zc-graphite);
+  border-radius: 28px 28px 0 0;
+  padding: 50px 28px 44px;
   text-align: center;
-  color: #ffffff;
+  color: var(--zc-frost);
 }
 .zac#zacCompare .zc-brand-pill{
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 100px;
+  background: var(--zc-carbon);
+  border: 1px solid var(--zc-graphite);
+  border-radius: 980px;
   padding: 6px 20px;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--zc-lavender);
-  margin-bottom: 16px;
+  color: var(--zc-halo);
+  margin-bottom: 18px;
   letter-spacing: .04em;
 }
 .zac#zacCompare .zc-brand-title{
-  margin: 0 0 10px;
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 28px;
-  font-weight: 400;
-  color: #ffffff;
-}
-.zac#zacCompare .zc-brand-title em{
-  font-style: italic;
-  color: #92a4ff;
+  margin: 0 0 12px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--zc-frost);
+  letter-spacing: -.02em;
 }
 .zac#zacCompare .zc-brand-desc{
   margin: 0 auto;
-  max-width: 640px;
+  max-width: 660px;
   font-size: 15px;
-  color: #d1d7f5;
+  color: var(--zc-platinum);
   line-height: 1.6;
 }
 
@@ -951,11 +902,11 @@
 </head>
 <body>
 
-  <!-- Thanh điều khiển thử nghiệm -->
+  <!-- Thanh điều khiển thử nghiệm (Apple Dark Stage Chrome) -->
   <header class="demo-bar">
     <div class="demo-bar-left">
-      <span class="demo-badge"><span class="badge-dot"></span>ZNEWS DEMO</span>
-      <span class="demo-title">Bài viết đối chiếu: Bỏ phố về ven (Officevibe editorial style)</span>
+      <span class="demo-badge"><span class="badge-dot"></span>ZNEWS SPECIAL</span>
+      <span class="demo-title">Bài viết đối chiếu: Bỏ phố về ven (Apple dark vitrine style)</span>
     </div>
 
     <div class="demo-bar-mid">
@@ -986,10 +937,9 @@
         <!-- Header bài viết -->
         <header class="zc-hero">
           <div class="zc-eyebrow">
-            <span class="zc-eyebrow-badge">Góc nhìn đối chiếu</span>
-            <a href="https://znews.vn/doi-song.html" target="_blank">Đời sống & Đô thị</a> · <span>Tri thức - Znews</span>
+            Góc nhìn đối chiếu · Tri thức - Znews Special
           </div>
-          <h1 class="zc-title">Bỏ phố về ven: Đánh đổi và lợi ích sau 3 năm <em>nhìn lại</em></h1>
+          <h1 class="zc-title">Bỏ phố về ven: Đánh đổi và lợi ích sau 3 năm nhìn lại</h1>
           <p class="zc-sapo">
             Xu hướng rời trung tâm để ra các đô thị vệ tinh mang lại không gian sống thoáng đãng và giảm bớt áp lực tài chính, nhưng cũng buộc các gia đình trẻ phải đối mặt với bài toán thời gian di chuyển và dịch vụ xung quanh.
           </p>
@@ -1006,15 +956,15 @@
             Trong 5 năm qua, làn sóng dịch chuyển an cư từ lõi trung tâm ra các khu đô thị vệ tinh vùng ven ngày càng trở nên rõ nét đối với các gia đình trẻ tại Hà Nội và TP.HCM.
           </p>
           <p>
-            Nhìn từ bên ngoài, đó là sự lựa chọn lý tưởng cho một lối sống xanh, rời xa khói bụi và chật chội. Nhưng trên <span class="zc-editorial-em">thực tế</span> sau hơn 3 năm trải nghiệm, mỗi quyết định an cư đều là một bài toán cân đo giữa những giá trị nhận lại và cái giá thực tế phải trả.
+            Nhìn từ bên ngoài, đó là sự lựa chọn lý tưởng cho một lối sống xanh, rời xa khói bụi và chật chội. Nhưng trên thực tế sau hơn 3 năm trải nghiệm, mỗi quyết định an cư đều là một bài toán cân đo giữa những giá trị nhận lại và cái giá thực tế phải trả.
           </p>
         </section>
 
         <!-- Mục lục nhanh -->
         <nav class="zc-toc">
           <div class="zc-toc-header">
-            <span class="zc-toc-badge">Mục lục nhanh</span>
-            <div class="zc-toc-title">Nội dung đối chiếu trong bài:</div>
+            <span class="zc-toc-badge">Nội dung đối chiếu</span>
+            <div class="zc-toc-title">Các mục so sánh trọng tâm trong bài:</div>
           </div>
           <ol>
             <li><a href="#cmp-sec-1">Không gian sống và môi trường sinh hoạt</a></li>
@@ -1027,7 +977,7 @@
         <section class="zc-item side-a" id="cmp-sec-1" data-label-a="Đánh đổi" data-label-b="Lợi ích">
           <div class="zc-item-head">
             <span class="zc-item-num">01</span>
-            <h2 class="zc-item-title"><em>Không gian sống</em> và môi trường sinh hoạt</h2>
+            <h2 class="zc-item-title">Không gian sống và môi trường sinh hoạt</h2>
           </div>
 
           <!-- Thanh điều khiển trượt iPhone -->
@@ -1058,18 +1008,15 @@
               <div class="zc-panel-media">
                 <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
                      alt="Căn hộ nội đô chật hẹp"
-                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%230c1754\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Căn hộ nội đô chật hẹp</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23eaebf8\' text-anchor=\'middle\'>Diện tích 48m2, tầm nhìn bị vây kín</text></svg>';">
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23111111\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23f5f5f7\' text-anchor=\'middle\'>Căn hộ nội đô chật hẹp</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%2386868b\' text-anchor=\'middle\'>Diện tích 48m2, tầm nhìn bị vây kín</text></svg>';">
                 <div class="zc-sticker-tag"><span class="tag-dot"></span>Đánh đổi: 01</div>
-                <div class="zc-script-annotation">
-                  <span>Diện tích giới hạn</span>
-                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
+                <div class="zc-spec-tag">Nội đô 48 m²</div>
                 <div class="zc-media-caption">Căn hộ nội đô 48 m² chật hẹp, tầm nhìn bị che khuất bởi các khối nhà cao tầng</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
                   <span class="zc-status-chip">Góc nhìn đánh đổi</span>
-                  <h3 class="zc-content-title">Thu hẹp tối đa không gian <em>cá nhân</em></h3>
+                  <h3 class="zc-content-title">Thu hẹp tối đa không gian cá nhân</h3>
                 </div>
                 <div class="zc-content-body">
                   <p>
@@ -1087,25 +1034,22 @@
               <div class="zc-panel-media">
                 <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80"
                      alt="Khu đô thị vệ tinh sinh thái"
-                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%232545ff\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Khu đô thị vệ tinh sinh thái</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23ffffff\' text-anchor=\'middle\'>Không gian xanh ngập tràn</text></svg>';">
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23111111\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%232997ff\' text-anchor=\'middle\'>Khu đô thị vệ tinh sinh thái</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23f5f5f7\' text-anchor=\'middle\'>Không gian xanh ngập tràn</text></svg>';">
                 <div class="zc-sticker-tag"><span class="tag-dot"></span>Lợi ích: 01</div>
-                <div class="zc-script-annotation">
-                  <span>Môi trường sinh thái</span>
-                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
+                <div class="zc-spec-tag">Vệ tinh 95 m²</div>
                 <div class="zc-media-caption">Không gian sống 95 m² vùng ven với ban công mở rộng hướng ra công viên cây xanh</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
                   <span class="zc-status-chip">Góc nhìn lợi ích</span>
-                  <h3 class="zc-content-title">Bầu không khí trong lành và diện tích <em>gấp đôi</em></h3>
+                  <h3 class="zc-content-title">Bầu không khí trong lành và diện tích gấp đôi</h3>
                 </div>
                 <div class="zc-content-body">
                   <p>
                     Cùng số tiền đó tại vùng ven, gia đình có thể sở hữu căn hộ 3 phòng ngủ với diện tích gần 100 m², đón ánh sáng tự nhiên từ mọi góc phòng và có ban công rộng rãi trồng cây xanh.
                   </p>
                   <p>
-                    Quan trọng hơn cả là môi trường cho con nhỏ: trẻ có sân chơi nội khu an toàn, đường chạy bộ dưới bóng cây và không gian vận động ngoài trời mà không lo lắng về mật độ giao thông nguy hiểm, giúp cả gia đình <span class="zc-editorial-em">tái tạo năng lượng</span> mỗi ngày.
+                    Quan trọng hơn cả là môi trường cho con nhỏ: trẻ có sân chơi nội khu an toàn, đường chạy bộ dưới bóng cây và không gian vận động ngoài trời mà không lo lắng về mật độ giao thông nguy hiểm, giúp cả gia đình <span class="zc-apple-highlight">tái tạo năng lượng mỗi ngày</span>.
                   </p>
                 </div>
               </div>
@@ -1118,7 +1062,7 @@
         <section class="zc-item side-a" id="cmp-sec-2" data-label-a="Đánh đổi" data-label-b="Lợi ích">
           <div class="zc-item-head">
             <span class="zc-item-num">02</span>
-            <h2 class="zc-item-title"><em>Chi phí tài chính</em> và gánh nặng nợ vay</h2>
+            <h2 class="zc-item-title">Chi phí tài chính và gánh nặng nợ vay</h2>
           </div>
 
           <!-- Thanh điều khiển trượt iPhone -->
@@ -1149,18 +1093,15 @@
               <div class="zc-panel-media">
                 <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80"
                      alt="Áp lực tài chính và nợ vay"
-                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%230c1754\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Áp lực tài chính và nợ vay</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23eaebf8\' text-anchor=\'middle\'>Giá nhà trung tâm neo cao</text></svg>';">
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23111111\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23f5f5f7\' text-anchor=\'middle\'>Áp lực tài chính và nợ vay</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%2386868b\' text-anchor=\'middle\'>Giá nhà trung tâm neo cao</text></svg>';">
                 <div class="zc-sticker-tag"><span class="tag-dot"></span>Đánh đổi: 02</div>
-                <div class="zc-script-annotation">
-                  <span>Thanh khoản thứ cấp</span>
-                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
+                <div class="zc-spec-tag">Thanh khoản thứ cấp</div>
                 <div class="zc-media-caption">Giá nhà trung tâm neo ở mức cao kỷ lục, đòi hỏi đòn bẩy tài chính lớn</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
                   <span class="zc-status-chip">Góc nhìn đánh đổi</span>
-                  <h3 class="zc-content-title">Tốc độ tăng giá tài sản <em>chậm hơn</em></h3>
+                  <h3 class="zc-content-title">Tốc độ tăng giá tài sản chậm hơn</h3>
                 </div>
                 <div class="zc-content-body">
                   <p>
@@ -1178,25 +1119,22 @@
               <div class="zc-panel-media">
                 <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80"
                      alt="Tài chính nhẹ gánh và tích lũy"
-                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%232545ff\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Tài chính nhẹ gánh</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23ffffff\' text-anchor=\'middle\'>Giảm 45% gánh nợ ngân hàng</text></svg>';">
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23111111\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%232997ff\' text-anchor=\'middle\'>Tài chính nhẹ gánh</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23f5f5f7\' text-anchor=\'middle\'>Giảm 45% gánh nợ ngân hàng</text></svg>';">
                 <div class="zc-sticker-tag"><span class="tag-dot"></span>Lợi ích: 02</div>
-                <div class="zc-script-annotation">
-                  <span>Dòng tiền thảnh thơi</span>
-                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
+                <div class="zc-spec-tag">-45% gốc lãi</div>
                 <div class="zc-media-caption">Chi phí sở hữu vừa tầm giúp gia đình duy trì dòng tiền ổn định</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
                   <span class="zc-status-chip">Góc nhìn lợi ích</span>
-                  <h3 class="zc-content-title">Giảm 45% áp lực trả nợ <em>hàng tháng</em></h3>
+                  <h3 class="zc-content-title">Giảm 45% áp lực trả nợ hàng tháng</h3>
                 </div>
                 <div class="zc-content-body">
                   <p>
                     Khoản vay ngân hàng giảm từ 2,5 tỷ xuống chỉ còn khoảng 1,1 tỷ đồng giúp số tiền trả gốc lãi hàng tháng giảm đi gần một nửa, giải phóng gánh nặng tâm lý đè nặng lên cả gia đình.
                   </p>
                   <p>
-                    Sự <span class="zc-editorial-em">thảnh thơi tinh thần</span> giúp người trẻ không còn rơi vào trạng thái kiệt sức vì công việc, đồng thời có thêm ngân sách dự phòng cho y tế, bảo hiểm và những chuyến du lịch cùng người thân.
+                    Sự <span class="zc-apple-highlight">thảnh thơi tinh thần</span> giúp người trẻ không còn rơi vào trạng thái kiệt sức vì công việc, đồng thời có thêm ngân sách dự phòng cho y tế, bảo hiểm và những chuyến du lịch cùng người thân.
                   </p>
                 </div>
               </div>
@@ -1209,7 +1147,7 @@
         <section class="zc-item side-a" id="cmp-sec-3" data-label-a="Đánh đổi" data-label-b="Lợi ích">
           <div class="zc-item-head">
             <span class="zc-item-num">03</span>
-            <h2 class="zc-item-title"><em>Quãng đường di chuyển</em> và nhịp sống thường nhật</h2>
+            <h2 class="zc-item-title">Quãng đường di chuyển và nhịp sống thường nhật</h2>
           </div>
 
           <!-- Thanh điều khiển trượt iPhone -->
@@ -1240,18 +1178,15 @@
               <div class="zc-panel-media">
                 <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=80"
                      alt="Kẹt xe giờ cao điểm"
-                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%230c1754\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Kẹt xe giờ cao điểm</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23eaebf8\' text-anchor=\'middle\'>Hành trình 18 km mỗi chiều</text></svg>';">
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23111111\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23f5f5f7\' text-anchor=\'middle\'>Kẹt xe giờ cao điểm</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%2386868b\' text-anchor=\'middle\'>Hành trình 18 km mỗi chiều</text></svg>';">
                 <div class="zc-sticker-tag"><span class="tag-dot"></span>Đánh đổi: 03</div>
-                <div class="zc-script-annotation">
-                  <span>80 phút trên đường</span>
-                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
+                <div class="zc-spec-tag">80-90 phút/ngày</div>
                 <div class="zc-media-caption">Hành trình 18 km mỗi chiều trên trục đường hướng tâm vào các khung giờ cao điểm</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
                   <span class="zc-status-chip">Góc nhìn đánh đổi</span>
-                  <h3 class="zc-content-title">Mỗi ngày mất thêm <em>80-90 phút</em> trên đường</h3>
+                  <h3 class="zc-content-title">Mỗi ngày mất thêm 80-90 phút trên đường</h3>
                 </div>
                 <div class="zc-content-body">
                   <p>
@@ -1269,18 +1204,15 @@
               <div class="zc-panel-media">
                 <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80"
                      alt="Buổi tối bình yên bên gia đình"
-                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%232545ff\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Buổi tối bình yên</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23ffffff\' text-anchor=\'middle\'>Tách biệt hoàn toàn áp lực</text></svg>';">
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23111111\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%232997ff\' text-anchor=\'middle\'>Buổi tối bình yên</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23f5f5f7\' text-anchor=\'middle\'>Tách biệt hoàn toàn áp lực</text></svg>';">
                 <div class="zc-sticker-tag"><span class="tag-dot"></span>Lợi ích: 03</div>
-                <div class="zc-script-annotation">
-                  <span>Trọn vẹn cho gia đình</span>
-                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
+                <div class="zc-spec-tag">Buổi tối trọn vẹn</div>
                 <div class="zc-media-caption">Bữa cơm gia đình đúng giờ và buổi tối tách biệt hoàn toàn khỏi áp lực công sở</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
                   <span class="zc-status-chip">Góc nhìn lợi ích</span>
-                  <h3 class="zc-content-title">Thói quen kỷ luật và <em>ranh giới rõ ràng</em></h3>
+                  <h3 class="zc-content-title">Thói quen kỷ luật và ranh giới rõ ràng</h3>
                 </div>
                 <div class="zc-content-body">
                   <p>
@@ -1299,7 +1231,7 @@
         <!-- Khối kết bài / Lời khuyên -->
         <section class="zc-verdict">
           <div class="zc-verdict-badge">Đúc kết biên tập</div>
-          <h3 class="zc-verdict-title">Lời kết và góc nhìn <em>đa chiều</em></h3>
+          <h3 class="zc-verdict-title">Lời kết và góc nhìn đa chiều</h3>
           <p>
             Không có phương án nào là hoàn hảo tuyệt đối trong bài toán an cư. Vùng ven hay nội đô không phải là câu chuyện đúng hay sai, mà là sự lựa chọn phù hợp với thứ tự ưu tiên của mỗi người tại từng giai đoạn cuộc đời.
           </p>
@@ -1311,10 +1243,10 @@
           </div>
         </section>
 
-        <!-- Dải nhận diện chân trang (Officevibe Deep Ink Navy Footer) -->
+        <!-- Dải nhận diện chân trang (Apple Product Stage Footer) -->
         <footer class="zc-brand-band">
-          <div class="zc-brand-pill">Tri thức - Znews · Chuyên đề đối chiếu đa chiều</div>
-          <h4 class="zc-brand-title">Quyết định an cư — Góc nhìn đa chiều từ <em>thực tế</em></h4>
+          <div class="zc-brand-pill">Tri thức - Znews Special Presentation</div>
+          <h4 class="zc-brand-title">Quyết định an cư — Góc nhìn đa chiều từ thực tế.</h4>
           <p class="zc-brand-desc">
             Mỗi lựa chọn đều mang lại giá trị riêng và đòi hỏi những đánh đổi tương ứng. Hãy lắng nghe nhu cầu cốt lõi của bạn và gia đình trước khi đưa ra quyết định dài hạn.
           </p>
@@ -1342,7 +1274,7 @@
   <div class="demo-modal-backdrop" id="demoModal">
     <div class="demo-modal-window">
       <div class="demo-modal-head">
-        <h3>Mã nhúng HTML/CSS chuẩn CMS Znews (Officevibe style)</h3>
+        <h3>Mã nhúng HTML/CSS chuẩn CMS Znews (Apple Dark Vitrine style)</h3>
         <button class="demo-btn" onclick="closeCodeModal()">Đóng</button>
       </div>
       <div class="demo-modal-body">
