@@ -3,19 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bài viết mẫu: Bỏ phố về ven — Đánh đổi và Lợi ích sau 3 năm nhìn lại | Znews</title>
+  <title>Bài viết mẫu: Bỏ phố về ven — Đánh đổi và lợi ích sau 3 năm nhìn lại | Znews</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* ==========================================================================
+       SUPERR DESIGN TOKENS — Warm Schoolyard Notebook Aesthetic
+       ========================================================================== */
     :root {
-      --demo-bg: #f5f4ef;
-      --demo-surface: #ffffff;
-      --demo-border: #e2ded5;
-      --demo-text: #242420;
-      --demo-muted: #737067;
-      --demo-accent: #d97706;
-      --demo-accent-green: #059669;
+      --color-cream-paper: #fdfbf9;
+      --color-charcoal: #171717;
+      --color-cocoa-ink: #2b1a07;
+      --color-true-black: #000000;
+      --color-dew-drop: #f7efe9;
+      --color-marker-orange: #ff6f1e;
+      --color-burnt-sienna: #ce500a;
+      --color-sky-sticker: #3b82f6;
+      --color-bubblegum-sticker: #ff66cf;
+      --color-sprout-sticker: #22c55e;
+      --color-shadow-mist: #bebcbb;
+
+      --demo-bg: var(--color-dew-drop);
+      --demo-sheet: var(--color-cream-paper);
+      --demo-border: var(--color-charcoal);
+      --demo-text: var(--color-charcoal);
+      --demo-headline: var(--color-cocoa-ink);
+      --demo-muted: #57534e;
     }
 
     * { box-sizing: border-box; }
@@ -38,11 +52,11 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 10px 20px;
-      background: rgba(255, 255, 255, 0.94);
+      padding: 10px 22px;
+      background: rgba(253, 251, 249, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--demo-border);
+      border-bottom: 1.5px solid var(--color-charcoal);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     }
     .demo-bar-left {
@@ -55,33 +69,41 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #fef3c7;
-      border: 1px solid #fde68a;
-      color: #92400e;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 1.5px solid var(--color-charcoal);
+      color: var(--color-burnt-sienna);
       font-size: 11.5px;
       font-weight: 700;
       letter-spacing: .02em;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
+    }
+    .demo-badge .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-marker-orange);
     }
     .demo-title {
       font-size: 13.5px;
       font-weight: 600;
-      color: var(--demo-text);
+      color: var(--demo-headline);
     }
     .demo-bar-mid {
       display: flex;
       align-items: center;
-      gap: 6px;
-      background: #eceae3;
-      padding: 3px;
-      border-radius: 999px;
+      gap: 4px;
+      background: var(--color-dew-drop);
+      padding: 4px;
+      border-radius: 20px;
+      border: 1.5px solid var(--color-charcoal);
     }
     .demo-mode-btn {
-      border: none;
+      border: 1.5px solid transparent;
       background: transparent;
-      padding: 5px 12px;
-      border-radius: 999px;
+      padding: 5px 14px;
+      border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
       color: var(--demo-muted);
@@ -90,9 +112,10 @@
       font-family: inherit;
     }
     .demo-mode-btn.active {
-      background: #ffffff;
-      color: var(--demo-text);
-      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      background: var(--color-cream-paper);
+      color: var(--color-charcoal);
+      border-color: var(--color-charcoal);
+      box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
     }
     .demo-bar-right {
       display: flex;
@@ -103,36 +126,33 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
-      border-radius: 8px;
+      padding: 7px 16px;
+      border-radius: 20px;
       font-size: 12.5px;
       font-weight: 600;
       text-decoration: none;
       cursor: pointer;
-      border: 1px solid var(--demo-border);
-      background: #ffffff;
-      color: var(--demo-text);
-      transition: all .18s;
+      border: 1.5px solid var(--color-charcoal);
+      background: var(--color-cream-paper);
+      color: var(--color-charcoal);
+      box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
+      transition: transform .15s ease;
     }
     .demo-btn:hover {
-      background: #fbfaf7;
-      border-color: #cbbead;
       transform: translateY(-1px);
     }
     .demo-btn-primary {
-      background: #1e1e1b;
+      background: var(--color-charcoal);
       color: #ffffff !important;
-      border-color: #1e1e1b;
     }
     .demo-btn-primary:hover {
-      background: #383733;
-      border-color: #383733;
+      background: #2b2b28;
     }
 
     /* Khung trang mô phỏng */
     .page-wrapper {
-      max-width: 1060px;
-      margin: 24px auto 60px;
+      max-width: 1080px;
+      margin: 28px auto 60px;
       padding: 0 16px;
       transition: max-width .3s cubic-bezier(.2,1,.3,1);
     }
@@ -140,7 +160,7 @@
       max-width: 440px;
     }
     .page-wrapper.cms-mock {
-      max-width: 1240px;
+      max-width: 1260px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 300px;
       gap: 32px;
@@ -151,42 +171,44 @@
       position: sticky;
       top: 76px;
       padding: 20px;
-      background: #ffffff;
-      border: 1px solid var(--demo-border);
+      background: var(--color-cream-paper);
+      border: 1.5px solid var(--color-charcoal);
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.03);
+      box-shadow: rgba(0,0,0,0.06) 0 2px 20px;
     }
     .page-wrapper.cms-mock .cms-mock-sidebar {
       display: block;
     }
     .cms-mock-sidebar h4 {
       margin: 0 0 14px;
-      font-size: 14px;
-      color: var(--demo-text);
-      border-bottom: 2px solid var(--demo-accent);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--color-cocoa-ink);
+      border-bottom: 2px solid var(--color-marker-orange);
       padding-bottom: 6px;
     }
     .sidebar-ad-box {
       width: 100%;
       height: 250px;
-      background: #f4f3ee;
-      border: 1px dashed #d5d1c5;
+      background: var(--color-dew-drop);
+      border: 1.5px dashed #a8a29e;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       font-size: 12px;
-      color: #8b887f;
+      color: #57534e;
       margin-bottom: 16px;
     }
 
     .article-sheet {
-      background: #ffffff;
+      background: var(--demo-sheet);
       border-radius: 16px;
-      border: 1px solid var(--demo-border);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
-      padding: 28px 28px 52px;
+      border: 1.5px solid var(--color-charcoal);
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 20px 0;
+      padding: 36px 36px 0;
+      overflow: hidden;
     }
 
     /* Modal hiển thị mã CMS */
@@ -195,7 +217,7 @@
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(23, 23, 23, 0.6);
       backdrop-filter: blur(4px);
       align-items: center;
       justify-content: center;
@@ -203,11 +225,12 @@
     }
     .demo-modal-backdrop.show { display: flex; }
     .demo-modal-window {
-      background: #ffffff;
+      background: var(--color-cream-paper);
       width: 100%;
-      max-width: 780px;
+      max-width: 800px;
       max-height: 85vh;
-      border-radius: 14px;
+      border-radius: 16px;
+      border: 1.5px solid var(--color-charcoal);
       display: flex;
       flex-direction: column;
       box-shadow: 0 20px 50px rgba(0,0,0,.25);
@@ -217,12 +240,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid #e5e5e5;
+      padding: 16px 22px;
+      border-bottom: 1.5px solid var(--color-charcoal);
+      background: var(--color-dew-drop);
     }
-    .demo-modal-head h3 { margin: 0; font-size: 16px; font-weight: 700; }
+    .demo-modal-head h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--color-cocoa-ink); }
     .demo-modal-body {
-      padding: 16px 20px;
+      padding: 18px 22px;
       flex: 1;
       overflow-y: auto;
     }
@@ -233,48 +257,45 @@
       font-size: 12.5px;
       line-height: 1.5;
       padding: 12px;
-      border: 1px solid #d5d1c5;
+      border: 1.5px solid var(--color-charcoal);
       border-radius: 8px;
-      background: #faf9f6;
+      background: #faf8f5;
       resize: vertical;
-      color: #242420;
+      color: var(--color-charcoal);
     }
 
     @media (max-width: 768px) {
       .demo-bar { padding: 8px 12px; }
       .demo-title { display: none; }
       .page-wrapper { margin: 12px auto 40px; padding: 0 8px; }
-      .article-sheet { padding: 18px 14px 36px; border-radius: 12px; }
+      .article-sheet { padding: 22px 14px 0; border-radius: 12px; }
     }
   </style>
 
-  <!-- ==================== CSS CỦA BÀI VIẾT SO SÁNH ==================== -->
+  <!-- ==================== CSS CỦA BÀI VIẾT SO SÁNH (CHUẨN SUPERR) ==================== -->
   <style id="zac-comparison-css">
+/* --- TỔNG THỂ BÀI VIẾT: SUPERR NOTEBOOK STYLE --- */
 .zac#zacCompare{
-  --zc-ink: #242420;
-  --zc-bodyc: #383733;
-  --zc-muted: #737067;
-  --zc-line: #e6e2d8;
-  --zc-soft: #fbfaf7;
-  --zc-bar-bg: #f4f3ef;
-  --zc-bar-border: #e2dfd5;
-  --zc-card-bg: #ffffff;
-  --zc-card-border: #e5e1d7;
+  --zc-canvas: #fdfbf9;
+  --zc-tint: #f7efe9;
+  --zc-charcoal: #171717;
+  --zc-cocoa: #2b1a07;
+  --zc-black: #000000;
+  --zc-orange: #ff6f1e;
+  --zc-burnt: #ce500a;
+  --zc-sprout: #22c55e;
+  --zc-sprout-dark: #15803d;
+  --zc-sky: #3b82f6;
+  --zc-bubblegum: #ff66cf;
+  --zc-mist: #bebcbb;
   --zc-bleed: 0px;
-  --zc-a: #d97706;
-  --zc-b: #059669;
-  --zc-a-bg: #fffcf2;
-  --zc-b-bg: #f2fcf6;
-  --zc-a-badge-bg: #fef3c7;
-  --zc-a-badge-color: #92400e;
-  --zc-b-badge-bg: #d1fae5;
-  --zc-b-badge-color: #065f46;
+
   display: block;
   width: 100%;
   margin: 0;
   padding: 0;
   background: transparent;
-  color: var(--zc-ink);
+  color: var(--zc-charcoal);
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   font-size: 18px;
   line-height: 1.7;
@@ -282,50 +303,61 @@
 }
 .zac#zacCompare *{ box-sizing: border-box; }
 .zac#zacCompare p{ margin: 0; }
-.zac#zacCompare b, .zac#zacCompare strong{ font-weight: 700; }
+.zac#zacCompare b, .zac#zacCompare strong{ font-weight: 700; color: var(--zc-charcoal); }
 .zac#zacCompare a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 700px){ .zac#zacCompare{ --zc-bleed: 0px; } }
 .layout-special .zac#zacCompare, body.layout-special #zacCompare, .the-article.layout-special #zacCompare, .the-article-body.layout-special #zacCompare, .zac#zacCompare.mode-bleed{ --zc-bleed: 0px; }
 
-/* Phần đầu bài */
+/* Phần đầu bài (Hero) */
 .zac#zacCompare .zc-hero{
   max-width: 880px;
   margin: 0 auto 36px;
-  padding: 16px 16px 28px;
-  border-bottom: 1px solid var(--zc-line);
+  padding: 10px 16px 28px;
+  border-bottom: 1.5px solid var(--zc-charcoal);
   text-align: left;
 }
 .zac#zacCompare .zc-kicker{
-  margin: 0 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
   font-size: 12.5px;
   line-height: 1.4;
   font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--zc-a);
+  letter-spacing: .04em;
+  color: var(--zc-burnt);
+}
+.zac#zacCompare .zc-kicker-tag{
+  background: #ffffff;
+  border: 1.5px solid var(--zc-charcoal);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 11.5px;
+  color: var(--zc-charcoal);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
 }
 .zac#zacCompare .zc-kicker a{ color: inherit !important; text-decoration: none !important; }
 .zac#zacCompare .zc-kicker a:hover{ text-decoration: underline !important; }
 .zac#zacCompare .zc-title{
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   font-family: 'Newsreader', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(30px, 4vw, 44px);
-  line-height: 1.22;
+  font-size: clamp(32px, 4.2vw, 46px);
+  line-height: 1.18;
   letter-spacing: -.02em;
-  color: var(--zc-ink);
+  color: var(--zc-cocoa);
 }
 .zac#zacCompare .zc-sapo{
-  margin: 0 0 18px;
-  font-size: 19.5px;
-  line-height: 1.62;
-  color: var(--zc-bodyc);
+  margin: 0 0 20px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--zc-cocoa);
   font-weight: 400;
   opacity: .95;
 }
 .zac#zacCompare .zc-byline{
   font-size: 13.5px;
-  color: var(--zc-muted);
+  color: #57534e;
   margin: 0;
   display: flex;
   align-items: center;
@@ -341,24 +373,43 @@
 }
 .zac#zacCompare .zc-intro p{
   margin: 0 0 20px;
-  font-size: 18px;
-  line-height: 1.78;
-  color: var(--zc-bodyc);
+  font-size: 18.5px;
+  line-height: 1.76;
+  color: var(--zc-charcoal);
 }
 .zac#zacCompare .zc-toc{
   max-width: 760px;
-  margin: 0 auto 40px;
-  padding: 22px 24px;
-  background: var(--zc-soft);
-  border-left: 4px solid var(--zc-a);
-  border-radius: 0 10px 10px 0;
+  margin: 0 auto 44px;
+  padding: 22px 26px;
+  background: var(--zc-tint);
+  border: 1.5px solid var(--zc-charcoal);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 14px;
+}
+.zac#zacCompare .zc-toc-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.zac#zacCompare .zc-toc-sticker{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1.5px solid var(--zc-charcoal);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--zc-charcoal);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
 }
 .zac#zacCompare .zc-toc-title{
-  margin: 0 0 12px;
-  font-weight: 800;
+  margin: 0;
+  font-weight: 700;
   font-size: 15.5px;
-  color: var(--zc-ink);
-  letter-spacing: .02em;
+  color: var(--zc-cocoa);
 }
 .zac#zacCompare .zc-toc ol{
   margin: 0;
@@ -371,12 +422,12 @@
 }
 .zac#zacCompare .zc-toc a{
   text-decoration: none;
-  color: var(--zc-ink);
+  color: var(--zc-cocoa);
   font-weight: 600;
 }
 .zac#zacCompare .zc-toc a:hover{
   text-decoration: underline;
-  color: var(--zc-a);
+  color: var(--zc-burnt);
 }
 
 /* Từng mục so sánh */
@@ -395,83 +446,83 @@
 }
 .zac#zacCompare .zc-item-num{
   font-family: 'JetBrains Mono', monospace;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
-  color: var(--zc-a);
-  background: rgba(217, 119, 6, .12);
+  color: var(--zc-cocoa);
+  background: #ffffff;
+  border: 1.5px solid var(--zc-charcoal);
   padding: 5px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
   flex: none;
 }
 .zac#zacCompare .zc-item-title{
   margin: 0;
   font-family: 'Newsreader', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(24px, 3vw, 30px);
-  line-height: 1.3;
-  color: var(--zc-ink);
+  font-size: clamp(24px, 3.2vw, 32px);
+  line-height: 1.28;
+  color: var(--zc-cocoa);
 }
 
-/* ==================== THANH ĐIỀU KHIỂN TRƯỢT IPHONE ==================== */
+/* ==================== THANH ĐIỀU KHIỂN TRƯỢT IPHONE (SUPERR STYLE) ==================== */
 .zac#zacCompare .zc-ios-bar{
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 18px;
-  padding: 6px 12px;
-  background: var(--zc-bar-bg);
-  border: 1px solid var(--zc-bar-border);
+  padding: 6px 10px;
+  background: var(--zc-canvas);
+  border: 1.5px solid var(--zc-charcoal);
   border-radius: 999px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .03);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 10px;
 }
 
-/* Nút bấm tab nhanh */
+/* Nút tab nhanh 2 bên */
 .zac#zacCompare .zc-tab-btn{
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
   background: transparent;
   font-family: inherit;
   font-size: 13.5px;
   font-weight: 700;
-  color: var(--zc-muted);
+  color: #78716c;
   cursor: pointer;
-  transition: all .25s ease;
+  transition: all .2s ease;
   white-space: nowrap;
   flex: none;
   -webkit-tap-highlight-color: transparent;
 }
 .zac#zacCompare .zc-tab-btn:hover{
-  color: var(--zc-ink);
-  background: rgba(255, 255, 255, .7);
+  color: var(--zc-charcoal);
 }
 .zac#zacCompare .zc-tab-btn.is-active{
-  background: #ffffff;
-  color: var(--zc-ink);
-  border-color: rgba(0, 0, 0, .08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+  background: var(--zc-canvas);
+  color: var(--zc-charcoal);
+  border-color: var(--zc-charcoal);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
 }
-.zac#zacCompare .zc-tab-a.is-active{ color: var(--zc-a); }
-.zac#zacCompare .zc-tab-b.is-active{ color: var(--zc-b); }
 .zac#zacCompare .zc-dot{
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #c5c1b8;
+  background: #d6d3d1;
   transition: background .2s ease;
 }
-.zac#zacCompare .zc-tab-a.is-active .zc-dot{ background: var(--zc-a); }
-.zac#zacCompare .zc-tab-b.is-active .zc-dot{ background: var(--zc-b); }
+.zac#zacCompare .zc-tab-a.is-active .zc-dot{ background: var(--zc-orange); }
+.zac#zacCompare .zc-tab-b.is-active .zc-dot{ background: var(--zc-sprout); }
 
 /* Rãnh trượt iPhone */
 .zac#zacCompare .zc-ios-track{
   position: relative;
   flex: 1;
   height: 44px;
-  background: rgba(0, 0, 0, .06);
+  background: var(--zc-tint);
+  border: 1.5px solid var(--zc-charcoal);
   border-radius: 999px;
   overflow: hidden;
   cursor: pointer;
@@ -488,18 +539,24 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  padding: 0 46px;
+  padding: 0 48px;
 }
 .zac#zacCompare .zc-shimmer-text{
   font-size: 13px;
   font-weight: 700;
   letter-spacing: .02em;
-  background: linear-gradient(90deg, #9b988f 0%, #1a1a18 45%, #9b988f 90%);
+  background: linear-gradient(90deg, #78716c 0%, var(--zc-orange) 50%, #78716c 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: zcShimmer 2.4s infinite linear;
   white-space: nowrap;
+}
+.zac#zacCompare .zc-item.side-b .zc-shimmer-text{
+  background: linear-gradient(90deg, #78716c 0%, var(--zc-sprout-dark) 50%, #78716c 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 @keyframes zcShimmer{
   0%{ background-position: 100% 0; }
@@ -509,14 +566,14 @@
 /* Núm trượt tròn iPhone */
 .zac#zacCompare .zc-ios-knob{
   position: absolute;
-  top: 4px;
+  top: 3px;
   left: 4px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, .08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+  border: 1.5px solid var(--zc-charcoal);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -526,14 +583,14 @@
 }
 .zac#zacCompare .zc-ios-knob:active{
   cursor: grabbing;
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 .zac#zacCompare .zc-knob-icon{
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   fill: none;
-  stroke: #17181b;
-  stroke-width: 2.3;
+  stroke: var(--zc-charcoal);
+  stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -546,10 +603,10 @@
 /* ==================== KHUNG NỘI DUNG TÍCH HỢP LIỀN KHỐI ==================== */
 .zac#zacCompare .zc-integrated-frame{
   position: relative;
-  background: var(--zc-card-bg);
+  background: var(--zc-canvas);
   border-radius: 16px;
-  border: 1px solid var(--zc-card-border);
-  box-shadow: 0 4px 22px rgba(0, 0, 0, .04);
+  border: 1.5px solid var(--zc-charcoal);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 20px 0;
   overflow: hidden;
 }
 
@@ -576,11 +633,11 @@
   to{ opacity: 1; transform: translateY(0); }
 }
 
-/* Bố cục 2 cột tích hợp (Ảnh bên cạnh Chữ): cực kỳ cân đối cho 1-3 đoạn văn */
+/* Bố cục 2 cột tích hợp (Ảnh bên cạnh Chữ) */
 .zac#zacCompare .zc-view-panel{
   grid-template-columns: 1.15fr 1fr;
   align-items: stretch;
-  min-height: 440px;
+  min-height: 450px;
 }
 @media (max-width: 768px){
   .zac#zacCompare .zc-view-panel{
@@ -592,8 +649,8 @@
 /* Cột Ảnh tích hợp */
 .zac#zacCompare .zc-panel-media{
   position: relative;
-  background: #17181b;
-  min-height: 300px;
+  background: #1c1917;
+  min-height: 320px;
   overflow: hidden;
 }
 @media (max-width: 768px){
@@ -610,62 +667,108 @@
   object-fit: cover;
   display: block;
 }
-.zac#zacCompare .zc-media-badge{
+
+/* Sticker Label Name Tag trên ảnh */
+.zac#zacCompare .zc-sticker-tag{
   position: absolute;
   top: 14px;
   left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   padding: 6px 14px;
   border-radius: 8px;
-  font-size: 12.5px;
+  background: #ffffff;
+  border: 1.5px solid var(--zc-charcoal);
+  color: var(--zc-charcoal);
+  font-size: 13px;
   font-weight: 700;
-  color: #fff;
-  letter-spacing: .03em;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
-  z-index: 2;
+  letter-spacing: .02em;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 3px;
+  z-index: 3;
 }
-.zac#zacCompare .zc-view-a .zc-media-badge{ background: rgba(217, 119, 6, .92); }
-.zac#zacCompare .zc-view-b .zc-media-badge{ background: rgba(5, 150, 105, .92); }
+.zac#zacCompare .zc-view-a .zc-sticker-tag .tag-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--zc-orange);
+}
+.zac#zacCompare .zc-view-b .zc-sticker-tag .tag-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--zc-sprout);
+}
 
+/* Chú thích viết tay (Handwritten Script Annotation & Hand-drawn Arrow) */
+.zac#zacCompare .zc-script-annotation{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(253, 251, 249, 0.95);
+  border: 1.5px solid var(--zc-charcoal);
+  border-radius: 999px;
+  font-family: 'Caveat', cursive;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--zc-orange);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
+  z-index: 3;
+  transform: rotate(-2deg);
+}
+.zac#zacCompare .zc-view-b .zc-script-annotation{
+  color: var(--zc-sprout-dark);
+  transform: rotate(2deg);
+}
+.zac#zacCompare .zc-script-arrow{
+  width: 18px;
+  height: 18px;
+  stroke: var(--zc-charcoal);
+  stroke-width: 1.6;
+  fill: none;
+}
+
+/* Chú thích ảnh tích hợp bên dưới ảnh */
 .zac#zacCompare .zc-media-caption{
   position: absolute;
   bottom: 12px;
   left: 12px;
   right: 12px;
-  padding: 6px 12px;
-  background: rgba(0, 0, 0, .75);
-  color: #ffffff;
-  font-size: 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  background: rgba(23, 23, 23, 0.88);
+  color: #fdfbf9;
+  font-size: 12.5px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   line-height: 1.45;
-  z-index: 2;
+  z-index: 3;
+  backdrop-filter: blur(4px);
 }
 
 /* Cột Văn bản phân tích tích hợp */
 .zac#zacCompare .zc-panel-content{
-  padding: 28px 32px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #ffffff;
+  background: var(--zc-canvas);
+  border-left: 1.5px solid var(--zc-charcoal);
 }
 .zac#zacCompare .zc-view-a .zc-panel-content{
-  border-left: 4px solid var(--zc-a);
-  background: var(--zc-a-bg);
+  background: #fffcf9;
 }
 .zac#zacCompare .zc-view-b .zc-panel-content{
-  border-left: 4px solid var(--zc-b);
-  background: var(--zc-b-bg);
+  background: var(--zc-tint);
 }
 @media (max-width: 768px){
-  .zac#zacCompare .zc-view-a .zc-panel-content,
-  .zac#zacCompare .zc-view-b .zc-panel-content{
+  .zac#zacCompare .zc-panel-content{
     border-left: none;
-    border-top: 4px solid var(--zc-a);
-    padding: 22px 20px;
-  }
-  .zac#zacCompare .zc-view-b .zc-panel-content{
-    border-top-color: var(--zc-b);
+    border-top: 1.5px solid var(--zc-charcoal);
+    padding: 24px 20px;
   }
 }
 
@@ -680,75 +783,146 @@
   font-weight: 700;
   padding: 3px 10px;
   border-radius: 6px;
+  background: #ffffff;
+  border: 1.5px solid var(--zc-charcoal);
   margin-bottom: 10px;
-  letter-spacing: .02em;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
 }
 .zac#zacCompare .zc-view-a .zc-status-chip{
-  background: var(--zc-a-badge-bg);
-  color: var(--zc-a-badge-color);
+  color: var(--zc-burnt);
 }
 .zac#zacCompare .zc-view-b .zc-status-chip{
-  background: var(--zc-b-badge-bg);
-  color: var(--zc-b-badge-color);
+  color: var(--zc-sprout-dark);
 }
 .zac#zacCompare .zc-content-title{
   margin: 0;
   font-family: 'Newsreader', Georgia, serif;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 700;
-  color: var(--zc-ink);
+  color: var(--zc-cocoa);
   line-height: 1.35;
 }
 .zac#zacCompare .zc-content-body p{
   margin: 0 0 14px;
   font-size: 16.5px;
   line-height: 1.74;
-  color: var(--zc-bodyc);
+  color: var(--zc-charcoal);
 }
 .zac#zacCompare .zc-content-body p:last-child{
   margin-bottom: 0;
 }
 
-/* Phần kết luận & điều hướng */
+/* Nét bút dạ cam gạch chân nhấn mạnh (Marker Highlight) */
+.zac#zacCompare .zc-marker-highlight{
+  color: var(--zc-burnt);
+  font-weight: 700;
+  position: relative;
+  display: inline;
+  text-decoration: underline;
+  text-decoration-color: var(--zc-orange);
+  text-decoration-thickness: 2.5px;
+  text-underline-offset: 3px;
+}
+
+/* Phần kết luận & đúc kết */
 .zac#zacCompare .zc-verdict{
   max-width: 880px;
-  margin: 58px auto 0;
-  padding: 30px 32px;
-  background: var(--zc-soft);
-  border-radius: 14px;
-  border: 1px solid var(--zc-line);
-  border-left: 5px solid var(--zc-b);
+  margin: 64px auto 0;
+  padding: 32px 36px;
+  background: var(--zc-tint);
+  border-radius: 16px;
+  border: 1.5px solid var(--zc-charcoal);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 20px 0;
+}
+.zac#zacCompare .zc-verdict-tag{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1.5px solid var(--zc-charcoal);
+  border-radius: 8px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--zc-cocoa);
+  margin-bottom: 12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
 }
 .zac#zacCompare .zc-verdict-title{
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   font-family: 'Newsreader', Georgia, serif;
   font-weight: 700;
-  font-size: 21px;
-  color: var(--zc-ink);
+  font-size: 22px;
+  color: var(--zc-cocoa);
 }
 .zac#zacCompare .zc-verdict p{
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   font-size: 17.5px;
   line-height: 1.74;
-  color: var(--zc-bodyc);
+  color: var(--zc-charcoal);
 }
 .zac#zacCompare .zc-verdict p:last-child{ margin-bottom: 0; }
 .zac#zacCompare .zc-note{
   margin-top: 16px;
   font-size: 13.5px;
-  color: var(--zc-muted);
+  color: #78716c;
   font-style: italic;
 }
-.zac#zacCompare .zc-endnav{
-  max-width: 880px;
-  margin: 44px auto 0;
-  padding: 24px 16px 8px;
-  border-top: 1px solid var(--zc-line);
+
+/* Dải màu nhận diện chân trang (Signature Footer Brand Band) */
+.zac#zacCompare .zc-brand-band{
+  margin-top: 64px;
+  background: var(--zc-orange);
+  border-radius: 56px 56px 0 0;
+  border: 1.5px solid var(--zc-charcoal);
+  border-bottom: none;
+  padding: 40px 24px 36px;
   text-align: center;
+  color: var(--zc-cocoa);
 }
-.zac#zacCompare .zc-endnav .zc-kicker{ margin: 0; color: var(--zc-ink); }
-.zac#zacCompare .zc-endnav .zc-kicker a{ color: var(--zc-ink) !important; }
-.zac#zacCompare .zc-endnav .zc-kicker::before{ content: "← "; opacity: .6; }
+.zac#zacCompare .zc-brand-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--zc-canvas);
+  border: 1.5px solid var(--zc-charcoal);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--zc-charcoal);
+  margin-bottom: 14px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
+}
+.zac#zacCompare .zc-brand-title{
+  margin: 0 0 8px;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--zc-cocoa);
+}
+.zac#zacCompare .zc-brand-desc{
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: 15px;
+  color: var(--zc-cocoa);
+  opacity: .9;
+}
+
+/* Ẩn tít mặc định CMS khi dán vào trang */
+.the-article:has(#zacCompare .zc-kicker a) .the-article-category{ display: none !important; }
+.the-article:has(#zacCompare) .the-article-summary,
+.the-article:has(#zacCompare) .the-article-meta{ display: none !important; }
+.the-article:has(#zacCompare) .the-article-title{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
   </style>
 </head>
 <body>
@@ -756,8 +930,8 @@
   <!-- Thanh điều khiển thử nghiệm -->
   <header class="demo-bar">
     <div class="demo-bar-left">
-      <span class="demo-badge">ZNEWS DEMO</span>
-      <span class="demo-title">Bài viết so sánh đối chiếu: Bỏ phố về ven</span>
+      <span class="demo-badge"><span class="badge-dot"></span>ZNEWS DEMO</span>
+      <span class="demo-title">Bài viết đối chiếu: Bỏ phố về ven (Superr notebook style)</span>
     </div>
 
     <div class="demo-bar-mid">
@@ -788,11 +962,12 @@
         <!-- Header bài viết -->
         <header class="zc-hero">
           <div class="zc-kicker">
-            <a href="https://znews.vn/doi-song.html" target="_blank">Đời sống & Đô thị</a> · <a href="#" onclick="return false">Góc nhìn & Đối chiếu</a>
+            <span class="zc-kicker-tag">Góc nhìn đối chiếu</span>
+            <a href="https://znews.vn/doi-song.html" target="_blank">Đời sống & Đô thị</a> · <span>Tri thức - Znews</span>
           </div>
-          <h1 class="zc-title">Bỏ phố về ven: Đánh đổi và Lợi ích sau 3 năm nhìn lại</h1>
+          <h1 class="zc-title">Bỏ phố về ven: Đánh đổi và lợi ích sau 3 năm nhìn lại</h1>
           <p class="zc-sapo">
-            Xu hướng rời trung tâm để ra các khu đô thị vệ tinh mang lại không gian sống thoáng đãng và giảm bớt áp lực tài chính, nhưng cũng buộc người trẻ phải đối mặt với bài toán thời gian di chuyển và dịch vụ xung quanh.
+            Xu hướng rời trung tâm để ra các đô thị vệ tinh mang lại không gian sống thoáng đãng và giảm bớt áp lực tài chính, nhưng cũng buộc các gia đình trẻ phải đối mặt với bài toán thời gian di chuyển và dịch vụ xung quanh.
           </p>
           <div class="zc-byline">
             <span>Tác giả: <b>Minh Châu - Phương Linh</b></span>
@@ -807,13 +982,16 @@
             Trong 5 năm qua, làn sóng dịch chuyển an cư từ lõi trung tâm ra các khu đô thị vệ tinh vùng ven ngày càng trở nên rõ nét đối với các gia đình trẻ tại Hà Nội và TP.HCM.
           </p>
           <p>
-            Nhìn từ bên ngoài, đó là sự lựa chọn lý tưởng cho một lối sống xanh, rời xa khói bụi và chật chội. Nhưng trên thực tế sau hơn 3 năm trải nghiệm, mỗi quyết định an cư đều là một bài toán cân đo giữa những giá trị nhận lại và cái giá thực tế phải trả.
+            Nhìn từ bên ngoài, đó là sự lựa chọn lý tưởng cho một lối sống xanh, rời xa khói bụi và chật chội. Nhưng trên <span class="zc-marker-highlight">thực tế!</span> sau hơn 3 năm trải nghiệm, mỗi quyết định an cư đều là một bài toán cân đo giữa những giá trị nhận lại và cái giá thực tế phải trả.
           </p>
         </section>
 
         <!-- Mục lục nhanh -->
         <nav class="zc-toc">
-          <div class="zc-toc-title">Nội dung đối chiếu trong bài:</div>
+          <div class="zc-toc-header">
+            <span class="zc-toc-sticker">Mục lục nhanh</span>
+            <div class="zc-toc-title">Nội dung đối chiếu trong bài:</div>
+          </div>
           <ol>
             <li><a href="#cmp-sec-1">Không gian sống và môi trường sinh hoạt</a></li>
             <li><a href="#cmp-sec-2">Chi phí tài chính và gánh nặng nợ vay</a></li>
@@ -857,8 +1035,12 @@
                 <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
                      alt="Căn hộ nội đô chật hẹp"
                      onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%2378350f\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Căn hộ nội đô chật hẹp</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23fde68a\' text-anchor=\'middle\'>Diện tích 48m2, tầm nhìn bị vây kín bởi bê tông</text></svg>';">
-                <span class="zc-media-badge">Đánh đổi</span>
-                <div class="zc-media-caption">Căn hộ nội đô 48m² chật hẹp, tầm nhìn bị che khuất bởi các khối nhà cao tầng</div>
+                <div class="zc-sticker-tag"><span class="tag-dot"></span>Đánh đổi: 01</div>
+                <div class="zc-script-annotation">
+                  <span>chật chội bí bách!</span>
+                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><path d="M4 14c4 4 10 4 14 0m-4-6l4 6-6 4"/></svg>
+                </div>
+                <div class="zc-media-caption">Căn hộ nội đô 48 m² chật hẹp, tầm nhìn bị che khuất bởi các khối nhà cao tầng</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
@@ -867,10 +1049,10 @@
                 </div>
                 <div class="zc-content-body">
                   <p>
-                    Sống trong lõi đô thị cũ đồng nghĩa với việc chấp nhận diện tích khiêm tốn. Căn hộ dưới 50m² vừa là phòng khách, góc làm việc và nơi sinh hoạt chung, khiến ranh giới riêng tư giữa các thành viên gần như không tồn tại.
+                    Sống trong lõi đô thị cũ đồng nghĩa với việc chấp nhận diện tích khiêm tốn. Căn hộ dưới 50 m² vừa là phòng khách, góc làm việc và nơi sinh hoạt chung, khiến ranh giới riêng tư giữa các thành viên gần như không tồn tại.
                   </p>
                   <p>
-                    Tiếng còi xe và khói bụi từ mặt đường lớn cũng khiến việc mở cửa sổ đón gió tự nhiên trở thành điều xa xỉ trong phần lớn thời gian trong ngày. Trẻ nhỏ thiếu sân chơi vận động, thường xuyên phải gắn liền với màn hình tivi và điện thoại.
+                    Tiếng còi xe và khói bụi từ mặt đường lớn cũng khiến việc mở cửa sổ đón gió tự nhiên trở thành điều xa xỉ trong phần lớn thời gian trong ngày. Trẻ nhỏ thiếu sân chơi vận động, thường xuyên phải gắn liền với màn hình điện thoại.
                   </p>
                 </div>
               </div>
@@ -882,8 +1064,12 @@
                 <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80"
                      alt="Khu đô thị vệ tinh sinh thái"
                      onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23064e3b\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Khu đô thị vệ tinh sinh thái</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23a7f3d0\' text-anchor=\'middle\'>Không gian xanh và ánh sáng tự nhiên ngập tràn</text></svg>';">
-                <span class="zc-media-badge">Lợi ích</span>
-                <div class="zc-media-caption">Không gian sống 95m² vùng ven với ban công mở rộng hướng ra công viên cây xanh</div>
+                <div class="zc-sticker-tag"><span class="tag-dot"></span>Lợi ích: 01</div>
+                <div class="zc-script-annotation">
+                  <span>không gian xanh mơ ước!</span>
+                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><path d="M4 14c4 4 10 4 14 0m-4-6l4 6-6 4"/></svg>
+                </div>
+                <div class="zc-media-caption">Không gian sống 95 m² vùng ven với ban công mở rộng hướng ra công viên cây xanh</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
@@ -892,10 +1078,10 @@
                 </div>
                 <div class="zc-content-body">
                   <p>
-                    Cùng số tiền đó tại vùng ven, gia đình có thể sở hữu căn hộ 3 phòng ngủ với diện tích gần 100m², đón ánh sáng tự nhiên từ mọi góc phòng và có ban công rộng rãi trồng cây cảnh.
+                    Cùng số tiền đó tại vùng ven, gia đình có thể sở hữu căn hộ 3 phòng ngủ với diện tích gần 100 m², đón ánh sáng tự nhiên từ mọi góc phòng và có ban công rộng rãi trồng cây xanh.
                   </p>
                   <p>
-                    Quan trọng hơn cả là môi trường cho con nhỏ: trẻ có sân chơi nội khu an toàn, đường chạy bộ dưới bóng cây và không gian vận động ngoài trời mà không lo lắng về mật độ giao thông nguy hiểm, giúp cả gia đình tái tạo năng lượng mỗi ngày.
+                    Quan trọng hơn cả là môi trường cho con nhỏ: trẻ có sân chơi nội khu an toàn, đường chạy bộ dưới bóng cây và không gian vận động ngoài trời mà không lo lắng về mật độ giao thông nguy hiểm, giúp cả gia đình <span class="zc-marker-highlight">tái tạo năng lượng!</span> mỗi ngày.
                   </p>
                 </div>
               </div>
@@ -940,7 +1126,11 @@
                 <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80"
                      alt="Áp lực tài chính và nợ vay"
                      onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%2378350f\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Áp lực tài chính và nợ vay</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23fde68a\' text-anchor=\'middle\'>Giá nhà trung tâm neo ở mức cao kỷ lục</text></svg>';">
-                <span class="zc-media-badge">Đánh đổi</span>
+                <div class="zc-sticker-tag"><span class="tag-dot"></span>Đánh đổi: 02</div>
+                <div class="zc-script-annotation">
+                  <span>thanh khoản chậm hơn!</span>
+                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><path d="M4 14c4 4 10 4 14 0m-4-6l4 6-6 4"/></svg>
+                </div>
                 <div class="zc-media-caption">Giá nhà trung tâm neo ở mức cao kỷ lục, đòi hỏi đòn bẩy tài chính lớn</div>
               </div>
               <div class="zc-panel-content">
@@ -953,7 +1143,7 @@
                     Bất động sản trung tâm luôn có tính thanh khoản cao và khả năng giữ giá vượt trội qua các chu kỳ kinh tế nhiều biến động.
                   </p>
                   <p>
-                    Khi chọn mua căn hộ vùng ven, người mua phải chấp nhận biên độ tăng giá có thể không đột biến bằng đất lõi đô thị, đồng thời thị trường thứ cấp cần nhiều thời gian hơn để tìm kiếm người mua lại khi có nhu cầu thanh khoản gấp.
+                    Khi chọn mua căn hộ vùng ven, người mua phải chấp nhận biên độ tăng giá có thể không đột biến bằng đất lõi đô thị, đồng thời thị trường thứ cấp cần nhiều thời gian hơn để tìm kiếm người mua lại khi có nhu cầu vốn gấp.
                   </p>
                 </div>
               </div>
@@ -965,7 +1155,11 @@
                 <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80"
                      alt="Tài chính nhẹ gánh và tích lũy"
                      onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23064e3b\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Tài chính nhẹ gánh và tích lũy</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23a7f3d0\' text-anchor=\'middle\'>Giảm 45% gánh nặng trả nợ ngân hàng mỗi tháng</text></svg>';">
-                <span class="zc-media-badge">Lợi ích</span>
+                <div class="zc-sticker-tag"><span class="tag-dot"></span>Lợi ích: 02</div>
+                <div class="zc-script-annotation">
+                  <span>tiết kiệm 45% tiền nợ!</span>
+                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><path d="M4 14c4 4 10 4 14 0m-4-6l4 6-6 4"/></svg>
+                </div>
                 <div class="zc-media-caption">Chi phí sở hữu vừa tầm giúp gia đình duy trì dòng tiền ổn định</div>
               </div>
               <div class="zc-panel-content">
@@ -978,7 +1172,7 @@
                     Khoản vay ngân hàng giảm từ 2,5 tỷ xuống chỉ còn khoảng 1,1 tỷ đồng giúp số tiền trả gốc lãi hàng tháng giảm đi gần một nửa, giải phóng gánh nặng tâm lý đè nặng lên cả gia đình.
                   </p>
                   <p>
-                    Sự thảnh thơi về mặt tinh thần giúp người trẻ không còn rơi vào trạng thái kiệt sức vì công việc, đồng thời có thêm ngân sách dự phòng cho y tế, bảo hiểm và những chuyến du lịch tái tạo năng lượng cùng gia đình.
+                    Sự <span class="zc-marker-highlight">thảnh thơi tinh thần!</span> giúp người trẻ không còn rơi vào trạng thái kiệt sức vì công việc, đồng thời có thêm ngân sách dự phòng cho y tế, bảo hiểm và những chuyến du lịch cùng người thân.
                   </p>
                 </div>
               </div>
@@ -1023,8 +1217,12 @@
                 <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=80"
                      alt="Kẹt xe giờ cao điểm"
                      onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%2378350f\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Kẹt xe giờ cao điểm</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23fde68a\' text-anchor=\'middle\'>Hành trình 18 km mỗi chiều trong khói bụi và mưa ngập</text></svg>';">
-                <span class="zc-media-badge">Đánh đổi</span>
-                <div class="zc-media-caption">Hành trình 18 km mỗi chiều trên trục đường hướng tâm giờ cao điểm</div>
+                <div class="zc-sticker-tag"><span class="tag-dot"></span>Đánh đổi: 03</div>
+                <div class="zc-script-annotation">
+                  <span>80 phút trên đường!</span>
+                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><path d="M4 14c4 4 10 4 14 0m-4-6l4 6-6 4"/></svg>
+                </div>
+                <div class="zc-media-caption">Hành trình 18 km mỗi chiều trên trục đường hướng tâm vào các khung giờ cao điểm</div>
               </div>
               <div class="zc-panel-content">
                 <div class="zc-content-header">
@@ -1048,7 +1246,11 @@
                 <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80"
                      alt="Buổi tối bình yên bên gia đình"
                      onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23064e3b\' width=\'800\' height=\'600\'/><text x=\'50%25\' y=\'45%25\' font-family=\'sans-serif\' font-size=\'30\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\'>Buổi tối bình yên</text><text x=\'50%25\' y=\'55%25\' font-family=\'sans-serif\' font-size=\'17\' fill=\'%23a7f3d0\' text-anchor=\'middle\'>Tách biệt hoàn toàn khỏi áp lực công sở sau giờ làm</text></svg>';">
-                <span class="zc-media-badge">Lợi ích</span>
+                <div class="zc-sticker-tag"><span class="tag-dot"></span>Lợi ích: 03</div>
+                <div class="zc-script-annotation">
+                  <span>buổi tối trọn vẹn bên con!</span>
+                  <svg class="zc-script-arrow" viewBox="0 0 24 24"><path d="M4 14c4 4 10 4 14 0m-4-6l4 6-6 4"/></svg>
+                </div>
                 <div class="zc-media-caption">Bữa cơm gia đình đúng giờ và buổi tối tách biệt hoàn toàn khỏi áp lực công sở</div>
               </div>
               <div class="zc-panel-content">
@@ -1061,7 +1263,7 @@
                     Chính quãng đường xa lại tạo ra động lực chuyển đổi: nhiều người chủ động đàm phán chế độ làm việc từ xa 2 ngày mỗi tuần, hoặc chuyển dịch công việc sang các nền tảng số hóa.
                   </p>
                   <p>
-                    Khi bước chân về đến nhà ở vùng ven, sự yên tĩnh gần như tuyệt đối giúp não bộ ngắt kết nối hoàn toàn với công việc, dành trọn vẹn buổi tối cho người thân và giấc ngủ trọn vẹn.
+                    Khi bước chân về đến nhà ở vùng ven, sự yên tĩnh gần như tuyệt đối giúp não bộ ngắt kết nối hoàn toàn với công việc, dành trọn vẹn buổi tối cho người thân và một giấc ngủ sâu.
                   </p>
                 </div>
               </div>
@@ -1072,6 +1274,7 @@
 
         <!-- Khối kết bài / Lời khuyên -->
         <section class="zc-verdict">
+          <div class="zc-verdict-tag">✦ Đúc kết biên tập</div>
           <h3 class="zc-verdict-title">Lời kết và góc nhìn đa chiều</h3>
           <p>
             Không có phương án nào là hoàn hảo tuyệt đối trong bài toán an cư. Vùng ven hay nội đô không phải là câu chuyện đúng hay sai, mà là sự lựa chọn phù hợp với thứ tự ưu tiên của mỗi người tại từng giai đoạn cuộc đời.
@@ -1084,11 +1287,13 @@
           </div>
         </section>
 
-        <!-- Điều hướng chân bài -->
-        <footer class="zc-endnav">
-          <div class="zc-kicker">
-            <a href="https://znews.vn/doi-song.html" target="_blank">Đời sống & Đô thị</a>
-          </div>
+        <!-- Dải nhận diện chân trang (Signature Footer Brand Band) -->
+        <footer class="zc-brand-band">
+          <div class="zc-brand-pill">Tri thức - Znews · Chuyên đề đối chiếu đa chiều</div>
+          <h4 class="zc-brand-title">Quyết định an cư — Góc nhìn đa chiều từ thực tế</h4>
+          <p class="zc-brand-desc">
+            Mỗi lựa chọn đều mang lại giá trị riêng và đòi hỏi những đánh đổi tương ứng. Hãy lắng nghe nhu cầu cốt lõi của bạn và gia đình trước khi đưa ra quyết định dài hạn.
+          </p>
         </footer>
 
       </article>
@@ -1113,11 +1318,11 @@
   <div class="demo-modal-backdrop" id="demoModal">
     <div class="demo-modal-window">
       <div class="demo-modal-head">
-        <h3>Mã nhúng HTML/CSS chuẩn CMS Znews</h3>
+        <h3>Mã nhúng HTML/CSS chuẩn CMS Znews (Superr style)</h3>
         <button class="demo-btn" onclick="closeCodeModal()">Đóng</button>
       </div>
       <div class="demo-modal-body">
-        <p style="font-size:13px; color:#666; margin:0 0 10px;">
+        <p style="font-size:13px; color:var(--demo-muted); margin:0 0 10px;">
           Đoạn mã dưới đây là mã nguồn thuần túy được tạo từ công cụ, bạn có thể bấm sao chép và dán trực tiếp vào chế độ <b>Source Code / HTML</b> của CMS Znews:
         </p>
         <textarea id="demoCodeText" class="demo-code-area" readonly></textarea>
@@ -1214,7 +1419,6 @@
           var labelA = item.getAttribute('data-label-a') || 'Đánh đổi';
           var labelB = item.getAttribute('data-label-b') || 'Lợi ích';
 
-          // currentSide: 'a' hoặc 'b'
           var currentSide = item.classList.contains('side-b') ? 'b' : 'a';
           var isDragging = false;
           var startX = 0;
@@ -1247,7 +1451,7 @@
           // Click trên rãnh trượt hoặc chữ shimmer để đổi vế
           if (track) {
             track.addEventListener('click', function(e){
-              if (e.target.closest('.zc-ios-knob')) return; // tránh trùng với kéo núm
+              if (e.target.closest('.zc-ios-knob')) return;
               var r = track.getBoundingClientRect();
               var clickX = e.clientX - r.left;
               if (clickX > r.width / 2) {
@@ -1302,16 +1506,15 @@
                 var diffY = e.changedTouches[0].clientY - swipeStartY;
                 if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
                   if (diffX < 0 && currentSide === 'a') {
-                    setSide('b'); // vuốt sang trái -> xem Lợi ích
+                    setSide('b');
                   } else if (diffX > 0 && currentSide === 'b') {
-                    setSide('a'); // vuốt sang phải -> xem Đánh đổi
+                    setSide('a');
                   }
                 }
               }
             }, { passive: true });
           }
 
-          // Khởi tạo mặc định ở Vế A (Đánh đổi)
           setSide('a');
         })(items[i]);
       }
@@ -1325,7 +1528,6 @@
       }
     }
 
-    // Khởi tạo tương tác
     document.addEventListener('DOMContentLoaded', function(){
       zcInitCompare(document);
     });
