@@ -4,6 +4,21 @@ Toàn bộ các cập nhật quan trọng của dự án **Znews Editorial Studi
 
 ---
 
+## [2.5.0] - 2026-10-10
+
+### 🎨 Thiết kế lại giao diện toàn bộ các công cụ theo một hệ thống chung
+- **Một ngôn ngữ thiết kế duy nhất** cho 8 công cụ (phỏng vấn, so sánh, ảnh, carousel, no side-bar, bài viết sách, Thumb, Magazine): nền giấy ấm, màu nhấn đất nung, bo góc và đổ bóng nhất quán, trùng tông với trang chủ và cẩm nang.
+- **Tệp dùng chung mới** trong thư mục `assets/`:
+  - `studio-tokens.css`: biến màu, bo góc, bóng đổ, font (sáng và tối).
+  - `studio.css`: các thành phần giao diện (khung soạn, nhóm thao tác, ô nhập, nút, thẻ mục, hộp thoại xuất mã, thanh xem trước).
+  - `studio.js`: nhớ chế độ sáng/tối, dùng chung khoá `znews_theme` với trang chủ nên đổi ở đâu cũng đồng bộ.
+- **Tối ưu cho tiếng Việt**: dùng Be Vietnam Pro cho toàn bộ giao diện; bỏ kiểu nhãn CHỮ HOA giãn chữ và chữ đơn cách (dễ chồng dấu thanh), cỡ chữ nhỏ nhất 12px, giãn dòng 1.6.
+- **Chế độ sáng/tối** có nút chuyển ở đầu mỗi công cụ, kèm liên kết quay về trang chủ Studio.
+- **Vùng xem trước giữ nguyên** font, màu nền và khoảng cách như trước, nên bài hiển thị đúng như khi dán lên CMS. Mã bài xuất ra không đổi.
+- Riêng Thumb: vùng làm việc giữ nền xám trung tính để soi màu ảnh, ô định dạng giữ nền tối để logo trắng luôn rõ.
+
+---
+
 ## [2.4.1] - 2026-10-04
 
 ### 🔄 Tinh chỉnh cơ chế trượt ẩn/hiện & tích hợp caption liền khối với ảnh

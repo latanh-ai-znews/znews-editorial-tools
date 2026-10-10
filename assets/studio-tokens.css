@@ -1,0 +1,82 @@
+/* =====================================================================
+   ZNEWS STUDIO — BIẾN MÀU, HÌNH KHỐI, CHỮ (sáng/tối)
+   Bảng màu trùng với trang chủ (index.html) và cẩm nang (guide.html).
+   Công cụ nào chỉ cần màu (Magazine) thì nạp riêng tệp này.
+   ===================================================================== */
+
+:root {
+  /* Nền & bề mặt */
+  --bg: #fbfaf7;
+  --bg-subtle: #f5f2eb;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --border: #e8e4dc;
+  --border-strong: #d6d1c6;
+
+  /* Chữ */
+  --text: #262421;
+  --text-soft: #4a4742;
+  --text-muted: #6e6a62;
+
+  /* Màu nhấn của Znews Studio */
+  --primary: #c94a29;
+  --primary-hover: #b33e1f;
+  --primary-subtle: #faebe7;
+  --on-primary: #ffffff;
+
+  /* Trạng thái */
+  --ok: #15803d;
+  --ok-subtle: #e8f5ec;
+  --warn: #a15c07;
+  --warn-subtle: #fdf3dc;
+  --danger: #b42318;
+  --danger-subtle: #fdecea;
+
+  /* Vùng xem trước bài (luôn sáng vì bài đăng trên nền trắng) */
+  --preview-bg: #ffffff;
+  --preview-line: #e8e4dc;
+
+  /* Hình khối */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(38, 36, 33, .05);
+  --shadow-md: 0 8px 24px -8px rgba(38, 36, 33, .14), 0 2px 6px rgba(38, 36, 33, .05);
+  --focus: 0 0 0 3px rgba(201, 74, 41, .22);
+
+  --font-ui: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  --editor-w: 460px;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #161514;
+  --bg-subtle: #1f1d1b;
+  --surface: #242220;
+  --surface-raised: #2b2926;
+  --border: #363330;
+  --border-strong: #4a4641;
+
+  --text: #f2eee8;
+  --text-soft: #d3cdc3;
+  --text-muted: #a39d93;
+
+  --primary: #e0603f;
+  --primary-hover: #ea7051;
+  --primary-subtle: #38241e;
+  --on-primary: #1a1311;
+
+  --ok: #5fd08a;
+  --ok-subtle: #1c2e24;
+  --warn: #f0b955;
+  --warn-subtle: #33291a;
+  --danger: #ff8a7a;
+  --danger-subtle: #3a2220;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, .45);
+  --focus: 0 0 0 3px rgba(224, 96, 63, .3);
+  color-scheme: dark;
+}

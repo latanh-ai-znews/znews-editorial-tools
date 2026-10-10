@@ -37,6 +37,7 @@ Tạo tệp mới, ví dụ: `infographic-tool.html`. Tuân thủ các nguyên t
 - Chạy 100% Client-side.
 - CSS phải được bao bọc trong một class namespace riêng (Ví dụ: `.znews-infographic`).
 - Cung cấp nút "Sao chép mã CMS" tiện lợi.
+- Giao diện công cụ dùng chung bộ `assets/studio.css` và `assets/studio.js` (khung `.shell` > `.editor` + `.preview-col`, xem mục 4.1 trong `ARCHITECTURE.md`). Đặt `<body class="studio">`, nạp hai tệp này trong `<head>`, và đặt hàng điều hướng `.tool-nav` ở đầu cột soạn như các công cụ hiện có.
 
 ### Bước 2: Đăng ký công cụ vào `index.html`
 Mở `index.html` và thực hiện 3 thao tác nhỏ:

@@ -55,6 +55,11 @@ Công cụ AI Znews/
 │   ├── Bai viet sach.html               # Bản gốc bài viết sách (đảm bảo tương thích ngược)
 │   └── carousel-tool.html               # Trình tạo khối slide ảnh trình chiếu
 │
+├── assets/ (Giao diện dùng chung cho các công cụ)
+│   ├── studio-tokens.css                # Biến màu, bo góc, bóng đổ, font (sáng/tối)
+│   ├── studio.css                       # Thành phần giao diện: khung soạn, nút, ô nhập, hộp thoại...
+│   └── studio.js                        # Nhớ chế độ sáng/tối (khoá znews_theme)
+│
 ├── docs/ (Bộ tài liệu kỹ thuật chuyên sâu)
 │   ├── ARCHITECTURE.md                  # Kiến trúc hệ thống & Design System (Tệp này)
 │   ├── CMS_GUIDELINES.md                # Quy chuẩn kỹ thuật & bố cục CMS (Ad-Safe Standard)
@@ -115,6 +120,25 @@ Mỗi công cụ sinh mã đều đóng gói toàn bộ nội dung và CSS trong
 | `--font-heading` | `'Be Vietnam Pro', sans-serif` | Tiêu đề giao diện, nút bấm |
 | `--font-editorial` | `'Newsreader', Georgia, serif` | Tiêu đề bài viết tạp chí, trích dẫn báo chí |
 | `--font-mono` | `'JetBrains Mono', monospace` | Thông số kỹ thuật, mã nguồn, kích thước ảnh |
+
+### 4.1. Giao diện công cụ dùng chung (Studio UI)
+
+Mọi công cụ dùng cùng một bộ giao diện nằm trong `assets/`. **Chỉ áp dụng cho "vỏ" công cụ** (khung soạn, thanh xem trước, hộp thoại). CSS của bài viết xuất ra vẫn nằm trong namespace riêng của từng công cụ và không đụng đến các tệp này.
+
+| Token (`assets/studio-tokens.css`) | Sáng | Tối | Ứng dụng |
+|:---|:---|:---|:---|
+| `--bg` / `--bg-subtle` | `#fbfaf7` / `#f5f2eb` | `#161514` / `#1f1d1b` | Nền khung soạn / nền phụ |
+| `--surface` | `#ffffff` | `#242220` | Thẻ nhóm thao tác, ô nhập |
+| `--border` / `--border-strong` | `#e8e4dc` / `#d6d1c6` | `#363330` / `#4a4641` | Viền thẻ / viền ô nhập |
+| `--text` / `--text-soft` / `--text-muted` | `#262421` / `#4a4742` / `#6e6a62` | `#f2eee8` / `#d3cdc3` / `#a39d93` | Chữ chính, chữ phụ, chú thích |
+| `--primary` | `#c94a29` | `#e0603f` | Nút chính, điểm nhấn, trạng thái chọn |
+
+**Quy ước khi viết giao diện công cụ:**
+- Chữ giao diện dùng `Be Vietnam Pro`; chỉ dùng `JetBrains Mono` cho ô dán mã.
+- Không dùng chữ HOA + giãn chữ cho nhãn (dễ chồng dấu thanh tiếng Việt); cỡ chữ nhỏ nhất 12px.
+- Không gán màu cứng (`#...`) cho giao diện, dùng biến để tự đổi theo sáng/tối. Riêng vùng xem trước bài luôn nền sáng.
+- Selector bám theo class, không viết thẻ trần (`button`, `h1`, `a`) để CSS không rò vào phần xem trước.
+- Khung chuẩn 2 cột: `.shell` > `.editor` (nhóm `.phase`, ô `.field`) + `.preview-col` (`.preview-bar`, vùng xem trước), hộp thoại `.modal-backdrop` > `.modal`. Công cụ có bố cục riêng (sách, Thumb, Magazine) vẫn dùng chung biến màu.
 
 ---
 

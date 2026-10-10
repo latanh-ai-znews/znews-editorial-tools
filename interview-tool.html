@@ -4,64 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Công cụ dựng bài phỏng vấn nhân vật</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/studio.css">
+<script src="assets/studio.js"></script>
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{background:#12141a;font-family:system-ui,-apple-system,sans-serif;color:#e7e6e3}
-.shell{display:flex;min-height:100vh}
-.editor{width:470px;flex:none;background:#181b22;border-right:1px solid #262a34;height:100vh;overflow-y:auto;padding:22px 20px 90px}
-.editor h1{font-size:18px;font-weight:800;margin:0 0 4px;color:#fff}
-.editor .sub{font-size:12.5px;color:#8a8f9a;margin:0 0 18px;line-height:1.5}
-.phase{margin-bottom:20px;padding-top:14px;border-top:1px solid #262a34}
-.phase-h{font-size:12px;font-weight:700;color:#c9ccd3;margin:0 0 10px}
-.hint{font-size:11.5px;color:#7d828d;line-height:1.5;margin:0 0 8px}
-.field{margin-bottom:9px}
-.field label{display:block;font-size:12px;color:#8a8f9a;margin-bottom:4px}
-.field input[type=text],.field textarea,.field select{width:100%;background:#0d0f14;border:1px solid #262a34;border-radius:7px;color:#e7e6e3;font-size:13px;padding:8px 9px;resize:vertical;font-family:inherit}
-.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#3b6df0}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.btn{font-size:12.5px;border-radius:7px;padding:8px 13px;cursor:pointer;border:1px solid #2d323d;background:#0d0f14;color:#e7e6e3;font-family:inherit}
-.btn:hover{border-color:#4a5060}
-.btn:focus-visible{outline:2px solid #3b6df0;outline-offset:2px}
-.btn-block{width:100%}
-.btn-primary{background:#3b6df0;border-color:#3b6df0;color:#fff;font-weight:600}
-.btn-sm{padding:4px 9px;font-size:11.5px;border-radius:6px}
-.radio{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;cursor:pointer;font-size:13px;line-height:1.4}
-.radio input{margin-top:2px}
-.part{border:1px solid #2a2f3a;border-radius:10px;padding:12px;margin-bottom:12px;background:#14171e}
-.part-head{display:flex;gap:6px;align-items:center;margin-bottom:10px}
-.part-head .num{font-size:12px;font-weight:700;color:#8a8f9a;flex:none}
-.part-head input{flex:1}
-.item{border:1px solid #262a34;border-radius:8px;padding:10px;margin-bottom:8px;background:#0f1218}
-.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:11.5px;color:#7d828d}
-.actions{display:flex;gap:5px;flex-wrap:wrap}
-.insert-box{margin-top:6px;padding:8px;border:1px dashed #2d323d;border-radius:7px}
-.checks{list-style:none;margin:0;padding:0;font-size:12.5px;line-height:1.5}
-.checks li{display:flex;gap:7px;margin-bottom:5px}
-.checks .ok{color:#5cc98a}
-.checks .warn{color:#f2b641}
-.preview-col{flex:1;min-width:0;height:100vh;overflow-y:auto;overflow-x:hidden;background:#fff}
-.preview-bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:#fff;border-bottom:1px solid #e6e2d4}
-.preview-bar .label{font-size:12px;color:#8a8f9a}
-.preview-bar .actions .btn{background:#17181b;color:#fff;border-color:#17181b}
-.preview-bar .actions .btn-primary{background:#3b6df0;border-color:#3b6df0}
-.vp-toggle .btn{background:#fff!important;color:#17181b!important;border-color:#d8d3c4!important}
-.vp-toggle .btn.on{background:#17181b!important;color:#fff!important}
 #preview-wrap{margin:0 auto;padding:26px 20px 90px;max-width:860px}
 #preview-wrap.mobile{max-width:390px;padding:16px 0 90px}
-.modal-backdrop{position:fixed;inset:0;background:rgba(10,10,12,.6);display:none;align-items:center;justify-content:center;z-index:50;padding:24px}
-.modal-backdrop.show{display:flex}
-.modal{background:#181b22;border:1px solid #262a34;border-radius:12px;max-width:820px;width:100%;max-height:82vh;display:flex;flex-direction:column}
-.modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #262a34}
-.modal-head h2{font-size:14px;margin:0;color:#fff}
-.modal textarea{flex:1;margin:12px 16px 16px;background:#0a0b0e;border:1px solid #262a34;border-radius:7px;color:#c9e6c9;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;padding:12px;resize:none;min-height:300px}
-@media (max-width:980px){.shell{flex-direction:column}.editor{width:auto;height:auto;max-height:60vh;border-right:0;border-bottom:1px solid #262a34}.preview-col{height:auto}}
 </style>
 <style id="zi-css"></style>
 </head>
-<body>
+<body class="studio">
 <div class="shell">
   <div class="editor">
+    <div class="tool-nav">
+      <a class="tool-back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Studio biên tập</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện sáng/tối"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    </div>
     <h1>Bài phỏng vấn nhân vật</h1>
     <p class="sub">Dựng theo 2 mẫu phỏng vấn của Znews. Dán bản thảo để công cụ tự tách phần, câu hỏi và câu trả lời, rồi chỉnh tiếp bên dưới.</p>
 
@@ -143,7 +103,7 @@ body{background:#12141a;font-family:system-ui,-apple-system,sans-serif;color:#e7
       <ul class="checks" id="checks"></ul>
     </div>
 
-    <div class="phase"><button class="btn btn-block" id="btnReset" type="button">Xoá hết</button></div>
+    <div class="phase"><button class="btn btn-block btn-danger" id="btnReset" type="button">Xoá hết nội dung</button></div>
   </div>
 
   <div class="preview-col">
